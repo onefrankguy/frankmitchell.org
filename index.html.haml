@@ -16,3 +16,28 @@
         media: 'screen',
         href: '/css/ie.css' }/
     %link{ rel: 'icon', type: 'image/png', href: '/images/favicon.png' }/
+  %body
+    %a{ class: 'header', title: 'designer, engineer, wizard', href: '/' }
+      Frank Mitchell
+    %h3{ class: 'header' }
+      Projects
+    %ul{ class: 'apps' }
+      %li
+        %img{ src: '/images/prolix.png',
+          alt: "Prolix's icon spells &#8220;lightheartedness&#8221;",
+          title: "Prolix's icon spells &#8220;lightheartedness&#8221;" }/
+        %a{ href: 'http://prolix-app.com/',
+          title: "Download Prolix for your iPhone or play online" }
+          Prolix
+        is a word search game for the iPhone and iPod touch which lets you
+        %a{ href: 'http://twitter.com/',
+          title: 'Twitter' }
+          tweet
+        your scores so your friends can play with you.
+  %p.class.footer
+    Design <abbr title='and'>&amp;</abbr>
+    text by <a href='/' title='designer, engineer, wizard'>Frank Mitchell</a>.
+    Color scheme by <a title="kuler: &ldquo;Honor&rdquo; by giubbola" href="http://kuler.adobe.com/#themeID/215747">giubbola</a>.
+    Fonts by <a title="The League of Moveable Type" href="http://theleagueofmoveabletype.com/">various</a> <a title="&ldquo;Anonymous Pro&rdquo; by Mark Simonson" href="http://ms-studio.com/FontSales/anonymouspro.html">artists</a>.
+    Built with <a title="Jekyll is a simple, blog aware, static site generator" href="http://jekyllrb.com/">Jekyll</a>
+    and hosted by <a title="NearlyFreeSpeech.NET Web Hosting" href="http://nearlyfreespeech.net/">nearlyfreespeech.net</a>.
