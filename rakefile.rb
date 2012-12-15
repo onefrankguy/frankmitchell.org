@@ -1,4 +1,6 @@
-require 'rake'
+require 'rake/clean'
+
+CLEAN.include 'public/'
 
 task :default => :build
 
