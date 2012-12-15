@@ -5,7 +5,7 @@ CLEAN.include 'public/'
 task :default => :build
 
 desc 'Build the website.'
-task :build => :statis do
+task :build => :stasis do
   sh 'stasis'
 end
 
@@ -15,28 +15,24 @@ task :test => :build do
 end
 
 desc 'Install the stasis gem.'
-task :statis => [:redcarpet, :haml] do
-  begin
-    gem 'stasis'
-  rescue Gem::LoadError
-    sh 'gem install stasis'
-  end
+task :stasis => [:redcarpet, :haml] do
+  gem_package 'stasis'
 end
 
 desc 'Install the redcarpet gem.'
 task :redcarpet do
-  begin
-    gem 'redcarpet'
-  rescue Gem::LoadError
-    sh 'gem install redcarpet'
-  end
+  gem_package 'redcarpet'
 end
 
 desc 'Install the haml gem.'
 task :haml do
+  gem_package 'haml'
+end
+
+def gem_package name
   begin
-    gem 'haml'
+    gem name
   rescue Gem::LoadError
-    sh 'gem install haml'
+    sh "gem install #{name}"
   end
 end
