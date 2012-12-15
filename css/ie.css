@@ -1,0 +1,9 @@
+@import url("screen.css");
+/* Screen */
+.header {
+	color: #19223b;
+	margin-bottom: 0;
+}
+.post, .archive, .apps {
+	border: 0.0625em solid #19223b;
+}

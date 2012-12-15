@@ -1,0 +1,169 @@
+/* Reset */
+* {
+	margin:0; padding:0; border:0; outline:0; font-size:100%; vertical-align:baseline; background:transparent;
+}
+body {
+	line-height:1;
+}
+a {
+	margin:0; padding:0; border:0; font-size:100%; vertical-align:baseline; background:transparent; text-decoration:none;
+}
+table {
+	border-collapse:collapse; border-spacing:0;
+}
+/* Handheld */
+body {
+	background: #c9c539;
+	color: #19223b;
+	font: normal 100% sans-serif;
+}
+h2 {
+	font-size: 1em;
+	line-height: 1.125;
+	margin: 0.75em 0 0.375em 0;
+}
+p, li, pre {
+	font-size: 0.75em;
+	line-height: 1.5;
+	margin-bottom: 0.75em;
+}
+li {
+	margin: 0 0 0 0.75em;
+	list-style-position: inside;
+}
+ol, ul {
+	margin-bottom: 0.75em;
+}
+blockquote {
+	display: block;
+	margin-left: 0.75em;
+	margin-right: 0.75em;
+}
+pre {
+	display: block;
+	margin-left: 0.75em;
+}
+a {
+	color: #751534;
+}
+a:hover {
+	text-decoration: underline;
+}
+abbr {
+	letter-spacing: 0.1em;
+}
+code {
+	font-family: monospace;
+}
+em {
+	font-style: italic;
+}
+.header {
+	display: block;
+	max-width: 13em;
+	margin: 0.75em auto -0.4em auto;
+	color: #faf2e0;
+	text-shadow: 0 0 0.25em #19223b;
+	font: normal 1.5em/1 sans-serif;
+	letter-spacing: -0.1em;
+	word-spacing: 0.1em;
+	text-transform: lowercase;
+}
+a.header:hover {
+	text-decoration: none;
+}
+.post, .archive, .apps {
+	display: block;
+	max-width: 18em;
+	margin: 0 auto;
+	padding: 0.75em 0.75em 0.0625em 0.75em;
+	background: #faf2e0;
+	-webkit-box-shadow: 0 0 0.25em #19223b;
+	-moz-box-shadow: 0 0 0.25em #19223b;
+	box-shadow: 0 0 0.25em #19223b;
+	-webkit-border-radius: 0.65em;
+	-moz-border-radius: 0.65em;
+	border-radius: 0.65em;
+}
+.title, .date {
+	font-size: 0.75em;
+	line-height: 1.5;
+	margin: 0 0 1.5em 0;
+}
+.title {
+	float: right;
+}
+.date {
+	float: left;
+	color: #bdbcaf;
+	font-style: italic;
+	letter-spacing: 0;
+}
+.date + p {
+	clear: both;
+}
+.archive table {
+	text-align: center;
+	margin: 0 auto 0.75em auto;
+	max-width: 18em;
+}
+.archive tr {
+	font-size: 0.75em;
+	line-height: 1.5;
+}
+.archive th {
+	text-align: right;
+	padding-right: 0.5em;
+	font-weight: normal;
+}
+.archive td:before {
+	content: "\2022";
+	padding-right: 0.5em;
+}
+.archive td {
+	text-align: left;
+	padding: 0;
+	font-style: italic;
+	letter-spacing: 0;
+	white-space: nowrap;
+}
+.apps {
+	margin-bottom: 0;
+}
+.apps li {
+	position: relative;
+	padding-left: 5em;
+	margin: 0 0 1.5em 0;
+	list-style: none;
+	min-height: 3.5625em;
+}
+.apps img {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	margin-top: -1.78125em;
+	width: 3.5625em;
+	height: 3.5625em;
+}
+.footer {
+	display: block;
+	max-width: 18em;
+	margin: 2.25em auto 1.5em auto;
+}
+.polaroid {
+	letter-spacing: -0.0625em;
+	word-spacing: 0.125em;
+	text-align: center;
+	margin-bottom: 3em;
+}
+.polaroid img {
+	display: block;
+	background: rgba(255,255,255,0.75);
+	padding: 0.5em 0.5em 2em 0.5em;
+	border: 0.0625em solid #fff;
+	-webkit-box-shadow: 0.125em 0.25em 0.25em rgba(25,34,59,0.75);
+	-moz-box-shadow: 0.125em 0.25em 0.25em rgba(25,34,59,0.75);
+	box-shadow: 0.125em 0.25em 0.25em rgba(25,34,59,0.75);
+	margin: 0 auto -2em auto;
+	max-width: 92%;
+}
