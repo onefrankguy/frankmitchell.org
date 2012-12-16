@@ -5,14 +5,14 @@ require 'yaml'
 require 'erb'
 
 CLEAN.include 'public/'
-CLEAN.include 'posts/*.json'
+CLEAN.include 'manifest.json'
 CLEAN.include 'posts/*.html'
 
 task :default => :build
 
 desc 'Build the website.'
 task :build => ['public/css', 'public/images', 'public/index.html'] do
-  @posts.each { |post| Rake::Task[post['task']].invoke }
+  manifest.each { |post| Rake::Task[post['task']].invoke }
 end
 
 desc 'Start a server for testing.'
@@ -31,8 +31,8 @@ task :redcarpet do
   gem_package 'redcarpet'
 end
 
-task :posts => Dir['posts/*.md'] do |t|
-  @posts = t.prerequisites.map do |original|
+file 'manifest.json' => Dir['posts/*.md'] do |t|
+  posts = t.prerequisites.map do |original|
     info = post_metadata original
 
     fragment = original.ext('.html')
@@ -55,7 +55,9 @@ task :posts => Dir['posts/*.md'] do |t|
     info['task'] = page
     info
   end
-  @posts.sort! { |a, b| a['timestamp'] <=> b['timestamp'] }
+  posts.sort! { |a, b| a['timestamp'] <=> b['timestamp'] }
+  posts = JSON.pretty_generate posts
+  write_text t.name, posts
 end
 
 file 'public/css' => Dir['css/*.*'] do |t|
@@ -66,10 +68,10 @@ file 'public/images' => Dir['images/*.*'] do |t|
   copy_folder 'images', t.name
 end
 
-file 'public/index.html' => :posts do |t|
+file 'public/index.html' => 'manifest.json' do |t|
   @title = 'Frank Mitchell'
-  Rake::Task[@posts.first['content']].invoke
-  @content = File.read @posts.first['content']
+  Rake::Task[manifest.first['content']].invoke
+  @content = File.read manifest.first['content']
   @content = parse_template 'main'
   html = parse_template 'page'
   write_text t.name, html
@@ -129,4 +131,13 @@ def gem_package name
   rescue Gem::LoadError
     sh "gem install #{name}"
   end
+end
+
+def manifest
+  Rake::Task['manifest.json'].invoke
+  if @posts.nil?
+    @posts = File.read 'manifest.json'
+    @posts = JSON.parse @posts
+  end
+  @posts
 end
