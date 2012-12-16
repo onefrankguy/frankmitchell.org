@@ -39,7 +39,7 @@ task :posts => Dir['posts/*.md'] do |t|
       @title = info['title']
       @date = info['date']
       html = parse_template 'post'
-      write_html t.name, html
+      write_text t.name, html
     end
 
     page = File.join('public', info['url'], 'index.html')
@@ -47,7 +47,7 @@ task :posts => Dir['posts/*.md'] do |t|
       @title = "#{info['title']} | Frank Mitchell"
       @content = File.read fragment
       html = parse_template 'page'
-      write_html t.name, html
+      write_text t.name, html
     end.invoke
   end
 end
@@ -68,7 +68,7 @@ file 'public/index.html' => [:posts, 'posts/manifest.json'] do |t|
   @content = File.read @posts.first['content']
   @content = parse_template 'main'
   html = parse_template 'page'
-  write_html t.name, html
+  write_text t.name, html
 end
 
 file 'posts/manifest.json' => Dir['posts/*.md'] do |t|
@@ -77,8 +77,7 @@ file 'posts/manifest.json' => Dir['posts/*.md'] do |t|
   end
   manifest.sort! { |a, b| a['timestamp'] <=> b['timestamp'] }
   manifest = JSON.pretty_generate manifest
-  File.open(t.name, 'w') { |io| io << manifest }
-  sh "dos2unix -U #{t.name}"
+  write_text t.name, manifest
 end
 
 def post_metadata post
@@ -104,10 +103,11 @@ def post_metadata post
   }
 end
 
-def write_html path, html
+def write_text path, text
   dir = File.dirname(path)
   mkpath dir unless File.directory? dir
-  File.open(path, 'w') { |io| io << html }
+  File.open(path, 'w') { |io| io << text }
+  sh "dos2unix -U #{path}"
 end
 
 def parse_template name
