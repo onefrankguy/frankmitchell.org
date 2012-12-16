@@ -57,11 +57,11 @@ task :posts => prereqs do |t|
   end
 end
 
-file 'public/css' => Dir['css/*.css'] do |t|
+file 'public/css' => Dir['css/*.*'] do |t|
   copy_folder 'css', t.name
 end
 
-file 'public/images' => Dir['images/*.png'] do |t|
+file 'public/images' => Dir['images/*.*'] do |t|
   copy_folder 'images', t.name
 end
 
