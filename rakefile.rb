@@ -69,8 +69,8 @@ file 'public/images' => Dir['images/*.*'] do |t|
 end
 
 file 'public/index.html' => 'manifest.json' do |t|
-  @title = 'Frank Mitchell'
   Rake::Task[manifest.first['content']].invoke
+  @title = 'Frank Mitchell'
   @content = File.read manifest.first['content']
   @content = parse_template 'main'
   html = parse_template 'page'
