@@ -41,7 +41,7 @@ Dir['posts/*.md'].each do |post|
     @date = info['date']
     @content = File.read t.name
     html = post_template.result send(:binding)
-    File.open(t.name, 'w') { |io| io << html }
+    write_html t.name, html
   end
 end
 
@@ -49,13 +49,11 @@ task :posts => prereqs do |t|
   posts = File.read 'posts/manifest.json'
   posts = JSON.parse posts
   posts.each do |post|
-    dir = File.join('public', post['url'])
-    mkpath dir unless File.directory? dir
     @title = "#{post['title']} | Frank Mitchell"
     @content = File.read post['content']
     html = page_template.result send(:binding)
-    post = File.join dir, 'index.html'
-    File.open(post, 'w') { |io| io << html }
+    post = File.join('public', post['url'], 'index.html')
+    write_html post, html
   end
 end
 
@@ -73,11 +71,9 @@ file 'public/index.html' => :posts do |t|
   @title = 'Frank Mitchell'
   @posts = posts[0..10]
   @content = File.read @posts.first['content']
-  dir = File.dirname(t.name)
-  mkpath dir unless File.directory? dir
   @content = main_template.result send(:binding)
   html = page_template.result send(:binding)
-  File.open(t.name, 'w') { |io| io << html }
+  write_html t.name, html
 end
 
 file 'posts/manifest.json' => Dir['posts/*.md'] do |t|
@@ -111,6 +107,12 @@ def post_metadata post
       'abbr' => date.strftime("%-d %b.")
     }
   }
+end
+
+def write_html path, html
+  dir = File.dirname(path)
+  mkpath dir unless File.directory? dir
+  File.open(path, 'w') { |io| io << html }
 end
 
 def load_template filename
