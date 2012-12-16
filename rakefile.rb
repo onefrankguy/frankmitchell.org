@@ -40,7 +40,7 @@ Dir['posts/*.md'].each do |post|
     @title = info['title']
     @date = info['date']
     @content = File.read t.name
-    html = post_template.result send(:binding)
+    html = parse_template 'post'
     write_html t.name, html
   end
 end
@@ -51,7 +51,7 @@ task :posts => prereqs do |t|
   posts.each do |post|
     @title = "#{post['title']} | Frank Mitchell"
     @content = File.read post['content']
-    html = page_template.result send(:binding)
+    html = parse_template 'page'
     post = File.join('public', post['url'], 'index.html')
     write_html post, html
   end
@@ -71,8 +71,8 @@ file 'public/index.html' => :posts do |t|
   @title = 'Frank Mitchell'
   @posts = posts[0..10]
   @content = File.read @posts.first['content']
-  @content = main_template.result send(:binding)
-  html = page_template.result send(:binding)
+  @content = parse_template 'main'
+  html = parse_template 'page'
   write_html t.name, html
 end
 
@@ -115,26 +115,16 @@ def write_html path, html
   File.open(path, 'w') { |io| io << html }
 end
 
-def load_template filename
-  template = File.read filename
-  template = ERB.new template
-  template.filename = filename
-  template
-end
-
-def main_template
-  @main_template ||= load_template 'templates/main.rhtml'
-  @main_template
-end
-
-def post_template
-  @post_template ||= load_template 'templates/post.rhtml'
-  @post_template
-end
-
-def page_template
-  @page_template ||= load_template 'templates/page.rhtml'
-  @page_template
+def parse_template name
+  @templates ||= {}
+  unless @templates[name]
+    filename = "templates/#{name}.rhtml"
+    template = File.read filename
+    template = ERB.new template
+    template.filename = filename
+    @templates[name] = template
+  end
+  @templates[name].result send(:binding)
 end
 
 def copy_folder input, output
