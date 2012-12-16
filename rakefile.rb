@@ -31,8 +31,9 @@ task :redcarpet do
   gem_package 'redcarpet'
 end
 
-file 'manifest.json' => Dir['posts/*.md'] do |t|
-  posts = t.prerequisites.map do |original|
+file 'manifest.json' => [Dir['posts/*.md'], __FILE__].flatten do |t|
+  posts = t.prerequisites.select { |name| name.end_with? '.md' }
+  posts.map! do |original|
     info = post_metadata original
 
     fragment = original.ext('.html')
