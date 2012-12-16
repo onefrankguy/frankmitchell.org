@@ -10,8 +10,14 @@ task :build => :stasis do
 end
 
 desc 'Start a server for testing.'
-task :test => :build do
-  sh 'stasis -d 8080'
+task :test do
+  code = []
+  code << "require 'webrick'"
+  code << "o = {:Port => 8080, :DocumentRoot => 'public'}"
+  code << "s = WEBrick::HTTPServer.new(o)"
+  code << "trap('INT') { s.shutdown }"
+  code << "s.start"
+  exec "ruby -e \"#{code.join('; ')}\""
 end
 
 desc 'Install the stasis gem.'
