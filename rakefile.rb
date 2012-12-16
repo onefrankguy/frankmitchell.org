@@ -3,6 +3,7 @@ require 'time'
 require 'json'
 require 'yaml'
 require 'erb'
+require 'cgi'
 
 CLEAN.include 'public/'
 CLEAN.include 'manifest.json'
@@ -11,7 +12,12 @@ CLEAN.include 'posts/*.html'
 task :default => :build
 
 desc 'Build the website.'
-task :build => ['public/css', 'public/images', 'public/index.html'] do
+task :build => %w[
+public/css
+public/images
+public/index.html
+public/feed/atom.xml
+] do
   manifest.each { |post| Rake::Task[post['task']].invoke }
 end
 
@@ -69,6 +75,11 @@ file 'public/images' => Dir['images/*.*'] do |t|
   copy_folder 'images', t.name
 end
 
+file 'public/feed/atom.xml' => 'manifest.json' do |t|
+  xml = parse_template 'feed'
+  write_text t.name, xml
+end
+
 file 'public/index.html' => 'manifest.json' do |t|
   Rake::Task[manifest.first['content']].invoke
   @title = 'Frank Mitchell'
@@ -99,6 +110,12 @@ def post_metadata post
       'abbr' => date.strftime("%-d %b.")
     }
   }
+end
+
+def escaped_html filename
+  Rake::Task[filename].invoke
+  html = File.read filename
+  CGI.escape_html html
 end
 
 def write_text path, text
