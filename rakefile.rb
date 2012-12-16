@@ -67,9 +67,8 @@ end
 
 file 'public/index.html' => :posts do |t|
   posts = File.read 'posts/manifest.json'
-  posts = JSON.parse posts
   @title = 'Frank Mitchell'
-  @posts = posts[0..10]
+  @posts = JSON.parse posts
   @content = File.read @posts.first['content']
   @content = parse_template 'main'
   html = parse_template 'page'
