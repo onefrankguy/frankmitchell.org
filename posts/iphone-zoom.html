@@ -1,0 +1,63 @@
+<div class="post">
+  <h2 class="title">Fixing the iPhone zooming bug</h2>
+  <abbr class="date" title="29 April 2012">29 Apr.</abbr>
+  <!--
+title: Fixing the iPhone zooming bug
+date: 29 April 2012
+-->
+
+<p>You&#39;re on the bus to work, crusing <a href="http://pinboard.in/t:programming/" title="Pinboard: global tag page for programming">Pinboard</a> on your iPhone for something to
+read. A nice juicy tech article comes up. The headline grabs your attention.
+There are blocks of code in it. You flip your phone into landscape mode for more
+comfortable reading.</p>
+
+<p>&ldquo;Arrgghh! Why did it zoom?&rdquo;</p>
+
+<p>At this outburst, the other passengers eye you wearily. You hurredly flip back
+to portrait mode, but it&#39;s no use. The blocks of code don&#39;t fit in 320 pixels.
+You sigh and resign yourself to a commute filled with videos of kittens on
+YouTube.</p>
+
+<p>You&#39;ve just been bitten by the <a href="http://filamentgroup.com/examples/iosScaleBug/" title="Filament Group - iOS bug test page">zooming bug</a> in Mobile Safari.</p>
+
+<h2>What causes the bug?</h2>
+
+<p>Websites that want to create a nice mobile user experience will usually
+set the <a href="https://developer.mozilla.org/en/Mobile/Viewport_meta_tag" title="Using the viewport meta tag to control layout on mobile browsers - MDN">meta viewport tag</a>. This tag tells your phone how to scale
+the page it&rsquo;s rendering. The orientation bug happens when a site
+sets the tag like this:</p>
+
+<p>~~~
+<meta  name="viewport"
+  content="width=device-width,initial-scale=1">
+~~~</p>
+
+<p>The <code>width=device-width</code> part says to scale the view so that
+it&rsquo;s 320 pixels wide. (In portrait mode, the iPhone&rsquo;s device width
+is 320 pixels. In landscape mode, it&rsquo;s 480 pixels.) The <code>initial-scale=1</code>
+part tells your phone to map pixels 1-to-1, so that a one pixel measurement in
+<abbr title="Cascading Style Sheets">CSS</abbr> will show up as one rendered
+pixel on the screen.</p>
+
+<p>From a design standpoint it&rsquo;s great. You get pixel perfect control and the
+maximum possilbe sreen space to play with. But as soon as you set that tag, you
+also get the zooming bug.</p>
+
+<h2>How do I fix it?</h2>
+
+<p><p>The fix is simple. Drop the <code>initial-scale=1</code> part from the meta viewport
+  tag.</p>
+  <pre><code>&lt;meta name=&quot;viewport&quot;
+    content=&quot;width=device-width&quot;&gt;
+    </code></pre>
+    <p>There is a bit of a catch. The iPhone won&rsquo;t reset the device width when you
+    switch from portrait to landscape. Start viewing a website in portrait
+    mode, flip to landscape, and the the page will render as if you only
+    have 320 pixels of screen space. You&rsquo;d expect to have the full 480 pixels
+    available, but that&rsquo;s not the case.</p>
+    <p>It&rsquo;s a minor annoyance, but one you only have to deal with once as a
+    designer. And designing with that limit in mind prevents your users from
+    being subjected to unexpected bouts of zooming.</p>
+    <p>Those of us who ride the bus will thank you.</p></p>
+
+</div>

@@ -70,6 +70,7 @@ end
 file 'public/index.html' => :posts do |t|
   posts = File.read 'posts/manifest.json'
   posts = JSON.parse posts
+  @title = 'Frank Mitchell'
   @posts = posts[0..10]
   @content = File.read @posts.first['content']
   dir = File.dirname(t.name)
