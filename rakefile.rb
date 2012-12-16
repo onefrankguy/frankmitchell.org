@@ -29,31 +29,26 @@ task :redcarpet do
   gem_package 'redcarpet'
 end
 
-prereqs = ['posts/manifest.json']
+task :posts => Dir['posts/*.md'] do |t|
+  t.prerequisites.each do |original|
+    info = post_metadata original
 
-Dir['posts/*.md'].each do |post|
-  html = post.ext('.html')
-  prereqs << html
-  file html => [post, :redcarpet] do |t|
-    sh "redcarpet --smarty #{post} > #{t.name}"
-    info = post_metadata post
-    @title = info['title']
-    @date = info['date']
-    @content = File.read t.name
-    html = parse_template 'post'
-    write_html t.name, html
-  end
-end
+    fragment = original.ext('.html')
+    file fragment => [original, :redcarpet] do |t|
+      @content = `redcarpet --smarty #{original}`.strip
+      @title = info['title']
+      @date = info['date']
+      html = parse_template 'post'
+      write_html t.name, html
+    end
 
-task :posts => prereqs do |t|
-  posts = File.read 'posts/manifest.json'
-  posts = JSON.parse posts
-  posts.each do |post|
-    @title = "#{post['title']} | Frank Mitchell"
-    @content = File.read post['content']
-    html = parse_template 'page'
-    post = File.join('public', post['url'], 'index.html')
-    write_html post, html
+    page = File.join('public', info['url'], 'index.html')
+    file page => fragment do |t|
+      @title = "#{info['title']} | Frank Mitchell"
+      @content = File.read fragment
+      html = parse_template 'page'
+      write_html t.name, html
+    end.invoke
   end
 end
 
@@ -65,10 +60,11 @@ file 'public/images' => Dir['images/*.*'] do |t|
   copy_folder 'images', t.name
 end
 
-file 'public/index.html' => :posts do |t|
+file 'public/index.html' => [:posts, 'posts/manifest.json'] do |t|
   posts = File.read 'posts/manifest.json'
   @title = 'Frank Mitchell'
   @posts = JSON.parse posts
+  Rake::Task[@posts.first['content']].invoke
   @content = File.read @posts.first['content']
   @content = parse_template 'main'
   html = parse_template 'page'
