@@ -11,7 +11,9 @@ CLEAN.include 'posts/*.html'
 task :default => :build
 
 desc 'Build the website.'
-task :build => ['public/css', 'public/images', 'public/index.html']
+task :build => ['public/css', 'public/images', 'public/index.html'] do
+  @posts.each { |post| Rake::Task[post['task']].invoke }
+end
 
 desc 'Start a server for testing.'
 task :test do
@@ -30,7 +32,7 @@ task :redcarpet do
 end
 
 task :posts => Dir['posts/*.md'] do |t|
-  t.prerequisites.each do |original|
+  @posts = t.prerequisites.map do |original|
     info = post_metadata original
 
     fragment = original.ext('.html')
@@ -48,8 +50,12 @@ task :posts => Dir['posts/*.md'] do |t|
       @content = File.read fragment
       html = parse_template 'page'
       write_text t.name, html
-    end.invoke
+    end
+
+    info['task'] = page
+    info
   end
+  @posts.sort! { |a, b| a['timestamp'] <=> b['timestamp'] }
 end
 
 file 'public/css' => Dir['css/*.*'] do |t|
@@ -60,24 +66,13 @@ file 'public/images' => Dir['images/*.*'] do |t|
   copy_folder 'images', t.name
 end
 
-file 'public/index.html' => [:posts, 'posts/manifest.json'] do |t|
-  posts = File.read 'posts/manifest.json'
+file 'public/index.html' => :posts do |t|
   @title = 'Frank Mitchell'
-  @posts = JSON.parse posts
   Rake::Task[@posts.first['content']].invoke
   @content = File.read @posts.first['content']
   @content = parse_template 'main'
   html = parse_template 'page'
   write_text t.name, html
-end
-
-file 'posts/manifest.json' => Dir['posts/*.md'] do |t|
-  manifest = t.prerequisites.map do |post|
-    post_metadata post
-  end
-  manifest.sort! { |a, b| a['timestamp'] <=> b['timestamp'] }
-  manifest = JSON.pretty_generate manifest
-  write_text t.name, manifest
 end
 
 def post_metadata post
