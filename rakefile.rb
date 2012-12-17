@@ -18,7 +18,7 @@ public/images
 public/index.html
 public/feed/atom.xml
 ] do
-  manifest.each { |post| Rake::Task[post['task']].invoke }
+  manifest.each { |post| Rake::Task[post['content']['page']].invoke }
 end
 
 desc 'Start a server for testing.'
@@ -37,45 +37,8 @@ task :redcarpet do
   gem_package 'redcarpet'
 end
 
-Dir['posts/*.md'].each do |original|
-  raw = original.ext '.raw.html'
-  file raw => [original, :redcarpet] do |t|
-    sh "redcarpet --smarty #{original} > #{t.name}"
-  end
-
-  escaped = original.ext '.escaped.html'
-  file escaped => raw do |t|
-    html = File.read raw
-    html = CGI.escape_html html
-    write_text t.name, html
-  end
-end
-
-file 'manifest.json' => [Dir['posts/*.md'], __FILE__].flatten do |t|
-  posts = t.prerequisites.select { |name| name.end_with? '.md' }
-  posts.map! do |original|
-    info = post_metadata original
-
-    fragment = original.ext('.html')
-    file fragment => [original, :redcarpet] do |t|
-      @content = `redcarpet --smarty #{original}`.strip
-      @title = info['title']
-      @date = info['date']
-      html = parse_template 'post'
-      write_text t.name, html
-    end
-
-    page = File.join('public', info['url'], 'index.html')
-    file page => fragment do |t|
-      @title = "#{info['title']} | Frank Mitchell"
-      @content = File.read fragment
-      html = parse_template 'page'
-      write_text t.name, html
-    end
-
-    info['task'] = page
-    info
-  end
+file 'manifest.json' => Dir['posts/*.md'] do |t|
+  posts = t.prerequisites.map { |orig| post_metadata orig }
   posts.sort! { |a, b| a['timestamp'] <=> b['timestamp'] }
   posts = JSON.pretty_generate posts
   write_text t.name, posts
@@ -92,7 +55,7 @@ end
 file 'public/feed/atom.xml' do |t|
   @entries = manifest[0..10]
   @entries.map! do |entry|
-    name = entry['escaped']
+    name = entry['content']['escaped']
     Rake::Task[name].invoke
     entry['content'] = File.read name
     entry
@@ -101,10 +64,11 @@ file 'public/feed/atom.xml' do |t|
   write_text t.name, xml
 end
 
-file 'public/index.html' => 'manifest.json' do |t|
-  Rake::Task[manifest.first['content']].invoke
+file 'public/index.html' do |t|
+  @posts = manifest
+  Rake::Task[@posts.first['content']['post']].invoke
   @title = 'Frank Mitchell'
-  @content = File.read manifest.first['content']
+  @content = File.read @posts.first['content']['post']
   @content = parse_template 'main'
   html = parse_template 'page'
   write_text t.name, html
@@ -123,8 +87,12 @@ def post_metadata post
   url = "/#{date.strftime("%Y/%m")}/#{slug}"
   {
     'title' => info['title'],
-    'content' => post.ext('.html'),
-    'escaped' => post.ext('.escaped.html'),
+    'content' => {
+      'raw' => post.ext('.raw.html'),
+      'escaped' => post.ext('.escaped.html'),
+      'post' => post.ext('.post.html'),
+      'page' => File.join('public', url, 'index.html')
+    },
     'timestamp' => date,
     'slug' => slug,
     'url' => url,
@@ -170,9 +138,36 @@ end
 
 def manifest
   Rake::Task['manifest.json'].invoke
-  if @posts.nil?
-    @posts = File.read 'manifest.json'
-    @posts = JSON.parse @posts
+  posts = File.read 'manifest.json'
+  JSON.parse posts
+end
+
+Dir['posts/*.md'].each do |original|
+  info = post_metadata original
+
+  file info['content']['raw'] => original do |t|
+    sh "redcarpet --smarty #{original} > #{t.name}"
   end
-  @posts
+
+  file info['content']['escaped'] => info['content']['raw'] do |t|
+    html = File.read info['content']['raw']
+    html = CGI.escape_html html
+    write_text t.name, html
+  end
+
+  file info['content']['post'] => info['content']['raw'] do |t|
+    @title = info['title']
+    @date = info['date']
+    @content = File.read info['content']['raw']
+    html = parse_template 'post'
+    write_text t.name, html
+  end
+
+  file info['content']['page'] => info['content']['post'] do |t|
+    @title = "#{info['title']} | Frank Mitchell"
+    @date = info['date']
+    @content = File.read info['content']['post']
+    html = parse_template 'page'
+    write_text t.name, html
+  end
 end
