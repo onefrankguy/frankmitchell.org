@@ -58,14 +58,18 @@ file 'public/images' => Dir['images/*.*'] do |t|
   copy_folder 'images', t.name
 end
 
-file 'public/feed/atom.xml' do |t|
+file 'public/feed/atom.xml' => 'templates/feed.rhtml' do |t|
   @entries = manifest[0..10]
   @entries.map! do |entry|
     name = entry['content']['escaped']
     Rake::Task[name].invoke
     entry['content'] = File.read name
+    entry['timestamp'] = Time.parse entry['timestamp']
+    entry['timestamp'] = entry['timestamp'].xmlschema
     entry
   end
+  @updated = Time.parse @entries.first['timestamp']
+  @updated = @updated.xmlschema
   xml = parse_template 'feed'
   write_text t.name, xml
 end
