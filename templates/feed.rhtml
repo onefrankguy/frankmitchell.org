@@ -8,14 +8,14 @@
 <author>
 <name>Frank Mitchell</name>
 </author>
-<% @posts.each do |post| %>
+<% @entries.each do |entry| %>
 <entry>
-<title><%= post['title'] %></title>
-<link href="<%= post['url'] %>" />
-<updated><%= post['timestamp'] %></updated>
-<id><%= post['url'] %></id>
+<title><%= entry['title'] %></title>
+<link href="<%= entry['url'] %>" />
+<updated><%= entry['timestamp'] %></updated>
+<id><%= entry['url'] %></id>
 <content type="html">
-<%= escaped_html post['content'] %>
+<%= entry['content'] %>
 </content>
 </entry>
 <% end %>

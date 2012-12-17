@@ -37,6 +37,20 @@ task :redcarpet do
   gem_package 'redcarpet'
 end
 
+Dir['posts/*.md'].each do |original|
+  raw = original.ext '.raw.html'
+  file raw => [original, :redcarpet] do |t|
+    sh "redcarpet --smarty #{original} > #{t.name}"
+  end
+
+  escaped = original.ext '.escaped.html'
+  file escaped => raw do |t|
+    html = File.read raw
+    html = CGI.escape_html html
+    write_text t.name, html
+  end
+end
+
 file 'manifest.json' => [Dir['posts/*.md'], __FILE__].flatten do |t|
   posts = t.prerequisites.select { |name| name.end_with? '.md' }
   posts.map! do |original|
@@ -75,7 +89,14 @@ file 'public/images' => Dir['images/*.*'] do |t|
   copy_folder 'images', t.name
 end
 
-file 'public/feed/atom.xml' => 'manifest.json' do |t|
+file 'public/feed/atom.xml' do |t|
+  @entries = manifest[0..10]
+  @entries.map! do |entry|
+    name = entry['escaped']
+    Rake::Task[name].invoke
+    entry['content'] = File.read name
+    entry
+  end
   xml = parse_template 'feed'
   write_text t.name, xml
 end
@@ -99,23 +120,19 @@ def post_metadata post
   info = YAML.load yaml.join("\n")
   date = Time.parse(info['date'])
   slug = File.basename(post).ext('')
+  url = "/#{date.strftime("%Y/%m")}/#{slug}"
   {
     'title' => info['title'],
     'content' => post.ext('.html'),
+    'escaped' => post.ext('.escaped.html'),
     'timestamp' => date,
     'slug' => slug,
-    'url' => "/#{date.strftime("%Y/%m")}/#{slug}",
+    'url' => url,
     'date' => {
       'title' => date.strftime("%-d %B %Y"),
       'abbr' => date.strftime("%-d %b.")
     }
   }
-end
-
-def escaped_html filename
-  Rake::Task[filename].invoke
-  html = File.read filename
-  CGI.escape_html html
 end
 
 def write_text path, text
