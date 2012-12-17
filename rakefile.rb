@@ -129,7 +129,7 @@ def parse_template name
   unless @templates[name]
     filename = "templates/#{name}.rhtml"
     template = File.read filename
-    template = ERB.new template
+    template = ERB.new template, 0, '<>'
     template.filename = filename
     @templates[name] = template
   end
