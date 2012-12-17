@@ -37,8 +37,9 @@ task :redcarpet do
   gem_package 'redcarpet'
 end
 
-file 'manifest.json' => Dir['posts/*.md'] do |t|
-  posts = t.prerequisites.map { |orig| post_metadata orig }
+file 'manifest.json' => [Dir['posts/*.md'], __FILE__].flatten do |t|
+  posts = t.prerequisites.select { |path| path.end_with? '.md' }
+  posts.map! { |orig| post_metadata orig }
   posts.sort! { |a, b| a['timestamp'] <=> b['timestamp'] }
   posts = JSON.pretty_generate posts
   write_text t.name, posts
@@ -88,6 +89,7 @@ def post_metadata post
   {
     'title' => info['title'],
     'content' => {
+      'original' => post,
       'raw' => post.ext('.raw.html'),
       'escaped' => post.ext('.escaped.html'),
       'post' => post.ext('.post.html'),
@@ -142,11 +144,9 @@ def manifest
   JSON.parse posts
 end
 
-Dir['posts/*.md'].each do |original|
-  info = post_metadata original
-
-  file info['content']['raw'] => original do |t|
-    sh "redcarpet --smarty #{original} > #{t.name}"
+manifest.each do |info|
+  file info['content']['raw'] => info['content']['original'] do |t|
+    sh "redcarpet --smarty #{info['content']['original']} > #{t.name}"
   end
 
   file info['content']['escaped'] => info['content']['raw'] do |t|
