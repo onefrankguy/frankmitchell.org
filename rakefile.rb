@@ -74,7 +74,10 @@ file 'public/feed/atom.xml' => 'templates/feed.rhtml' do |t|
   write_text t.name, xml
 end
 
-file 'public/index.html' do |t|
+file 'public/index.html' => %w[
+templates/main.rhtml
+templates/page.rhtml
+] do |t|
   @posts = manifest
   Rake::Task[@posts.first['content']['post']].invoke
   @title = 'Frank Mitchell'
@@ -159,7 +162,10 @@ manifest.each do |info|
     write_text t.name, html
   end
 
-  file info['content']['post'] => info['content']['raw'] do |t|
+  file info['content']['post'] => %W[
+    #{info['content']['raw']}
+    templates/post.rhtml
+  ] do |t|
     @title = info['title']
     @date = info['date']
     @content = File.read info['content']['raw']
@@ -167,7 +173,10 @@ manifest.each do |info|
     write_text t.name, html
   end
 
-  file info['content']['page'] => info['content']['post'] do |t|
+  file info['content']['page'] => %W[
+    #{info['content']['post']}
+    templates/page.rhtml
+  ] do |t|
     @title = "#{info['title']} | Frank Mitchell"
     @date = info['date']
     @content = File.read info['content']['post']
