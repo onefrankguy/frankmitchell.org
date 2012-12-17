@@ -12,11 +12,12 @@ CLEAN.include 'posts/*.html'
 task :default => :build
 
 desc 'Build the website.'
-task :build => %w[
-public/css
-public/images
-public/index.html
-public/feed/atom.xml
+task :build => [
+:redcarpet,
+'public/css',
+'public/images',
+'public/index.html',
+'public/feed/atom.xml'
 ] do
   manifest.each { |post| Rake::Task[post['content']['page']].invoke }
 end
@@ -34,7 +35,11 @@ end
 
 desc 'Install the redcarpet gem.'
 task :redcarpet do
-  gem_package 'redcarpet'
+  begin
+    gem 'redcarpet'
+  rescue Gem::LoadError
+    sh 'gem install redcarpet'
+  end
 end
 
 file 'manifest.json' => [Dir['posts/*.md'], __FILE__].flatten do |t|
@@ -131,11 +136,6 @@ def copy_folder input, output
 end
 
 def gem_package name
-  begin
-    gem name
-  rescue Gem::LoadError
-    sh "gem install #{name}"
-  end
 end
 
 def manifest
