@@ -142,9 +142,6 @@ def copy_folder input, output
   cp_r input, output
 end
 
-def gem_package name
-end
-
 def manifest
   Rake::Task['manifest.json'].invoke
   posts = File.read 'manifest.json'
