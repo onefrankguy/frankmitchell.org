@@ -42,6 +42,10 @@ task :redcarpet do
   end
 end
 
+Rake::Task[:clean].enhance do
+  Rake::Task['manifest.json'].reenable
+end
+
 file 'manifest.json' => [Dir['posts/*.md'], __FILE__].flatten do |t|
   posts = t.prerequisites.select { |path| path.end_with? '.md' }
   posts.map! { |orig| post_metadata orig }
