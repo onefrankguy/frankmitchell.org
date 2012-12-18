@@ -24,7 +24,7 @@ set the [meta viewport tag][]. This tag tells your phone how to scale
 the page it's rendering. The orientation bug happens when a site
 sets the tag like this:
 
-    <meta  name="viewport"
+    <meta name="viewport"
       content="width=device-width,initial-scale=1">
 
 The `width=device-width` part says to scale the view so that

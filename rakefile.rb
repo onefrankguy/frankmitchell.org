@@ -152,6 +152,8 @@ def manifest
   JSON.parse posts
 end
 
+Rake::Task['public/index.html'].enhance [manifest.first['content']['post']]
+
 manifest.each do |info|
   file info['content']['raw'] => info['content']['original'] do |t|
     sh "redcarpet --smarty #{info['content']['original']} > #{t.name}"
