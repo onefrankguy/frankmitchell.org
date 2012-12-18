@@ -8,7 +8,7 @@
 }
 /* Screen */
 body {
-	font: normal 100% Raleway, sans-serif;
+	font: 500 100% Raleway, sans-serif;
 }
 h2 {
 	font-size: 1.25em;
@@ -43,7 +43,7 @@ pre {
 .header {
 	max-width: 18em;
 	margin: 0.9em auto -0.6666em auto;
-	font: normal 2em/1.3333 Orbitron, sans-serif;
+	font: 500 2em/1.3333 Orbitron, sans-serif;
 }
 .post, .archive, .apps {
 	max-width: 33em;
