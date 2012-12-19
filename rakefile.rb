@@ -49,7 +49,7 @@ end
 file 'manifest.json' => [Dir['posts/*.md'], __FILE__].flatten do |t|
   posts = t.prerequisites.select { |path| path.end_with? '.md' }
   posts.map! { |orig| post_metadata orig }
-  posts.sort! { |a, b| a['timestamp'] <=> b['timestamp'] }
+  posts.sort! { |a, b| b['timestamp'] <=> a['timestamp'] }
   posts = JSON.pretty_generate posts
   write_text t.name, posts
 end
