@@ -140,18 +140,6 @@ def parse_template name
   @templates[name].result send(:binding)
 end
 
-def format_html text
-  pre = 0
-  html = ''
-  text.each_line do |line|
-    pre += 1 if line.include? '<pre>'
-    html += (pre != 0 || line.start_with?('<')) ? "\n" : ' '
-    html += line.gsub("\n", '')
-    pre -= 1 if line.include? '</pre>'
-  end
-  html
-end
-
 def copy_folder input, output
   output = File.dirname(output)
   mkpath output unless File.directory? output
@@ -168,9 +156,7 @@ Rake::Task['public/index.html'].enhance [manifest.first['content']['post']]
 
 manifest.each do |info|
   file info['content']['raw'] => info['content']['original'] do |t|
-    html = `redcarpet --smarty #{info['content']['original']}`
-    html = format_html html
-    write_text t.name, html
+    sh "redcarpet --smarty #{info['content']['original']} > #{t.name}"
   end
 
   file info['content']['escaped'] => info['content']['raw'] do |t|
