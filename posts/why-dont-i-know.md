@@ -4,8 +4,6 @@ date: 23 December 2004
 tags: poetry
 -->
 
-**Why Don't I Know?**
-
 I don't know why the caged bird sings.  
 I don't know who the lord of the flies is.  
 I don't know where Waldo's at.  
