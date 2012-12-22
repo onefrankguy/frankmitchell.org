@@ -760,7 +760,8 @@ Source -> Translator -> Target
 
 Source -> Interpreter (on Machine) -> Object -> Run-time System (on Machine)
 
-* Interpreter: translates source language to intermediate object language then executes it
+* Interpreter: translates source language to intermediate object language then
+  executes it
 
 ### Java interpreter ###
 
@@ -978,9 +979,11 @@ compiler maintains three major data structures:
     cause the correct sequence of actions to occur
 
 ### Terminology ###
-                                                                                                                                                                                                                                                                                                                            Grammar: formal description of the syntax for a language
+
+* Grammar: formal description of the syntax for a language
 * Alphabet: collection of symbols in the language, plus symbols in the grammar
-* Production: a rule for replacement of non-terminals with other symbols from the alphabet
+* Production: a rule for replacement of non-terminals with other symbols from
+  the alphabet
 * Non-terminals: a subset of the alphabet each having a production
 * Terminals: symbols in the alphabet that are non-terminals
 * Start Symbol: the place to start
