@@ -116,7 +116,7 @@ a.header:hover {
 	font-style: italic;
 	letter-spacing: 0;
 }
-.date + p, .date + h2 {
+.post .date + * {
 	clear: both;
 }
 .archive table {
