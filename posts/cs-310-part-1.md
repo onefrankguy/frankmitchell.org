@@ -1242,188 +1242,221 @@ trees. You don't want to have an ambiguous grammar!
 
 ## 18 February 2005 ##
 
-                                                                                                                                                                                                                                                                                                                            Peanuts Grammar
+### Peanuts Grammar ###
 
-                                                                                                                                                                                                                                                                                                                            <sentence> ::= <subject> <predicate>
-                                                                                                                                                                                                                                                                                                                            <subject> ::= <article> <noun> | <noun>
-                                                                                                                                                                                                                                                                                                                            <predicate> ::= <ver> <object>
-                                                                                                                                                                                                                                                                                                                            <article> ::= a | the
-                                                                                                                                                                                                                                                                                                                            <noun> ::= Linus | Charlie | Snoopy | blanket | dog | song
-                                                                                                                                                                                                                                                                                                                            <verb> ::= holds | pets | sings
-                                                                                                                                                                                                                                                                                                                            <object> ::= <article> <noun> | <noun>
-                                                                                                                                                                                                                                                                                                                            Top down parsing vs. bottom up parsing
+    <sentence> ::= <subject> <predicate>
+    <subject> ::= <article> <noun> | <noun>
+    <predicate> ::= <ver> <object>
+    <article> ::= a | the
+    <noun> ::= Linus | Charlie | Snoopy | blanket | dog | song
+    <verb> ::= holds | pets | sings
+    <object> ::= <article> <noun> | <noun>
 
-                                                                                                                                                                                                                                                                                                                            Noam Chomsky - linguist / anarchist
+Top down parsing vs. bottom up parsing
 
-                                                                                                                                                                                                                                                                                                                            CNF (Chomsky Normal Form)
+Noam Chomsky - linguist / anarchist
 
-                                                                                                                                                                                                                                                                                                                            Top down parsing
+CNF (Chomsky Normal Form)
 
-                                                                                                                                                                                                                                                                                                                            Attempt to construct a syntax tree by staring at the root of the tree (start symbol) and proceeding downward toward the leaves (the symbols forming the strings).
+### Top down parsing ###
 
-                                                                                                                                                                                                                                                                                                                            <sentence> ==> <subject> <predicate>
-                                                                                                                                                                                                                                                                                                                                ==> <noun> <predicate>
-                                                                                                                                                                                                                                                                                                                                    ==> Linus <predicate>
-                                                                                                                                                                                                                                                                                                                                        ==> Linus <verb> <object>
-                                                                                                                                                                                                                                                                                                                                            ==> Linus holds <object>
-                                                                                                                                                                                                                                                                                                                                                ==> Linus holds <article> <noun>
-                                                                                                                                                                                                                                                                                                                                                    ==> Linus holds the <noun>
-                                                                                                                                                                                                                                                                                                                                                        ==> Linus holds the blanket
-                                                                                                                                                                                                                                                                                                                                                        You can associate a rule (production) with each of the steps.
+Attempt to construct a syntax tree by staring at the root of the tree (start
+symbol) and proceeding downward toward the leaves (the symbols forming the
+strings).
 
-                                                                                                                                                                                                                                                                                                                                                        [Insert graphic of the parse tree for the sentence above]
+    <sentence> ==> <subject> <predicate>
+      ==> <noun> <predicate>
+      ==> Linus <predicate>
+      ==> Linus <verb> <object>
+      ==> Linus holds <object>
+      ==> Linus holds <article> <noun>
+      ==> Linus holds the <noun>
+      ==> Linus holds the blanket
 
-                                                                                                                                                                                                                                                                                                                                                        Top down, left to right seems common. Do they do things differently in foreign countries?
+You can associate a rule (production) with each of the steps.
 
-                                                                                                                                                                                                                                                                                                                                                        Bottom up parsing
+[Insert graphic of the parse tree for the sentence above]
 
-                                                                                                                                                                                                                                                                                                                                                        We try to construct starting from the leaves and moving up to the root.
+Top down, left to right seems common. Do they do things differently in foreign
+countries?
 
-                                                                                                                                                                                                                                                                                                                                                        Linus holds the blanket
-                                                                                                                                                                                                                                                                                                                                                        <noun> holds the blanket
-                                                                                                                                                                                                                                                                                                                                                        <subject> holds the blanket
-                                                                                                                                                                                                                                                                                                                                                        <subject> <verb> the blanket
-                                                                                                                                                                                                                                                                                                                                                        <subject> <verb> <article> blanket
-                                                                                                                                                                                                                                                                                                                                                        <subject> <verb> <article> <noun>
-                                                                                                                                                                                                                                                                                                                                                        <subject> <verb> <object>
-                                                                                                                                                                                                                                                                                                                                                        <subject> <predicate>
-                                                                                                                                                                                                                                                                                                                                                        <sentence>
-                                                                                                                                                                                                                                                                                                                                                        Derivation notes
+### Bottom up parsing ###
 
-                                                                                                                                                                                                                                                                                                                                                        A parse tree has
-                                                                                                                                                                                                                                                                                                                                                        Terminals at the leaves
-                                                                                                                                                                                                                                                                                                                                                        Non-terminals at the interior nodes
-                                                                                                                                                                                                                                                                                                                                                        An in-order traversal of the leaves is the original input
-                                                                                                                                                                                                                                                                                                                                                        The parse tree shows the association of operations, even if the input string does not
-                                                                                                                                                                                                                                                                                                                                                        Parsing
+We try to construct starting from the leaves and moving up to the root.
 
-                                                                                                                                                                                                                                                                                                                                                        Given an expression find tree
+    Linus holds the blanket
+    <noun> holds the blanket
+    <subject> holds the blanket
+    <subject> <verb> the blanket
+    <subject> <verb> <article> blanket
+    <subject> <verb> <article> <noun>
+    <subject> <verb> <object>
+    <subject> <predicate>
+    <sentence>
 
-                                                                                                                                                                                                                                                                                                                                                        Ambiguity
-                                                                                                                                                                                                                                                                                                                                                        Expression 27 - 4 + 3 can be parsed two ways
-                                                                                                                                                                                                                                                                                                                                                        Problem: 27 - (4 + 3) != (27 - 4) + 3
-                                                                                                                                                                                                                                                                                                                                                        Ways to resolve ambiguity
-                                                                                                                                                                                                                                                                                                                                                        Precedence
-                                                                                                                                                                                                                                                                                                                                                        Group * before +
-                                                                                                                                                                                                                                                                                                                                                        Parse 3 * 4 + 2 as (3 * 4) + 2
-                                                                                                                                                                                                                                                                                                                                                        Associativity
-                                                                                                                                                                                                                                                                                                                                                        Parenthesize operators of equal precedence to left (or right)
-                                                                                                                                                                                                                                                                                                                                                        Parse 3 - 4 + 5 as (3 - 4) + 5
-                                                                                                                                                                                                                                                                                                                                                        Ambiguous grammars
+### Derivation notes ###
 
-                                                                                                                                                                                                                                                                                                                                                        Language to generate strings of the form anbn
+* A parse tree has
+  * Terminals at the leaves
+  * Non-terminals at the interior nodes
+* An in-order traversal of the leaves is the original input
+* The parse tree shows the association of operations, even if the input string
+  does not
 
-                                                                                                                                                                                                                                                                                                                                                        S -> aS<sub>2</sub> | S<sub>1</sub>b
-                                                                                                                                                                                                                                                                                                                                                        S<sub>1</sub> -> a | aS<sub>1</sub>b
-                                                                                                                                                                                                                                                                                                                                                        S<sub>2</sub> -> b | aS<sub>2</sub>b
-                                                                                                                                                                                                                                                                                                                                                        An unambiguous grammar
+### Parsing ###
 
-                                                                                                                                                                                                                                                                                                                                                        Language to generate strings of the form anbn
+Given an expression find tree
 
-                                                                                                                                                                                                                                                                                                                                                        S -> aSb
-                                                                                                                                                                                                                                                                                                                                                        S -> epsilon
-                                                                                                                                                                                                                                                                                                                                                        Or more simply,
+* Ambiguity
+  * Expression 27 - 4 + 3 can be parsed two ways
+  * Problem: 27 - (4 + 3) != (27 - 4) + 3
+* Ways to resolve ambiguity
+  * Precedence
+    * Group * before +
+    * Parse 3 * 4 + 2 as (3 * 4) + 2
+  * Associativity
+    * Parenthesize operators of equal precedence to left (or right)
+    * Parse 3 - 4 + 5 as (3 - 4) + 5
 
-                                                                                                                                                                                                                                                                                                                                                        S -> aSb | ab
-                                                                                                                                                                                                                                                                                                                                                        23 February 2005
+### Ambiguous grammars ###
 
-                                                                                                                                                                                                                                                                                                                                                        Some discussion of interviewing and what happened at the ACM meeting yesterday.
+Language to generate strings of the form a<sup>n</sup>b<sup>n</sup>
 
-                                                                                                                                                                                                                                                                                                                                                        Lexical analysis
+    S -> aS<sub>2</sub> | S<sub>1</sub>b
+    S<sub>1</sub> -> a | aS<sub>1</sub>b
+    S<sub>2</sub> -> b | aS<sub>2</sub>b
 
-                                                                                                                                                                                                                                                                                                                                                        ŒÈŒÌPrograms must be written for people to read, and only incidentally for machines to execute.ŒÈŒÌ
+### An unambiguous grammar ###
 
-                                                                                                                                                                                                                                                                                                                                                        Abelson & Susman, SICP, preface to the first edition
+Language to generate strings of the form a<sup>n</sup>b<sup>n</sup>
 
-                                                                                                                                                                                                                                                                                                                                                        What is lexical analysis?
+    S -> aSb
+    S -> epsilon
 
-                                                                                                                                                                                                                                                                                                                                                        Process of breaking input into tokens
-                                                                                                                                                                                                                                                                                                                                                        Sometimes called ŒÈŒÌscanningŒÈŒÌ or ŒÈŒÌtokenizingŒÈŒÌ
-                                                                                                                                                                                                                                                                                                                                                        Identifies tokens in input string (stream)
-                                                                                                                                                                                                                                                                                                                                                        Issues in lexical analysis:
+Or more simply,
 
-                                                                                                                                                                                                                                                                                                                                                        Lookahead
-                                                                                                                                                                                                                                                                                                                                                        Ambiguities
-                                                                                                                                                                                                                                                                                                                                                        Specifying lexers:
+    S -> aSb | ab
 
-                                                                                                                                                                                                                                                                                                                                                        Regular expressions (next time)
-                                                                                                                                                                                                                                                                                                                                                        Examples of regex
-                                                                                                                                                                                                                                                                                                                                                        Tokens
+## 23 February 2005 ##
 
-                                                                                                                                                                                                                                                                                                                                                        WhatŒÈŒ˜s a token? - A syntactic category
+Some discussion of interviewing and what happened at the ACM meeting yesterday.
 
-                                                                                                                                                                                                                                                                                                                                                        Examples:
+### Lexical analysis ###
 
-                                                                                                                                                                                                                                                                                                                                                        English
-                                                                                                                                                                                                                                                                                                                                                        noun
-                                                                                                                                                                                                                                                                                                                                                        verb
-                                                                                                                                                                                                                                                                                                                                                        adjective
-                                                                                                                                                                                                                                                                                                                                                        A programming language
-                                                                                                                                                                                                                                                                                                                                                        Identifiers
-                                                                                                                                                                                                                                                                                                                                                        Comment
-                                                                                                                                                                                                                                                                                                                                                        Keyword
-                                                                                                                                                                                                                                                                                                                                                        Whitespace
-                                                                                                                                                                                                                                                                                                                                                        Operator
-                                                                                                                                                                                                                                                                                                                                                        Numbers (integer, real)
-                                                                                                                                                                                                                                                                                                                                                        Recall
+> "Programs must be written for people to read, and only incidentally for
+> machines to execute."
+>
+> Abelson & Susman, *SICP*, preface to the first edition
 
-                                                                                                                                                                                                                                                                                                                                                        The goal of lexical analysis is to:
+What is lexical analysis?
 
-                                                                                                                                                                                                                                                                                                                                                        Partition the input string into lexemes
-                                                                                                                                                                                                                                                                                                                                                        Identify the token type, and perhaps value of each lexeme
-                                                                                                                                                                                                                                                                                                                                                        Left-to-right scan -> lookahead sometimes required
-                                                                                                                                                                                                                                                                                                                                                        http://dictionary.reference.com/search?q=lexeme
+* Process of breaking input into tokens
+* Sometimes called "scanning" or "tokenizing"
+* Identifies tokens in input string (stream)
 
-                                                                                                                                                                                                                                                                                                                                                        We still need:
+Issues in lexical analysis:
 
-                                                                                                                                                                                                                                                                                                                                                        A way to describe the lexemes of each token
-                                                                                                                                                                                                                                                                                                                                                        A way to resolve ambiguities
-                                                                                                                                                                                                                                                                                                                                                        Example:
+* Lookahead
+* Ambiguities
 
-                                                                                                                                                                                                                                                                                                                                                        Is if two variables i and f?
-                                                                                                                                                                                                                                                                                                                                                        Is == two equal signs = =?
-                                                                                                                                                                                                                                                                                                                                                        Examples of lexical analysis
+Specifying lexers:
 
-                                                                                                                                                                                                                                                                                                                                                        Goal: Partition input string into substrings. The substrings are tokens (or lexemes)
+* Regular expressions (next time)
+* Examples of regex
 
-                                                                                                                                                                                                                                                                                                                                                        What happens?
+### Tokens ###
 
-                                                                                                                                                                                                                                                                                                                                                        if( i <= 9 )
-                                                                                                                                                                                                                                                                                                                                                            dx = 1;
-                                                                                                                                                                                                                                                                                                                                                            else
-                                                                                                                                                                                                                                                                                                                                                                dx = 5;
-                                                                                                                                                                                                                                                                                                                                                                Output is a string of characters.
+What's a token? - A syntactic category
 
-                                                                                                                                                                                                                                                                                                                                                                i f ( i < = 9 ) \newline
-                                                                                                                                                                                                                                                                                                                                                                \tab d x = 1 ; \newline
-                                                                                                                                                                                                                                                                                                                                                                e l s e \newline
-                                                                                                                                                                                                                                                                                                                                                                \tab d x = 5 ; \newline
-                                                                                                                                                                                                                                                                                                                                                                Defining tokens more precisely
+Examples:
 
-                                                                                                                                                                                                                                                                                                                                                                Token categories correspond to sets of strings, some of them finite, like keywords, but some unbounded (variable / function name).
+* English
+  * noun
+  * verb
+  * adjective
+* A programming language
+  * Identifiers
+  * Comment
+  * Keyword
+  * Whitespace
+  * Operator
+  * Numbers (integer, real)
 
-                                                                                                                                                                                                                                                                                                                                                                Identifier: strings of letters or digits, starting with a letter
-                                                                                                                                                                                                                                                                                                                                                                Integer: a non-empty string of digits
-                                                                                                                                                                                                                                                                                                                                                                Keyword: if, else, or for, etc.
-                                                                                                                                                                                                                                                                                                                                                                Whitespace: a non-empty sequence of spaces (blanks), tabs, or newlines
-                                                                                                                                                                                                                                                                                                                                                                How are tokens created?
+### Recall ###
 
-                                                                                                                                                                                                                                                                                                                                                                Created in a first pass over the source code. The lexer classifies program substrings by role.
-                                                                                                                                                                                                                                                                                                                                                                Complex frequently add or additional information (line and column), so errors can be reported by location. This can complicate the construction of a compiler.
-                                                                                                                                                                                                                                                                                                                                                                Tokens are read until the end of file is reached Or some error threshold is reached.
-                                                                                                                                                                                                                                                                                                                                                                Designing a lexical analyzer
+The goal of lexical analysis is to:
 
-                                                                                                                                                                                                                                                                                                                                                                Define a finite set of tokens
-                                                                                                                                                                                                                                                                                                                                                                Tokens describe our items of interest
-                                                                                                                                                                                                                                                                                                                                                                Depends on language and parser design
-                                                                                                                                                                                                                                                                                                                                                                Token creation
+* Partition the input string into lexemes
+* Identify the token type, and perhaps value of each lexeme
+* Left-to-right scan -> lookahead sometimes required
 
-                                                                                                                                                                                                                                                                                                                                                                An implementation reads characters until tin finds the end of a token (longest possible single token). It then returns a package of up to 3 items.
+<http://dictionary.reference.com/search?q=lexeme>
 
-What kind of token is it? Identifier? Number? Keyword?
-If it is an identifier, which one exactly? Foo? Bar?
-Where did this token appear in the source code? (line / column)
-Whitespace and comments are skipped.
+We still need:
+
+* A way to describe the lexemes of each token
+* A way to resolve ambiguities
+
+Example:
+
+* Is `if` two variables `i` and `f`?
+* Is `==` two equal signs `=` `=`?
+
+### Examples of lexical analysis ###
+
+Goal: Partition input string into substrings. The substrings are tokens (or
+lexemes)
+
+What happens?
+
+    if( i <= 9 )
+      dx = 1;
+    else
+      dx = 5;
+
+Output is a string of characters.
+
+    i f ( i < = 9 ) \newline
+    \tab d x = 1 ; \newline
+    e l s e \newline
+    \tab d x = 5 ; \newline
+
+### Defining tokens more precisely ###
+
+Token categories correspond to sets of strings, some of them finite, like
+keywords, but some unbounded (variable / function name).
+
+* Identifier: strings of letters or digits, starting with a letter
+* Integer: a non-empty string of digits
+* Keyword: if, else, or for, etc.
+* Whitespace: a non-empty sequence of spaces (blanks), tabs, or newlines
+
+### How are tokens created? ###
+
+* Created in a first pass over the source code. The lexer classifies program
+  substrings by role.
+* Complex frequently add or additional information (line and column), so errors
+  can be reported by location. This can complicate the construction of a
+  compiler.
+* Tokens are read until the end of file is reached Or some error threshold is
+  reached.
+
+### Designing a lexical analyzer ###
+
+* Define a finite set of tokens
+* Tokens describe our items of interest
+* Depends on language and parser design
+
+### Token creation ###
+
+An implementation reads characters until tin finds the end of a token (longest
+possible single token). It then returns a package of up to 3 items.
+
+* What kind of token is it? Identifier? Number? Keyword?
+* If it is an identifier, which one exactly? Foo? Bar?
+* Where did this token appear in the source code? (line / column)
+* Whitespace and comments are skipped.
+
 Onwards to part 2...
 
 [Mickael Remond]: http://www.erlang-projects.org/ "The Erlang Project's non-profit association"
