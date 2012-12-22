@@ -99,7 +99,7 @@ a.header:hover {
 	font-style: italic;
 	letter-spacing: 0;
 }
-.date + p {
+.date + p, .date + h2 {
 	clear: both;
 }
 .archive table {
