@@ -7,6 +7,11 @@ h2 {
 	line-height: 1.2;
 	margin: 1.65em 0 0.75em 0;
 }
+h3 {
+	font-size: 1em;
+	line-height: 1.5;
+	margin: 1em 0 0.5em 0;
+}
 p, li, pre {
 	font-size: 1em;
 	line-height: 1.5;
