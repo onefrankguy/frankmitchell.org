@@ -83,6 +83,7 @@ templates/main.rhtml
 templates/page.rhtml
 templates/archive.rhtml
 #{__FILE__}
+manifest.json
 ] do |t|
   words = {}
   manifest.each do |post|
