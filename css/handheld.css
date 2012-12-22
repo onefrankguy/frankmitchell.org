@@ -39,6 +39,9 @@ li {
 ol, ul {
 	margin-bottom: 0.75em;
 }
+li > ol, li > ul {
+	margin-bottom: 0;
+}
 blockquote {
 	display: block;
 	margin-left: 0.75em;
