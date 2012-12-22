@@ -11,6 +11,9 @@ a {
 table {
 	border-collapse:collapse; border-spacing:0;
 }
+sup, sub {
+	font-size:75%; line-height:0; position:relative; vertical-align:baseline;
+}
 /* Handheld */
 body {
 	background: #c9c539;
@@ -50,6 +53,12 @@ blockquote {
 pre {
 	display: block;
 	margin-left: 0.75em;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
 }
 a {
 	color: #751534;
