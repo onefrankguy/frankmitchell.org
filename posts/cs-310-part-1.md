@@ -555,588 +555,692 @@ Book recommendation: *Prime Obsession* by John Derbyshire
 
 ### Language classification ###
 
-                                                                                                                                                                                                                                                                                        Machine - direct one-to-one correspondence with hardware
-                                                                                                                                                                                                                                                                                        Assembly - symbolic representation of the machine language
-                                                                                                                                                                                                                                                                                        High level - symbols in language map to more than one machine instruction
-                                                                                                                                                                                                                                                                                        General purpose
-                                                                                                                                                                                                                                                                                        Domain specific
-                                                                                                                                                                                                                                                                                        Benefits of high level languages
-
-                                                                                                                                                                                                                                                                                        Less work
-                                                                                                                                                                                                                                                                                        Abstraction
-                                                                                                                                                                                                                                                                                        Portable
-                                                                                                                                                                                                                                                                                        Readable
-                                                                                                                                                                                                                                                                                        Maintainable
-                                                                                                                                                                                                                                                                                        Libraries of code (e.g. OpenGL)
-                                                                                                                                                                                                                                                                                        Commonly used languages
-
-                                                                                                                                                                                                                                                                                        Business
-                                                                                                                                                                                                                                                                                        COBOL
-                                                                                                                                                                                                                                                                                        RPG (Report Generation Language)
-                                                                                                                                                                                                                                                                                        Excel
-                                                                                                                                                                                                                                                                                        Science
-                                                                                                                                                                                                                                                                                        FORTRAN
-                                                                                                                                                                                                                                                                                        Gaming
-                                                                                                                                                                                                                                                                                        C (Quake)
-                                                                                                                                                                                                                                                                                        Lisp
-                                                                                                                                                                                                                                                                                        Python
-                                                                                                                                                                                                                                                                                        Mathematics
-                                                                                                                                                                                                                                                                                        Maple
-                                                                                                                                                                                                                                                                                        Mathematica
-                                                                                                                                                                                                                                                                                        MATLAB
-                                                                                                                                                                                                                                                                                        Statistics
-                                                                                                                                                                                                                                                                                        SPSS
-                                                                                                                                                                                                                                                                                        Statistica
-                                                                                                                                                                                                                                                                                        Simulation
-                                                                                                                                                                                                                                                                                        Simula
-                                                                                                                                                                                                                                                                                        GPSS
-                                                                                                                                                                                                                                                                                        ACSL (Advanced Continuous System Language)
-                                                                                                                                                                                                                                                                                        Publishing
-                                                                                                                                                                                                                                                                                        HTML
-                                                                                                                                                                                                                                                                                        XML
-                                                                                                                                                                                                                                                                                        LaTeX
-                                                                                                                                                                                                                                                                                        TeX
-                                                                                                                                                                                                                                                                                        PostScript
-                                                                                                                                                                                                                                                                                        Expert systems
-                                                                                                                                                                                                                                                                                        OPS5
-                                                                                                                                                                                                                                                                                        Mycin
-                                                                                                                                                                                                                                                                                        Scripting
-                                                                                                                                                                                                                                                                                        Perl
-                                                                                                                                                                                                                                                                                        Tcl
-                                                                                                                                                                                                                                                                                        Python
-                                                                                                                                                                                                                                                                                        Ruby (Rails)
-                                                                                                                                                                                                                                                                                        shells
-                                                                                                                                                                                                                                                                                        4 February 2005
-
-                                                                                                                                                                                                                                                                                        Side note: You can use mail bruceb < source.c from a sun-sol.cs.uidaho.edu box to send source to Bolden.
-
-                                                                                                                                                                                                                                                                                        Paradigms
-
-                                                                                                                                                                                                                                                                                        Imperative
-                                                                                                                                                                                                                                                                                        Functional
-                                                                                                                                                                                                                                                                                        Object Oriented
-                                                                                                                                                                                                                                                                                        Logic
-                                                                                                                                                                                                                                                                                        Multi-paradigm
-                                                                                                                                                                                                                                                                                        Imperative languages
-
-                                                                                                                                                                                                                                                                                        Have / focus on machine state. Focus on linear sequence of actions that transform the state of the machine.
-
-                                                                                                                                                                                                                                                                                        Languages:
-
-                                                                                                                                                                                                                                                                                        Algol
-                                                                                                                                                                                                                                                                                        Fortran
-                                                                                                                                                                                                                                                                                        C
-                                                                                                                                                                                                                                                                                        Pascal
-                                                                                                                                                                                                                                                                                        Functional languages
-
-                                                                                                                                                                                                                                                                                        Function (or applicative) language focus on transforming data by applying functionsÎíÎñnot as static oriented.
-
-                                                                                                                                                                                                                                                                                        (Print(Sort(lookup(db, "John"), age), 2, 6))
-                                                                                                                                                                                                                                                                                        Languages:
-
-                                                                                                                                                                                                                                                                                        Lisp (Scheme)
-                                                                                                                                                                                                                                                                                        ML
-                                                                                                                                                                                                                                                                                        Haskell
-                                                                                                                                                                                                                                                                                        Mathematica
-                                                                                                                                                                                                                                                                                        Object Oriented languages
-
-                                                                                                                                                                                                                                                                                        OO PLs focus on associating the transformation of data with objects (data types). Actions associated with objects.
-
-                                                                                                                                                                                                                                                                                        Languages:
-
-                                                                                                                                                                                                                                                                                        Smalltalk (Squeak)
-                                                                                                                                                                                                                                                                                        Java
-                                                                                                                                                                                                                                                                                        C++
-                                                                                                                                                                                                                                                                                        Ruby
-                                                                                                                                                                                                                                                                                        Logic languages
-
-                                                                                                                                                                                                                                                                                        Logic (or rule-based) languages
-
-                                                                                                                                                                                                                                                                                        if dog is hungry, feed dog
-                                                                                                                                                                                                                                                                                        if dog is thirsty, "water" dog
-                                                                                                                                                                                                                                                                                        Languages:
-
-                                                                                                                                                                                                                                                                                        Prolog
-                                                                                                                                                                                                                                                                                        OPS5
-                                                                                                                                                                                                                                                                                        lex, yacc (language tools)
-                                                                                                                                                                                                                                                                                        Multi-paradigm languages
+* Machine - direct one-to-one correspondence with hardware
+* Assembly - symbolic representation of the machine language
+* High level - symbols in language map to more than one machine instruction
+* General purpose
+* Domain specific
+
+### Benefits of high level languages ###
+
+* Less work
+* Abstraction
+* Portable
+* Readable
+* Maintainable
+* Libraries of code (e.g. OpenGL)
+
+### Commonly used languages ###
+
+* Business
+  * COBOL
+  * RPG (Report Generation Language)
+  * Excel
+* Science
+  * FORTRAN
+* Gaming
+  * C (Quake)
+  * Lisp
+  * Python
+* Mathematics
+  * Maple
+  * Mathematica
+  * MATLAB
+* Statistics
+  * SPSS
+  * Statistica
+* Simulation
+  * Simula
+  * GPSS
+  * ACSL (Advanced Continuous System Language)
+* Publishing
+  * HTML
+  * XML
+  * LaTeX
+  * TeX
+  * PostScript
+* Expert systems
+  * OPS5
+  * Mycin
+* Scripting
+  * Perl
+  * Tcl
+  * Python
+  * Ruby (Rails)
+  * shells
 
-                                                                                                                                                                                                                                                                                        Allow a programmer to use / mix paradigms.
+## 4 February 2005 ##
 
-                                                                                                                                                                                                                                                                                        C++: Imperative, OO
-                                                                                                                                                                                                                                                                                        Leda: Imperative, Functional, Logic (Timothy Budd, Oregon State)
-                                                                                                                                                                                                                                                                                        Oz: Declarative, OO, Logic, Constraint
-                                                                                                                                                                                                                                                                                        Side notes
+Side note: You can use `mail bruceb < source.c` from a `sun-sol.cs.uidaho.edu`
+box to send source to Bolden.
 
-                                                                                                                                                                                                                                                                                        Octal dump:
+### Paradigms ###
 
-                                                                                                                                                                                                                                                                                        od a.out
-                                                                                                                                                                                                                                                                                        Generate assembly:
+* Imperative
+* Functional
+* Object Oriented
+* Logic
+* Multi-paradigm
 
-                                                                                                                                                                                                                                                                                        gcc -S file.c
-                                                                                                                                                                                                                                                                                        Expand only macros:
+### Imperative languages ###
 
-                                                                                                                                                                                                                                                                                        gcc -E file.c
-                                                                                                                                                                                                                                                                                        C preprocessor:
+Have / focus on machine state. Focus on linear sequence of actions that
+transform the state of the machine.
 
-                                                                                                                                                                                                                                                                                        cpp
-                                                                                                                                                                                                                                                                                        7 February 2005
+Languages:
 
-                                                                                                                                                                                                                                                                                        [overhead slide of the history of programming languages]
+* Algol
+* Fortran
+* C
+* Pascal
 
-                                                                                                                                                                                                                                                                                        ThereÎéÎ÷s lots of languages, and thereÎéÎ÷s a heritage there.
+### Functional languages ###
 
-                                                                                                                                                                                                                                                                                        Important language concepts
+Function (or applicative) language focus on transforming data by applying
+functions -- not as static oriented.
 
-                                                                                                                                                                                                                                                                                        Humans are language oriented
-                                                                                                                                                                                                                                                                                        Languages must be readable
-                                                                                                                                                                                                                                                                                        Communicate with others / yourselfÎíÎñnot just the machine
-                                                                                                                                                                                                                                                                                        Program with intent. ThereÎéÎ÷s some intention behind the code. What is it? Make that clear in both the comments and the code itself.
+    (Print(Sort(lookup(db, "John"), age), 2, 6))
 
-                                                                                                                                                                                                                                                                                        Programing language standards
+Languages:
 
-                                                                                                                                                                                                                                                                                        Proprietary standards: license usage, etc. Corporate driven.
-                                                                                                                                                                                                                                                                                        Java
-                                                                                                                                                                                                                                                                                        PostScript
-                                                                                                                                                                                                                                                                                        Consensus standards: driven by public organizations, e.g., ANSI, ISO, GNU.
-                                                                                                                                                                                                                                                                                        ANSI C
-                                                                                                                                                                                                                                                                                        Ada
-                                                                                                                                                                                                                                                                                        GNU CC (compiler collection)
-                                                                                                                                                                                                                                                                                        Compiler as a standard
+* Lisp (Scheme)
+* ML
+* Haskell
+* Mathematica
 
-                                                                                                                                                                                                                                                                                        What the compiler says!
-                                                                                                                                                                                                                                                                                        Some use some compiler as the standard for the language.
-                                                                                                                                                                                                                                                                                        Compliance: Given a program which uses just features of the languages -> (yield) correct results
-                                                                                                                                                                                                                                                                                        Good language features
+### Object Oriented languages ###
 
-                                                                                                                                                                                                                                                                                        Right level of abstraction
-                                                                                                                                                                                                                                                                                        Natural notation
-                                                                                                                                                                                                                                                                                        Complete enough to do the job
-                                                                                                                                                                                                                                                                                        Self consistentÎíÎñavoid special cases
-                                                                                                                                                                                                                                                                                        Support extensible abstractions
-                                                                                                                                                                                                                                                                                        Supports coding (useful throughout program life)
-                                                                                                                                                                                                                                                                                        Miscellaneous (standards, portability)
-                                                                                                                                                                                                                                                                                        Book recommendation: ÎéÎíWho Moved the Cheese?ÎéÎí
+OO PLs focus on associating the transformation of data with objects
+(data types). Actions associated with objects.
 
-                                                                                                                                                                                                                                                                                        If you want to see how not to write code, visit http://thedailywtf.com/
+Languages:
 
-                                                                                                                                                                                                                                                                                        Principle of least astonishment
+* Smalltalk (Squeak)
+* Java
+* C++
+* Ruby
 
-                                                                                                                                                                                                                                                                                        You donÎéÎ÷t want to be surprised by what the code does.
+### Logic languages ###
 
-                                                                                                                                                                                                                                                                                        Translator
+Logic (or rule-based) languages
 
-                                                                                                                                                                                                                                                                                        Source -> Translator -> Target
+    if dog is hungry, feed dog
+    if dog is thirsty, "water" dog
 
-                                                                                                                                                                                                                                                                                        Translator: translates one language to another (source to target)
-                                                                                                                                                                                                                                                                                        Source: code (expressions) in source language
-                                                                                                                                                                                                                                                                                        Target: object code (often not human readable)
-                                                                                                                                                                                                                                                                                        Interpreter
-
-                                                                                                                                                                                                                                                                                        Source -> Interpreter (on Machine) -> Object -> Run-time System (on Machine)
-
-                                                                                                                                                                                                                                                                                        Interpreter: translates source language to intermediate object language then executes it
-                                                                                                                                                                                                                                                                                        Java interpreter
-
-                                                                                                                                                                                                                                                                                        Java Source -> Compiler (on Machine) -> Byte code -> JVM (on Machine2)
-
-                                                                                                                                                                                                                                                                                        Compile Java source on one machine run on another with JVM. Version matters!
-
-                                                                                                                                                                                                                                                                                        C# - Intermediate Language
-
-                                                                                                                                                                                                                                                                                        Compiler details
-
-                                                                                                                                                                                                                                                                                        Source -> Compiler -> Target -> Linker -> Libraries -> Loader -> Executable
-
-                                                                                                                                                                                                                                                                                        Compiler: translates the source language to object language
-                                                                                                                                                                                                                                                                                        Cross compiling: often used for embedded systems
-                                                                                                                                                                                                                                                                                        Execution details
-
-                                                                                                                                                                                                                                                                                        # File A:
-                                                                                                                                                                                                                                                                                        main()
-                                                                                                                                                                                                                                                                                            call A1()
-                                                                                                                                                                                                                                                                                                call B2()
-                                                                                                                                                                                                                                                                                                A1()
-
-                                                                                                                                                                                                                                                                                                # File B:
-                                                                                                                                                                                                                                                                                                B1()
-                                                                                                                                                                                                                                                                                                B2()
-                                                                                                                                                                                                                                                                                                Linker / Loader: resolves addresses
-                                                                                                                                                                                                                                                                                                Object code is relocatable
-                                                                                                                                                                                                                                                                                                Independently compilable units desirable
-                                                                                                                                                                                                                                                                                                REPL
+Languages:
 
-                                                                                                                                                                                                                                                                                                Typical operation of an interpreter:
+* Prolog
+* OPS5
+* lex, yacc (language tools)
 
-                                                                                                                                                                                                                                                                                                Read - Eval - Print - Loop
+### Multi-paradigm languages ###
 
-                                                                                                                                                                                                                                                                                                Interprets code as entered.
+Allow a programmer to use / mix paradigms.
 
-                                                                                                                                                                                                                                                                                                Scheme (Lisp), ML work in this manner. Jython (Python with Java) also works in this manner. Fast turn around!
+* C++: Imperative, OO
+* Leda: Imperative, Functional, Logic (Timothy Budd, Oregon State)
+* Oz: Declarative, OO, Logic, Constraint
 
-                                                                                                                                                                                                                                                                                                Recursive GCD source
+### Side notes ###
 
-                                                                                                                                                                                                                                                                                                /* Recursive GCD (Greatest Common Divisor) */
-                                                                                                                                                                                                                                                                                                int GCD( int m, int n )
-                                                                                                                                                                                                                                                                                                {
-                                                                                                                                                                                                                                                                                                    if( m < n )
-                                                                                                                                                                                                                                                                                                            return GCD( n, m );
-                                                                                                                                                                                                                                                                                                                else if
-                                                                                                                                                                                                                                                                                                                    ...
-                                                                                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                                                                                    Iterative GCD code
+Octal dump:
 
-                                                                                                                                                                                                                                                                                                                    /* m >= 0, n > 0 */
-                                                                                                                                                                                                                                                                                                                    q = 0;
-                                                                                                                                                                                                                                                                                                                    r = m;
-                                                                                                                                                                                                                                                                                                                    while( r >= n )
-                                                                                                                                                                                                                                                                                                                    {
-                                                                                                                                                                                                                                                                                                                        r = r - n;
-                                                                                                                                                                                                                                                                                                                            q = q + 1;
-                                                                                                                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                                                                                                                            Typical compiler tasks
+    od a.out
 
-                                                                                                                                                                                                                                                                                                                            Preprocessor (language dependent)
-                                                                                                                                                                                                                                                                                                                            Tokenize
-                                                                                                                                                                                                                                                                                                                            Analyze
-                                                                                                                                                                                                                                                                                                                            Semantic analysis
-                                                                                                                                                                                                                                                                                                                            Optimization (high level)
-                                                                                                                                                                                                                                                                                                                            Low level optimization
-                                                                                                                                                                                                                                                                                                                            Generate assembly / object code
-                                                                                                                                                                                                                                                                                                                            9 February 2005
+Generate assembly:
 
-                                                                                                                                                                                                                                                                                                                            [insert PDF about the evolution of language]
+    gcc -S file.c
 
-                                                                                                                                                                                                                                                                                                                            Typical compiler tasks
+Expand only macros:
 
-                                                                                                                                                                                                                                                                                                                            Preprocessor (language independent)
-                                                                                                                                                                                                                                                                                                                            Tokenize
-                                                                                                                                                                                                                                                                                                                            Analyze
-                                                                                                                                                                                                                                                                                                                            Semantic analysis
-                                                                                                                                                                                                                                                                                                                            Optimization (high level)
-                                                                                                                                                                                                                                                                                                                            Low level optimization
-                                                                                                                                                                                                                                                                                                                            Generate Assembly / Object code
-                                                                                                                                                                                                                                                                                                                            Compiler task details
+    gcc -E file.c
 
-                                                                                                                                                                                                                                                                                                                            Structuring
-                                                                                                                                                                                                                                                                                                                            Lexical analysis
-                                                                                                                                                                                                                                                                                                                            Scanning
-                                                                                                                                                                                                                                                                                                                            Conversion
-                                                                                                                                                                                                                                                                                                                            Syntactic analysis
-                                                                                                                                                                                                                                                                                                                            Parsing
-                                                                                                                                                                                                                                                                                                                            Tree construction
-                                                                                                                                                                                                                                                                                                                            Translation
-                                                                                                                                                                                                                                                                                                                            Semantic analysis
-                                                                                                                                                                                                                                                                                                                            Name analysis
-                                                                                                                                                                                                                                                                                                                            Type analysis
-                                                                                                                                                                                                                                                                                                                            Transformation
-                                                                                                                                                                                                                                                                                                                            Data mapping
-                                                                                                                                                                                                                                                                                                                            Action mapping
-                                                                                                                                                                                                                                                                                                                            Encoding
-                                                                                                                                                                                                                                                                                                                            Code generation
-                                                                                                                                                                                                                                                                                                                            Execution order determination
-                                                                                                                                                                                                                                                                                                                            Register allocation
-                                                                                                                                                                                                                                                                                                                            Instruction selection
-                                                                                                                                                                                                                                                                                                                            Assembly
-                                                                                                                                                                                                                                                                                                                            Internal address resolution
-                                                                                                                                                                                                                                                                                                                            External address resolution
-                                                                                                                                                                                                                                                                                                                            Instruction encoding
-                                                                                                                                                                                                                                                                                                                            Preprocessor
+C preprocessor:
 
-                                                                                                                                                                                                                                                                                                                            Preprocessor converts HLL -> HLL
+    cpp
 
-                                                                                                                                                                                                                                                                                                                            C: cpp e.g., #define, #include
-                                                                                                                                                                                                                                                                                                                            Early C++ compilers -> C
-                                                                                                                                                                                                                                                                                                                            Early Ada compilers -> C
-                                                                                                                                                                                                                                                                                                                            Structuring
+## 7 February 2005 ##
 
-                                                                                                                                                                                                                                                                                                                            Structuring accepts the sequence of characters that constitute the source program and builds a tree that represents it internally.
+[overhead slide of the history of programming languages]
 
-                                                                                                                                                                                                                                                                                                                            Lexical analysis
+There's lots of languages, and there's a heritage there.
 
-                                                                                                                                                                                                                                                                                                                            The first step in structuring a source program is lexical analysis, which accepts a sequence of characters and yields a sequence of basic symbols.
+### Important language concepts ###
 
-                                                                                                                                                                                                                                                                                                                            Lexical analysis can be broken into tow subtasks:
+* Humans are language oriented
+* Languages must be readable
+* Communicate with others / yourself -- not just the machine
+* Program with intent. There's some intention behind the code. What is it? Make
+  that clear in both the comments and the code itself.
 
-                                                                                                                                                                                                                                                                                                                            Scanning (breaking source into tokens)
-                                                                                                                                                                                                                                                                                                                            Classification (classify tokens (keyword / variable))
-                                                                                                                                                                                                                                                                                                                            Easy to write (relatively speaking). A number of tools and well known techniques make this possible.
+### Programing language standards ###
 
-                                                                                                                                                                                                                                                                                                                            Syntactic analysis
+* Proprietary standards: license usage, etc. Corporate driven.
+  * Java
+  * PostScript
+* Consensus standards: driven by public organizations, e.g., ANSI, ISO, GNU.
+  * ANSI C
+  * Ada
+  * GNU CC (compiler collection)
 
-                                                                                                                                                                                                                                                                                                                            The syntactic analyzer accepts the sequence of basic symbols delivered by the lexical analyzer and builds the source program tree.
+Compiler as a standard
 
-                                                                                                                                                                                                                                                                                                                            Structure of program
-                                                                                                                                                                                                                                                                                                                            Symbol table
-                                                                                                                                                                                                                                                                                                                            Operation precedence
-                                                                                                                                                                                                                                                                                                                            Translation
+* What the compiler says!
+* Some use some compiler as the standard for the language.
+* Compliance: Given a program which uses just features of the languages ->
+  (yield) correct results
 
-                                                                                                                                                                                                                                                                                                                            The translator converts the source program, which is an algorithm stated in terms of source language concepts, into an equivalent algorithm stated in terms of the target language concepts.
+### Good language features ###
 
-                                                                                                                                                                                                                                                                                                                            Semantic analysis
+1. Right level of abstraction
+2. Natural notation
+3. Complete enough to do the job
+4. Self consistent -- avoid special cases
+5. Support extensible abstractions
+6. Supports coding (useful throughout program life)
+7. Miscellaneous (standards, portability)
 
-                                                                                                                                                                                                                                                                                                                            The purpose of the semantic analyzer is to obtain information that is available at certain places in the program (identifier (variable) declarations) and move that information to other places in the program (identifier uses).
+Book recommendation: *Who Moved My Cheese?*
 
-                                                                                                                                                                                                                                                                                                                            The name analyzer establishes an entry in the definition table data base for each definition and attaches the key to the appropriate definition to teach identifier.
+If you want to see how not to write code, visit <http://thedailywtf.com/>
 
-                                                                                                                                                                                                                                                                                                                            Name analysis
-                                                                                                                                                                                                                                                                                                                            Type analysis
-                                                                                                                                                                                                                                                                                                                            Transformation
+### Principle of least astonishment ###
 
-                                                                                                                                                                                                                                                                                                                            The transformation process builds the target program tree on the basis of the information contained in the source program tree (as decorated during semantic analysis) and the definition table.
+You don't want to be surprised by what the code does.
 
-                                                                                                                                                                                                                                                                                                                            Encoding
+### Translator ###
 
-                                                                                                                                                                                                                                                                                                                            Encoding determines the order in which constructs will be executed (subject to constraints in the tree) allocates resources to hold intermediate resources and selects the instructions to carry out instruction encoding in the specified resources.
+Source -> Translator -> Target
 
-                                                                                                                                                                                                                                                                                                                            High level optimization
+* Translator: translates one language to another (source to target)
+* Source: code (expressions) in source language
+* Target: object code (often not human readable)
 
-                                                                                                                                                                                                                                                                                                                            Eliminate common subexpressions.
+### Interpreter ###
 
-                                                                                                                                                                                                                                                                                                                            x[i] = x[i] + f(3);
-                                                                                                                                                                                                                                                                                                                            x[i] += f(3);
-                                                                                                                                                                                                                                                                                                                            Low level optimization
+Source -> Interpreter (on Machine) -> Object -> Run-time System (on Machine)
 
-                                                                                                                                                                                                                                                                                                                            store r1, M
-                                                                                                                                                                                                                                                                                                                            load M, r1
-                                                                                                                                                                                                                                                                                                                            Summary
+* Interpreter: translates source language to intermediate object language then executes it
 
-                                                                                                                                                                                                                                                                                                                            A compiler translates a source program into an equivalent target program. The compiler maintains three major data structures:
+### Java interpreter ###
 
-                                                                                                                                                                                                                                                                                                                            A source program tree
-                                                                                                                                                                                                                                                                                                                            A definition table
-                                                                                                                                                                                                                                                                                                                            A target program tree
-                                                                                                                                                                                                                                                                                                                            Syntax / Semantics
+Java Source -> Compiler (on Machine) -> Byte code -> JVM (on Machine2)
 
-                                                                                                                                                                                                                                                                                                                            Syntax
-                                                                                                                                                                                                                                                                                                                            The symbols used to write a program
-                                                                                                                                                                                                                                                                                                                            The language form - what is allowed
-                                                                                                                                                                                                                                                                                                                            Semantics
-                                                                                                                                                                                                                                                                                                                            The actions that occur when a program is executed
-                                                                                                                                                                                                                                                                                                                            The meaning of what is said (difficult)
-                                                                                                                                                                                                                                                                                                                            Programming language implementation
-                                                                                                                                                                                                                                                                                                                            Syntax -> Semantics
-                                                                                                                                                                                                                                                                                                                            Transform program syntax into machine instructions that can be executed to cause the correct sequence of actions to occur
-                                                                                                                                                                                                                                                                                                                            Terminology
+Compile Java source on one machine run on another with JVM. Version matters!
 
+C# - Intermediate Language
+
+### Compiler details ###
+
+Source -> Compiler -> Target -> Linker -> Libraries -> Loader -> Executable
+
+* Compiler: translates the source language to object language
+* Cross compiling: often used for embedded systems
+
+### Execution details ###
+
+    # File A:
+    main()
+      call A1()
+      call B2()
+    A1()
+
+    # File B:
+    B1()
+    B2()
+
+* Linker / Loader: resolves addresses
+* Object code is relocatable
+* Independently compilable units desirable
+
+### REPL ###
+
+Typical operation of an interpreter:
+
+> Read - Eval - Print - Loop
+
+Interprets code as entered.
+
+Scheme (Lisp), ML work in this manner. Jython (Python with Java) also works in
+this manner. Fast turn around!
+
+### Recursive GCD source ###
+
+    /* Recursive GCD (Greatest Common Divisor) */
+    int GCD( int m, int n )
+    {
+      if( m < n )
+        return GCD( n, m );
+      else if
+        ...
+    }
+
+### Iterative GCD code ###
+
+    /* m >= 0, n > 0 */
+    q = 0;
+    r = m;
+    while( r >= n )
+    {
+      r = r - n;
+      q = q + 1;
+    }
+
+### Typical compiler tasks ###
+
+* Preprocessor (language dependent)
+* Tokenize
+* Analyze
+* Semantic analysis
+* Optimization (high level)
+* Low level optimization
+* Generate assembly / object code
+
+## 9 February 2005 ##
+
+[insert PDF about the evolution of language]
+
+### Typical compiler tasks ###
+
+* Preprocessor (language independent)
+* Tokenize
+* Analyze
+* Semantic analysis
+* Optimization (high level)
+* Low level optimization
+* Generate Assembly / Object code
+
+### Compiler task details ###
+
+* Structuring
+  * Lexical analysis
+    * Scanning
+    * Conversion
+  * Syntactic analysis
+    * Parsing
+    * Tree construction
+* Translation
+  * Semantic analysis
+    * Name analysis
+    * Type analysis
+  * Transformation
+    * Data mapping
+    * Action mapping
+* Encoding
+  * Code generation
+    * Execution order determination
+    * Register allocation
+    * Instruction selection
+  * Assembly
+    * Internal address resolution
+    * External address resolution
+    * Instruction encoding
+
+### Preprocessor ###
+
+Preprocessor converts HLL -> HLL
+
+* C: `cpp` e.g., `#define`, `#include`
+* Early C++ compilers -> C
+* Early Ada compilers -> C
+
+### Structuring ###
+
+Structuring accepts the sequence of characters that constitute the source
+program and builds a tree that represents it internally.
+
+### Lexical analysis ###
+
+The first step in structuring a source program is lexical analysis, which
+accepts a sequence of characters and yields a sequence of basic symbols.
+
+Lexical analysis can be broken into two subtasks:
+
+* Scanning (breaking source into tokens)
+* Classification (classify tokens (keyword / variable))
+
+Easy to write (relatively speaking). A number of tools and well known techniques
+make this possible.
+
+### Syntactic analysis ###
+
+The syntactic analyzer accepts the sequence of basic symbols delivered by the
+lexical analyzer and builds the source program tree.
+
+* Structure of program
+* Symbol table
+* Operation precedence
+
+### Translation ###
+
+The translator converts the source program, which is an algorithm stated in
+terms of source language concepts, into an equivalent algorithm stated in terms
+of the target language concepts.
+
+### Semantic analysis ###
+
+The purpose of the semantic analyzer is to obtain information that is available
+at certain places in the program (identifier (variable) declarations) and move
+that information to other places in the program (identifier uses).
+
+The name analyzer establishes an entry in the definition table data base for
+each definition and attaches the key to the appropriate definition in each
+identifier.
+
+* Name analysis
+* Type analysis
+
+### Transformation ###
+
+The transformation process builds the target program tree on the basis of the
+information contained in the source program tree (as decorated during semantic
+analysis) and the definition table.
+
+### Encoding ###
+
+Encoding determines the order in which constructs will be executed (subject to
+constraints in the tree) allocates resources to hold intermediate resources and
+selects the instructions to carry out instruction encoding in the specified
+resources.
+
+### High level optimization ###
+
+Eliminate common subexpressions.
+
+    x[i] = x[i] + f(3);
+    x[i] += f(3);
+
+### Low level optimization ###
+
+    store r1, M
+    load M, r1
+
+### Summary ###
+
+A compiler translates a source program into an equivalent target program. The
+compiler maintains three major data structures:
+
+1. A source program tree
+2. A definition table
+3. A target program tree
+
+### Syntax / Semantics ###
+
+* Syntax
+  * The symbols used to write a program
+  * The language form - what is allowed
+* Semantics
+  * The actions that occur when a program is executed
+  * The meaning of what is said (difficult)
+* Programming language implementation
+  * Syntax -> Semantics
+  * Transform program syntax into machine instructions that can be executed to
+    cause the correct sequence of actions to occur
+
+### Terminology ###
                                                                                                                                                                                                                                                                                                                             Grammar: formal description of the syntax for a language
-                                                                                                                                                                                                                                                                                                                            Alphabet: collection of symbols in the language, plus symbols in the grammar
-                                                                                                                                                                                                                                                                                                                            Production: a rule for replacement of non-terminals with other symbols from the alphabet
-                                                                                                                                                                                                                                                                                                                            Non-terminals: a subset of the alphabet each having a production
-                                                                                                                                                                                                                                                                                                                            Terminals: symbols in the alphabet that are non-terminals
-                                                                                                                                                                                                                                                                                                                            Start Symbol: the place to start
-                                                                                                                                                                                                                                                                                                                            Parse Tree: internal representation
-                                                                                                                                                                                                                                                                                                                            Derivation: the creation of a specific parse tree
-                                                                                                                                                                                                                                                                                                                            BNF
+* Alphabet: collection of symbols in the language, plus symbols in the grammar
+* Production: a rule for replacement of non-terminals with other symbols from the alphabet
+* Non-terminals: a subset of the alphabet each having a production
+* Terminals: symbols in the alphabet that are non-terminals
+* Start Symbol: the place to start
+* Parse Tree: internal representation
+* Derivation: the creation of a specific parse tree
 
-                                                                                                                                                                                                                                                                                                                            Backus Naur Form (Backus Normal Form)
+### BNF ###
 
-                                                                                                                                                                                                                                                                                                                            John Backus - Fortran
-                                                                                                                                                                                                                                                                                                                            Peter Naur - Algol
-                                                                                                                                                                                                                                                                                                                            Describes a language formally
-                                                                                                                                                                                                                                                                                                                            EBNF: An extended form is often used!
-                                                                                                                                                                                                                                                                                                                            More details: http://www.garshol.priv.no/download/text/bnf.html
+Backus Naur Form (Backus Normal Form)
 
-                                                                                                                                                                                                                                                                                                                            11 February 2005
+* John Backus - Fortran
+* Peter Naur - Algol
+* Describes a language formally
+* EBNF: An extended form is often used!
 
-                                                                                                                                                                                                                                                                                                                            Grammars are often defined using BNF (or EBNF) rules.
-                                                                                                                                                                                                                                                                                                                            Rules are defined using terminals and non-terminals and special meta-symbols.
-                                                                                                                                                                                                                                                                                                                            BNF meta-symbols:
+More details: <http://www.garshol.priv.no/download/text/bnf.html>
 
-                                                                                                                                                                                                                                                                                                                            ::= means ÎéÎíis defined asÎéÎí (some people use an arrow)
-                                                                                                                                                                                                                                                                                                                            | like ÎéÎíorÎéÎí, used to separate alternatives
-                                                                                                                                                                                                                                                                                                                            < > (angle brackets) often used to denote non-terminals
-                                                                                                                                                                                                                                                                                                                            Extended BNF (EBNF) makes writing grammars easier.
+## 11 February 2005 ##
 
-                                                                                                                                                                                                                                                                                                                            Any EBNF production (rule) can be translated into an equivalent set of BNF productions. EBNF is not more powerful than BNF, just more convenient.
-                                                                                                                                                                                                                                                                                                                            BNF example:
+* Grammars are often defined using BNF (or EBNF) rules.
+* Rules are defined using terminals and non-terminals and special meta-symbols.
+* BNF meta-symbols:
+  * `::=` means "is defined as" (some people use an arrow)
+  * `|` like "or", used to separate alternatives
+  * `<` `>` (angle brackets) often used to denote non-terminals
+* Extended BNF (EBNF) makes writing grammars easier.
+* Any EBNF production (rule) can be translated into an equivalent set of BNF
+  productions. EBNF is not more powerful than BNF, just more convenient.
 
-                                                                                                                                                                                                                                                                                                                            digit ::= 0|1|2|3|4|5|6|7|8|9
-                                                                                                                                                                                                                                                                                                                            EBNF example:
+BNF example:
 
-                                                                                                                                                                                                                                                                                                                            digit ::= 0-9
-                                                                                                                                                                                                                                                                                                                            What is syntax?
+    digit ::= 0|1|2|3|4|5|6|7|8|9
 
-                                                                                                                                                                                                                                                                                                                            Expresses the form (or grammar) of a program in a portable language.
-                                                                                                                                                                                                                                                                                                                            It does not express what a program means.
-                                                                                                                                                                                                                                                                                                                            In other words, syntax expresses what a program looks like, but not what it does.
-                                                                                                                                                                                                                                                                                                                            The elements of syntax for a language (including programming languages) are:
+EBNF example:
 
-                                                                                                                                                                                                                                                                                                                            An alphabet of symbols that comprise the basic elements of the grammar.
-                                                                                                                                                                                                                                                                                                                            The symbols are comprised of two setsÎíÎñterminals and non-terminal symbols.
-                                                                                                                                                                                                                                                                                                                            Terminals cannot be broken down.
-                                                                                                                                                                                                                                                                                                                            Non-terminals can be broken down.
-                                                                                                                                                                                                                                                                                                                            A set of grammar rules that express how symbols can be combined to make legal sentences of the language.
-                                                                                                                                                                                                                                                                                                                            The grammar rules are of the form: non-terminal symbols ::= a list of zero or more terminals or non-terminals.
+    digit ::= 0-9
 
-                                                                                                                                                                                                                                                                                                                            We use the rules to recognize (parse) and / or generate legal sentences of the language.
+### What is syntax? ###
 
-                                                                                                                                                                                                                                                                                                                            Equivalent forms in which to express syntax:
+* Expresses the form (or grammar) of a program in a portable language.
+* It does not express what a program means.
+* In other words, syntax expresses what a program looks like, but not what it
+  does.
 
-                                                                                                                                                                                                                                                                                                                            BNF
-                                                                                                                                                                                                                                                                                                                            Syntax graphs
-                                                                                                                                                                                                                                                                                                                            Other slight variations of notation
-                                                                                                                                                                                                                                                                                                                            All notations commonly used for programming language syntax have the same power (i.e., all produce context-free syntax).
+The elements of syntax for a language (including programming languages) are:
 
-                                                                                                                                                                                                                                                                                                                            A grammar for a small subset of English
+* An alphabet of symbols that comprise the basic elements of the grammar.
+* The symbols are comprised of two sets -- terminals and non-terminal symbols.
+* Terminals cannot be broken down.
+* Non-terminals can be broken down.
+* A set of grammar rules that express how symbols can be combined to make legal
+  sentences of the language.
 
-                                                                                                                                                                                                                                                                                                                            Consider the sentence, ÎéÎíMary hits John.ÎéÎí
+The grammar rules are of the form: non-terminal symbols ::= a list of zero or
+more terminals or non-terminals.
 
-                                                                                                                                                                                                                                                                                                                            A simple grammar that could be used to parse or generate this sentence is:
+We use the rules to recognize (parse) and / or generate legal sentences of the
+language.
 
-                                                                                                                                                                                                                                                                                                                            <sentence> ::= <subject> <predicate> .
-                                                                                                                                                                                                                                                                                                                            <subject> ::= Mary
-                                                                                                                                                                                                                                                                                                                            <predicated> ::= <verb> <object>
-                                                                                                                                                                                                                                                                                                                            <verb> ::= hits
-                                                                                                                                                                                                                                                                                                                            <object> ::= John
-                                                                                                                                                                                                                                                                                                                            How do we use rules to parse or generate a sentence like ÎéÎíMark hits John.ÎéÎí?
+Equivalent forms in which to express syntax:
 
-                                                                                                                                                                                                                                                                                                                            Consider each rule to be a production that defines how some part of a sentence is recognized or formed.
-                                                                                                                                                                                                                                                                                                                            A trace of the application of the production of rules can be shown in tree form as follows:
-                                                                                                                                                                                                                                                                                                                            [Visualize this as a tree. Think Study of Languages class, the syntax and grammar stuff from there.]
+* BNF
+* Syntax graphs
+* Other slight variations of notation
 
-                                                                                                                                                                                                                                                                                                                            <sentence> -> <subject> & <predicate>
-                                                                                                                                                                                                                                                                                                                            <subject> -> Mary
-                                                                                                                                                                                                                                                                                                                            <predicate> -> <verb> & <object>
-                                                                                                                                                                                                                                                                                                                            <verb> -> hits
-                                                                                                                                                                                                                                                                                                                            <object> -> John
-                                                                                                                                                                                                                                                                                                                            A number of concepts that enhance the expressibility of a grammar:
+All notations commonly used for programming language syntax have the same power
+(i.e., all produce context-free syntax).
 
-                                                                                                                                                                                                                                                                                                                            Alternation
-                                                                                                                                                                                                                                                                                                                            Express languages that have an infinite number of sentences or sentences that are infinitely long.
-                                                                                                                                                                                                                                                                                                                            The use of recursion in Context Free Grammars (CFGs)
-                                                                                                                                                                                                                                                                                                                            Alternation - add | Steve to the <object>
+### A grammar for a small subset of English ###
 
-                                                                                                                                                                                                                                                                                                                            Extend by adding additional non-terminal symbols
+Consider the sentence, "Mary hits John."
 
-                                                                                                                                                                                                                                                                                                                            <subject> ::= Mary | John
-                                                                                                                                                                                                                                                                                                                            <object> ::= Mary | John
-                                                                                                                                                                                                                                                                                                                            We can now write ÎéÎíMary hits Mary.ÎéÎí or ÎéÎíJohn hits John.ÎéÎí
+A simple grammar that could be used to parse or generate this sentence is:
 
-                                                                                                                                                                                                                                                                                                                            A more convenient way is to change rules
+    <sentence> ::= <subject> <predicate> .
+    <subject> ::= Mary
+    <predicated> ::= <verb> <object>
+    <verb> ::= hits
+    <object> ::= John
 
-                                                                                                                                                                                                                                                                                                                            <subject> ::= <noun>
-                                                                                                                                                                                                                                                                                                                            ...
-                                                                                                                                                                                                                                                                                                                            <object> ::= <noun>
-                                                                                                                                                                                                                                                                                                                            <noun> ::= John | Mary | Steve
-                                                                                                                                                                                                                                                                                                                            Use recursion to form an infinite number:
+How do we use rules to parse or generate a sentence like "Mark hits John."?
 
-                                                                                                                                                                                                                                                                                                                            <object> ::= John | John again | John again and again | ...
-                                                                                                                                                                                                                                                                                                                            Notice the pattern for these infinite length sentences:
+Consider each rule to be a production that defines how some part of a sentence
+is recognized or formed.
 
-                                                                                                                                                                                                                                                                                                                            <object> ::= John | John <repeat>
-                                                                                                                                                                                                                                                                                                                            <repeat> ::= again | again and <repeat>
-                                                                                                                                                                                                                                                                                                                            14 February 2005
+A trace of the application of the production of rules can be shown in tree form
+as follows:
 
-                                                                                                                                                                                                                                                                                                                            [BoldenÎéÎ÷s solution to our programing assignment]
+[Visualize this as a tree. Think Study of Languages class, the syntax and
+grammar stuff from there.]
 
-                                                                                                                                                                                                                                                                                                                            Do a breakdown - How many lines of code per function / total?
-                                                                                                                                                                                                                                                                                                                            Variable stuff - How many globals, structs, consts, etc.?
-                                                                                                                                                                                                                                                                                                                            C doesnÎéÎ÷t know about true or false:
+    <sentence> -> <subject> & <predicate>
+    <subject> -> Mary
+    <predicate> -> <verb> & <object>
+    <verb> -> hits
+    <object> -> John
 
-                                                                                                                                                                                                                                                                                                                            #define TRUE 1;
-                                                                                                                                                                                                                                                                                                                            #define FALSE 0;
-                                                                                                                                                                                                                                                                                                                            Prototypes
+A number of concepts that enhance the expressibility of a grammar:
 
-                                                                                                                                                                                                                                                                                                                            Group prototypes together via their functions
-                                                                                                                                                                                                                                                                                                                            I/O stuff
-                                                                                                                                                                                                                                                                                                                            Stack routines
-                                                                                                                                                                                                                                                                                                                            Memory stuff
-                                                                                                                                                                                                                                                                                                                            All variables in the prototypes have names!
-                                                                                                                                                                                                                                                                                                                            16 February 2005
+* Alternation
+* Express languages that have an infinite number of sentences or sentences that
+  are infinitely long.
+* The use of recursion in Context Free Grammars (CFGs)
 
-                                                                                                                                                                                                                                                                                                                            Nerd Quiz
+Alternation - add `| Steve` to the `<object>`
 
-                                                                                                                                                                                                                                                                                                                            http://www.wxplotter.com/ft_nq.php?im
+Extend by adding additional non-terminal symbols
 
-                                                                                                                                                                                                                                                                                                                            [graph about optimization] Basically, donÎéÎ÷t bother.
+    <subject> ::= Mary | John
+    <object> ::= Mary | John
 
-                                                                                                                                                                                                                                                                                                                            Notational Expression Grammar
+We can now write "Mary hits Mary." or "John hits John."
 
-                                                                                                                                                                                                                                                                                                                            <expr> ::= <term> | <expr> <add op> <term>
-                                                                                                                                                                                                                                                                                                                            <term> ::= <factor> | <term> <op> <term>
-                                                                                                                                                                                                                                                                                                                            <factor> ::= (<expr>) | <id> | literal
-                                                                                                                                                                                                                                                                                                                            <op> ::= <add op> | <mul op>
-                                                                                                                                                                                                                                                                                                                            <add op> ::= + | -
-                                                                                                                                                                                                                                                                                                                            <mul op> ::= * | /
-                                                                                                                                                                                                                                                                                                                            <id> ::= identifier
-                                                                                                                                                                                                                                                                                                                            C Identifier Grammar (EBNF)
+A more convenient way is to change rules
 
-                                                                                                                                                                                                                                                                                                                            <identifier> ::= <nondigit> (nondigit | digit)
-                                                                                                                                                                                                                                                                                                                            <nondigit> ::= _ | a-z | A-Z
-                                                                                                                                                                                                                                                                                                                            <digit> ::= 0-9
-                                                                                                                                                                                                                                                                                                                            Parse trees
+    <subject> ::= <noun>
+    ...
+    <object> ::= <noun>
+    <noun> ::= John | Mary | Steve
 
-                                                                                                                                                                                                                                                                                                                            Show how a sentence is derived in a language.
+Use recursion to form an infinite number:
 
-                                                                                                                                                                                                                                                                                                                            Production: P ::= x1 x2 x3
+    <object> ::= John | John again | John again and again | ...
 
-                                                                                                                                                                                                                                                                                                                            [picture of tree with P as root node and x1, x2, x3 as leaves]
+Notice the pattern for these infinite length sentences:
 
-                                                                                                                                                                                                                                                                                                                            Definitions of grammar
+    <object> ::= John | John <repeat>
+    <repeat> ::= again | again and <repeat>
 
-                                                                                                                                                                                                                                                                                                                            Formally define a grammar by a 4-tuple.
+## 14 February 2005 ##
 
-                                                                                                                                                                                                                                                                                                                            G = (V<sub>N</sub>, V<sub>T</sub>, S, P)
-                                                                                                                                                                                                                                                                                                                            Where VN and VT are disjointed sets of non-terminal and terminal symbols respectively. S is the distinguished symbol of VN, and is commonly called the start (or goal) symbol. The set of V = VT U VN is called the vocabulary of the grammar. P is a finite set of productions.
+[Bolden's solution to our programing assignment]
 
-                                                                                                                                                                                                                                                                                                                            Naming: The from of the grammar is important.
+* Do a breakdown - How many lines of code per function / total?
+* Variable stuff - How many globals, structs, consts, etc.?
 
-                                                                                                                                                                                                                                                                                                                            Different grammars can generate the same language.
-                                                                                                                                                                                                                                                                                                                            Tools are sensitive to the form of the grammar.
-                                                                                                                                                                                                                                                                                                                            Restriction on the types of rules can make automatic parser generation easier.
-                                                                                                                                                                                                                                                                                                                            Derivation examples
+C doesn't know about true or false:
 
-                                                                                                                                                                                                                                                                                                                            Grammar
+    #define TRUE 1;
+    #define FALSE 0;
 
-                                                                                                                                                                                                                                                                                                                            E ::= E+E | E*E | (E) | id
-                                                                                                                                                                                                                                                                                                                            id ::= number
-                                                                                                                                                                                                                                                                                                                            Sentential form (input to parser)
+### Prototypes ###
 
-                                                                                                                                                                                                                                                                                                                            E: id * id + id
-                                                                                                                                                                                                                                                                                                                            Leftmost derivation
+* Group prototypes together via their functions
+  * I/O stuff
+  * Stack routines
+  * Memory stuff
+* All variables in the prototypes have names!
 
-                                                                                                                                                                                                                                                                                                                            In the current ÎéÎístringÎéÎí, choose leftmost non-terminal.
-                                                                                                                                                                                                                                                                                                                            Choose any production for the chosen non-terminal.
-                                                                                                                                                                                                                                                                                                                            In the string, replace the non-terminal by the right hand side of the rule.
-                                                                                                                                                                                                                                                                                                                            Repeat until no more non-terminals exist.
-                                                                                                                                                                                                                                                                                                                            Example: id * id + id
+## 16 February 2005 ##
 
-                                                                                                                                                                                                                                                                                                                            E
-                                                                                                                                                                                                                                                                                                                            E ::= E + E
-                                                                                                                                                                                                                                                                                                                            E ::= E * E + E
-                                                                                                                                                                                                                                                                                                                            E ::= id * E + E
-                                                                                                                                                                                                                                                                                                                            E ::= id * id + E
-                                                                                                                                                                                                                                                                                                                            E ::= id * id + id
-                                                                                                                                                                                                                                                                                                                            It matches our expression!
+Nerd Quiz
 
-                                                                                                                                                                                                                                                                                                                            Rightmost derivation
+<http://www.wxplotter.com/ft_nq.php?im>
 
-                                                                                                                                                                                                                                                                                                                            In the current ÎéÎístringÎéÎí, choose rightmost non-terminal.
-                                                                                                                                                                                                                                                                                                                            Choose any production for the chosen non-terminal.
-                                                                                                                                                                                                                                                                                                                            In the string, replace the non-terminal by the right hand side of the rule.
-                                                                                                                                                                                                                                                                                                                            Repeat until no more non-terminals exist.
-                                                                                                                                                                                                                                                                                                                            Example: id * id + id
+[graph about optimization] Basically, don't bother.
 
-                                                                                                                                                                                                                                                                                                                            E
-                                                                                                                                                                                                                                                                                                                            E ::= E + E
-                                                                                                                                                                                                                                                                                                                            E ::= E + id
-                                                                                                                                                                                                                                                                                                                            E ::= E * E + id
-                                                                                                                                                                                                                                                                                                                            E ::= E * id + id
-                                                                                                                                                                                                                                                                                                                            E ::= id * id + id
-                                                                                                                                                                                                                                                                                                                            It matches our expression!
+### Notational Expression Grammar ###
 
-                                                                                                                                                                                                                                                                                                                            What if we had chosen to do E * E?
+    <expr> ::= <term> | <expr> <add op> <term>
+    <term> ::= <factor> | <term> <op> <term>
+    <factor> ::= (<expr>) | <id> | literal
+    <op> ::= <add op> | <mul op>
+    <add op> ::= + | -
+    <mul op> ::= * | /
+    <id> ::= identifier
 
-                                                                                                                                                                                                                                                                                                                            E
-                                                                                                                                                                                                                                                                                                                            E ::= E * E
-                                                                                                                                                                                                                                                                                                                            E ::= id * E
-                                                                                                                                                                                                                                                                                                                            E ::= id * E + E
-                                                                                                                                                                                                                                                                                                                            E ::= id * id + E
-                                                                                                                                                                                                                                                                                                                            E ::= id * id + id
-                                                                                                                                                                                                                                                                                                                            Our grammar is ambiguous. We can get to the same place through several different trees. You donÎéÎ÷t want to have an ambiguous grammar!
+### C Identifier Grammar (EBNF) ###
 
-                                                                                                                                                                                                                                                                                                                            18 February 2005
+    <identifier> ::= <nondigit> (nondigit | digit)
+    <nondigit> ::= _ | a-z | A-Z
+    <digit> ::= 0-9
+
+### Parse trees ###
+
+Show how a sentence is derived in a language.
+
+Production: P ::= x<sub>1</sub> x<sub>2</sub> x<sub>3</sub>
+
+[picture of tree with P as root node and x<sub>1</sub>, x<sub>2</sub>,
+x<sub>3</sub> as leaves]
+
+### Definitions of grammar ###
+
+Formally define a grammar by a 4-tuple.
+
+    G = (V<sub>N</sub>, V<sub>T</sub>, S, P)
+
+Where V<sub>N</sub> and V<sub>T</sub> are disjointed sets of non-terminal and
+terminal symbols respectively. S is the distinguished symbol of V<sub>N</sub>,
+and is commonly called the start (or goal) symbol. The set of
+V = V<sub>T</sub> &cup; V<sub>N</sub> is called the vocabulary of the grammar.
+P is a finite set of productions.
+
+Naming: The from of the grammar is important.
+
+* Different grammars can generate the same language.
+* Tools are sensitive to the form of the grammar.
+* Restriction on the types of rules can make automatic parser generation easier.
+
+### Derivation examples ###
+
+Grammar
+
+    E ::= E+E | E*E | (E) | id
+    id ::= number
+
+Sentential form (input to parser)
+
+    E: id * id + id
+
+Leftmost derivation
+
+1. In the current "string", choose leftmost non-terminal.
+2. Choose any production for the chosen non-terminal.
+3. In the string, replace the non-terminal by the right hand side of the rule.
+4. Repeat until no more non-terminals exist.
+
+Example: id * id + id
+
+    E
+    E ::= E + E
+    E ::= E * E + E
+    E ::= id * E + E
+    E ::= id * id + E
+    E ::= id * id + id
+
+It matches our expression!
+
+Rightmost derivation
+
+1. In the current "string", choose rightmost non-terminal.
+2. Choose any production for the chosen non-terminal.
+3. In the string, replace the non-terminal by the right hand side of the rule.
+4. Repeat until no more non-terminals exist.
+
+Example: id * id + id
+
+    E
+    E ::= E + E
+    E ::= E + id
+    E ::= E * E + id
+    E ::= E * id + id
+    E ::= id * id + id
+
+It matches our expression!
+
+What if we had chosen to do E * E?
+
+    E
+    E ::= E * E
+    E ::= id * E
+    E ::= id * E + E
+    E ::= id * id + E
+    E ::= id * id + id
+
+Our grammar is ambiguous. We can get to the same place through several different
+trees. You don't want to have an ambiguous grammar!
+
+## 18 February 2005 ##
 
                                                                                                                                                                                                                                                                                                                             Peanuts Grammar
 
