@@ -1,0 +1,14 @@
+<div class="archive">
+<table>
+<% @posts.each do |year, words| %>
+<tr>
+<th></th><td class="sect"><%=  year %></td>
+</tr>
+<% words.each do |post| %>
+<th><a title="Read &ldquo;<%= post['title'] %>&rdquo;" href="<%= post['url'] %>"><%= post['title'] %></a></th>
+<td><abbr title="<%= post['date']['title'] %>"><%= post['date']['abbr'] %></abbr></td>
+</tr>
+<% end %>
+<% end %>
+</table>
+</div>

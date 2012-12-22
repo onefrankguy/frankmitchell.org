@@ -1,15 +1,6 @@
 <%= @content %>
 <h3 class="header">Words</h3>
-<div class="archive">
-<table>
-<% @posts.each do |post| %>
-  <tr>
-    <th><a title="Read &ldquo;<%= post['title'] %>&rdquo;" href="<%= post['url'] %>"><%= post['title'] %></a></th>
-    <td><abbr title="<%= post['date']['title'] %>"><%= post['date']['abbr'] %></abbr></td>
-  </tr>
-<% end %>
-</table>
-</div>
+<%= @archive %>
 <h3 class="header">Projects</h3>
 <ul class="apps">
   <li>

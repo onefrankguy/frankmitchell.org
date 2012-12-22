@@ -127,6 +127,12 @@ a.header:hover {
 	letter-spacing: 0;
 	white-space: nowrap;
 }
+.archive .sect {
+	color: #bdbcaf;
+}
+.archive .sect:before {
+	content: "\2003";
+}
 .apps {
 	margin-bottom: 0;
 }
