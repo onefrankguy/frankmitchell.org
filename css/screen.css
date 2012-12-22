@@ -62,6 +62,10 @@ pre {
 	font-size: 1em;
 	line-height: 1.5;
 }
+.archive td:before {
+	font-size: 0.75em;
+	line-height: 1.5;
+}
 .footer {
 	max-width: 33em;
 	margin: 4.5em auto 1.5em auto;
