@@ -18,9 +18,9 @@ false. Here's an example with a bit of Ruby I was working on the other day.
     results = []
     mgram = []
     characters.each do |letter|
-        mgram << letter
-        mgram = mgram[1, size] if mgram.size > size
-        results << mgram if mgram.size == size
+      mgram << letter
+      mgram = mgram[1, size] if mgram.size > size
+      results << mgram if mgram.size == size
     end
 
 Every time the loop terminated, the `results` array would be filled with strings
