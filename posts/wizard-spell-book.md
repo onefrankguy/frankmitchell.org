@@ -16,7 +16,7 @@ advancing their craft even further.
 
 ## Wizards like to talk about magic ##
 
-Ask a wizard about [a piece ofmagic][], and he will gladly talk about the
+Ask a wizard about [a piece of magic][], and he will gladly talk about the
 [data structures and algorithms][] behind it, sharing freely of his
 [insights and observations][]. In fact, [entire communities][] have sprung up
 based around the concept of wizards sharing magic.
@@ -63,6 +63,6 @@ Of course, there are shortcuts to [failing faster][].
 [composition books]: http://en.wikipedia.org/wiki/Composition_book "Wikipedia: Composition book"
 [a piece of magic]: http://prolix-app.com/ "Prolix is a tweetable word search game for your iPhone"
 [data structures and algorithms]: /2010/09/small-code '"Bytes matter on the mobile web" by Frank Mitchell'
-[insights and observations]: /2010/10/javascript-prototypes" '"I bring you prototypes and deeper understanding" by Frank Mitchell'
+[insights and observations]: /2010/10/javascript-prototypes '"I bring you prototypes and deeper understanding" by Frank Mitchell'
 [entire communities]: http://github.com/ "GitHub: Secure source code hosting and collaborative development"
 [failing faster]: http://shivanata.com/ "Shiva Nata - Hot buttered epiphanies and unlikely insights"
