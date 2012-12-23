@@ -12,7 +12,7 @@ no doubt follow shortly.
 Basically, if a search engine spider comes across the `rel="nofollow"` attribute
 on one of your hyperlinks, it won't follow that link. So if your blogging
 software automatically adds that attribute to all the links it accepts as input,
-comment spam doesnÎéÎ÷t get followed (and thus doesn't go into the search
+comment spam doesn't get followed (and thus doesn't go into the search
 engine).
 
 Of course, non-spam links won't get followed either, so we're still going to
