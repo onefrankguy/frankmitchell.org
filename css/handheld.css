@@ -37,13 +37,18 @@ p, li, pre {
 }
 li {
 	margin: 0 0 0 0.75em;
-	list-style-position: inside;
+	list-style-position: outside;
 }
 ol, ul {
 	margin-bottom: 0.75em;
+	margin-left: 0.375em;
 }
 li > ol, li > ul {
 	margin-bottom: 0;
+	margin-left: 0;
+}
+li > ol > li, li > ul > li {
+font-size: 1em;
 }
 blockquote {
 	display: block;

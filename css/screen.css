@@ -22,6 +22,7 @@ li {
 }
 ol, ul {
 	margin-bottom: 1.5em;
+	margin-left: 0.75em;
 }
 abbr[title="and"] {
 	font-family: Baskerville, serif;
