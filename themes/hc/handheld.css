@@ -1,0 +1,213 @@
+/* BASE */
+html {
+  height: 100%;
+  font-size: 100%;
+  overflow-y: scroll;
+}
+
+body {
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* DEFAULT FONT SETTINGS */
+/* 16px base font size */
+/* 150% (24px) friendly, unitless line height margin for vertical rhythm */
+/* Font-size percentage is based on 16px browser default size */
+body {
+  font: 100%/1.5 Lato, sans-serif;
+}
+
+p,
+blockquote,
+q,
+pre,
+address,
+hr,
+dl,
+ol,
+ul,
+form,
+table,
+fieldset,
+menu,
+img {
+  margin: 0 0 1.5em;
+  padding: 0;
+}
+
+/* TYPOGRAPHY */
+/* Composed to a scale of 12px, 14px, 16px, 18px, 21px, 24px, 36px, 48px, 60px and 72px */
+h1, h2, h3, h4, h5, h6 {
+  font-family: sans-serif;
+  margin: 0;
+}
+/* 60px / 72px */
+h1 {
+  font-size: 3.75em;
+  line-height: 1.2;
+  margin-bottom: 0.4em;
+}
+/* 48px / 48px */
+h2 {
+  font-size: 3em;
+  line-height: 1;
+  margin-bottom: 0.5em;
+}
+/* 36px / 48px */
+h3 {
+  font-size: 2.25em;
+  line-height: 1.3333333333333333333333333333333;
+  margin-bottom: 0.6667em;
+}
+/* 24px / 24px */
+h4 {
+  font-size: 1.5em;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+/* 21px / 24px */
+h5 {
+  font-size: 1.3125em;
+  line-height: 1.1428571428571428571428571428571;
+  margin-bottom: 1.1428571428571428571428571428571em;
+}
+/* 18px / 24px */
+h6 {
+  font-size: 1.125em;
+  line-height: 1.3333333333333333333333333333333;
+  margin-bottom: 1.3333333333333333333333333333333em;
+}
+/* 16px / 24px */
+p, ul, blockquote, pre, td, th, label {
+  margin: 0;
+  font-size: 1em;
+  line-height: 1.5;
+  margin-bottom: 1.5em;
+}
+/* 14px / 24px */
+small, p.small {
+  margin: 0;
+  font-size: 0.875em;
+  line-height: 1.7142857142857142857142857142857;
+  margin-bottom: 1.7142857142857142857142857142857em;
+}
+
+/* CODE */
+code {
+  font-family: "Source Code Pro", monospace;
+  font-weight: 300;
+  /* Prevents `code` affecting `line-height`. */
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+/* QUOTES */
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+blockquote,
+q,
+cite {
+  font-style: italic;
+}
+blockquote {
+  padding-left: 1.5em;
+  border-left: 3px solid #ccc;
+}
+blockquote > p {
+  padding: 0;
+}
+
+/* LISTS */
+ul,
+ol {
+  list-style-position: inside;
+  padding: 0;
+}
+li ul,
+li ol {
+  margin: 0 1.5em;
+}
+dl dd {
+  margin-left: 1.5em;
+}
+dt {
+  font-family: Futura, "Century Gothic", AppleGothic, sans-serif;
+}
+
+/* MICRO CLEARFIX HACK */
+.cf:before, .cf:after { content: ""; display: table; } /* For modern browsers */
+.cf:after { clear: both; }
+.cf { zoom: 1; } /* For IE 6/7 (trigger hasLayout) */
+
+/* SITE */
+header,
+article,
+footer {
+  max-width: 33em;
+  margin: 0 auto;
+}
+
+article > time {
+  float: right;
+  display: inline-block;
+  color: #bdbcaf;
+  font-size: 1em;
+  font-style: italic;
+  letter-spacing: 0;
+  line-height: 1.5;
+  margin-bottom: 1.5em;
+}
+
+article > h1 {
+  display: inline-block;
+  font-size: 1em;
+  line-height: 1.5;
+  margin-bottom: 1.5em;
+}
+
+article > h2 {
+  /* 24px / 24px */
+  font-size: 1.5em;
+  line-height: 1;
+  margin: 2em 0 1em;
+}
+article > h3 {
+  /* 18px / 24px */
+  font-size: 1.125em;
+  line-height: 1.3333333333333333333333333333333;
+  margin-bottom: 1.3333333333333333333333333333333em;
+}
+
+
+footer > p {
+  font-size: 0.875em;
+  line-height: 1.7142857142857142857142857142857;
+  margin-bottom: 1.7142857142857142857142857142857em;
+}
+
+/* Use the base available ampersand. */
+abbr[title="and"] {
+  font-family: "Adobe Caslon Pro", "Baskerville", "Goudy Old Style",
+    "Palatino", "Palatino Linotype", "Book Antiqua", "Georgia",
+    "Times New Roman", "Times", serif;
+  font-style: italic;
+  font-size: 110%;
+  border-bottom: 0;
+  /* Prevents `abbr` affecting `line-height`. */
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}

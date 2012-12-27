@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Frank Mitchell</title>
+<meta name="viewport" content="width=device-width" />
+<link rel="stylesheet" media="only screen and (min-width:640px)" href="http://fonts.googleapis.com/css?family=Orbitron:500" />
+<link rel="stylesheet" media="only screen and (min-width:640px)" href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" />
+<link rel="stylesheet" media="only screen and (min-width:640px)" href="http://fonts.googleapis.com/css?family=Source+Code+Pro:300" />
+<link rel="stylesheet" href="normalize.css" />
+<link rel="stylesheet" href="handheld.css" />
+<link rel="stylesheet" href="http://basehold.it/24" />
+</head>
+<body>
+<article>
+<h1>Hard bugs and unknown assumptions</h1>
+<time datetime="2010-10-18" title="18 October 2010">18 Oct.</time>
+
+<p>Assumptions color everything we do, and I&#39;m pretty sure you can&#39;t function
+without them. Given how complex the world is, at some point you just have to go,
+&ldquo;Yeah, I assume it&#39;s going to work&rdquo; and move on. But the worst assumptions, the
+ones that cause you to tear your hair out or cry yourself to sleep in
+frustration, are the ones you don&#39;t even know you&#39;re making.</p>
+
+<h2>Hard bugs</h2>
+
+<p>When it comes to programming, the hardest bugs to fix are the ones where a base
+assumption gets violated. You assume something to be true, only to find out it&#39;s
+false. Here&#39;s an example with a bit of Ruby I was working on the other day.</p>
+
+<pre><code>results = []
+mgram = []
+characters.each do |letter|
+  mgram &lt;&lt; letter
+  mgram = mgram[1, size] if mgram.size &gt; size
+  results &lt;&lt; mgram if mgram.size == size
+end
+</code></pre>
+
+<p>Every time the loop terminated, the <code>results</code> array would be filled with strings
+of letters (m-grams) that were longer than the <code>size</code> variable.  That wasn&#39;t at
+all what I intended, and it drove me bonkers. I stepped through the code
+checking my assumptions.</p>
+
+<ul>
+<li>Letters were being appended to the <code>mgrams</code> variable.</li>
+<li>The <code>mgrams</code> variable was being trimmed to the right size.</li>
+<li>M-grams were being added to the <code>results</code> array.</li>
+<li>We went back to the top of the loop and continued.</li>
+</ul>
+
+<p>Which of those assumptions is wrong?</p>
+
+<p>As it turns out, none of them. The place I&#39;d gone wrong was in assuming that
+appending to an array created a copy. But it didn&#39;t; it created a reference. So
+when the loop came around again and added another letter to <code>mgram</code> it also put
+one onto the end of the m-gram I&#39;d just put in <code>results</code>. I fixed it by changing
+<code>results &lt;&lt; mgram</code> to <code>results &lt;&lt; mgram.clone</code>.</p>
+
+<p>This kind of thing happens all the time. I&#39;m pretty sure it&#39;s the reason so many
+programmers distrust documentation and suffer from <a href="http://en.wikipedia.org/wiki/Not_Invented_Here" title="Wikipedia: Not Invented Here">NIH</a>.  There are so many
+layers between our ideas and what&#39;s really going on, that we have to assume
+things are working correctly if we want to get anything done.</p>
+
+<p>And when our assumptions go wrong, we&#39;re left with really hard bugs.</p>
+
+<h2>Growing persistent assumptions</h2>
+
+<p>It&#39;s easy to ditch assumptions you can shine a critical light on. Assumptions
+you can reason about and test are easy to verify. &ldquo;Hmm&hellip; I turned on the
+dishwasher and all the lights went out. I&#39;ll assume the fuse is blown.&rdquo; Easy to
+think about. Easy to check. Easy to solve.</p>
+
+<p>The assumptions that are hard to let go of are the ones you don&#39;t even know
+you&#39;re holding. Such base assumptions are typically formed by your first
+exposure to a new idea.</p>
+
+<p>Here&#39;s an example.</p>
+
+<p>When I first learned to program, it was with the use of <a href="http://en.wikipedia.org/wiki/XSL_Transformations" title="Wikipedia: XSL Transformations">XSLT</a> to transform
+XML files into web pages. Though I didn&#39;t know <a href="http://en.wikipedia.org/wiki/Turing_completeness%22" title="Wikipedia: Turing completeness">I was programming</a>, that first
+act permanently colored my view. Even after getting a Computer Science degree
+and spending years in industry, I still view programming as the art of writing
+down information and the functions that transform it into a usable form.</p>
+
+<p>This idea of programming is totally different (and often alien) to someone who
+grew up programing with punch cards. For them, programing is the art of
+<a href="/2010/09/small-code" title="Frank Mitchell: Bytes matter on the mobile web">optimizing for size and speed</a>. Those were the things that were most
+important when they were exposed to the idea. Those are the things that are most
+important now.</p>
+
+<p>These base assumptions form without conscious thought because our brains are
+wonderful pattern recognition engines. They take in new information and form a
+pattern about it. Any similar information we encounter in the future is
+automatically filtered through that pattern, which just reinforces it.</p>
+
+<p>While subsequent exposures might modify the pattern, it&#39;s the first exposure
+that imprints strongest. That exposure doesn&#39;t have to be for any significant
+duration. An offhand comment by a friend works as well as a college lecture. The
+only thing that matters is that the information is new.</p>
+
+<h2>Continuous learning is an antidote</h2>
+
+<p>As soon as you identify a base assumption, you have the opportunity to change
+it. But how do you recognize it&#39;s there in the first place?</p>
+
+<p>The process that works for me is to keep learning as much as I can about as many
+different things as possible. I can only keep a finite amount of information in
+my head. The more I learn, the more assumptions I have to challenge and let go
+of in order to make room for new ideas.</p>
+
+<p>Then I flop down on the floor, stare at the ceiling, and turn those ideas over
+in my head. I go through the usual round of questions.  &ldquo;Is this true?&rdquo;, &ldquo;Do I
+believe it?&rdquo;, and &ldquo;How does it fit with what I already know?&rdquo; are all good
+starting points.</p>
+
+<p>Usually somewhere in that process something will click, and I&#39;ll recognize that
+I&#39;m holding onto an assumption. When that happens, I can call it out, look it
+over, and decide wether to keep it or not.</p>
+</article>
+<footer>
+<p>Design <abbr title="and">&amp;</abbr> text by <a title="designer, engineer, wizard" href="/">Frank Mitchell</a>. Color scheme by <a title="kuler: &ldquo;Honor&rdquo; by giubbola" href="http://kuler.adobe.com/#themeID/215747">giubbola</a>. Fonts by <a title="The League of Moveable Type" href="http://theleagueofmoveabletype.com/">various</a> <a title="&ldquo;Source Code Pro&rdquo; by Paul D. Hunt" href="http://blogs.adobe.com/typblography/2012/09/source-code-pro.html">arltists</a>. Built with <a title="Find the source code to these pages on GitHub" href="https://github.com/elimossinary/frankmitchell.org">magic</a> and hosted by <a title="NearlyFreeSpeech.NET Web Hosting" href="http://nearlyfreespeech.net/">nearlyfreespeech.net</a>.</p>
+</footer>
+</body>
+</html>
