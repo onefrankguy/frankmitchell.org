@@ -1,78 +1,17 @@
-/* Screen */
-body {
-	font: normal 100% Lato, sans-serif;
+section,
+article {
+  max-width: 33em;
 }
-h2 {
-	font-size: 1.25em;
-	line-height: 1.2;
-	margin: 1.65em 0 0.75em 0;
+footer {
+  max-width: 28em;
 }
-h3 {
-	font-size: 1em;
-	line-height: 1.5;
-	margin: 1em 0 0.5em 0;
-}
-p, li, pre {
-	font-size: 1em;
-	line-height: 1.5;
-	margin-bottom: 1.5em;
-}
-li {
-	margin: 0 0 0 1.5em;
-}
-ol, ul {
-	margin-bottom: 1.5em;
-	margin-left: 0.75em;
-}
-abbr[title="and"] {
-	font-family: Baskerville, serif;
-	font-style: italic;
+.archive ul {
+  max-width: 33em;
 }
 code {
-	font-family: "Source Code Pro", monospace;
-	font-weight: 300;
-}
-blockquote {
-	margin-left: 1.5em;
-	margin-right: 1.5em;
-}
-pre {
-	margin-left: 1.5em;
+  font-family: "Source Code Pro", monospace;
 }
 .header {
-	max-width: 18em;
-	margin: 0.9em auto -0.6666em auto;
-	font: 500 2em/1.3333 Orbitron, sans-serif;
-}
-.post, .archive, .apps {
-	max-width: 33em;
-	padding: 1.5em 1.5em 0.0625em 1.5em;
-}
-.title, .date {
-	font-weight: bold;
-	font-size: 0.75em;
-	line-height: 2;
-	margin: 0 0 2em 0;
-}
-.archive table {
-	text-align: center;
-	margin: 0 auto 1.5em auto;
-	max-width: 33em;
-}
-.archive tr {
-	font-size: 1em;
-	line-height: 1.5;
-}
-.archive td:before {
-	font-size: 0.75em;
-	line-height: 1.5;
-}
-.footer {
-	max-width: 33em;
-	margin: 4.5em auto 1.5em auto;
-	font-size: 0.75em;
-	line-height: 1.5;
-}
-.polaroid {
-	font: 1em/1.5 "Comic Sans MS", "Comic Sans", fantasy;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 500;
 }
