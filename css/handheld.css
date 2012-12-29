@@ -96,7 +96,6 @@ small, p.small {
 /* CODE */
 code {
   font-family: monospace;
-  font-weight: 300;
   /* Prevents `code` affecting `line-height`. */
   line-height: 0;
   position: relative;

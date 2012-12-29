@@ -10,6 +10,7 @@ footer {
 }
 code {
   font-family: "Source Code Pro", monospace;
+  font-weight: 300;
 }
 .header {
   font-family: "Orbitron", sans-serif;
