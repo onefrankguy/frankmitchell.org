@@ -1,5 +1,6 @@
-<div class="post">
+<article>
+  <a class="header" href="#">Frank Mitchell</a>
+  <time datetime="<%= @date['time'] %>" title="<%= @date['title'] %>"><%= @date['abbr'] %></time>
   <h1 class="title"><%= @title %></h1>
-  <abbr class="date" title="<%= @date['title'] %>"><%= @date['abbr'] %></abbr>
   <%= @content %>
-</div>
+</article>
