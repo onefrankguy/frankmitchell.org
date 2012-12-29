@@ -1,3 +1,40 @@
+/* NORMALIZE */
+html {
+  font-family: sans-serif;
+}
+body {
+  margin: 0;
+}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+code,
+pre {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  border: 0;
+}
+
 /* BASE */
 html {
   height: 100%;
@@ -22,17 +59,9 @@ body {
 
 p,
 blockquote,
-q,
 pre,
-address,
-hr,
-dl,
 ol,
 ul,
-form,
-table,
-fieldset,
-menu,
 img {
   margin: 0 0 1.5em;
   padding: 0;
@@ -40,7 +69,7 @@ img {
 
 /* TYPOGRAPHY */
 /* Composed to a scale of 12px, 14px, 16px, 18px, 21px, 24px, 36px, 48px, 60px and 72px */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
   font-family: sans-serif;
   margin: 0;
 }
@@ -62,35 +91,31 @@ h3 {
   line-height: 1.3333333333333333333333333333333;
   margin-bottom: 0.6667em;
 }
+
 /* 24px / 24px */
-h4 {
+/*h4 {
   font-size: 1.5em;
   line-height: 1;
   margin-bottom: 1em;
-}
+}*/
 /* 21px / 24px */
-h5 {
+/*h5 {
   font-size: 1.3125em;
   line-height: 1.1428571428571428571428571428571;
   margin-bottom: 1.1428571428571428571428571428571em;
-}
+}*/
 /* 18px / 24px */
-h6 {
+/*h6 {
   font-size: 1.125em;
   line-height: 1.3333333333333333333333333333333;
   margin-bottom: 1.3333333333333333333333333333333em;
-}
+}*/
+
 /* 16px / 24px */
-p, ol, ul, blockquote, pre, td, th, label {
+p, ol, ul, blockquote, pre {
   font-size: 1em;
   line-height: 1.5;
   margin: 0 0 1.5em;
-}
-/* 14px / 24px */
-small, p.small {
-  font-size: 0.875em;
-  line-height: 1.7142857142857142857142857142857;
-  margin: 0 0 1.7142857142857142857142857142857em;
 }
 
 /* CODE */
@@ -103,20 +128,15 @@ code {
 }
 
 /* QUOTES */
-blockquote,
-q {
+blockquote {
   quotes: none;
 }
 blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote:after {
   content: '';
   content: none;
 }
-blockquote,
-q,
-cite {
+blockquote {
   font-style: italic;
 }
 blockquote {
@@ -133,15 +153,8 @@ ol {
   list-style-position: inside;
   padding: 0;
 }
-li ul,
-li ol {
+li ul {
   margin: 0 1.5em;
-}
-dl dd {
-  margin-left: 1.5em;
-}
-dt {
-  font-family: Futura, "Century Gothic", AppleGothic, sans-serif;
 }
 
 /* HYPERLINKS */
@@ -163,6 +176,7 @@ a:hover, a:active {
 section,
 article,
 footer {
+  display: block;
   height: 100%;
 }
 
@@ -216,6 +230,7 @@ footer {
 }
 
 footer > p {
+  /* 14px / 24px */
   font-size: 0.875em;
   line-height: 1.7142857142857142857142857142857;
   margin-bottom: 1.7142857142857142857142857142857em;
