@@ -120,8 +120,8 @@ cite {
   font-style: italic;
 }
 blockquote {
-  padding-left: 1.5em;
-  border-left: 3px solid #ccc;
+  padding: 1.5em 0 0 1.5em;
+  height: 100%;
 }
 blockquote > p {
   padding: 0;
