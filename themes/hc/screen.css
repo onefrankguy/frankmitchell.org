@@ -2,7 +2,9 @@ section,
 article {
   max-width: 33em;
 }
-
 footer {
   max-width: 28em;
+}
+.archive ul {
+  max-width: 33em;
 }

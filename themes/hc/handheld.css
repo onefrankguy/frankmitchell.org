@@ -81,7 +81,7 @@ h6 {
   margin-bottom: 1.3333333333333333333333333333333em;
 }
 /* 16px / 24px */
-p, ul, blockquote, pre, td, th, label {
+p, ol, ul, blockquote, pre, td, th, label {
   font-size: 1em;
   line-height: 1.5;
   margin: 0 0 1.5em;
@@ -225,6 +225,7 @@ footer > p {
 .header {
   display: block;
   font-size: 3em;
+  font-weight: normal;
   line-height: 1;
   margin-left: -0.5em;
   margin-bottom: 0.5em;
@@ -238,6 +239,45 @@ footer > p {
 
 a.header:hover {
   text-decoration: none;
+}
+
+.archive {
+  padding-bottom: 1.5em;
+}
+.archive ul {
+  display: table;
+  max-width: 18em;
+  margin: 0 auto;
+}
+.archive li {
+  list-style: none;
+  display: table-row;
+}
+.archive li > * {
+  display: table-cell;
+}
+.archive a {
+  text-align: right;
+}
+.archive time {
+  font-style: italic;
+  white-space: nowrap;
+}
+.archive time:before {
+  content: "\2022";
+  padding: 0 0.75em 0;
+}
+.archive .sect {
+  color: #bdbcaf;
+}
+.archive .sect:before {
+  content: "";
+}
+.archive .sect time:before {
+  color: transparent;
+}
+.archive li + li.sect time {
+  padding-top: 1.5em;
 }
 
 .apps {
