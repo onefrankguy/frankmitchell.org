@@ -160,20 +160,23 @@ a:hover, a:active {
   outline: none;
 }
 
-/* MICRO CLEARFIX HACK */
-.cf:before, .cf:after { content: ""; display: table; } /* For modern browsers */
-.cf:after { clear: both; }
-.cf { zoom: 1; } /* For IE 6/7 (trigger hasLayout) */
+article,
+footer {
+  height: 100%;
+}
 
 /* SITE */
 article {
+  position: relative;
   max-width: 18em;
   margin: 3em auto 0 auto;
   padding: 1.5em 1.5em 0;
 }
 
 article > time {
-  float: left;
+  position: absolute;
+  top: 3em;
+  left: 1.5em;
   display: inline-block;
   color: #bdbcaf;
   font-size: 1em;
