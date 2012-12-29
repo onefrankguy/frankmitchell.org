@@ -42,6 +42,21 @@ task :redcarpet do
   end
 end
 
+desc 'Find unused CSS selectors'
+task :deadweight do
+  begin
+    gem 'deadweight'
+  rescue Gem::LoadError
+    sh 'gem install deadweight'
+  end
+  require 'deadweight'
+  dw = Deadweight.new
+  dw.stylesheets = Dir['css/*.css']
+  dw.pages = Dir['public/**/*.html']
+  dw.root = './'
+  puts dw.run
+end
+
 Rake::Task[:clean].enhance do
   Rake::Task['manifest.json'].reenable
 end
