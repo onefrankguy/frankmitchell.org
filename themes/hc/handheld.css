@@ -17,7 +17,7 @@ body {
 /* 150% (24px) friendly, unitless line height margin for vertical rhythm */
 /* Font-size percentage is based on 16px browser default size */
 body {
-  font: 100%/1.5 Lato, sans-serif;
+  font: 100%/1.5 sans-serif;
 }
 
 p,
@@ -82,17 +82,15 @@ h6 {
 }
 /* 16px / 24px */
 p, ul, blockquote, pre, td, th, label {
-  margin: 0;
   font-size: 1em;
   line-height: 1.5;
-  margin-bottom: 1.5em;
+  margin: 0 0 1.5em;
 }
 /* 14px / 24px */
 small, p.small {
-  margin: 0;
   font-size: 0.875em;
   line-height: 1.7142857142857142857142857142857;
-  margin-bottom: 1.7142857142857142857142857142857em;
+  margin: 0 0 1.7142857142857142857142857142857em;
 }
 
 /* CODE */
@@ -147,21 +145,35 @@ dt {
   font-family: Futura, "Century Gothic", AppleGothic, sans-serif;
 }
 
+/* HYPERLINKS */
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:focus {
+  outline: thin dotted;
+}
+/* Better CSS Outline Suppression */
+a:hover, a:active {
+  outline: none;
+}
+
 /* MICRO CLEARFIX HACK */
 .cf:before, .cf:after { content: ""; display: table; } /* For modern browsers */
 .cf:after { clear: both; }
 .cf { zoom: 1; } /* For IE 6/7 (trigger hasLayout) */
 
 /* SITE */
-header,
-article,
-footer {
-  max-width: 33em;
-  margin: 0 auto;
+article {
+  max-width: 18em;
+  margin: 3em auto 0 auto;
+  padding: 1.5em 1.5em 0;
 }
 
 article > time {
-  float: right;
+  float: left;
   display: inline-block;
   color: #bdbcaf;
   font-size: 1em;
@@ -172,30 +184,75 @@ article > time {
 }
 
 article > h1 {
-  display: inline-block;
+  text-align: right;
   font-size: 1em;
   line-height: 1.5;
-  margin-bottom: 1.5em;
+  margin: 0 0 1.5em;
 }
 
 article > h2 {
   /* 24px / 24px */
   font-size: 1.5em;
+  font-weight: normal;
   line-height: 1;
-  margin: 2em 0 1em;
+  margin: 1.5em 0 0.5em;
 }
 article > h3 {
   /* 18px / 24px */
   font-size: 1.125em;
+  font-weight: normal;
   line-height: 1.3333333333333333333333333333333;
-  margin-bottom: 1.3333333333333333333333333333333em;
+  margin: 2em 0 0.6666666666666666666666666666666em;
 }
 
+footer {
+  max-width: 18em;
+  margin: 0 auto;
+  padding: 1.5em 0 0;
+}
 
 footer > p {
   font-size: 0.875em;
   line-height: 1.7142857142857142857142857142857;
   margin-bottom: 1.7142857142857142857142857142857em;
+}
+
+.header {
+  display: block;
+  font-size: 3em;
+  line-height: 1;
+  margin-left: -0.5em;
+  margin-bottom: 0.5em;
+  margin-top: -1em;
+  color: #faf2e0;
+  text-shadow: 0 0 0.25em #19223b;
+  letter-spacing: -0.1em;
+  word-spacing: 0.1em;
+  text-transform: lowercase;
+}
+
+a.header:hover {
+  text-decoration: none;
+}
+
+/* COLORS */
+body {
+  background: #c9c539;
+  color: #19223b;
+}
+
+article {
+  background: #faf2e0;
+  -webkit-box-shadow: 0 0 0.25em #19223b;
+  -moz-box-shadow: 0 0 0.25em #19223b;
+  box-shadow: 0 0 0.25em #19223b;
+  -webkit-border-radius: 0.65em;
+  -moz-border-radius: 0.65em;
+  border-radius: 0.65em;
+}
+
+a {
+  color: #751534;
 }
 
 /* Use the base available ampersand. */
