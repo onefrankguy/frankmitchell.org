@@ -126,7 +126,8 @@ def post_metadata post
     'url' => url,
     'date' => {
       'title' => date.strftime("%-d %B %Y"),
-      'abbr' => date.strftime("%-d %b.")
+      'abbr' => date.strftime("%-d %b."),
+      'time' => date.strftime("%Y-%m-%d")
     }
   }
 end
