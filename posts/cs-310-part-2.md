@@ -1,6 +1,6 @@
 <!--
 title: Computer Science 310 notes, part 2
-create: 21 January 2005 - 1:36 pm
+created: 21 January 2005 - 1:36 pm
 updated: 6 April 2005 - 2:05 pm
 slug: cs310-part-2
 tags: coding
