@@ -1,8 +1,9 @@
 <!--
-Title: Boiled custard
-Created: 27 January 2005 - 8:06 pm
-Modified: 27 January 2005 - 8:06 pm
-Tags: recipes
+title: Boiled custard
+created: 27 January 2005 - 8:06 pm
+updated: 27 January 2005 - 8:06 pm
+slug: boiled-custard
+tags: recipes
 -->
 
 ### Background ###
