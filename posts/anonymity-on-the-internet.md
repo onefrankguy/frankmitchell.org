@@ -1,8 +1,9 @@
 <!--
-Title: Anonymity on the Internet
-Created: 31 March 2005 - 4:49 pm
-Modified: 1 April 2005 - 1:34 pm
-Tags: searching
+title: Anonymity on the Internet
+created: 31 March 2005 - 4:49 pm
+updated: 1 April 2005 - 1:34 pm
+slug: tor-proxy
+tags: searching
 -->
 
 I wondered on over to [the land of Oz][searchlores] today, and discovered that the doors were closed and locked. Well, a bit of lock-picking revealed that said site [wasn't really closed][searchlores-april], and indeed had a few [new essays][searchlores-news] since I'd last checked it.
