@@ -1,8 +1,9 @@
 <!--
-Title: Email chess: Sarah and Frank, 20 Nov. 2004
-Created: 20 November 2004 - 1:27 pm
-Modified: 27 November 2004 - 11:55 am
-Tags: play
+title: Email chess: Sarah and Frank, 20 Nov. 2004
+created: 20 November 2004 - 1:27 pm
+updated: 27 November 2004 - 11:55 am
+slug: email-chess
+tags: play
 -->
 
 I'm playing email chess with [Sarah][] over Thanksgiving break, and I need someplace to record moves, rant about how I'm losing, formalize strategies, etc. Well, maybe not that last part. Moves are recorded in full algebraic [chess notation][], since it's what I'm familiar with.
