@@ -315,6 +315,7 @@ sup {
 /* ABBREVIATIONS */
 abbr[title] {
   border-bottom: 1px dotted;
+  cursor: help;
 }
 abbr[title="and"] {
   font-family: "Adobe Caslon Pro", "Baskerville", "Goudy Old Style",
@@ -323,6 +324,7 @@ abbr[title="and"] {
   font-style: italic;
   font-size: 110%;
   border-bottom: 0;
+  cursor: auto;
   /* Prevents `abbr` affecting `line-height`. */
   line-height: 0;
   position: relative;

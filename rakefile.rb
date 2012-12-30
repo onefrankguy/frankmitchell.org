@@ -196,6 +196,16 @@ def parse_template name
   @templates[name].result send(:binding)
 end
 
+def markup_acronyms html
+  @acronyms = YAML.load_file('posts/acronyms.yaml') if @acronyms.nil?
+  @acronyms.each do |acronym, description|
+    tag = "<abbr title=\"#{description}\">#{acronym}</abbr>"
+    html.gsub! /(?!<[^<>]*?)(?<![?.\/&])\b#{acronym}\b(?!:)(?![^<>]*?>)/, tag
+    # $text = preg_replace("|[$]<acronym title=\"$description\">$acronym</acronym>[$]|msU", "$acronym", $text); 
+  end
+  html
+end
+
 def copy_folder input, output
   output = File.dirname(output)
   mkpath output unless File.directory? output
@@ -212,7 +222,9 @@ Rake::Task['public/index.html'].enhance [manifest.first['content']['post']]
 
 manifest.each do |info|
   file info['content']['raw'] => info['content']['original'] do |t|
-    sh "redcarpet --smarty #{info['content']['original']} > #{t.name}"
+    html = `redcarpet --smarty #{info['content']['original']}`.strip
+    html = markup_acronyms html
+    write_text t.name, html
   end
 
   file info['content']['escaped'] => info['content']['raw'] do |t|
