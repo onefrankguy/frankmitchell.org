@@ -69,50 +69,47 @@ img {
 
 /* TYPOGRAPHY */
 /* Composed to a scale of 12px, 14px, 16px, 18px, 21px, 24px, 36px, 48px, 60px and 72px */
+/*
+60px / 72px
+font: 3.75em/1.2;
+margin: 0 0 0.4em;
+
+48px / 48px
+font: 3em/1;
+margin: 0 0 0.5em;
+
+36px / 48px
+font: 2.25em/1.3333333333333333333333333333333;
+margin: 0 0 0.6667em;
+
+24px / 24px
+font: 1.5em/1;
+margin: 0 0 1em;
+
+21px / 24px
+font: 1.3125em/1.1428571428571428571428571428571;
+margin: 0 0 1.1428571428571428571428571428571em;
+
+18px / 24px
+font: 1.125em/1.3333333333333333333333333333333;
+margin: 0 0 1.3333333333333333333333333333333em;
+
+16px / 24px
+font: 1em/1.5;
+margin: 0 0 1.5em;
+
+14px / 24px
+font: 0.875em/1.7142857142857142857142857142857;
+margin: 0 0 1.7142857142857142857142857142857em;
+*/
+
 h1, h2, h3 {
   font-family: sans-serif;
   margin: 0;
 }
-/* 60px / 72px */
-h1 {
-  font-size: 3.75em;
-  line-height: 1.2;
-  margin-bottom: 0.4em;
-}
-/* 48px / 48px */
-h2 {
-  font-size: 3em;
-  line-height: 1;
-  margin-bottom: 0.5em;
-}
-/* 36px / 48px */
-h3 {
-  font-size: 2.25em;
-  line-height: 1.3333333333333333333333333333333;
-  margin-bottom: 0.6667em;
-}
 
-/* 24px / 24px */
-/*h4 {
-  font-size: 1.5em;
-  line-height: 1;
-  margin-bottom: 1em;
-}*/
-/* 21px / 24px */
-/*h5 {
-  font-size: 1.3125em;
-  line-height: 1.1428571428571428571428571428571;
-  margin-bottom: 1.1428571428571428571428571428571em;
-}*/
-/* 18px / 24px */
-/*h6 {
-  font-size: 1.125em;
-  line-height: 1.3333333333333333333333333333333;
-  margin-bottom: 1.3333333333333333333333333333333em;
-}*/
-
-/* 16px / 24px */
 p, ol, ul, blockquote, pre {
+  /* 16px / 24px */
   font-size: 1em;
   line-height: 1.5;
   margin: 0 0 1.5em;
@@ -167,7 +164,6 @@ a:hover {
 a:focus {
   outline: thin dotted;
 }
-/* Better CSS Outline Suppression */
 a:hover, a:active {
   outline: none;
 }
@@ -202,6 +198,7 @@ article > time {
 }
 
 article > h1 {
+  /* 16px / 24px */
   text-align: right;
   font-size: 1em;
   line-height: 1.5;
@@ -237,6 +234,7 @@ footer > p {
 }
 
 .header {
+  /* 48px / 48px */
   display: block;
   font-size: 3em;
   font-weight: normal;
