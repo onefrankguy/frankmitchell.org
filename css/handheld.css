@@ -1,61 +1,23 @@
-/* NORMALIZE */
-html {
-  font-family: sans-serif;
-}
-body {
-  margin: 0;
-}
-abbr[title] {
-  border-bottom: 1px dotted;
-}
-code,
-pre {
-  font-family: monospace, serif;
-  font-size: 1em;
-}
-pre {
-  white-space: pre;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-sup {
-  top: -0.5em;
-}
-sub {
-  bottom: -0.25em;
-}
-img {
-  border: 0;
-}
-
 /* BASE */
 html {
   height: 100%;
   font-size: 100%;
+  font-family: sans-serif;
   overflow-y: scroll;
 }
 
 body {
+  margin: 0;
   min-height: 100%;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-}
-
-/* DEFAULT FONT SETTINGS */
-/* 16px base font size */
-/* 150% (24px) friendly, unitless line height margin for vertical rhythm */
-/* Font-size percentage is based on 16px browser default size */
-/* Scale it all down to a 12px font on handhelds */
-/* See screen.css where the percentage is reset to 100% */
-body {
+  /* DEFAULT FONT SETTINGS */
+  /* 16px base font size */
+  /* 150% (24px) friendly, unitless line height margin for vertical rhythm */
+  /* Font-size percentage is based on 16px browser default size */
+  /* Scale it all down to a 12px font on handhelds */
+  /* See screen.css where the percentage is reset to 100% */
   font: normal 75%/1.5 sans-serif;
 }
 
@@ -109,8 +71,17 @@ p, ol, ul, blockquote, pre, img {
 }
 
 /* CODE */
+pre,
 code {
-  font-family: monospace;
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+code {
   /* Prevents `code` affecting `line-height`. */
   line-height: 0;
   position: relative;
@@ -332,7 +303,30 @@ a {
   color: #bdbcaf;
 }
 
-/* Use the base available ampersand. */
+/* IMAGES */
+img {
+  border: 0;
+}
+
+/* SUPER & SUB SCRIPTS */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+
+/* ABBREVIATIONS */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
 abbr[title="and"] {
   font-family: "Adobe Caslon Pro", "Baskerville", "Goudy Old Style",
     "Palatino", "Palatino Linotype", "Book Antiqua", "Georgia",
