@@ -115,13 +115,7 @@ templates/navi.rhtml
 #{__FILE__}
 manifest.json
 ] do |t|
-  words = {}
-  manifest.each do |post|
-    year = Time.parse(post['timestamp']).year
-    words[year] ||= []
-    words[year] << post
-  end
-  @posts = words.keys.sort.reverse.map { |year| [year, words[year]] }
+  @posts = archive_posts manifest
   @archive = parse_template 'archive'
   @content = parse_template 'navi'
   html = parse_template 'page'
@@ -131,18 +125,9 @@ end
 file 'public/index.html' => %W[
 templates/main.rhtml
 templates/page.rhtml
-templates/archive.rhtml
 #{__FILE__}
 manifest.json
 ] do |t|
-  words = {}
-  manifest[0...10].each do |post|
-    year = Time.parse(post['timestamp']).year
-    words[year] ||= []
-    words[year] << post
-  end
-  @posts = words.keys.sort.reverse.map { |year| [year, words[year]] }
-  @archive = parse_template 'archive'
   Rake::Task[manifest.first['content']['post']].invoke
   @title = 'Frank Mitchell'
   @content = File.read manifest.first['content']['post']
