@@ -1,7 +1,7 @@
 <!--
 title: Adaptive Path's resolutions
-created: 8 January 2005 - 5:17 pm
-date: 8 January 2005 - 5:49 pm
+date: 8 January 2005 - 5:17 pm
+updated: 8 January 2005 - 5:49 pm
 slug: byte-sized-goals
 tags: design
 -->
