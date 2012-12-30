@@ -504,3 +504,7 @@ Focus on terminology and concepts.
 	lex file problem:          15
 
 The test is going to be long, and it's going to test your knowledge. Comment the code you write.
+
+Onwards to [part 3][]...
+
+[part 3]: /2005/01/cs310-part-3 "Frank Mitchell (Can't Count Sheep): Computer Science 310 notes, part 3"

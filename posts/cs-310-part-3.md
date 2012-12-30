@@ -1,13 +1,14 @@
 <!--
-Title: Computer Science 310 notes, part 2
-Created: 21 January 2005 - 1:36 pm
-Modified: 25 April 2005 - 1:30 pm
-Tags: coding
+title: Computer Science 310 notes, part 2
+created: 21 January 2005 - 1:36 pm
+updated: 25 April 2005 - 1:30 pm
+slug: cs310-part-3
+tags: coding
 -->
 
 Still more notes from Bruce Bolden's Computer Science 310 course, "Programming Languages". [Part 2][] can be found someplace else.
 
-[Part 2]: /ccs/compsci310notes2 "Frank Mitchell (Can't Count Sheep): Computer Science 310 notes, part 2"
+[Part 2]: /2005/01/cs310-part-2 "Frank Mitchell (Can't Count Sheep): Computer Science 310 notes, part 2"
 
 ### 23 March 2005 ###
 
