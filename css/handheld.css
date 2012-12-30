@@ -136,13 +136,21 @@ article,
 footer {
   display: block;
   height: 100%;
+  padding-bottom: 1.5em;
+}
+section > *:last-child,
+article > *:last-child,
+footer > *:last-child {
+  /* `padding-bottom` on parent prevents margins from collapsing. */
+  /* Removing child's margin keeps vertical rythm consistent. */
+  margin-bottom: 0;
 }
 section,
 article {
   position: relative;
   max-width: 33em;
   margin: 3em auto 0 auto;
-  padding: 1.5em 1.5em 0;
+  padding: 1.5em;
 }
 article > time {
   position: absolute;
@@ -181,8 +189,7 @@ article h2 + h3 {
 }
 footer {
   max-width: 28em;
-  margin: 0 auto;
-  padding: 1.5em 0 0;
+  margin: 3em auto 0 auto;
 }
 footer > p {
   /* 14px / 24px */
@@ -241,14 +248,9 @@ a.header:hover {
 .archive li + li.sect time {
   padding-top: 1.5em;
 }
-.apps {
-  margin-bottom: 0;
-}
-.apps li {
+.apps > p {
   position: relative;
   padding-left: 5em;
-  margin: 0 0 1.5em 0;
-  list-style: none;
   min-height: 3.5625em;
 }
 .apps img {
