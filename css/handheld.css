@@ -221,7 +221,7 @@ a.header:hover {
 .archive li > * {
   display: table-cell;
 }
-.archive a {
+.archive li a {
   text-align: right;
 }
 .archive time {

@@ -17,6 +17,7 @@ task :build => [
 'public/css',
 'public/images',
 'public/index.html',
+'public/archive/index.html',
 'public/feed/atom.xml'
 ] do
   manifest.each { |post| Rake::Task[post['content']['page']].invoke }
@@ -93,6 +94,26 @@ file 'public/feed/atom.xml' => 'templates/feed.rhtml' do |t|
   write_text t.name, xml
 end
 
+file 'public/archive/index.html' => %W[
+templates/page.rhtml
+templates/archive.rhtml
+templates/navi.rhtml
+#{__FILE__}
+manifest.json
+] do |t|
+  words = {}
+  manifest.each do |post|
+    year = Time.parse(post['timestamp']).year
+    words[year] ||= []
+    words[year] << post
+  end
+  @posts = words.keys.sort.reverse.map { |year| [year, words[year]] }
+  @archive = parse_template 'archive'
+  @content = parse_template 'navi'
+  html = parse_template 'page'
+  write_text t.name, html
+end
+
 file 'public/index.html' => %W[
 templates/main.rhtml
 templates/page.rhtml
@@ -101,7 +122,7 @@ templates/archive.rhtml
 manifest.json
 ] do |t|
   words = {}
-  manifest.each do |post|
+  manifest[0..10].each do |post|
     year = Time.parse(post['timestamp']).year
     words[year] ||= []
     words[year] << post
