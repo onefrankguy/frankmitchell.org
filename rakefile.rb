@@ -14,6 +14,7 @@ task :default => :build
 desc 'Build the website.'
 task :build => [
 :redcarpet,
+'public/js',
 'public/css',
 'public/images',
 'public/index.html',
@@ -69,6 +70,10 @@ file 'manifest.json' => [Dir['posts/*.md'], __FILE__].flatten do |t|
   posts.sort! { |a, b| b['timestamp'] <=> a['timestamp'] }
   posts = JSON.pretty_generate posts
   write_text t.name, posts
+end
+
+file 'public/js' => Dir['js/*.*'] do |t|
+  copy_folder 'js', t.name
 end
 
 file 'public/css' => Dir['css/*.*'] do |t|
@@ -156,6 +161,7 @@ def post_metadata post
   info = YAML.load yaml.join("\n")
   date = Time.parse(info['date'] || info['created'])
   slug = info['slug']
+  tags = info['tags'].split(',').map { |tag| tag.strip }
   url = "/#{date.strftime("%Y/%m")}/#{slug}"
   data = {
     'title' => info['title'],
@@ -168,6 +174,7 @@ def post_metadata post
     },
     'timestamp' => date,
     'slug' => slug,
+    'tags' => tags,
     'url' => url,
     'date' => {
       'title' => date.strftime("%-d %B %Y"),
@@ -178,6 +185,28 @@ def post_metadata post
   }
   data['date']['full'] = nil if Time.now.year == date.year
   data
+end
+
+def archive_posts posts
+  words = {}
+  posts.each do |post|
+    year = Time.parse(post['timestamp']).year
+    words[year] ||= []
+    words[year] << post
+  end
+  words.keys.sort.reverse.map { |year| [year, words[year]] }
+end
+
+def related_posts info
+  posts = manifest.select do |post|
+    if info['content']['original'] != post['content']['original']
+      tags = info['tags'] & post['tags']
+      tags.size / info['tags'].size >= 0.5
+    end
+  end
+  posts.shuffle!
+  posts = posts[0..4]
+  archive_posts posts
 end
 
 def write_text path, text
@@ -238,11 +267,15 @@ manifest.each do |info|
   file info['content']['post'] => %W[
     #{info['content']['raw']}
     templates/post.rhtml
+    templates/archive.rhtml
   ] do |t|
+    @url = info['url']
     @title = info['title']
     @date = info['date']
     @date['abbr'] = @date['full'] unless @date['full'].nil?
     @content = File.read info['content']['raw']
+    @posts = related_posts info
+    @related = parse_template 'archive'
     html = parse_template 'post'
     write_text t.name, html
   end

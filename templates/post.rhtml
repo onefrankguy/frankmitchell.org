@@ -4,3 +4,12 @@
   <h1 class="title"><%= @title %></h1>
   <%= @content %>
 </article>
+<section class="archive">
+  <a class="header" title="Read more words" href="/archive">Words</a>
+  <p>The following snippets are tenuously related to what you just read. You might like them. Rather see things chronologically? Dig through the <a title="Read more words" href="/archive">the archives</a>.</p>
+  <%= @related %>
+</section>
+<script src="/js/related.js"></script>
+<script>
+  Elimossinary.relate("<%= @url %>");
+</script>
