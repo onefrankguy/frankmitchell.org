@@ -5,7 +5,6 @@ html {
   font-family: sans-serif;
   overflow-y: scroll;
 }
-
 body {
   margin: 0;
   min-height: 100%;
@@ -61,7 +60,6 @@ h1, h2, h3 {
   font-family: sans-serif;
   margin: 0;
 }
-
 p, ol, ul, blockquote, pre, img {
   /* 16px / 24px */
   font-size: 1em;
@@ -132,14 +130,13 @@ a:hover, a:active {
   outline: none;
 }
 
-/* SITE */
+/* LAYOUT */
 section,
 article,
 footer {
   display: block;
   height: 100%;
 }
-
 section,
 article {
   position: relative;
@@ -147,7 +144,6 @@ article {
   margin: 3em auto 0 auto;
   padding: 1.5em 1.5em 0;
 }
-
 article > time {
   position: absolute;
   top: 3em;
@@ -159,7 +155,6 @@ article > time {
   line-height: 1.5;
   margin-bottom: 1.5em;
 }
-
 article > h1 {
   /* 16px / 24px */
   text-align: right;
@@ -167,7 +162,6 @@ article > h1 {
   line-height: 1.5;
   margin: 0 0 1.5em;
 }
-
 article > h2 {
   /* 24px / 24px */
   font-size: 1.5em;
@@ -182,20 +176,17 @@ article > h3 {
   line-height: 1.3333333333333333333333333333333;
   margin: 2em 0 0.6666666666666666666666666666666em;
 }
-
 footer {
   max-width: 28em;
   margin: 0 auto;
   padding: 1.5em 0 0;
 }
-
 footer > p {
   /* 14px / 24px */
   font-size: 0.875em;
   line-height: 1.7142857142857142857142857142857;
   margin-bottom: 1.7142857142857142857142857142857em;
 }
-
 .header {
   /* 48px / 48px */
   display: block;
@@ -209,11 +200,9 @@ footer > p {
   word-spacing: 0.1em;
   text-transform: lowercase;
 }
-
 a.header:hover {
   text-decoration: none;
 }
-
 .archive {
   padding-bottom: 1.5em;
 }
@@ -249,7 +238,6 @@ a.header:hover {
 .archive li + li.sect time {
   padding-top: 1.5em;
 }
-
 .apps {
   margin-bottom: 0;
 }
@@ -274,7 +262,6 @@ body {
   background: #c9c539;
   color: #19223b;
 }
-
 section,
 article {
   background: #faf2e0;
@@ -285,20 +272,16 @@ article {
   -moz-border-radius: 0.65em;
   border-radius: 0.65em;
 }
-
 article > time {
   color: #bdbcaf;
 }
-
 a {
   color: #751534;
 }
-
 .header {
   color: #faf2e0;
   text-shadow: 0 0 0.25em #19223b;
 }
-
 .archive .sect {
   color: #bdbcaf;
 }
@@ -312,15 +295,16 @@ img {
 sub,
 sup {
   font-size: 75%;
+  /* Prevents `sub` and `sup` affecting `line-height`. */
   line-height: 0;
   position: relative;
   vertical-align: baseline;
 }
-sup {
-  top: -0.5em;
-}
 sub {
   bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
 }
 
 /* ABBREVIATIONS */
