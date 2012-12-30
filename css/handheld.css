@@ -54,7 +54,7 @@ body {
 /* 150% (24px) friendly, unitless line height margin for vertical rhythm */
 /* Font-size percentage is based on 16px browser default size */
 body {
-  font: 100%/1.5 sans-serif;
+  font: normal 75%/1.5 sans-serif;
 }
 
 p,
@@ -183,7 +183,7 @@ footer {
 section,
 article {
   position: relative;
-  max-width: 18em;
+  max-width: 33em;
   margin: 3em auto 0 auto;
   padding: 1.5em 1.5em 0;
 }
@@ -224,7 +224,7 @@ article > h3 {
 }
 
 footer {
-  max-width: 18em;
+  max-width: 28em;
   margin: 0 auto;
   padding: 1.5em 0 0;
 }
@@ -260,7 +260,7 @@ a.header:hover {
 }
 .archive ul {
   display: table;
-  max-width: 18em;
+  max-width: 33em;
   margin: 0 auto;
 }
 .archive li {
