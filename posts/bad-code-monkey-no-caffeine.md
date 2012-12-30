@@ -1,11 +1,12 @@
 <!--
 title: Bad code monkey, no caffeine!
-date: 6 June 2005
+created: 6 June 2005 - 6:57 pm
+updated: 6 June 2005 - 7:30 pm
 slug: code-comments
-tags: writing
+tags: coding
 -->
 
-Version control is not a substitute for documentation.
+## Version control is not a substitute for documentation ##
 
 > "Oh, you don't need to put comments in. We have version control, and that lets
 > us see exactly what gets changed and when. Besides, good code should be self
