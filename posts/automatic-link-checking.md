@@ -1,8 +1,9 @@
 <!--
-Title: Automatic link checking
-Created: 30 December 2004 - 9:48 am
-Modified: 31 December 2004 - 9:15 am
-Tags: elimossinary
+title: Automatic link checking
+created: 30 December 2004 - 9:48 am
+updated: 31 December 2004 - 9:15 am
+slug: check-links
+tags: elimossinary
 -->
 
 ### Why there's a need ###
