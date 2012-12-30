@@ -17,4 +17,4 @@ a bot could bypass every [anti-spam measure][] in existence today.
 
 [crawl the web]: http://google.com/search?q=cache:www.phrack.org/phrack/57/p57-0x0a "Michal Zalewski (Phrack Inc.): Against the System: Rise of the Robots"
 [Watir]: http://wtr.rubyforge.org/ "Watir (Rubyforge): Web application testing in Ruby"
-[anti-spam measure]: /2005/01/comment-spam-dies-with-nofollow "Frank Mitchell (Can't Count Sheep): Comment spam dies with nofollow"
+[anti-spam measure]: /2005/01/nofollow-links "Frank Mitchell (Can't Count Sheep): Comment spam dies with nofollow"

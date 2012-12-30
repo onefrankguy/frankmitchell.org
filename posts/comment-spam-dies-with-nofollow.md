@@ -1,7 +1,7 @@
 <!--
 title: Comment spam dies with nofollow
 date: 18 January 2005
-slug: nofollow-spam
+slug: nofollow-links
 tags: writing
 -->
 
