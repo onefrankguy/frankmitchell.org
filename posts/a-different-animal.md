@@ -1,8 +1,9 @@
 <!--
-Title: A different animal
-Created: 29 October 2004 - 8:20 pm
-Modified: 14 November 2004 - 8:11 am
-Tags: elimossinary
+title: A different animal
+date : 29 October 2004 - 8:20 pm
+updated: 14 November 2004 - 8:11 am
+slug: blog-engine
+tags: elimossinary
 -->
 
 
