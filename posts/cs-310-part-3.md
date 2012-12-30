@@ -1,5 +1,5 @@
 <!--
-title: Computer Science 310 notes, part 2
+title: Computer Science 310 notes, part 3
 created: 21 January 2005 - 1:36 pm
 updated: 25 April 2005 - 1:30 pm
 slug: cs310-part-3
@@ -1418,3 +1418,7 @@ Typical relation operators:
 Here's Bruce's notes in PDF form:
 
 <http://www.cs.uidaho.edu/~bruceb/cs310/notes/25_Prolog.pdf>
+
+Onwards to [part 4][]...
+
+[part 4]: /2005/05/cs310-part-4 "Frank Mitchell (Can't Count Sheep): Computer Science 310 notes, part 4"
