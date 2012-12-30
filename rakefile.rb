@@ -18,6 +18,7 @@ task :build => [
 'public/images',
 'public/index.html',
 'public/archive/index.html',
+'public/feed/.htaccess',
 'public/feed/atom.xml'
 ] do
   manifest.each { |post| Rake::Task[post['content']['page']].invoke }
@@ -76,6 +77,10 @@ end
 
 file 'public/images' => Dir['images/*.*'] do |t|
   copy_folder 'images', t.name
+end
+
+file 'public/feed/.htaccess' => 'templates/feed.htaccess.txt' do |t|
+  cp 'templates/feed.htaccess.txt', t.name
 end
 
 file 'public/feed/atom.xml' => %W[
