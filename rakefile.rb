@@ -157,7 +157,7 @@ def post_metadata post
   date = Time.parse(info['date'] || info['created'])
   slug = info['slug']
   url = "/#{date.strftime("%Y/%m")}/#{slug}"
-  {
+  data = {
     'title' => info['title'],
     'content' => {
       'original' => post,
@@ -172,9 +172,12 @@ def post_metadata post
     'date' => {
       'title' => date.strftime("%-d %B %Y"),
       'abbr' => date.strftime("%-d %b."),
+      'full' => date.strftime("%-d %b. %Y"),
       'time' => date.strftime("%Y-%m-%d")
     }
   }
+  data['date']['full'] = nil if Time.now.year == date.year
+  data
 end
 
 def write_text path, text
@@ -238,6 +241,7 @@ manifest.each do |info|
   ] do |t|
     @title = info['title']
     @date = info['date']
+    @date['abbr'] = @date['full'] unless @date['full'].nil?
     @content = File.read info['content']['raw']
     html = parse_template 'post'
     write_text t.name, html
