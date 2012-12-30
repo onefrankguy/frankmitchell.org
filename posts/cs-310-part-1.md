@@ -1175,7 +1175,7 @@ Formally define a grammar by a 4-tuple.
 Where V<sub>N</sub> and V<sub>T</sub> are disjointed sets of non-terminal and
 terminal symbols respectively. S is the distinguished symbol of V<sub>N</sub>,
 and is commonly called the start (or goal) symbol. The set of
-V = V<sub>T</sub> &cup; V<sub>N</sub> is called the vocabulary of the grammar.
+V = V<sub>T</sub> U V<sub>N</sub> is called the vocabulary of the grammar.
 P is a finite set of productions.
 
 Naming: The from of the grammar is important.
