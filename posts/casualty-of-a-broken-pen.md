@@ -1,6 +1,7 @@
 <!--
 title: Casualty of a Broken Pen
-date: 3 September 2004
+created: 3 September 2004
+updated: 3 September 2004
 slug: broken-pen
 tags: poetry
 -->
