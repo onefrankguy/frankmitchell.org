@@ -1,8 +1,8 @@
 <!--
-Title: Beyond blogging and next markets
-Created: 24 January 2005 - 7:59 am
-Modified: 24 January 2005 - 8:40 am
-Tags: marketing
+title: Beyond blogging and next markets
+created: 24 January 2005 - 7:59 am
+updated: 24 January 2005 - 8:40 am
+tags: marketing
 -->
 
 > "If blogging is on the verge of 'tipping/crossing' (and it looks close), I'm wondering...what's next? What comes _after_ blogging? Where are the innovators and early adopters heading once blogs jump into the fat part of the curve?"
