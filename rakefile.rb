@@ -201,7 +201,6 @@ def markup_acronyms html
   @acronyms.each do |acronym, description|
     tag = "<abbr title=\"#{description}\">#{acronym}</abbr>"
     html.gsub! /(?!<[^<>]*?)(?<![?.\/&])\b#{acronym}\b(?!:)(?![^<>]*?>)/, tag
-    # $text = preg_replace("|[$]<acronym title=\"$description\">$acronym</acronym>[$]|msU", "$acronym", $text); 
   end
   html
 end

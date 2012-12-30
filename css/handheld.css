@@ -314,7 +314,7 @@ sup {
 
 /* ABBREVIATIONS */
 abbr[title] {
-  border-bottom: 1px dotted;
+  letter-spacing: 0.05em;
   cursor: help;
 }
 abbr[title="and"] {
@@ -323,7 +323,6 @@ abbr[title="and"] {
     "Times New Roman", "Times", serif;
   font-style: italic;
   font-size: 110%;
-  border-bottom: 0;
   cursor: auto;
   /* Prevents `abbr` affecting `line-height`. */
   line-height: 0;

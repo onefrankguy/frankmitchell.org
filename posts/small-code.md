@@ -279,8 +279,8 @@ Minification was out because I hate visiting a web site, viewing its source, and
 seeing a bunch of obfuscated curly brace soup. Nobody learns when you do that.
 
 Compression was out because my hosting provider charges for bandwidth.
-Consequently, they don't support mod_gzip or mod_deflate. If I want compression,
-I have to roll my own with mod_rewrite.
+Consequently, they don't support `mod_gzip` or `mod_deflate`. If I want
+compression, I have to roll my own with `mod_rewrite`.
 
 But mostly, I stayed away from obvious solutions because they prevent you from
 seeing the not so obvious ones. Once you've zipped an application down to a
