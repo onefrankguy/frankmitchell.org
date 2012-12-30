@@ -1,6 +1,7 @@
 <!--
 title: "GTD: Keeping lists"
 date: 15 January 2005
+slug: keeping-lists
 tags: unfinished
 -->
 

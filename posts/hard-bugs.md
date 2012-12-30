@@ -1,6 +1,7 @@
 <!--
 title: Hard bugs and unknown assumptions
 date: 18 October 2010
+slug: hard-bugs
 -->
 
 Assumptions color everything we do, and I'm pretty sure you can't function

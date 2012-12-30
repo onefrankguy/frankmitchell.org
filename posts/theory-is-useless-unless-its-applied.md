@@ -1,5 +1,6 @@
 <!--
 title: Theory is useless, unless it's applied
+slug: implement-it
 date: 10 May 2006
 -->
 

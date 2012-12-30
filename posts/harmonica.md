@@ -1,6 +1,7 @@
 <!--
 title: Harmonica
 date: 17 December 2004
+slug: harmonica
 tags: poetry
 -->
 

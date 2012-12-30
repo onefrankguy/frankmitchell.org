@@ -1,6 +1,7 @@
 <!--
 title: King of the Road
 date: 7 November 2004
+slug: road-king
 tags: poetry
 -->
 

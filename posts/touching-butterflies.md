@@ -1,6 +1,7 @@
 <!--
 title: Touching Butterflies
 date: 18 January 2005
+slug: touching-butterflies
 tags: poetry
 -->
 

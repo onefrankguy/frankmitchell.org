@@ -1,6 +1,7 @@
 <!--
 title: Human language interface
 date: 27 December 2004
+slug: tag-spaces
 tags: unfinished
 -->
 

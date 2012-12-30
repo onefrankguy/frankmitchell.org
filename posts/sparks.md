@@ -1,6 +1,7 @@
 <!--
 title: Sparks
 date: 9 December 2004
+slug: sparks
 tags: poetry
 -->
 

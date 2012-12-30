@@ -1,6 +1,8 @@
 <!--
 title: Bad code monkey, no caffeine!
 date: 6 June 2005
+slug: code-comments
+tags: prose
 -->
 
 Version control is not a substitute for documentation.

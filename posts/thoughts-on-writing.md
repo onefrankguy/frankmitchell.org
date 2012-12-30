@@ -1,6 +1,7 @@
 <!--
 title: Thoughts on writing
 date: 4 February 2005
+slug: on-writing
 tags: unfinished
 -->
 

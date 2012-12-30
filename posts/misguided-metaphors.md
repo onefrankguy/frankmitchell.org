@@ -1,6 +1,7 @@
 <!--
 title: misguided metaphors
 date: 20 December 2004
+slug: misguided-metaphors
 tags: poetry
 -->
 

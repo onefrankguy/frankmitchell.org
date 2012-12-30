@@ -1,6 +1,7 @@
 <!--
 title: Fixing the iPhone zooming bug
 date: 29 April 2012
+slug: iphone-zoom
 -->
 
 You're on the bus to work, crusing [Pinboard][] on your iPhone for something to

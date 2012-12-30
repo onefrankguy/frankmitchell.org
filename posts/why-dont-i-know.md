@@ -1,6 +1,7 @@
 <!--
 title: Why Don't I Know?
 date: 23 December 2004
+slug: banned-books
 tags: poetry
 -->
 

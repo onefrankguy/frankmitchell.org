@@ -1,6 +1,7 @@
 <!--
 title: Never ask a wizard if he can use a lightning rod
 date: 10 September 2010
+slug: wizard-lighting-rods
 -->
 
 I've spent a lot of time on both sides of the technical interview fence, and one

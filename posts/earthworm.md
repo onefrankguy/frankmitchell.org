@@ -1,6 +1,7 @@
 <!--
 title: Earthworm
 date: 5 September 2004
+slug: earthworm
 tags: poetry
 -->
 

@@ -1,6 +1,7 @@
 <!--
 title: Making ubicomp a reality
 date: 23 December 2004
+slug: real-ubicomp
 tags: unfinished
 -->
 

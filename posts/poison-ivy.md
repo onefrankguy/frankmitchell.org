@@ -1,6 +1,7 @@
 <!--
 title: Poison Ivy
 date: 13 September 2004
+slug: poison-ivy
 tags: poetry
 -->
 

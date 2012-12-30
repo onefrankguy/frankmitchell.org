@@ -1,6 +1,7 @@
 <!--
 title: Using yoga to get into a flow state
 date: 22 November 2010
+slug: flowing-yoga
 -->
 
 Programmers often talk about "getting in the zone." Getting into that

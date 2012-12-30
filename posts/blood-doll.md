@@ -1,6 +1,7 @@
 <!--
 title: Blood Doll
 date: 30 October 2004
+slug: blood-doll
 tags: poetry
 -->
 

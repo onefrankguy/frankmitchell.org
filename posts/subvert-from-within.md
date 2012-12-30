@@ -1,6 +1,7 @@
 <!--
 title: Subvert from within
 date: 7 October 2005
+slug: cultural-shift
 tags: unfinished
 -->
 

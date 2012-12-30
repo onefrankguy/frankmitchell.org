@@ -1,6 +1,7 @@
 <!--
 title: PHP regex spider
 date: 26 December 2004
+slug: regex-spider
 -->
 
     #!/usr/bin/php

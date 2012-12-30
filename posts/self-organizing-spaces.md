@@ -1,6 +1,7 @@
 <!--
 title: Self organizing spaces
 date: 8 January 2005
+slug: organized-space
 tags: unfinished
 -->
 

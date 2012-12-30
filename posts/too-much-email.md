@@ -1,6 +1,7 @@
 <!--
 title: Too much email
 date: 10 January 2006
+slug: less-noise
 tags: unfinished
 -->
 

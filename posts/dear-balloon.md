@@ -1,6 +1,7 @@
 <!--
 title: Dear balloon,
 date: 3 November 2004
+slug: dear-balloon
 tags: poetry
 -->
 

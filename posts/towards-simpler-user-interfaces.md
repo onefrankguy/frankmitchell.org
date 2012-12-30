@@ -1,6 +1,7 @@
 <!--
 title: Towards simpler user interfaces
 date: 23 March 2007
+slug: simple-ui
 -->
 
 I realized why I like [twittering][] and posting to [del.icio.us][]. I's really,

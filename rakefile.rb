@@ -80,7 +80,7 @@ file 'public/images' => Dir['images/*.*'] do |t|
 end
 
 file 'public/feed/.htaccess' => 'templates/feed.htaccess.txt' do |t|
-  cp 'templates/feed.htaccess.txt', t.name
+  copy_folder 'templates/feed.htaccess.txt', t.name
 end
 
 file 'public/feed/atom.xml' => %W[
@@ -155,7 +155,7 @@ def post_metadata post
   end
   info = YAML.load yaml.join("\n")
   date = Time.parse(info['date'])
-  slug = File.basename(post).ext('')
+  slug = info['slug']
   url = "/#{date.strftime("%Y/%m")}/#{slug}"
   {
     'title' => info['title'],

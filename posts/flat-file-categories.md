@@ -1,6 +1,7 @@
 <!--
 title: Flat file categories
 date: 16 November 2004
+slug: flat-data
 tags: unfinished
 -->
 

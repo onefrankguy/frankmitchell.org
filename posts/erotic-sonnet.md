@@ -1,7 +1,8 @@
 <!--
 title: Erotic sonnet
 date: 6 November 2004
-tags: unfinished
+slug: erotic-sonnet
+tags: poetry, unfinished
 -->
 
 Spenserian: a-b-a-b-b-c-b-c-c-d-c-d-e-e  

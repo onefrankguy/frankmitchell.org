@@ -1,6 +1,7 @@
 <!--
 title: Squishy things are hard to estimate, not impossible
 date: 1 November 2010
+slug: software-estimation
 -->
 
 "Think we can get this done pretty quick?" my client asked.

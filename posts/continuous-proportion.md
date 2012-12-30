@@ -1,6 +1,7 @@
 <!--
 title: Continuous proportion
 date: 20 April 2005
+slug: continuous-proportion
 tags: poetry
 -->
 

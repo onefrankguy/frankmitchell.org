@@ -1,6 +1,7 @@
 <!--
 title: 6th and Line
 date: 14 October 2004
+slug: sixth-line
 tags: poetry
 -->
 

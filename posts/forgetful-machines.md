@@ -1,6 +1,7 @@
 <!--
 title: Forgetful machines
 date: 5 December 2004
+slug: forgetful-machines
 tags: unfinished
 -->
 
