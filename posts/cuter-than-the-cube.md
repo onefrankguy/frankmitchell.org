@@ -1,8 +1,9 @@
 <!--
-Title: Cuter than the Cube
-Created: 12 January 2005 - 10:15 am
-Modified: 12 January 2005 - 11:11 am
-Tags: apple
+title: Cuter than the Cube
+created: 12 January 2005 - 10:15 am
+updated: 12 January 2005 - 11:11 am
+slug: mac-mini
+tags: apple
 -->
 
 ### Mac mini ###
