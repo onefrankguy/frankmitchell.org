@@ -14,7 +14,8 @@ task :default => :build
 desc 'Build the website.'
 task :build => [
 :redcarpet,
-'public/js',
+'public/js/related.js',
+'public/js/related.json',
 'public/css',
 'public/images',
 'public/index.html',
@@ -68,12 +69,25 @@ file 'manifest.json' => [Dir['posts/*.md'], __FILE__].flatten do |t|
   posts = t.prerequisites.select { |path| path.end_with? '.md' }
   posts.map! { |orig| post_metadata orig }
   posts.sort! { |a, b| b['timestamp'] <=> a['timestamp'] }
-  posts = JSON.pretty_generate posts
-  write_text t.name, posts
+  write_json t.name, posts
 end
 
-file 'public/js' => Dir['js/*.*'] do |t|
-  copy_folder 'js', t.name
+file 'public/js/related.js' => Dir['js/related.js'] do |t|
+  copy_folder 'js/related.js', t.name
+end
+
+file 'public/js/related.json' => 'manifest.json' do |t|
+  json = File.read 'manifest.json'
+  json = JSON.parse json
+  json.map! do |info|
+    {
+      'title' => info['title'],
+      'url' => info['url'],
+      'date' => info['date'],
+      'tags' => info['tags'].sort.uniq
+    }
+  end
+  write_json t.name, json
 end
 
 file 'public/css' => Dir['css/*.*'] do |t|
@@ -199,6 +213,11 @@ def write_text path, text
   mkpath dir unless File.directory? dir
   File.open(path, 'w') { |io| io << text }
   sh "dos2unix -U #{path}"
+end
+
+def write_json path, json
+  json = JSON.pretty_generate json
+  write_text path, json
 end
 
 def parse_template name

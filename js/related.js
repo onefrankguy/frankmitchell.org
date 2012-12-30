@@ -1,9 +1,42 @@
 ;(function (Elimossinary) {
 'use strict';
 
+function intersect(a, b) {
+  var ai = 0
+    , bi = 0
+    , result = new Array()
+
+  while (ai < a.length && bi < b.length) {
+    if (a[ai] < b[bi]) {
+      ai += 1
+    } else if (a[ai] > b[bi]) {
+      bi += 1
+    } else {
+      result.push(a[ai])
+      ai += 1
+      bi += 1
+    }
+  }
+
+  return result
+}
+
+function shuffle (array) {
+  var i = 0
+    , j = 0
+    , temp
+
+  for (i = array.length - 1; i > 0; i -= 1) {
+    j = Math.floor(Math.random() * (i + 1))
+    temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+  }
+}
+
 function loadManifest (success) {
   var r = new XMLHttpRequest();
-  r.open("GET", "/js/manifest.json", true);
+  r.open("GET", "/js/related.json", true);
   r.onreadystatechange = function () {
     if (r.readyState != 4 || r.status != 200) return;
     success && success(JSON.parse(r.responseText));
@@ -14,12 +47,32 @@ function loadManifest (success) {
 function buildRelated (url, manifest) {
   var i = 0
     , related = []
-    ;
+    , tags = []
+    , temp = []
+    , html = ''
+
   for (i = 0; i < manifest.length; i += 1) {
-    if (manifest[i].url != url) {
-      console.log(manifest[i].url);
+    if (manifest[i].url === url) {
+      tags = manifest[i].tags.slice(0)
+      break
     }
   }
+  for (i = 0; i < manifest.length; i += 1) {
+    if (manifest[i].url != url) {
+      temp = intersect(manifest[i].tags, tags);
+      if (temp.length / tags.length >= 0.5) {
+        related.push(manifest[i])
+      }
+    }
+  }
+  shuffle(related)
+  related = related.slice(0, 5)
+  html += '<ul>'
+  for (i = 0; i < related.length; i += 1) {
+    html += '<li>' + related[i].title + '</li>'
+  }
+  html += '</ul>'
+  console.log(html)
 }
 
 Elimossinary.relate = function (url) {
