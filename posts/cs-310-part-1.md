@@ -1383,4 +1383,4 @@ An implementation reads characters until tin finds the end of a token (longest p
 
 Onwards to [part 2][]...
 
-[part 2]: #!/ccs/compsci310notes2 "Frank Mitchell (Can't Count Sheep): Computer Science 310 notes, part 2"
+[part 2]: /2005/01/cs310-part-2 "Frank Mitchell (Can't Count Sheep): Computer Science 310 notes, part 2"
