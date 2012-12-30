@@ -1,8 +1,9 @@
 <!--
-Title: Attention aware interfaces
-Created: 12 February 2005 - 8:28 am
-Modified: 12 February 2005 - 9:12 am
-Tags: ai
+title: Attention aware interfaces
+created: 12 February 2005 - 8:28 am
+updated: 12 February 2005 - 9:12 am
+slug: attentive-ui
+tags: ai
 -->
 
 Reading [an article off of News.com][article] got me thinking about a few things. The first is that, yes, I too am capable of being horribly distracted by my computer. But I'm also capable of being horribly distracted about anything. When I get into a zone, I don't come out of it. As my grandfather once pointed out, "Frank can sit right in the middle of chaos and tune it all out."
