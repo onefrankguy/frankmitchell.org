@@ -78,8 +78,12 @@ file 'public/images' => Dir['images/*.*'] do |t|
   copy_folder 'images', t.name
 end
 
-file 'public/feed/atom.xml' => 'templates/feed.rhtml' do |t|
-  @entries = manifest[0..10]
+file 'public/feed/atom.xml' => %W[
+templates/feed.rhtml
+#{__FILE__}
+manifest.json
+] do |t|
+  @entries = manifest[0...10]
   @entries.map! do |entry|
     name = entry['content']['escaped']
     Rake::Task[name].invoke
@@ -122,7 +126,7 @@ templates/archive.rhtml
 manifest.json
 ] do |t|
   words = {}
-  manifest[0..10].each do |post|
+  manifest[0...10].each do |post|
     year = Time.parse(post['timestamp']).year
     words[year] ||= []
     words[year] << post
