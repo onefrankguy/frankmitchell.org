@@ -1,6 +1,7 @@
 <!--
 title: Continuous proportion
-date: 20 April 2005
+created: 20 April 2005 - 10:26 am
+updated: 20 April 2005 - 10:26 am
 slug: continuous-proportion
 tags: poetry
 -->
@@ -13,9 +14,9 @@ I can hold on to nothing but heartache and strife.
 As the world turns around you drift further away.  
 Is this what I asked for? To whom can I pray,  
 To deliver me from evil, wash away all my sin.  
-IÎéÎ÷d give anything right now to start all over again.  
-But we canÎéÎ÷t do that; we have come to far now.  
-Words spoken at midnight, IÎéÎ÷m unworthy of that vow.  
+I'd give anything right now to start all over again.  
+But we can't do that; we have come to far now.  
+Words spoken at midnight, I'm unworthy of that vow.  
 
 Watching an eggshell world crack beneath my feet,  
-I slip and fall, tumbling into a pit of frustration.
+I slip and fall, tumbling into a pit of frustration.  
