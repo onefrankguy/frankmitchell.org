@@ -2,6 +2,7 @@
 title: I bring you prototypes and deeper understanding
 date: 11 October 2010
 slug: javascript-prototypes
+tags: writing
 -->
 
 Around Chapter 3 of [*JavaScript: The Good Parts*][jsbook], Douglas Crockford

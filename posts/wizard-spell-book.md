@@ -2,6 +2,7 @@
 title: Never ask a wizard if you can read his spell book
 date: 25 October 2010
 slug: wizard-spell-book
+tags: writing
 -->
 
 All the really good wizards keep spell books. These little tomes, usually

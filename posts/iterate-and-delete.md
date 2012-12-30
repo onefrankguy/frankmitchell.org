@@ -2,6 +2,7 @@
 title: Iterate and delete
 date: 3 February 2005
 slug: erase-remove
+tags: writing
 -->
 
 Every once in a while, I stumble across really elegant solutions (in code) to

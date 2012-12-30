@@ -2,6 +2,7 @@
 title: You don't always need to frame things
 date: 27 September 2010
 slug: no-framework
+tags: writing
 -->
 
 One of the questions I've been asked a lot since building [Prolix][] is, "Why

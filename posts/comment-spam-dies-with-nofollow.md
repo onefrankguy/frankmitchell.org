@@ -2,7 +2,7 @@
 title: Comment spam dies with nofollow
 date: 18 January 2005
 slug: nofollow-spam
-tags: unfinished
+tags: writing
 -->
 
 In what amounts to a fantastic move towards killing comment spam, [Google][],

@@ -2,6 +2,7 @@
 title: PHP regex spider
 date: 26 December 2004
 slug: regex-spider
+tags: code
 -->
 
     #!/usr/bin/php

@@ -2,6 +2,7 @@
 title: RSS where there is none
 date: 30 December 2004
 slug: audrey-rss
+tags: writing
 -->
 
 ## How I use RSS feeds ##

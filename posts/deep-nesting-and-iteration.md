@@ -2,6 +2,7 @@
 title: Deep nesting and iteration
 date: 12 May 2005
 slug: deep-nesting
+tags: writing
 -->
 
 A quote from [Manifesto of the Programmer Liberation Front][]:

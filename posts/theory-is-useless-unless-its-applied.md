@@ -2,6 +2,7 @@
 title: Theory is useless, unless it's applied
 slug: implement-it
 date: 10 May 2006
+tags: writing
 -->
 
 I'm tired of academics in Computer Science telling me that algorithms matter,

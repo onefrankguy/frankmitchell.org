@@ -2,6 +2,7 @@
 title: Computer Science 310 notes, part 1
 date: 23 February 2005
 slug: cs310-part-1
+tags: notes
 -->
 
 Notes from Bruce Bolden's Computer Science 310 course, "Programming Languages".
