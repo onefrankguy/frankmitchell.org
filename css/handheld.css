@@ -53,18 +53,10 @@ body {
 /* 16px base font size */
 /* 150% (24px) friendly, unitless line height margin for vertical rhythm */
 /* Font-size percentage is based on 16px browser default size */
+/* Scale it all down to a 12px font on handhelds */
+/* See screen.css where the percentage is reset to 100% */
 body {
   font: normal 75%/1.5 sans-serif;
-}
-
-p,
-blockquote,
-pre,
-ol,
-ul,
-img {
-  margin: 0 0 1.5em;
-  padding: 0;
 }
 
 /* TYPOGRAPHY */
@@ -108,11 +100,12 @@ h1, h2, h3 {
   margin: 0;
 }
 
-p, ol, ul, blockquote, pre {
+p, ol, ul, blockquote, pre, img {
   /* 16px / 24px */
   font-size: 1em;
   line-height: 1.5;
   margin: 0 0 1.5em;
+  padding: 0;
 }
 
 /* CODE */
@@ -189,7 +182,6 @@ article > time {
   top: 3em;
   left: 1.5em;
   display: inline-block;
-  color: #bdbcaf;
   font-size: 1em;
   font-style: italic;
   letter-spacing: 0;
@@ -242,8 +234,6 @@ footer > p {
   margin-left: -0.5em;
   margin-bottom: 0.5em;
   margin-top: -1em;
-  color: #faf2e0;
-  text-shadow: 0 0 0.25em #19223b;
   letter-spacing: -0.1em;
   word-spacing: 0.1em;
   text-transform: lowercase;
@@ -278,9 +268,6 @@ a.header:hover {
 .archive time:before {
   content: "\2022";
   padding: 0 0.75em 0;
-}
-.archive .sect {
-  color: #bdbcaf;
 }
 .archive .sect:before {
   content: "";
@@ -328,8 +315,21 @@ article {
   border-radius: 0.65em;
 }
 
+article > time {
+  color: #bdbcaf;
+}
+
 a {
   color: #751534;
+}
+
+.header {
+  color: #faf2e0;
+  text-shadow: 0 0 0.25em #19223b;
+}
+
+.archive .sect {
+  color: #bdbcaf;
 }
 
 /* Use the base available ampersand. */
