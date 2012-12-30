@@ -1,8 +1,8 @@
 <!--
-Title: Cosmopolitans
-Created: 24 December 2004 - 4:11 pm
-Modified: 24 December 2004 - 4:11 pm
-Tags: recipes
+title: Cosmopolitans
+created: 24 December 2004 - 4:11 pm
+updated: 24 December 2004 - 4:11 pm
+tags: recipes
 -->
 
 ### Background ###
