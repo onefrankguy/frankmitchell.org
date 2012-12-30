@@ -154,7 +154,7 @@ def post_metadata post
     yaml << line.strip
   end
   info = YAML.load yaml.join("\n")
-  date = Time.parse(info['date'])
+  date = Time.parse(info['date'] || info['created'])
   slug = info['slug']
   url = "/#{date.strftime("%Y/%m")}/#{slug}"
   {
