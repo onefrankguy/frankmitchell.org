@@ -1,0 +1,41 @@
+<!--
+Title: Merging Markdown and WikiWords
+Created: 16 December 2004 - 8:06 am
+Modified:  17 December 2004 - 7:47 am
+Tags: infocloud
+-->
+
+### Ugliness goes all the way to the bone ###
+
+My biggest problem with [wikis][], and the reason I've never gotten around to playing with them, is that they're ugly. From the standpoint of a writer, I don't want a bunch of [CamelCase][] words filling my prose unless they're proper nouns. From the standpoint of a designer, the HTML and CSS that wikis produce is hideous. Not the markup in and of itself, that's usually standards compliant, but the end result, the thing you're actually looking at and reading, is a turn off.
+
+I want beautiful information.
+
+### Markdown to the (kind of) rescue ###
+
+[Markdown][], with its ability to specify reference links, provides something of a solution. The actual text to display becomes whatever the writer wishes, and that hideous CamelCase WikiWord is reserved as a reference, something the reader need never see.
+
+The problem however, comes when we try to consider what it is WikiWords were designed to represent. WikiWords are symbols for idea spaces. They do a fantastic job of providing an easy to remember label for the bucket that stores your ideas. But the tools that create them don't do such a fantastic job of letting you find those idea spaces again. We need authoring tools that [auto-complete][] WikiWords as you type, that analyze the text you're writing and [suggest related ideas][], that let you link things (MP3s, Word documents, JPEG files, etc.) via drag-and-drop.
+
+We need software that makes it easier to interact with information.
+
+<!--
+### Filter text; bind everything ###
+
+Text filtering tools, like [Markdown][], are a step in the right direction. Ideas like [Local Names][] take things one step further. Pipe all your text through various combinations of filters and you'll eventually get the results you want. UNIX systems will do this quite nicely; the problem, however, is teaching users how to do it.
+
+All the tools out there are just too cumbersome for most people to use.
+-->
+
+
+[wikis]: http://en.wikipedia.org/wiki/Wiki "Wikipedia: Wiki"
+
+[CamelCase]: http://en.wikipedia.org/wiki/CamelCase "Wikipedia: CamelCase"
+
+[Markdown]: http://daringfireball.net/projects/markdown/ "John Gruber (Daring Fireball): Markdown - a text-to-HTML conversion tool for web writers"
+
+[auto-complete]: http://www.google.com/webhp?complete=1&hl=en "Google Suggest (Beta)"
+
+[suggest related ideas]: http://www.nat.org/dashboard/ "Nat Friedman: Dashboard"
+
+[Local Names]: http://ln.taoriver.net/ "Lion Kimbro: Local Names - bind names to URLs"

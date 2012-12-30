@@ -1,0 +1,54 @@
+<!--
+Title: Interaction between math and computer science
+Created: 26 October 2004 - 4:32 pm
+Modified: 29 October 2004 - 7:47 pm
+Tags: math
+-->
+
+
+These are my notes from Dr. Nealson's presentation on math / CS interaction that he gave at our ACM meeting.
+
+
+### What is mathematics? ###
+
+* "That which is learned."
+* The search for patterns.
+
+
+### Things that changed mathematics ###
+
+1. 600 BC - Greek philosophy, Thalies, "Why is something true?", proofs
+2. 1200 - 1400 AD - algebra, Arabic nations
+3. 1660 - 1700's - calculus, Newton
+4. 1820 - 1900 - abstraction, math as a tool for studying ideas
+	* non-Euclidean geometry, Gauss
+	* infinite sets, Cantor
+5. 1960's - present - computers
+
+
+### Computer's effect on math ###
+
+* _What_ we teach
+	* discreate math, combinatorics, matricies
+* _How_ we teach it
+	* Software tools
+		* [Geometer's Sketchpad][] - demo of [Napolean's theorem][]
+		* [Maple][] - "Name a function you want to integrate...Do we really need all the techniques we teach? Probably not...Everyone will have a notepad, and we'll all do this. I think it'll be pretty neat.", book goes to the first person who can integrate sin(sqrt(x)) "Put a sqrt(x) in the num. and denom. and integrate by parts."
+* Direction of _research_
+	* Graph theory
+	* Computational geometry - have a bunch of points in a plane labeled by their (x,y) coordinates, find the convex hull and the points on its boundary? [Graham's Scan][]
+	* Combinatorial geometry - "How many points can I draw without being able to form a convex 4-gon?...This is the simplest example of what's called the m-gon problem."
+		* g(4) = 5
+		* g(5) = 8
+		* g(8) = ?
+	* Number theory - "All the interesting things that seemed to be possible had been done. Then along came computers and the study of cryptography."
+	* Experimental mathematics - "Anybody heard of Steven Wolfrom before?...(picture of a funny fractal) Anybody know a name for that? [Sierpinski's Gasket][]. (rule 110) Seemingly random behavior arrises from a finite sets of rules. That has all sorts of philosophical implications...Maybe the universe is governed by a set of rules we just don't understand...One little change...It's really boring now. Conway's [Game of Life][]...I think this is where mathematics is going to go...Most will be studying behavior of really complex systems...As big as algebra and calculus were, I think this is even bigger."
+
+
+
+[Geometer's Sketchpad]: http://www.keypress.com/sketchpad/ "A mathematics visualization environment"
+[Napolean's theorem]: http://www.cut-the-knot.org/proofs/napoleon_intro.shtml "On each side of a given (arbitrary) triangle describe an equilateral triangle exterior to the given one, and join the centers of the three thus obtained equilateral triangles. Show that the resulting triangle is also equilateral."
+[Maple]: http://www.maplesoft.com/ "Powerful mathematics software"
+[Graham's Scan]: http://www.cs.princeton.edu/~ah/alg_anim/version1/GrahamScan.html "Given a set of points on the plane, compute their convex hull."
+[Game of Life]: http://www.math.com/students/wonders/life/life.html "Can you do a 3D glider?"
+[Sierpinski's Gasket]: http://astronomy.swin.edu.au/~pbourke/fractals/gasket/ "That funny triangle fractal that pops up everywhere"

@@ -1,0 +1,30 @@
+<!--
+Title: The product sells itself
+Created: 13 January 2005 - 7:21 am
+Modified: 13 January 2005 - 7:46 am
+Tags: marketing
+-->
+
+To quote [Hugh Macleod][]:
+
+> "The smarter a market becomes, the better your product has to be in order to survive said market. It isn't rocket science."
+
+It's an obvious relationship, and one that I think more and more companies are starting to recognize and leverage, especially with the publication of books like _Purple Cow_. But how do you make better products? Hugh provides the answer to that one as well.
+
+> "Smarter conversations equals better products. It's so fucking obvious."
+
+And he's right. Dialog is becoming more important. We need to talk to our customers. Find out _exactly_ what it is they want, and then give that to them. Its not about what your product does, its about how your product changes my life. With the exception of the geeky early adopter market, no one wants the latest widget just 'cause it's a widget; they want something that will help make their life better.
+
+When you've got a product that does that, the product ends up selling itself.
+
+> "Make something people want to buy...Sometimes it seems like the very best stuff sells itself...Sometimes, salesmanship is overrated. What matters more is real marketing, marketing that involves making the right product, not hyping it."
+
+> [Seth Godin][]
+
+What products can I make that will change people's lives in ways they want their lives to change?
+
+
+
+[Hugh Macleod]: http://www.gapingvoid.com/Moveable_Type/archives/001249.html "Hugh Macleod (gapingvoid): smarter conversations"
+
+[Seth Godin]: http://sethgodin.typepad.com/seths_blog/2005/01/how_to_sell_any.html "Seth Godin (Seth's Blog): How to Sell Anything To Anyone"

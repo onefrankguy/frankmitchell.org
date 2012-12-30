@@ -1,0 +1,19 @@
+<!--
+Title: Systems that self-verify
+Created: 12 February 2005 - 9:29 am
+Modified: 12 February 2005 - 9:29 am
+Tags: ai
+-->
+
+Via [John Maeda][]:
+
+> "The road to building robust systems of the future will require more and more systems that continuously verify their self-operation (or at least pinch themselves). _I pinch, therefore I am_."
+
+I'm reminded of the board Al built to control train doors. The one that could run for five weeks with the input voltage hooked up backwards and have it's operating temperate only go up by one degree. The one that could recover from 5,000 different errors, that checked to make sure the doors were connected before it started up, and that could tell when the train was going up or down a hill and adjust the pressure on the doors accordingly so they stayed closed.
+
+So how do I build that kind of robustness and self-awareness into the applications that I write?
+
+
+
+[John Maeda]: http://weblogs.media.mit.edu/SIMPLICITY/archives/000129.html "John Maeda (SIMPLICITY): Pinch. Ouch!"
+

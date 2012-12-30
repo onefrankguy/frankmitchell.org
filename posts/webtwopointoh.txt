@@ -1,0 +1,30 @@
+<!--
+Title: Web 2.0
+Created: 7 October 2005 - 6:27 am
+Modified: 9 October 2005 - 7:49 pm
+Tags: web2.0
+-->
+
+Via a [flickr photo][]:
+
+1. An "attitude" not a technology
+2. The Long Tail
+3. Data as the "Intel Inside"
+4. Hackability
+5. The perpetual beta
+6. The Right to Remix "Some rights reserved"
+7. Software that gets better the more people use it
+8. Emergent: User behavior not predetermined
+9. Play
+10. Granular Addressability of content
+11. Rich User Experience
+12. Small Pieces Loosely Joined (web as components)
+13. Trust your users
+
+And of course the question that immediately pops into my mind is: how could you do this with [architecture software][]? I think it's "small pieces loosely joined" that would work best. What if you sold a basic CAD system at an entry level price, say $30? Then charged $20 a module for more content? So for $70 I could get all the software I needed to remodel my home and backyard. Now if I'm a hot shot architect, I might want to pay a little more so I could have the print module (which prints on my gigantic plotter), the cost estimating module (so I can tell my boss what the project's going to cost), and the photorealistic rendering module (so I can make some eye candy for the customer).
+
+What if we designed software like LEGO blocks and let the customer decide what they wanted to build?
+
+[flickr photo]: http://flickr.com/photos/36521959321@N01/44349798 "Tim O'Reilly (flickr): Web2MemeMap"
+
+[architecture software]: http://chiefarchitect.com/ "Home Design Software by Chief Architect"

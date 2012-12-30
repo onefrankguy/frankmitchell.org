@@ -1,0 +1,45 @@
+<!--
+Title: Simple gadgets win markets
+Created: 9 February 2005 - 7:38 am
+Modified: 9 February 2005 - 8:47 am
+Tags: marketing
+-->
+
+### People dislike complex things ###
+
+A couple of interesting articles have popped up in the last few days. The first, from Mark Morford, ["Why Does Windows Still Suck?"][sfgate], and the second, from Ken Fischer, ["Why, oh why, does Windows suck?"][ars]. No, this is not a Windows rant. You can find similar articles about Linux and [Mac][] if you dig a little.
+
+My favorite line from Morford's article was,
+
+> "If anything else performed as horribly as Windows, and on such a global scale, consumers would scream bloody murder and demand their money back and there would be some sort of investigation, class-action litigation, a demand for Bill Gates' cute little geeky head on a platter."
+
+Fischer answer that question (why hasn't this happened yet) with a thoughtful response,
+
+> "People simply react in different ways to the technology's failings because they're ambivalent about its use."
+
+But why?
+
+### Computers are complex things ###
+
+What are the hottest consumer electronic gadgets on the market today? The cell phone, the digital camera, the iPod, and maybe the Blackberry. (Supstitute MP3 player for iPod and PDA for Blackberry in that list if you want.) And what does each of those products do? Well the cell phone lets you call people, the digital camera lets you take pictures, the iPod lets you listen to music, and the Blackberry lets you read / send email. That's all.
+
+What does your computer do? It does all those things and more. It's a word processor, an accountant, an email reader, a cell phone, a music player, a video recorder, etc. The computer is simply too complex a tool for anyone to really know what they wan to do with it.
+
+Ah... Listen to the rallying cry of the geeks. "But that makes the computer so much better. It's a flexible tool. You can make it be / do whatever you want."
+
+Tell that to the consumer. Tell that to the person who doesn't speak a programing language. Tell that to my grandmother. They're not going to listen to you.
+
+### People like simple things ###
+
+Contrary to popular belief, it is impossible for either your computer or you to multitask. Because of this, humans like simple and consistent interfaces. We like it when things are predictable. We like it when things are easy to use.
+
+But when you have a product that composed of parts from 12 different vendors, which in turn has products running on it that come form 300 different vendors, you can't have simple, consistent, and predictable. It's just not going to happen.
+
+We need to start dumbing down are electronic toys. I'd rather have half a dozen tiny gadgets that each did one thing well than one big gadget that did all of those things half way.
+
+
+[ars]: http://arstechnica.com/news.ars/post/20050204-4588.html "Ken Fisher (Ars Technica): Why, oh why, does Windows suck?"
+
+[sfgate]: http://sfgate.com/cgi-bin/article.cgi?file=/gate/archive/2005/02/04/notes020405.DTL "Mark Morford (SF Gate): Why Does Windows Still Suck?"
+
+[Mac]: http://www.thinkmac.co.uk/blog/2005/01/apples-ui-department-going-insane.html "RL Prior (ThinkMac): Apple's UI department going insane?"

@@ -1,0 +1,16 @@
+<!--
+Title: Prep work for Senior Design
+Created: 15 September 2005 - 7:10 am
+Modified: 15 September 2005 - 7:10 am
+Tags: design
+-->
+
+I should be sketching block diagrams and prototyping code. I'm reading about simplicity in design instead.
+
+> "Design is, to some extent, about prioritizing the foreground experience, but providing a low-energy means of gently shifting focus to the background whenever the greater context of an activity might matter more than the activity itself."
+
+> [John Maeda][]
+
+What's the greater context of plotting GPS data on a screen?
+
+[John Maeda]: http://www.businessweek.com/innovate/content/sep2005/id20050907_980836.htm "John Maeda (BusinessWeek online): Simplicity: The Goldilocks Rule"

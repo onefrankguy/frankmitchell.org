@@ -1,0 +1,48 @@
+<!--
+Title: Microverse
+Created: 9 December 2004 - 4:52 pm
+Modified: 23 December 2004 - 9:23 am
+Tags: poetry
+-->
+
+### Introduction ###
+
+Frank Mitchell is a Computer Science and Writing major who believes that language will eventually bridge the gab between humanity and technology.
+
+His poetry doesn't reflect that philosophy.
+
+Instead, Microverse is simply a tiny collection of tiny poems, little pieces of verse that found a home outside themselves and in the company of each other.
+
+### Contents ###
+
+1. [Why Don't I Know?][1]
+2. [Dear balloon][2]
+3. [Oddball Animals][3]
+4. [Earthworm][4]
+5. [Salting an Apple][5]
+6. [Poison Ivy][6]
+7. [Casualty of a Broken Pen][7]
+8. [6th and Line][8]
+9. [Blood Doll][9]
+10. [Sparks][10]
+
+
+[1]: /ccs/whydontiknow "Frank Mitchell (Can't Count Sheep): What Don't I Know?"
+
+[2]: /ccs/dearballoon "Frank Mitchell (Can't Count Sheep): Dear balloon"
+
+[3]: /ccs/oddballanimals "Frank Mitchell (Can't Count Sheep): Oddball Animals"
+
+[4]: /ccs/earthworm "Frank Mitchell (Can't Count Sheep): Earthworm"
+
+[5]: /ccs/saltinganapple "Frank Mitchell (Can't Count Sheep): Salting an Apple"
+
+[6]: /ccs/poisonivy "Frank Mitchell (Can't Count Sheep): Poison Ivy"
+
+[7]: /ccs/casualtyofabrokenpen "Frank Mitchell (Can't Count Sheep): Casualty of a Broken Pen"
+
+[8]: /ccs/sixthandline "Frank Mitchell (Can't Count Sheep): 6th and Line"
+
+[9]: /ccs/blooddoll "Frank Mitchell (Can't Count Sheep): Blood Doll"
+
+[10]: /ccs/sparks "Frank Mitchell (Can't Count Sheep): Sparks"

@@ -1,0 +1,19 @@
+<!--
+Title: Modwest lovin'
+Created: 27 October 2004 - 10:31 pm
+Modified: 27 October 2004 - 10:31 pm
+Tags: elimossinary
+-->
+
+### Said it before, but... ###
+
+I love [Modwest][]!
+
+Eighteen emails after the fact, Allen Lee of Modwest tech support, has finally helped me resolve my mod\_rewrite rules. Thanks to his hard work, pretty URLs should work without a glitch now, and I know a thing or two more about mod_rewrite than when this started.
+
+Plus, because the people at Modwest hate spam as much as I do, comment emails are automagically filtered with [SpamAssassin][]. Yay for technologically literate hosting companies that care about their customers.
+
+
+[Modwest]: http://modwest.com/ "The best web hosting in the business."
+
+[SpamAssassin]: http://spamassassin.apache.org/ "An extensible email filter used to identify spam."

@@ -1,0 +1,25 @@
+<!--
+Title: It's nice to be appreciated
+Created: 16 February 2005 - 11:07 am
+Modified: 16 February 2005 - 11:15 am
+Tags: design
+-->
+
+Just got an email from my mother in regards to some feedback she got from a client about [her website][].
+
+> "Good morning,
+
+> I am researching body wraps which I have had some interest in trying. I happened upon your site (which is beautiful) and found some of the best descriptions and benefits of body wraps and other cleansing procedures that I have seen online.
+
+> I would like to see about making an appointment with you - perhaps this Friday, February 18.
+
+> What can you tell me about your fee structure, available appointment times, requirements for your clients, etc?
+
+> Thank you for your assistance."
+
+> Christy Echevarria
+
+That makes me happy.
+
+
+[her website]: http://energeticbodywrap.com/ "Energetic Body Wrap: You'll see a brand new you, when you wrap!"

@@ -1,0 +1,24 @@
+<!--
+Title: Rules for failure
+Created: 21 January 2005 - 8:02 am
+Modified: 21 January 2005 - 8:07 am
+Tags: managing
+-->
+
+From an [essay][] by William Beatty via [Seth Godin][]:
+
+> "The road to failure often contains:
+
+> 1. Secrecy.
+> 2. The conviction that someone is about to steal your idea.
+> 3. Focus on selling your idea to the government or a big corporation.
+> 4. Loss of humility and focus on fame.
+> 5. Belief that scientists and businesses (the smart ones) will hail your discovery."
+
+Note to self: Don't go wondering down that path. Communication among everyone is important, otherwise you'll end up with team members who go into "angry programmer mode".
+
+
+
+[essay]: http://www.amasci.com/freenrg/rules1.html "William Beatty (SCIENCE HOBBYIST): Rules for unconventional researchers"
+
+[Seth Godin]: http://sethgodin.typepad.com/seths_blog/2005/01/rules_for_failu.html "Seth Godin (Seth's Blog): Rules for failure"

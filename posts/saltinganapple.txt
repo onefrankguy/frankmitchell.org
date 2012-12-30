@@ -1,0 +1,25 @@
+<!--
+Title: Salting an Apple
+Created: 9 September 2004
+Modified: 9 September 2004
+Tags: poetry
+-->
+
+#### Salting an Apple ####
+
+Newton,  
+invented Calculus,  
+so that he might describe the Physical World  
+in more specific terms  
+than Hot  
+and Wet  
+and Cold  
+and Dry.
+
+Calculus,  
+instructed Newton,  
+so that he might manipulate Number  
+between One  
+and Two  
+and Zero  
+and One.

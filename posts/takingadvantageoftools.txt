@@ -1,0 +1,32 @@
+<!--
+Title: Taking advantage of tools
+Created: 13 November 2004 - 1:34 pm
+Modified: 13 November 2004 - 1:55 pm
+Tags: elimossinary
+-->
+
+
+### Power at your fingertips ###
+
+There's something elegant about software that's built of little pieces. Each piece does one job and does it well. All the pieces work together to pull off something really cool. That's part of the philosophy behind a lot of UNIX applications, tiny tools that do good jobs. It's also part of my philosophy behind the design of Elimossinary.
+
+### Magical metadata generation ###
+
+Elimossinary generates _all_ of its metadata on the fly. Hover your mouse over the title to this entry, and you'll notice there's a `Form:` and `Process:` attribute associated with it. That's all calculated at run time. There's no database backend and no flat files full of lists to parse. Thanks to a creative use of regular expressions, and a little bit of stylometric knowhow, Elimossinary can tell the difference between prose, poetry, and notes.
+
+Unless you've told it otherwise, Elimossinary displays the last six modified entries. It does this by grepping all entries for their modification times and returning a list of the six most recent. Again, I don't have to store that data anywhere other than in the text file that holds the entry itself, since `grep` does all the work of getting it out of there for me.
+
+### AppleScript uploads ###
+
+The final beautiful piece of this whole publication puzzle is a little chunk of AppleScript and a utility called `curl`. An AppleScript application runs on my PowerBook and monitors a single directory (the one that holds all these entries). When it notices a file's been changed in the last five minutes, `curl` is used to upload the changed file to the FTP server that hosts Can't Count Sheep.
+
+Since the application sleeps when it's not looking for updated files, the entire process requires almost no time and no CPU overhead.
+
+### What this all means ###
+
+Simply stated, publication via Elimossinary couldn't be any easier. Open your favorite text editor, write a new entry as a [Markdown][] formatted file, and then save it.
+
+That's all. Easy. Elegant. Elimossinary.
+
+
+[Markdown]: http://daringfireball.net/projects/markdown/ "A text-to-HTML conversion tool for web writers"

@@ -1,0 +1,31 @@
+<!--
+Title: Trys, buys, and eventuals
+Created: 28 September 2005 - 8:17 am
+Modified: 25 February 2006 - 11:16 am
+Tags: gtd
+-->
+
+My GTD lists of someday/maybes. 
+
+### Books ###
+
+1. [My Job Went to India: 52 Ways to Save Your Job][mjwti] - Chad Fowler
+2. [Behind Closed Doors: Secrets of Great Management][bcd] - Johanna Rothman and Esther Derby
+3. [Programming Ruby, 2nd Ed.][ruby] - Dave Thomas, with Chad Fowler and Andy Hunt
+4. [Ship It!: A Practical Guide to Successful Software Projects][ship] - Jared Richardson and Will Gwaltney
+
+[mjwti]: http://pragmaticprogrammer.com/titles/mjwti/ "Chad Fowler (Pragmatic Bookshelf): My Job Went to India"
+
+[bcd]: http://pragmaticprogrammer.com/titles/rdbcd/ "Johanna Rothman and Esther Derby (Pragmatic Bookshelf): Behind Closed Doors"
+
+[ruby]: http://pragmaticprogrammer.com/titles/ruby/ "Dave Thomas, with Chad Fowler and Andy Hunt (Pragmatic Bookshelf): Programming Ruby, 2nd Ed."
+
+[ship]: http://pragmaticprogrammer.com/titles/prj/ "Jared Richardson and Will Gwaltney (Pragmatic Bookshelf): Ship it!"
+
+### Movies ###
+
+### Wines ###
+
+1. Pinot Grigio - [FishEye][]
+
+[FishEye]: http://fisheyewines.com/ "FishEye Wines: This Wine Jumps Out of Your Glass"

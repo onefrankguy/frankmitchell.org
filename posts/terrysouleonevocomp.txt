@@ -1,0 +1,81 @@
+<!--
+Title: Terry Soule on evolutionary computation
+Created: 8 March 2005 - 4:36 pm
+Modified: 8 March 2005 - 5:21 pm
+Tags: ai
+-->
+
+### Evolutionary computation ###
+
+Use simulated evolution to solve problems. Divided into two branches, genetic algorithms and genetic programing.
+
+What do we need?
+
+* competition
+* mutation
+* inheritance
+* population
+
+#### Genetic algorithms ####
+
+Here the idea is to evolve specific solutions. The major trick to making this work is to find a way to represent the range of possible solutions.
+
+Example: THe maximum clique problem from graph theory. Number your nodes, and then you can have a binary string as a solution.
+
+	1 -> 2, 3, 4, 5
+	2 -> 1, 4, 5, 6
+	3 -> 1, 4, 6
+	4 -> 1, 2, 3, 5, 6
+	5 -> 1, 2, 4
+	6 -> 2, 3, 4
+
+	1 2 3 4 5 6
+	0 0 1 0 1 1  // Bad solution
+	1 1 0 1 0 0  // Better solution
+	1 1 0 0 0 0  // Not as good as the one above
+	1 1 0 1 1 0  // Best solution
+	0 0 1 1 0 1  // Pretty good solution
+
+We need to assign a score to each of these. Low, high medium. Usually this is mathematical.
+
+We select high over medium over low, and that's our competition. Need to select our winning combinations in paris. Selection can happen in two ways:
+
+1. fitness of an individual divided by the sum of all the fitnesses - not always a good idea since it can single out an individual
+2. rank based selection - tournament selection: pick `n` individuals at random and the best one wins the tournament
+
+Then perform operations on them.
+
+1. crossover - select two lines and swap the ends (goes from parent to offspring)
+2. mutation - select a line and change something in it
+
+Once we have new individuals, we put them in a new population and repeat this process until the new population is full.
+
+We can evolve solutions if we have a good way to represent them and if we have a good fitness function. Nothing to say we can't apply this to writing a paper, but then the fitness test becomes tricky.
+
+#### Genetic programing ####
+
+We have the same algorithm as genetic algorithms, but the representations change. Here we want to evolve programs.
+
+How about evolving a robot that can get through a simple maze?
+
+What sort of functions or operations need to go into this? Left, right, forward, backward, ball of yarn (if been here), if wall ahead, if no wall ahead, while wall, while no wall, if done, generic branch
+
+	- left
+	- right
+	- forward
+	- backward
+	+ if wall ahead
+	+ if wall behind
+	+ while wall ahead
+	+ while wall behind
+	+ generic branch (sequence of do this then that)
+
+You only get to swap the stuff that has the same marker. This language is tree structured, where each `+` is an internal node, and each `-` is a leaf node.
+
+A common way to do this is to rerun the tree for a given number of steps. The further the robot gets into the maze, the better we consider its algorithm to be. We could also solve for efficiency by looking at how far did we get divided by the total number of steps. In a more generic maze, we might say, how far from the entrance did we get?
+
+The approach our robots tend to stumble upon is stick to one wall and follow it through the maze. Genetic programs tend to stumble upon general solutions rather than specific ones.
+
+What happens if we feed the robot a different maze at each iteration of the algorithm?
+
+If you put too much entrance on the shortest path, you might end up with solutions that just sit and the entrance because that's the shortest path. Back to the evolving a paper idea, you might end up with a paper that's just one sentence.

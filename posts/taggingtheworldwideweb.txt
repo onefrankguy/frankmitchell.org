@@ -1,0 +1,20 @@
+<!--
+Title: Tagging the World Wide Web
+Created: 12 February 2005 - 10:24 am
+Modified: 12 February 2005 - 10:28 am
+Tags: searching
+-->
+
+Via [Russell Beattie][]:
+
+> "So I thought, what happens if you apply tags to messages as well? 'Messages' being things like comments and blog posts, but in a forum-like structure, where you could follow threads in x dimensions."
+
+It's an interesting idea, and if this becomes as viral as [del.icio.us][] I might even consider adding 'tagsurf' links to CCS as well. Though that would be another set of inputs I'd have to track. But if [Tagsurf][] could notify me via email when someone commented on something...
+
+
+
+[Russell Beattie]: http://russellbeattie.com/notebook/1008301.html "Russell Beattie (Russell Beattie Notebook): Tagsurf: Tagged Hyperforum"
+
+[del.icio.us]: http://del.icio.us/ "Social bookmarking software"
+
+[Tagsurf]: http://tagsurf.com/ "A tagged hyperforum"

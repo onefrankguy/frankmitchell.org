@@ -1,0 +1,28 @@
+<!--
+Title: Simple snowflake beauty contest
+Created: 12 January 2005 - 8:08 am
+Modified: 12 January 2005 - 8:24 am
+Tags: coding
+-->
+
+I'm thinking at stealing a [MIT idea][] and doing something similar for ACM this semester. Don't know what we'd offer in terms of prizes, but I'm sure Erik and I could come up with something.
+
+> "Create the simplest program that generates the most beautiful snowflake."
+
+Since beauty is in the eye of the beholder, that one's obviously left up to the judges. But I wonder if we can come up with a rubric for judging simplicity in code? Number of lines, readability, complexity (Big O) of the [algorithm][] used.
+
+Have to think about that some more.
+
+Do we want to limit snowflakes to [text only][], or should this be an anything goes competition? I like the limit that text imposes, since it puts everyone on the same playing field and doesn't give the coder with mad OpenGL / Java skills the best chance of winning. 
+
+Thanks to John Maeda for [the idea][] behind this.
+
+
+
+[MIT idea]: http://simplicity.media.mit.edu/snowflake05/ "MIT Media Lab (SIMPLICITY): Snowflake-A-Thon 2005 (via John Maeda, SIMPLICITY)"
+
+[algorithm]: http://www.fractal-landscapes.co.uk/maths.html "Fractal Landscapes: Introduction"
+
+[text only]: http://www.ascii-art.de/ascii/s/snowflakes.txt "Ilmarin Karonen (ASCII-Art): Snowflakes"
+
+[the idea]: http://weblogs.media.mit.edu/SIMPLICITY/archives/000092.html "John Maeda (SIMPLICITY): Make Snowflakes, Not War"

@@ -1,0 +1,51 @@
+<!--
+Title: Subtle changes in thought
+Created: 31 October 2004 - 11:16 am
+Modified: 31 October 2004 - 11:16 am
+Tags: infocloud
+-->
+
+Looking back on what I've written below, I realized that what follows are just messy notes on a non-existant plan for this site. And somewhow I think that's what the real goal is. To have a chunk of space I can annotate.
+
+### God is in the details ###
+
+I've been reading about annotated spaces, thinking about [del.icio.us][] links, and really trying to decide where all this is going. The results are a few subtle changes in design.
+
+1. Colors are a little more subdued.
+2. External vs. internal links are now denoted by `:hover` attributes instead of icons.
+3. The logo and quote bits have come back to the top of the page.
+
+The focus, of course, is still on words. They're what I do best, after all. But I'm starting to realize that maybe communication isn't the big picture goal. Maybe informaion archiving and organizing is.
+
+### Personal annotated spaces ###
+
+To [quote][annotatespace] Peter Merholz:
+
+> "...people will annotate space much like they annotate the web, or annotate their photos... More in a notebook sense, a journaling sense."
+
+The interesting thing is that social software like del.icio.us, while it was created _as_ social software, is that it is _used_ in a much more personal fashion. People are selfish, and the links that form between nodes of information are (for the most part) entirely accidental. Until there's a standard for the del.icio.us `tag` attribute, finding similar links will remain somewhat ambiguous.
+
+While I have a [standard][] for [my links][] as far as the `description` and `extended` metadata attributes go, I haven't bothered to tag any of them yet. What's going to help me remember best? The fascetted classification system I use for CCS entries doesn't work, since it's been explicity designed for my writings, not the writings of others.
+
+But, if I let Elimossinary create links between entries based on the links that appear in that entry, then I might just have something.
+
+### Communication vs. feedback ###
+
+Given that I've got a method for finding tenuous relationships between entries, let's turn back to the question of communication vs. information archiving. As a writer, I crave feedback on my work, and the quickest way to get feedback is to provide readers with a comment form.
+
+But what I don't want is dicussion.
+
+Discussion works in the real world. There you have the necessary sensoral cues to figure out what was said and meant by someone's comment. In the online world it doesn't, and I've seen people get hurt because of something that was thoughtlessly typed.
+
+Email helps aleviate some of that problem. There's a [staccato][] aspect to email that allows time for reflection. And that's really what I'm looking for: thoughtful feedback.
+
+
+[del.icio.us]: http://del.icio.us/ "Social bookmarking software"
+
+[annotatespace]: http://www.peterme.com/archives/000412.html "Peter Merholz: I have seen the future of annotating space, and my, is it del.icio.us! (via Fabio Sergio, freegorifero.com)"
+
+[standard]: http://www.freegorifero.com/weblog/2004_10_01_weblog_archive.html#109715989665772938 "Fabio Sergio: Annatomy of a well formed del.icio.us link."
+
+[my links]: http://del.icio.us/elimossinary "Frank Mitchell: My del.icio.us links"
+
+[staccato]: http://www.purselipsquarejaw.org/2002_12_01_blogger_archives.php#90013632 "Anne Galloway: Possibility (via Fabio Sergio, freegorifero.com)"

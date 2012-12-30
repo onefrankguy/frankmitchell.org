@@ -1,0 +1,106 @@
+<!--
+Title: Dr. Foster on quantum computing
+Created: 22 March 2005 - 4:30 pm
+Modified: 22 March 2005 - 4:30 pm
+Tags: security
+-->
+
+Dr. Foster's talk on quantum computing for the ACM.
+
+Light through two slits experiment.
+
+<http://colorado.edu/physics/2000/schroedinger/two-slit2.html>
+
+If we could encode binary information as photos, they would go through both holes simultaneously and we could get two bits of information in one bit of space.
+
+The photon behaves as a particle and goes through one hole and it behaves as a wave and goes through both holes.
+
+Putting a particle detector on one of the slits lets us detect what our bit is, 0 or 1.
+
+### Quantum states ###
+
+Quantum particles interfere constructively or destructively with themselves. A quantum state is the linear combination of possible observations. A qubit is a quantum bit. `B = a [0] + b [1]`
+
+* Complex `a`, `b` (amplitudes of `[0]` and `[1]`)
+* Such that `a<sup>2</sup> + b<sup>2</sup> = 1`
+* `O([0]) = a<sup2></sup>`, `O([1]) = b<sup2></sup>`
+
+`O([x])` is a probability of observing `[x]` (collapses down to an object `[x]`).
+
+You want to start off with register that has all of your bits in some qubits. Your algorithm increases the amplitude of the bits that give you the correct answer.
+
+### Registers ###
+
+A quantum register is `n` qubits.
+
+In a weighted two bit register, observing the first bit fixes the value of the second bit (even if the bits are light years apart).
+
+Look up quantum teleportation and Wheeler at the University of Texas.
+
+This would be the only way to get a truly random number, set up a n-qubit register and look at it.
+
+### Entanglement and Interference ###
+
+Bits in a register are entangled if observing some causes amplitude of others to collapse. Entangled bits can interfere with each other constructively (amplitude increases) or destructively (amplitude decreases).
+
+	Entangle all your inputs into a register
+		"yes" answers interfere constructively
+		"no" answers interfere destructively
+	Run your algorithm
+	Look at the answer
+
+### Computing XOR with quantum registers ###
+
+This is a controlled NOT gate.
+
+	Input  Output
+	-------------
+	A  B   A   B
+	0  0   0   0
+	0  1   0   1
+	1  0   1   1
+	1  1   1   0
+
+The transform must be unitary: no information lost. Your algorithm has to run the same forwards and backwards in time.
+
+### Hadamard transformation ###
+
+<http://documents.wolfram.com/applications/digitalimage/UsersGuide/8.5.html>
+
+Can be used to entangle all possible values for a single quantum register.
+
+### Finding quantum functions ###
+
+You can factor in polynomial time (with high probability). This algorithm will never lie, but it also won't give up either. If you give it a prime number it will fail every time.
+
+If you can build a quantum computer, you can break any encryption based on factoring or discrete log. However, you can't break information theoretic encryption schemes like one time pads. It's possible that quantum encryption can be secure from quantum attacks but not classical attacks.
+
+### Complexity ###
+
+Factoring not know to be in P, but it is in quantum P (QP). Factoring is probabilistic P (BP) and nondeterministic P (NP). Polynomial time on quantum computers is stronger than on deterministic or probabilistic Turing machines P => BPP => QP. Relation of BQP and NP is unknown.
+
+The real world is quantum, so this is not hand waving.
+
+### Possible solutions ###
+
+Base stuff on harder classical problems like the knapsack problem. We really don't know about things in this area.
+
+### Why we don't have more than six qubit machines ###
+
+Decoherence: Quantum systems tend to decay into classical states over time.
+
+Time for doing unitary operations is proportional to decoherence time.
+
+Proving an operation unitary is difficult.
+
+Programing is hard: can't access variables indiscriminately (destructive read) and program must run the same forwards and backwards.
+
+### What's possible ###
+
+An n-qubit computer can perform 2<sup>n</sup> I/O operations simultaneously.
+
+True random numbers are possible.
+
+n-qubits can store 2<sup>n</sup> bits of data.
+
+May change the way we look at computation.

@@ -1,0 +1,72 @@
+<!--
+Title: Still thinking
+Created: 5 January 2005 - 10:34 pm
+Modified: 12 January 2005 - 7:29 am
+Tags: unfinished
+-->
+
+Why did I just get shivers when I read the following post?
+
+> 2. It is not the pot that is important; it is the water that it carries  
+> It is not the walls of the house that are important; it is the space between them.  
+> It is not the organizing mechanisms that are relevant; it is the information we seek to organize.
+
+> 4. The role of the new interface is to provide access to all information we record in a transparent manner. When you have 10-20 files you can name them all. If you have 10,000 pieces of information will you name them all?
+
+> We seek to organize memories like photographs, moving pictures and sounds.  
+> We seek to organize our finances and our lives  
+> We seek to analyze data  
+> We do not seek to organize 'files'
+
+> The concept of a file is no longer relevant to a non-programmer.  
+> Users seek access to information, pictures, and music ... not files  
+> Present interfaces constrain us from the reaching the information we seek.  
+> We are forced to search and organize files--  
+> Shuffle meaningless icons like a card shark in a casino.
+
+> 5. In the physical world, we may seek to organize music, or paper clippings, or books. We have distinct ways of organizing each piece of information. We do not seek to put our paper clippings on a music rack, our music on a bookshelf or our books in a CD rack.
+
+> As music, books and information is transformed from a corporeal world to an intangible world-- should we not seek to organize each of these in a similar fashion. Separate organizing methods are needed for different kind of media.
+
+> 7. The organizational structure must seek out the information.
+Surely, if Mohammed cannot get to the mountain (of information)
+Then the information...
+
+> 10. The new Workspace is a blank canvas, that we can organize in anyway we seek.
+
+> Some may seek to organize music--they will use a Music player  
+> Some may seek to organize pictures--they will use a photo catalog  
+> Some may seek to organize their e-mail, they will use a Mail tool  
+> Yet others may seek organize 'files', they will use the old fashioned finder.
+
+> As you can see the shift is from a generalized interface that tries to organize 'files' (the Finder), we are shifting to new organizers that handle specialized media. ITunes, Mail, iXXXX or even Explorer are all prime examples... You no longer have to deal with 'files', all media management is done using a specialized interface best suited for the task.
+
+> This is the meaning of 'The Finder is another app'.
+
+> A place for everything and everything in its place.
+
+> 13. OS X as we know it today is part of a greater scheme.  
+> Simplicity cannot be implemented quickly.  
+> The Mac as we know it did not come about till the Multifinder.
+
+> What we see today is a start. It is a shift toward new organizational principles. It is a first step away from a 'file' based interface towards a media and information based interface. The vision is grand, but it takes time to build an eco-system.
+
+> 15. What shall we expect?  
+> Quick methods to parse large amount of information--interfaces that help us find a needle in a haystack.  
+> Interfaces that are best suited for the task at hand.  
+> Interfaces that stay ahead of you, remember for you and help you remember.  
+> Interfaces that help us communicate.  
+> Interfaces that help us create with ease.
+
+> 16. OS X was the foundation. It was the hard part. It will set the tone for the next decade of interacting with inanimate machines.
+
+> Simplicity is in taking the elegant path.  
+> It is also a conscious choice-- to achieve simplicity one must eschew complexity.  
+> Simple things must be simple.
+
+> Simplify, simplify, simplify.  
+> But like the still waters of Walden pond, it must run deep
+
+> <http://episteme.arstechnica.com/eve/ubb.x?a=tpc&s=50009562&f=8300945231&m=814007258631&r=999003758631#999003758631>
+
+That comes via a comment on one of Merlin Mann's entries: <http://www.43folders.com/2005/01/i_want_a_pony_s.html>

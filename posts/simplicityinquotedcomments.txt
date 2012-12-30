@@ -1,0 +1,28 @@
+<!--
+Title: Simplicity in quoted comments
+Created: 6 January 2005 - 9:12 am
+Modified: 6 January 2005 - 9:46 am
+Tags: blogging
+-->
+
+John Maeda makes an interesting [comment][] about quoting people:
+
+> "When there are sufficient and relevant comments from readers, I have decided to post them in this format from time to time. Figuring out the timing will be a work in progress. All URL's for people that I mention are Google-able, but not linked in this blog as I prefer having less, instead of more, links."
+
+The researcher in me wants attribution if it's available. However, in the context of both [Maeda's site][] and mine, where comments can occur via email, attribution is sometimes impossible. If a reader doesn't have a web presence, it's hard to link to them. Providing enough information so that their [Google-able][] is a nice compromise.
+
+But more interesting than that, is the idea of _less_ links. It defiantly simplifies things, and I'm guessing that it will encourage a few readers to [learn to search][] as well, but does it go against the grain of the web? Isn't the web all about hyperlinks and connections between related bits of information? Or is that model changing?
+
+We're moving towards less static links and more dynamic ones. Thanks to tags, search engines, and filters, information is now connected on-the-fly. I'm thinking that auto-linking, where related information is automatically discovered and linked to, is just around the corner.
+
+All the pieces are there. We just need the connections that pull them together.
+
+
+
+[comment]: http://weblogs.media.mit.edu/SIMPLICITY/archives/000087.html "John Maeda (SIMPLICITY): Reacting to 'The color of black'"
+
+[Google-able]: http://google.com/ "Larry Page, Sergey Brin (Google): Organize the world's information and make it universally accessible and useful"
+
+[Maeda's site]: http://weblogs.media.mit.edu/SIMPLICITY/ "John Maeda (MIT Media Lab): SIMPLICITY"
+
+[learn to search]: http://searchlores.org/ "Fravia+ (Searchlores): Main entrance"

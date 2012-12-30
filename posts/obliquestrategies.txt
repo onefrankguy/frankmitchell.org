@@ -1,0 +1,47 @@
+<!--
+Title: Oblique Strategies
+Created: 17 December 2004 - 7:54 am
+Modified: 2 January 2005 - 5:43 pm
+Tags: poetry
+-->
+
+Taken from [the deck][] by Brian Eno and Peter Schmidt:
+
+#### Oblique Strategies ####
+
+[blank white card]  
+Accept advice  
+Be dirty  
+Change nothing and continue with immaculate consistency  
+Do we need holes?  
+Emphasize repetitions  
+Faced with a choice, do both  
+Go outside. Shut the door.  
+How would you have done it?  
+Infinitesimal gradations  
+Just carry on  
+Lowest common denominator  
+Mute and continue  
+Not building a wall but making a brick  
+(Organic) machinery  
+Put a blank in an exquisite frame; make it valuable  
+Remove ambiguities and convert to specifics  
+Spectrum analysis  
+Towards the insignificant  
+Use filters  
+What are you really thinking about just now?  
+You are an engineer
+
+### Notes ###
+
+My eventual goal is one from every letter of the alphabet (taking artistic license as needed; see 'p'). That makes this an abecdearian, which is a type of [acrostic][] poetry. 
+
+Still missing, 'k', 'q', 'v', 'x', and 'z'.
+
+I like the idea of creating poetry out of something as non-poetic as business strategies. Though given the creative threads that run between art and design, it's really not that oblique a stretch.
+
+
+
+[the deck]: http://eno.sb.org/oblique.html "Brian Eno, Peter Schmidt: Oblique Strategies (via Adam Greenfield, v-2 Organisation)"
+
+[acrostic]: http://dictionary.reference.com/search?q=acrostic "acrostic (dictionary.com): A poem or series of lines in which certain letters, usually the first in each line, form a message when read in sequence"

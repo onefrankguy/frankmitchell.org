@@ -1,0 +1,23 @@
+<!--
+Title: The Ajax genie is out
+Created: 23 February 2006 - 9:04 am
+Modified: 23 February 2006 - 9:13 am
+Tags: ajax
+-->
+
+> "The patent--issued on Valentine's Day--covers all rich-media technology
+> implementations, including Flash, Flex, Java, Ajax, and XAML, when the rich
+> media application is accessed on any device over the Internet, including
+> desktops, mobile devices, set-top boxes, and video game consoles, says inventor
+> Neil Balthaser, CEO of Balthaser Online, which he owns with his father Ken. 'You
+> can consider it a pioneering or umbrella patent. The broader claim is one that
+> basically says that if you got a rich Internet application, it is covered by
+> this patent.'" - [InformationWeek][]
+
+No amount of litigation is going to put the [Ajax][] genie back in its bottle. Patents are designed to protect inventors, not let Adobe burned upstarts get rich quick by cashing in on a tech fad. Fortunately, this is all going to stay tied up in the courts for years, which means [Flickr][] will still be able to use open source technologies (like Ajax) to their heart's content.
+
+[InformationWeek]: http://www.informationweek.com/story/showArticle.jhtml?articleID=180206472&cid=RSSfeed_IWK_News "Eric Chbrow (InformationWeek): U.S. Grants Patent for Broad Range of Internet Rich Applications"
+
+[Ajax]: http://www.adaptivepath.com/publications/essays/archives/000385.php "Jessie James Garrett (Adaptive Path): Ajax: A New Approach to Web Applications"
+
+[Flickr]: http://www.flickr.com/ "Flickr: Photo Sharing"

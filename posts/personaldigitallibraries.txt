@@ -1,0 +1,59 @@
+<!--
+Title: Personal digital libraries
+Created: 15 November 2004 - 12:51 pm
+Modified: 15 November 2004 - 8:31 pm
+Tags: infocloud
+-->
+
+### Someone else's notes ###
+
+After reading [Peter Merholz's notes][notes] on Cathy Marshall's lecture on Personal Digital Libraries, I started to think about my own attempts at archiving things.
+
+So, following Peter's notes on a kind of line-by-line, here's my thoughts:
+
+### Records of use ###
+
+To quote Baudrillard ([_Cool Memories II_][coolmem2]),
+
+> "The compact disc. It doesn't wear out, even if you use it. Terrifying. It's as though you'd never used it. So it's as though you didn't exist. If things don't get old any more, then that's because it's you who are dead."
+
+Not so much with blogs. Their continuously updating phenomena ensures they don't get old and die. Well, some do when their authors choose to leave them, but as long as they're being actively updated (and until we develop AI), you can be reasonably certain that there's a live person behind the postings.
+
+How do we track usage of digital media then? Maybe look at most accessed media, most linked to media, which media is being shared the most, etc. It's arguable that we've got even more methods for tracking the use of digital media than we do for physical stuff. True, digital media doesn't deteriorate with use, but the [classic example][] of the BBC website proved that you could have it deteriorate with disuse.
+
+If people would respond well to that sort of interaction is another issue.
+
+### Annotating pages ###
+
+I'm going to go out on a limb here and say that as more and more things go digital, annotating in a digital world becomes easier and easier. While I used to never annotate my books (until I read [_House of Leaves_][house]), I often annotate the stuff I read online. My [del.icio.us links][mydelicious] are a prime example of this, as are the words you're reading right now.
+
+How do I get my print annotations into my digital library though? A scanner is the obvious solution, or some kind of software that lets me draw on my desktop as easily as I do on paper. The reality of the moment is that it's much easier to draw circles and arrows and boxes and squiggles and such on a yellow tablet of legal paper than it is to do the same thing on my computer.
+
+However, I can take lecture notes much faster on my computer as long as there aren't any pictures involved.
+
+### Spatial organization ###
+
+This is where the real world totally kicks butt over the digital one. Until someone comes up with some kind of infinite desktop that behaves like a StarCraft game where I can shove all my files around on it and have it expand and contract in size as needed, the real world will always be a better place to organize stuff.
+
+Of course, we could just develop smarter software and let our computers organize things for us, but then we lose the idea of re-encounter. Right now I can walk over to my bookshelf, glance at it, and let my mind draw connections between [_Silk_][Silk] and [_Mining the Web_][mining] simply because they're sitting next to each other. On a computer, I have no distinct [at-a-glace representation][tension] for each individual file (hence I can't tell what the contents are without opening the file), so I'm reliant on technology to draw connections for me.
+
+### Conclusions ###
+
+There's some other stuff in Peter's notes that I didn't touch on here. Good stuff too, all about clipping, gathering, personal geography, and things like that. So go ahead and read it, and then ask yourself the question, "How do you organize your personal digital library?"
+
+
+[notes]: http://www.peterme.com/archives/000418.html "Peter Merholz (peterme.com): Cathy Marshall on Personal Digital Libraries (via RSS)"
+
+[classic example]: http://www.v-2.org/displayArticle.php?article_num=177 "Adam Greenfield (v-2.org): Adaptive path (via Google)"
+
+[mydelicious]: http://del.icio.us/elimossinary "Frank Mitchell: My del.icio.us bookmarks"
+
+[Silk]: http://www.amazon.com/exec/obidos/tg/detail/-/0451459008/qid=1100564748/sr=1-1/ref=sr_1_1/103-8000023-5723041 "Caitlin R. Kiernan: Silk (via amazon.com)"
+
+[mining]: http://www.amazon.com/exec/obidos/ASIN/1558607544/qid=1100564907/sr=2-1/ref=pd_ka_b_2_1/103-8000023-5723041 "Soumen Chakrabarti: Mining the Web (via amazon.com)"
+
+[coolmem2]: http://www.amazon.com/exec/obidos/tg/detail/-/2718603674/qid=1100565164/sr=1-4/ref=sr_1_4/103-8000023-5723041 "Jean Baudrillard: Cool Memories II (via amazon.com)"
+
+[tension]: http://www.peterme.com/archives/000419.html "Peter Merholz (peterme.com): The Tension Between the Personal and the Public (via RSS)"
+
+[house]: http://www.amazon.com/exec/obidos/ASIN/0375703764/qid=1100568291/sr=2-1/ref=pd_ka_b_2_1/103-8000023-5723041 "Mark Z. Danielewski: House of Leaves (via amazon.com)"
