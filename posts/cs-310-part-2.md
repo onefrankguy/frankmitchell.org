@@ -1,13 +1,14 @@
 <!--
-Title: Computer Science 310 notes, part 2
-Created: 21 January 2005 - 1:36 pm
-Modified: 6 April 2005 - 2:05 pm
-Tags: coding
+title: Computer Science 310 notes, part 2
+create: 21 January 2005 - 1:36 pm
+updated: 6 April 2005 - 2:05 pm
+slug: cs310-part-2
+tags: coding
 -->
 
 More notes from Bruce Bolden's Computer Science 310 course, "Programming Languages". [Part 1][] can be found someplace else.
 
-[Part 1]: /ccs/compsci310notes "Frank Mitchell (Can't Count Sheep): Computer Science 310 notes, part 1"
+[Part 1]: /2005/01/cs310-part-1 "Frank Mitchell (Can't Count Sheep): Computer Science 310 notes, part 1"
 
 #### True crimes of lexical analysis ####
 
