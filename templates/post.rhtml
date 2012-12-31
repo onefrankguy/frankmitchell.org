@@ -11,5 +11,7 @@
 </section>
 <script src="/js/related.js"></script>
 <script>
-  Elimossinary.relate("<%= @url %>");
+  if (window.Elimossinary) {
+    Elimossinary.relate("<%= @url %>");
+  }
 </script>
