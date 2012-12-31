@@ -69,10 +69,27 @@ function buildRelated (url, manifest) {
   related = related.slice(0, 5)
   html += '<ul>'
   for (i = 0; i < related.length; i += 1) {
-    html += '<li>' + related[i].title + '</li>'
+    html += '<li>'
+    html += '<a'
+    html += ' title="Read &ldquo;' + related[i].title+ '&rdquo;"'
+    html += ' href="' +related[i].url+ '"'
+    html += '>' +related[i].title+ '</a>'
+    html += '<time'
+    html += ' datetime="' +related[i].date.time+ '"'
+    html += ' title="' +related[i].date.title+ '"'
+    html += '>' +related[i].date.abbr+ '</time>'
+    html += '</li>'
   }
   html += '</ul>'
-  console.log(html)
+  related = document.getElementById('related')
+  if (related && related.hasChildNodes()) {
+    for (i = 0; i < related.childNodes.length; i += 1) {
+      if (related.childNodes[i].nodeName === 'UL') {
+        related.childNodes[i].innerHTML = html
+        break
+      }
+    }
+  }
 }
 
 Elimossinary.relate = function (url) {
