@@ -1,8 +1,9 @@
 <!--
-Title: Cream of tomato soup
-Created: 13 February 2005 - 7:56 am
-Modified: 13 February 2005 - 7:56 am
-Tags: recipes
+title: Cream of tomato soup
+created: 13 February 2005 - 7:56 am
+updated: 13 February 2005 - 7:56 am
+slug: tomato-soup
+tags: recipes
 -->
 
 ### Background ###
