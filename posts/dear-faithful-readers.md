@@ -1,8 +1,9 @@
 <!--
-Title: Dear faithful readers
-Created: 26 October 2004 - 6:14 pm
-Modified: 26 October 2004 - 6:14 pm
-Tags: elimossinary
+title: Dear faithful readers
+created: 26 October 2004 - 6:14 pm
+updated: 26 October 2004 - 6:14 pm
+slug: new-blog
+tags: elimossinary
 -->
 
 
