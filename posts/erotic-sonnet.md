@@ -1,6 +1,7 @@
 <!--
 title: Erotic sonnet
-date: 6 November 2004
+created: 6 November 2004 - 8:44 pm
+modified: 6 November 2004 - 8:44 pm
 slug: erotic-sonnet
 tags: poetry, unfinished
 -->
@@ -12,8 +13,8 @@ That arch my body, making me beg. Water.
 No. Spoken softly but the word lingers.  
 Held in place by hair ribbons grown tauter.  
 
-DidnÎéÎ÷t know one pepper could get hotter  
-Than itÎéÎ÷s initial bite. Her kisses burn.  
+Didn't know one pepper could get hotter  
+Than it's initial bite. Her kisses burn.  
 Carress my skin. Find me again, in her.  
 
 learn  
