@@ -2,6 +2,7 @@
 title: Cinnamon Rolls
 created: 22 January 2005 - 11:44 am
 updated: 22 January 2005 - 12:48 pm
+slug: cinnamon-rolls
 tags: recipes
 -->
 

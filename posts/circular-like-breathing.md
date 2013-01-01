@@ -1,8 +1,9 @@
 <!--
-Title: Circular (like breathing)
-Created: 24 January 2006 - 6:04 pm
-Modified: 25 January 2006 - 6:24 am
-Tags: searching
+title: Circular (like breathing)
+created: 24 January 2006 - 6:04 pm
+modified: 25 January 2006 - 6:24 am
+slug: circular
+tags: searching
 -->
 
 It's interesting how the web manages to weave back in on itself. I subscribe to [Harp-L][], and yesterday I come across a link to Ben Felton's blog, [Harmonica Ramblings][]. Digging through the archives there, I found [a post][] that links to [Can't Count Sheep][], referencing my poem, [Harmonica][].
