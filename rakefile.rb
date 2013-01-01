@@ -159,7 +159,8 @@ def post_metadata post
   end
   info = YAML.load yaml.join("\n")
   date = Time.parse(info['date'] || info['created'])
-  slug = info['slug']
+  slug = info['slug'] || ''
+  abort "No slug found for #{post}!" if slug.empty?
   tags = info['tags'].split(',').map { |tag| tag.strip }
   url = "/#{date.strftime("%Y/%m")}/#{slug}"
   data = {

@@ -2,6 +2,7 @@
 title: Chocolate martinis
 created: 18 December 2004 - 7:33 pm
 updated: 19 December 2004 - 4:29 pm
+slug: chocolate-martini
 tags: recipes
 -->
 
