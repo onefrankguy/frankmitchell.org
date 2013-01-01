@@ -65,8 +65,13 @@ function buildRelated (url, manifest) {
       }
     }
   }
+
   shuffle(related)
   related = related.slice(0, 5)
+  related.sort(function (a, b) {
+    return Date.parse(b.date.time) - Date.parse(a.date.time)
+  })
+
   html += '<ul>'
   for (i = 0; i < related.length; i += 1) {
     html += '<li>'
@@ -81,6 +86,7 @@ function buildRelated (url, manifest) {
     html += '</li>'
   }
   html += '</ul>'
+
   related = document.getElementById('related')
   if (related && related.hasChildNodes()) {
     for (i = 0; i < related.childNodes.length; i += 1) {
