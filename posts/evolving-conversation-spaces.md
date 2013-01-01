@@ -1,8 +1,9 @@
 <!--
-Title: Evolving conversation spaces
-Created: 9 December 2004 - 9:29 am
-Modified: 2 January 2005 - 4:45 pm
-Tags: blogging
+title: Evolving conversation spaces
+created: 9 December 2004 - 9:29 am
+updated: 2 January 2005 - 4:45 pm
+slug: blogs
+tags: blogging
 -->
 
 ### Blogs are one-way publications ###
