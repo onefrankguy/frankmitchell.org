@@ -6,7 +6,7 @@ slug: blogs
 tags: blogging
 -->
 
-### Blogs are one-way publications ###
+## Blogs are one-way publications ##
 
 > "But at its very heart, blogging is a one-way communication tool. Comments
 > have their pros and cons, but they are subsidiary. Comments are not
@@ -34,7 +34,7 @@ one person is allowed to create new forum posts. Therefore, it's one person's
 ideas that drive the conversations, and so at its core, communication is still
 one-way.
 
-### Blogs are owned and branded ###
+## Blogs are owned and branded ##
 
 > "I just don't see conversation flourishing to its full potential in the highly
 > owned and branded environment of the blog."
@@ -58,7 +58,7 @@ as quotes. I filter comments and try to integrate them as extensions of my own
 writings. They aren't my words or my ideas, but I want them to fit as naturally
 into my personal space as they possibly can.
 
-### Blogs can converse in their own space ###
+## Blogs can converse in their own space ##
 
 > "What makes blogs cool is that they are one-way communication-tools with
 > built-in dominoe effect. This easy to use, short genre is perfect for picking
@@ -98,7 +98,7 @@ directly color the material that gets posted to their blogs. So anyone doing
 research might get left in the dark simply because they're not privy to the
 entire conversation.
 
-### Blogs are the future ###
+## Blogs are the future ##
 
 > "...I think the key is to look at the blog _as a path towards a better
 > designed conversation space_, not as the conversation space itself."
@@ -136,7 +136,7 @@ of RSS and Atom, so it's not that big a jump from where we're headed now.
 If I can get all my information in a single format, I aught to be able to
 produce information that way as well.
 
-### Final thoughts ###
+## Final thoughts ##
 
 My not understand the conversation space you're operating in isn't a bad thing.
 My desire for a more flexible future-proof conversation space isn't bad either.
