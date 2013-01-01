@@ -1,8 +1,9 @@
 <!--
-Title: Optimizing binary search
-Created: 13 April 2006 - 8:49 am
-Modified: 14 January 2007 - 7:54 pm
-Tags: coding
+title: Optimizing binary search
+created: 13 April 2006 - 8:49 am
+updated: 14 January 2007 - 7:54 pm
+slug: binary-search
+tags: coding
 -->
 
 An engineer comes in to work one day and finds that his boss has left him a little piece of Ruby code.
