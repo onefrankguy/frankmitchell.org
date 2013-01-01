@@ -1,8 +1,9 @@
 <!--
-Title: Candy cane cookies
-Created: 20 January 2005 - 9:40 am
-Modified: 20 January 2005 - 9:47 am
-Tags: recipes
+title: Candy cane cookies
+created: 20 January 2005 - 9:40 am
+updated: 20 January 2005 - 9:47 am
+slug: candy-canes
+tags: recipes
 -->
 
 ### Background ###
