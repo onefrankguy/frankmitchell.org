@@ -1,8 +1,9 @@
 <!--
 title: Forgetful machines
-date: 5 December 2004
+created: 5 December 2004 - 6:06 pm
+updated: 5 December 2004 - 6:06 pm
 slug: forgetful-machines
-tags: unfinished
+tags: ai, unfinished
 -->
 
 Reading Anne Galloway's post about [a forgetting machine][] got me thinking
