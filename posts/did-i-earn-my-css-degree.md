@@ -1,8 +1,9 @@
 <!--
-Title: Did I earn my CS degree?
-Created: 5 March 2006 - 7:53 am
-Modified: 4 April 2006 - 7:56 am
-Tags: cs
+title: Did I earn my CS degree?
+created: 5 March 2006 - 7:53 am
+updated: 4 April 2006 - 7:56 am
+slug: cs-degree
+tags: cs
 -->
 
 I used to advocate [teaching Ruby in schools][rubyinschools]. Why force students to struggle with C when they could be learning a "more useful" language? I was wrong.
