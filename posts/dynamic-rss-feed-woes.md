@@ -1,8 +1,9 @@
 <!--
-Title: Dynamic RSS feed woes
-Created: 28 October 2004 - 6:02 am
-Modified: 31 October 2004 - 8:06 am
-Tags: elimossinary
+title: Dynamic RSS feed woes
+created: 28 October 2004 - 6:02 am
+updated: 31 October 2004 - 8:06 am
+slug: rss-feed
+tags: elimossinary
 -->
 
 
