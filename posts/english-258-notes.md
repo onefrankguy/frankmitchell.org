@@ -9,7 +9,7 @@ tags: writing
 
 Notes from my English 258 class, Literature of the Western Civilization. Personal stuff full of misspellings. Note to self: see if we can integrate the Apple spell checker (like Mail has) into my notes. Maybe switch to a different editor?
 
-<p class="ireview"><a  title="Brian Wilkie, James Hurt: Literature of the Western World Volume II (via Prentice Hall)" href="http://vig.prenhall.com/catalog/academic/product/1,,0130186678,00.html"><img src="/ccs/posts/english258notes.jpg" alt="Dust jacket for &quot;Literature of the Western World Volume II&quot; (via Prentice Hall)" title="Brian Wilkie, James Hurt: Literature of the Western World Volume II (via Prentice Hall)" width="200px" height="314px" /></a></p>
+<p class="ireview"><a title="Brian Wilkie, James Hurt: Literature of the Western World Volume II (via Prentice Hall)" href="http://vig.prenhall.com/catalog/academic/product/1,,0130186678,00.html"><img src="/images/english-258-notes.jpg" alt="Dust jacket for &quot;Literature of the Western World Volume II&quot; (via Prentice Hall)" title="Brian Wilkie, James Hurt: Literature of the Western World Volume II (via Prentice Hall)" width="200px" height="314px" /></a></p>
 
 ### 4 November 2004 ###
 
