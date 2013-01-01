@@ -1,11 +1,12 @@
 <!--
 title: Deep nesting and iteration
-date: 12 May 2005
+created: 9 May 2005 - 7:34 am
+updated: 12 May 2005 - 7:08 am
 slug: deep-nesting
-tags: writing
+tags: coding
 -->
 
-A quote from [Manifesto of the Programmer Liberation Front][]:
+A quote from [Manifesto of the Programmer Liberation Front][mplf]:
 
 > "In Science and Math, formulas are typically one-liners. Even small programs
 > are far larger than any mathematical statement. Expression-based languages
@@ -21,7 +22,7 @@ deep. At the most, it goes to 4, but that's only when multiple classes are
 wrapped in a method and I have to use an explicit loop. I can't say the same for
 my C++ or Scheme code. There's a lot of appeal in a language that provides
 common iteration techniques: `collect`, `select`, `reduce`, `find`, `find_all`,
-etc.  Internal iteration removes a lot of the deep nesting that necessary in
+etc. Internal iteration removes a lot of the deep nesting that necessary in
 languages like Scheme.
 
 But the problem with internal iterators is that they typically don't allow for
@@ -36,15 +37,14 @@ Some links via Dave (the resident Lisp guru):
 * <http://lispworks.com/documentation/HyperSpec/Body/f_map.htm#map>
 
 > "Also, I'm not sure exactly what is meant by depth of nesting. In Lisp, one
-> explicitly writes out the parse tree (to facilitate programmatic
+> explicitly writes out the parse tree (to facilitate  programmatic
 > transformations of code), while much of that is implicit in a more
-> heavily-syntaxed language like Smalltalk or Ruby. This is what allows the
-> creation of macros such as LOOP that I linked to. [See links above.]
-
+> heavily-syntaxed language like Smalltalk or Ruby. This is  what allows the
+> creation of macros such as LOOP that I linked to. [See links above.]>
 > Interestingly, Lisp meets every criterion on that site except for the
 > prohibition of nesting. However, well-written lisp is in lots of small
-> functions that aren't too deep. My guess is that people don't like Lisp
-> because they're first exposed to Scheme and because it's new and different."
+> functions that aren't too deep. My guess is that people don't  like Lisp
+> because they're first exposed to Scheme  and because it's  new and different."
 
 The more I code, the more I realize you pick the right language for the job. I
 was messing around with coding a transrational number class in Ruby the other
@@ -55,5 +55,5 @@ just a list of sixteen pairs.
 Simple. Now all I need is a Scheme interpreter in Ruby, then I could have my
 cake and eat it too.
 
-[Manifesto of the Programmer Liberation Front]: http://alarmingdevelopment.org/index.php?p=5 "Jonathan Edwards (Alarming Development): Manifest of the Programmer Liberation Front"
+[mplf]: http://alarmingdevelopment.org/index.php?p=5 "Jonathan Edwards (Alarming Developlment): Manifesto of the Programmer Liberation Front"
 [generators]: http://onestepback.org/articles/same_fringe/ "Jim Weirich (one, step, back): The Same Fringe Problem"
