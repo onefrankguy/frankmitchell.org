@@ -1,8 +1,9 @@
 <!--
-Title: Filtering tagged spaces
-Created: 28 December 2004 - 10:40 am
-Modified: 31 December 2004 - 5:24 pm
-Tags: searching
+title: Filtering tagged spaces
+created: 28 December 2004 - 10:40 am
+updated: 31 December 2004 - 5:24 pm
+slug: tag-ui
+tags: searching
 -->
 
 ### Word to the hurried ###
