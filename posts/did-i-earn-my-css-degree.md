@@ -37,9 +37,9 @@ like Microsoft are insisting that people like my mother learn to write code.
 Ultimately, any fault in my education lies with me. So I guess it's about time
 to start reading the [wizard book][].
 
-### Conversations ###
+## Conversations ##
 
-> ##### 18 March 2006 ####
+### 18 March 2006 ###
 
 > "Take heart. You recognize what you view as deficiencies in your education. That
 > never ends. Some of that you'll address by reading. Some of that you'll address
