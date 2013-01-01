@@ -1,8 +1,9 @@
 <!--
-Title: English 258 notes
-Created: 4 November 2004 - 9:30 am
-Modified: 9 December 2004 - 9:22 am
-Tags: writing
+title: English 258 notes
+created: 4 November 2004 - 9:30 am
+updated: 9 December 2004 - 9:22 am
+slug: western-literature
+tags: writing
 -->
 
 
