@@ -1,8 +1,9 @@
 <!--
-Title: Types in Ruby
-Created: 1 April 2007 - 10:13 am
-Modified: 1 April 2007 - 10:13 am
-Tags: ruby
+title: Types in Ruby
+created: 1 April 2007 - 10:13 am
+updated: 1 April 2007 - 10:13 am
+slug: ruby-types
+tags: ruby
 -->
 
 ### Conversations at work ###
