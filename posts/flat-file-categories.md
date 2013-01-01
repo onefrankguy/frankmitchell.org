@@ -1,8 +1,9 @@
 <!--
 title: Flat file categories
-date: 16 November 2004
+created: 16 November 2004 - 1:31 pm
+updated: 16 November 2004 - 1:31 pm
 slug: flat-data
-tags: unfinished
+tags: searching, unfinished
 -->
 
 Just finished reading through some of the [Design Engaged 2004][] notes that are
@@ -19,5 +20,5 @@ standardized metadata for a personal infocloud. More interesting however, are
 > "categories: not a structured system, but hackable flat data"
 
 [Design Engaged 2004]: http://www.heyotwell.com/engaged2004/ "Andrew Otwell: A meeting of various designers from all over the globe (via Google)"
-[That Syncing Feeling]: http://vanderwal.net/essays/designengaged/041112/ "Thomas Vander Wall: That Syncing Feeling (via Anne Galloway, purselipsquarejaw.org)"
-[Timo Arnall's notes]: http://web.archive.org/web/20061011151913/http://www.elasticspace.com/index.php?id=57 "Timo Arnall: Design Engaged 2004 (via Anne Galloway, purselipsquarejaw.org)"
+[That Syncing Feeling]: http://vanderwal.net/essays/designengaged/041112/ "Thomas Vander Wal: That Syncing Feeling (via Anne Galloway, purselipsquarejaw.org)"
+[Timo Arnall's notes]: http://www.elasticspace.com/index.php?id=57 "Timo Arnall: Design Engaged 2004 (via Anne Galloway, purselipssquarejaw.org)"
