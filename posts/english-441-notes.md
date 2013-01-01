@@ -1,11 +1,12 @@
 <!--
-Title: English 441 notes
-Created: 30 August 2004 - 8:36 am
-Modified: 16 December 2004 - 8:14 pm
-Tags: language
+title: English 441 notes
+created: 30 August 2004 - 8:36 am
+updated: 16 December 2004 - 8:14 pm
+slug: study-language
+tags: language
 -->
 
-<p class="ireview"><a title="Edward Finegan: Language: Its Structure and Use, 4th ed. (via amazon.com)" href="http://www.amazon.com/exec/obidos/tg/detail/-/0838407943/qid=1100719089/sr=1-2/ref=sr_1_2/103-3536419-1280600"><img src="/ccs/posts/english441notes.jpg" alt="Dust jacket for &quot;Language: Its Structure and Use&quot; (via)" title="Edward Finegan: Language: Its Structure and Use, 4th ed. (via amazon.com)" width="200px" height="251px" /></a></p>
+<p class="ireview"><a title="Edward Finegan: Language: Its Structure and Use, 4th ed. (via amazon.com)" href="http://www.amazon.com/exec/obidos/tg/detail/-/0838407943/qid=1100719089/sr=1-2/ref=sr_1_2/103-3536419-1280600"><img src="/images/english-441-notes.jpg" alt="Dust jacket for &quot;Language: Its Structure and Use&quot; (via)" title="Edward Finegan: Language: Its Structure and Use, 4th ed. (via amazon.com)" width="200px" height="251px" /></a></p>
 
 
 
