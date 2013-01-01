@@ -1,11 +1,12 @@
 <!--
 title: Towards simpler user interfaces
-date: 23 March 2007
+created: 23 March 2007 - 9:55 pm
+updated: 23 March 2007 - 10:29 pm
 slug: simple-ui
-tags: writing
+tags: coding
 -->
 
-I realized why I like [twittering][] and posting to [del.icio.us][]. I's really,
+I realized why I like [twittering][] and posting to [del.icio.us][]. It's really,
 really simple. Click. Type. Press return.
 
 In some ways, posting here is almost that simple. Open a text file. Type stuff.
@@ -24,11 +25,11 @@ And in the end, isn't it only the important that matters?
 
 ## Further ##
 
-1. "[Deal With It][gruber]" by John Gruber
-2. "[Three Hypotheses of Human Interface Design][tantek]" by Tantek Celik
+1. "[Deal With It][]" by John Gruber
+2. "[Three Hypotheses of Human Interface Design][]" by Tantek Celik
 
 [twittering]: http://twitter.com/elimossinary "Frank Mitchell (Twitter): elimossinary"
 [del.icio.us]: http://del.icio.us/elimossinary "Frank Mitchell (del.icio.us): elimossinary"
 [Twitter]: http://twitter.com/ "Obvious (Twitter): What are you doing?"
-[gruber]: http://daringfireball.net/2007/03/deal_with_it "John Gruber (Daring Fireball): Deal With It"
-[tantek]: http://tantek.com/log/2007/02.html#d19t1813 "Tantek Celik (Tantek's Thoughts): Three Hypothesis of Human Interface Design"
+[Deal With It]: http://daringfireball.net/2007/03/deal_with_it "John Gruber (Daring Fireball): Deal With It"
+[Three Hypotheses of Human Interface Design]: http://tantek.com/log/2007/02.html#d19t1813 "Tantek Celik (Tantek's Thoughts): Three Hypotheses of Human Interface Design"
