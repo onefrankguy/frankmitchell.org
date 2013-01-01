@@ -1,8 +1,9 @@
 <!--
-Title: Describing Your Way to Decryption
-Created: 3 May 2005 - 4:41 pm
-Modified: 3 May 2005 - 4:41 pm
-Tags: security
+title: Describing Your Way to Decryption
+created: 3 May 2005 - 4:41 pm
+updated: 3 May 2005 - 4:41 pm
+slug: ste-decipher
+tags: security
 -->
 
 Al's talk to the ACM on STE and decryption.
