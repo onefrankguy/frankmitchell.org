@@ -1,8 +1,9 @@
 <!--
-Title: Dialog this good
-Created: 20 December 2004 - 8:52 pm
-Modified: 30 December 2004 - 7:00 pm
-Tags: writing
+title: Dialog this good
+created: 20 December 2004 - 8:52 pm
+updated: 30 December 2004 - 7:00 pm
+slug: good-dialog
+tags: writing
 -->
 
 ###...should be illegal ###
