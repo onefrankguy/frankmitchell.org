@@ -1,6 +1,7 @@
 <!--
 title: Earthworm
-date: 5 September 2004
+created: 5 September 2004
+updated: 5 September 2004
 slug: earthworm
 tags: poetry
 -->
