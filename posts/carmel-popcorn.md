@@ -1,8 +1,9 @@
 <!--
-Title: Carmel popcorn
-Created: 26 December 2004 - 5:02 am
-Modified: 26 December 2004 - 5:30 am
-Tags: recipes
+title: Carmel popcorn
+created: 26 December 2004 - 5:02 am
+updated: 26 December 2004 - 5:30 am
+slug: carmel-popcorn
+tags: recipes
 -->
 
 ### Background ###
