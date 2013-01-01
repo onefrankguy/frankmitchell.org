@@ -1,8 +1,18 @@
-<ul>
-<% @posts.each do |post| %>
-<li>
-<a title="Read &ldquo;<%= post['title'] %>&rdquo;" href="<%= post['url'] %>"><%= post['title'] %></a>
-<time datetime="<%= post['date']['time'] %>" title="<%= post['date']['title'] %>"><%= post['date']['abbr'] %></time></td>
-</li>
-<% end %>
-</ul>
+<section id="related" class="archive">
+  <a class="header" title="Read more words" href="/archive">Words</a>
+  <p>The following snippets are tenuously related to what you just read. You might like them. Rather see things chronologically? Dig through <a title="Read more words" href="/archive">the archives</a>.</p>
+  <ul>
+  <% @posts.each do |post| %>
+    <li>
+      <a title="Read &ldquo;<%= post['title'] %>&rdquo;" href="<%= post['url'] %>"><%= post['title'] %></a>
+      <time datetime="<%= post['date']['time'] %>" title="<%= post['date']['title'] %>"><%= post['date']['abbr'] %></time></td>
+    </li>
+  <% end %>
+  </ul>
+</section>
+<script src="/js/related.js"></script>
+<script>
+  if (window.Elimossinary) {
+    Elimossinary.relate("<%= @url %>");
+  }
+</script>
