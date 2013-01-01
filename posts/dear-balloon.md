@@ -1,6 +1,7 @@
 <!--
 title: Dear balloon,
-date: 3 November 2004
+created: 26 September 2004 - 4:23 pm
+updated: 3 November 2004 - 7:27 am
 slug: dear-balloon
 tags: poetry
 -->
