@@ -1,8 +1,9 @@
 <!--
-Title: Esperanto lexicon
-Created: 5 December 2004 - 11:05 am
-Modified: 6 December 2004 - 8:38 pm
-Tags: esperanto
+title: Esperanto lexicon
+created: 5 December 2004 - 11:05 am
+updated: 6 December 2004 - 8:38 pm
+slug: esperanto-dictionary
+tags: esperanto
 -->
 
 ### Pronunciation ###
