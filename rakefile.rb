@@ -204,8 +204,7 @@ def related_posts info
     end
   end
   posts.shuffle!
-  posts = posts[0..4]
-  archive_posts posts
+  posts[0..4]
 end
 
 def write_text path, text
@@ -271,7 +270,7 @@ manifest.each do |info|
   file info['content']['post'] => %W[
     #{info['content']['raw']}
     templates/post.rhtml
-    templates/archive.rhtml
+    templates/related.rhtml
   ] do |t|
     @url = info['url']
     @title = info['title']
@@ -279,7 +278,7 @@ manifest.each do |info|
     @date['abbr'] = @date['full'] unless @date['full'].nil?
     @content = File.read info['content']['raw']
     @posts = related_posts info
-    @related = parse_template 'archive'
+    @related = parse_template 'related'
     html = parse_template 'post'
     write_text t.name, html
   end

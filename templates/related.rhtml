@@ -1,0 +1,8 @@
+<ul>
+<% @posts.each do |post| %>
+<li>
+<a title="Read &ldquo;<%= post['title'] %>&rdquo;" href="<%= post['url'] %>"><%= post['title'] %></a>
+<time datetime="<%= post['date']['time'] %>" title="<%= post['date']['title'] %>"><%= post['date']['abbr'] %></time></td>
+</li>
+<% end %>
+</ul>
