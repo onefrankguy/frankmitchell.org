@@ -1,8 +1,9 @@
 <!--
-Title: Fixing Rose's laptop
-Created: 21 December 2005 - 10:16 am
-Modified: 21 December 2005 - 11:27 am
-Tags: windows
+title: Fixing Rose's laptop
+created: 21 December 2005 - 10:16 am
+updated: 21 December 2005 - 11:27 am
+slug: speed-up
+tags: windows
 -->
 
 The Rose complains that her laptop is slow. I sit down to take a look.
