@@ -1,8 +1,9 @@
 <!--
-Title: You will see this again
-Created: 13 December 2004 - 8:18 pm
-Modified: 5 January 2005 - 9:08 am
-Tags: infocloud unfinished
+title: You will see this again
+created: 13 December 2004 - 8:18 pm
+modified: 5 January 2005 - 9:08 am
+slug: infocloud
+tags: infocloud, unfinished
 -->
 
 <http://seattletimes.nwsource.com/pacificnw/2004/1128/cover.html>
