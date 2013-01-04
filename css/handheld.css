@@ -131,6 +131,9 @@ a:hover, a:active {
 }
 
 /* LAYOUT */
+body {
+  padding: 0 0.25em 0;
+},
 section,
 article,
 footer {
