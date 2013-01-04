@@ -1,11 +1,12 @@
 <!--
 title: "GTD: Keeping lists"
-date: 15 January 2005
+created: 15 January 2005 - 8:16 am
+updated:  15 January 2005 - 8:16 am
 slug: keeping-lists
-tags: unfinished
+tags: gtd unfinished
 -->
 
-Moleskine hacks
+### Moleskine hacks ###
 
 <http://www.jerrybrito.com/blog/000458.shtml>
 
@@ -13,7 +14,7 @@ Moleskine hacks
 
 <http://www.ktoddstorch.com/business/2005/01/moleskine_love.html>
 
-Other items
+### Other items ###
 
 <http://www.rohdesign.com/weblog/archives/000412.html>
 
