@@ -1,8 +1,9 @@
 <!--
-Title: Halvah
-Created: 15 January 2005 - 7:52 am
-Modified: 8 February 2005 - 10:10 am
-Tags: recipes
+title: Halvah
+created: 15 January 2005 - 7:52 am
+updated: 8 February 2005 - 10:10 am
+slug: halvah
+tags: recipes
 -->
 
 ### Background ###
