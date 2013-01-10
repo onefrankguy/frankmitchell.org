@@ -1,8 +1,8 @@
 <!--
-Title: Geology 101 notes
-Created: 25 August 2004 - 10:31 am
-Modified: 2 November 2004 - 7:35 am
-Tags: geology
+title: Geology 101 notes
+created: 25 August 2004 - 10:31 am
+updated: 2 November 2004 - 7:35 am
+tags: geology
 -->
 
 What follows are my lecture notes from Mickey Gunther's Geology 101 course. As these are personal notes, please don't expect them to be complete in any way, shape, or form. They're here as an illustrative example of several salient points that will eventually be elaborated on when I find the time.
