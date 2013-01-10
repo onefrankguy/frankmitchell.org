@@ -1,8 +1,8 @@
-<!--
-Title: Good ol' fan missions
-Created: 5 November 2004 - 6:59 am
-Modified: 5 November 2004 - 7:11 am
-Tags: thief unfinished
+
+title: Good ol' fan missions
+created: 5 November 2004 - 6:59 am
+updated: 5 November 2004 - 7:11 am
+tags: thief, unfinished
 -->
 
 ### Threads of ideas ###
