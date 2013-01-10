@@ -1,8 +1,8 @@
 <!--
-Title: Getting out of writer's block
-Created: 18 January 2005 - 8:29 am
-Modified: 18 January 2005 - 8:53 am
-Tags: writing
+title: Getting out of writer's block
+created: 18 January 2005 - 8:29 am
+updated: 18 January 2005 - 8:53 am
+tags: writing
 -->
 
 Writer's block is a plague, a gigantic suffering that leaves its victims dull and uninspired. But it doesn't have to be that way. In his article, ["Hack your way out of writer's block"][hwb], Merlin Mann provides a neat little list for getting up and out of the gutter.
