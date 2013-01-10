@@ -1,8 +1,8 @@
 <!--
-Title: Generate transparent relationships
-Created: 21 May 2005 - 12:57 pm
-Modified: 21 May 2005 - 1:12 pm
-Tags: interfaces
+title: Generate transparent relationships
+created: 21 May 2005 - 12:57 pm
+updated: 21 May 2005 - 1:12 pm
+tags: interfaces
 -->
 
 I was messing around with fravia's [Web Economy Bullshit Generator][webg] and I happened to generate the title of this page:
