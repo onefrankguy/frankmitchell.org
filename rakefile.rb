@@ -73,6 +73,13 @@ file 'manifest.json' => [Dir['posts/*.md'], __FILE__].flatten do |t|
     key = b['title'] <=> a['title'] if key == 0
     key
   end
+  urls = {}
+  posts.each do |info|
+    url = info['url']
+    raw = info['content']['original']
+    abort "#{urls[url]} and #{raw} have the same URL" if urls.has_key? url
+    urls[url] = raw
+  end
   write_json t.name, posts
 end
 
