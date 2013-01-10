@@ -1,8 +1,9 @@
 <!--
-Title: Unplug the web
-Created: 11 February 2006 - 9:23 am
-Modified: 11 February 2006 - 9:34 am
-Tags: ajax
+title: Unplug the web
+created: 11 February 2006 - 9:23 am
+modified: 11 February 2006 - 9:34 am
+slug: unplugged
+tags: ajax
 -->
 
 The guys over at [Morfik][] got it right. I want to use [GMail][], but I want all my information to be there when I'm not online too. I want to be able to print a hard copy of my address book and stick it in the back of my Moleskine. I want paper convenience in a digital world. I want my applications to work with and without the internet.
