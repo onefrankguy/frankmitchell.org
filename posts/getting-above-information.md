@@ -1,8 +1,8 @@
 <!--
-Title: Getting above information
-Created: 4 January 2005 - 1:03 pm
-Modified: 4 January 2005 - 1:47 pm
-Tags: interfaces unfinished
+title: Getting above information
+created: 4 January 2005 - 1:03 pm
+updated: 4 January 2005 - 1:47 pm
+tags: interfaces, unfinished
 -->
 
 Are zooming user interfaces (ZUIs) a future for human machine interaction?
