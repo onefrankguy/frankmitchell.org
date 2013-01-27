@@ -2,7 +2,7 @@
 title: Learning Esperanto
 created: 5 December 2004 - 11:37 am
 updated: 8 December 2004 - 11:50 am
-slug: esperanto
+slug: esperanto-lessons
 tags: esperanto
 -->
 
