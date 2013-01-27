@@ -1,8 +1,9 @@
 <!--
-Title: Italian meatballs
-Created: 20 March 2006 - 6:18 am
-Modified: 20 March 2006 - 6:24 am
-Tags: recipes
+title: Italian meatballs
+created: 20 March 2006 - 6:18 am
+updated: 20 March 2006 - 6:24 am
+slug: italian-meatballs
+tags: recipes
 -->
 
 ### Background ###
