@@ -1,8 +1,9 @@
 <!--
-Title: Innovation occurs in hardware
-Created: 14 February 2006 - 7:05 am
-Modified: 14 February 2006 - 8:04 am
-Tags: interfaces
+title: Innovation occurs in hardware
+created: 14 February 2006 - 7:05 am
+updated: 14 February 2006 - 8:04 am
+slug: novel-hardware
+tags: interfaces
 -->
 
 Innovation occurs in hardware.
