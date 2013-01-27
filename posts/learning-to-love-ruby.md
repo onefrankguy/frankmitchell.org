@@ -1,8 +1,9 @@
 <!--
-Title: Learning to love Ruby
-Created: 6 January 2005 - 9:55 am
-Modified: 12 September 2005 - 8:56 pm
-Tags: ruby
+title: Learning to love Ruby
+created: 6 January 2005 - 9:55 am
+updated: 12 September 2005 - 8:56 pm
+slug: next-language
+tags: ruby
 -->
 
 ### Bit by the language bug ###
