@@ -2,6 +2,7 @@
 title: Make meaning
 created: 7 October 2005 - 6:46 am
 updated: 7 October 2005 - 6:48 am
+slug: make-meaning
 tags: marketing
 -->
 
