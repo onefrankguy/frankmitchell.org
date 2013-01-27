@@ -1,8 +1,8 @@
 <!--
-Title: I slept with the lights on
-Created: 3 April 2005 - 10:10 am
-Modified: 3 April 2005 - 10:31 am
-Tags: writing
+title: I slept with the lights on
+created: 3 April 2005 - 10:10 am
+updated: 3 April 2005 - 10:31 am
+tags: writing
 -->
 
 I slept with the lights on last night. Got back from seeing _Sin City_, talked with [the girlfriend][] on the phone, and curled up in bed with _House of Leaves_ and all the lights cranked.
