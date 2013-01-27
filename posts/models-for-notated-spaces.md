@@ -1,8 +1,9 @@
 <!--
-Title: Various models for annotated spaces
-Created: 12 December 2004 - 12:55 pm
-Modified: 13 December 2004 - 9:20 am
-Tags: infocloud
+title: Various models for annotated spaces
+created: 12 December 2004 - 12:55 pm
+updated: 13 December 2004 - 9:20 am
+slug: tagged-space
+tags: infocloud
 -->
 
 ### Introduction ###
