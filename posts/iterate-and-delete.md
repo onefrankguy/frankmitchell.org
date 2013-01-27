@@ -1,8 +1,9 @@
 <!--
 title: Iterate and delete
-date: 3 February 2005
+created: 3 February 2005 - 4:37 pm
+updated: 3 February 2005 - 4:45 pm
 slug: erase-remove
-tags: writing
+tags: coding
 -->
 
 Every once in a while, I stumble across really elegant solutions (in code) to
@@ -35,4 +36,4 @@ Dierk Ohlerich provides the following [solution][]:
 
 Sometimes, code is just sexy.
 
-[solution]: http://www.xyzw.de/c130.html "Dierk Ohlerich (xyzw.de) Iterate & Delete"
+[solution]: http://www.xyzw.de/c130.html "Dierk Ohlerich (xyzw.de): Iterate & Delete"
