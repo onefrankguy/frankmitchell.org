@@ -1,0 +1,101 @@
+/* Reset */
+html, body, div, span, h1, h2, h3, p, img, ol, li, em, strong, code, abbr, sup {
+	margin:0; padding:0; border:0; outline:0; font-size:100%; vertical-align:baseline; background:transparent;
+}
+body {
+	line-height:1;
+}
+a {
+	margin:0; padding:0; border:0; font-size:100%; vertical-align:baseline; background:transparent;
+}
+/* CA Print - Baseline font is 1em == 16px. Don't go over 600px (37.5em) wide. */
+body {
+	font: normal 100% Georgia, Times, "Times New Roman", serif;
+	background: #fff;
+	color: #000;
+	margin: 0 3em;
+}
+a {
+	color: #000;
+	text-decoration: none;
+}
+abbr[title] {
+	font-variant: small-caps;
+}
+abbr.letterspace {
+	letter-spacing: 0.1em;
+}
+em {
+	font-style: italic;
+}
+strong {
+	font-weight: bold;
+}
+code {
+	font-family: monospace;
+}
+sup {
+	font-size: 0.75em;
+	line-height: 1;
+	vertical-align: top;
+}
+h1, h2, h3 {
+	font-family: Times, "Times New Roman", serif;
+	font-weight: normal;
+}
+h1 {
+	font-size: 3em;
+	line-height: 0.5;
+	margin-top: 1em;
+	letter-spacing: 0.03125em;
+	word-spacing: -0.0625em;
+}
+h2 {
+	font-size: 1.5em;
+	line-height: 1;
+	margin-top: 1em;
+	letter-spacing: 0.03125em;
+	word-spacing: 0.0625em;
+}
+h3 {
+	font-size: 1.25em;
+	line-height: 1.2;
+	font-style: italic;
+	letter-spacing: 0.0625em;
+	margin-top: 1.2em;
+}
+h4 {
+	font: bold 1.125em/1.3333 Helvetica, Arial, sans-serif;
+	font-variant: small-caps;
+	margin-bottom: -1.3333em;
+	letter-spacing: 0.0625em;
+}
+p {
+	font-size: 1em;
+	line-height: 1.5;
+	margin-top: 1.5em;
+}
+.screenshot {
+	text-align: center;
+}
+#header {
+	margin: 0 auto;
+	position: relative;
+}
+#content {
+	margin: 1.5em auto 0 auto;
+}
+#disclaimer {
+	font-size: 0.75em;
+	line-height: 1.5;
+	margin: 3em auto 0 auto;
+}
+#footnotes {
+	display: inline-block;
+	border-top: 0.0625em solid black;
+	list-style-position: inside;
+	font-size: 1em;
+	line-height: 1.5;
+	padding: 1.5em 1.5em 0 0;
+	margin: 3em auto 1.5em auto;
+}

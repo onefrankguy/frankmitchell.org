@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content-type="utf-8" />
+	<title>Library Design in Chief Architect X3</title>
+	<meta name="author" content="Frank Mitchell" />
+	<meta name="robots" content="noindex, nofollow" />
+	<link rel="stylesheet" type="text/css" media="print, screen" href="print.css" />
+</head>
+<body>
+	<div id="header">
+		<h1>Library Design in Chief Architect X3</h1>
+		<h2>by Frank Mitchell</h2>
+	</div>
+	<div id="content">
+		<h3>Introduction</h3>
+		<p>One of the projects I worked on at <a title="Professional Home Desing Software by Chief Architect" href="http://chiefarchitect.com/">Chief Architect,</a><sup>1</sup> was a redesign of the Library Browser. This was the part of the software that allowed users to collect, organize, and search for the <abbr title="Three-Dimensional">3D</abbr> models they used in their architectural drawings. Cabinets, doors, windows, furniture, electrical fixtures, and other objects, were all candidates for storage in the library. It wasn&rsquo;t uncommon for users to have over 50,000 items, and the Library Browser was a part of the program they spent a great deal of time in, especially during the &ldquo;painting and populating&rdquo; phases of a project.</p>
+
+		<h3>Browsing</h3>
+		<h4>Keep it familiar</h4>
+		<p>While my long term goals for the Library Browser included an interactive iTunes style interface, I wasn&rsquo;t prepared to completely overhaul the <abbr title="User Interface">UI</abbr> in a single iteration. People like it best if change is kept to a minimum. It gives them time to adjust to new things. For the X3 version of the Library Browser, I decided to integrate searching into the library directly, and provide a means for downloading library objects through <abbr class="letterspace" title="Really Simple Syndication">RSS</abbr> feeds. Everything else was going to stay the same.</p>
+		<p class="screenshot"><img alt="Basic layout of the X3 Library Browser: browse, thumbnail preview, and live preview" title="Basic layout of the X3 Library Browser: browse, thumbnail preview, and live preview" src="LibrarySelection.png" /></p>
+		<p>The interface above is familiar to any previous user of Chief Architect&rsquo;s software. It includes a tree control on the left for browsing, a thumbnail preview window to the upper right, a rendered preview window to the lower right, and toolbar buttons down at the bottom. What&rsquo;s new is the search bar at the top, and the word &ldquo;Preview&rdquo; overlayed on top the thumbnail views.</p>
+		<h4>Make it friendly</h4>
+		<p>Because the search and download interfaces was going to be new, I wanted to make sure the browsing experience was as enjoyable as possible. People tend to be more open to new experiences if you make an existing experience better. I made the interface use the system selected fonts and colors, added support for multiple selection of items in the tree control, allowed for drag-n-drop reorganization, let items have shortcuts, and created a Trash where items would go when they were deleted. While these are all familiar and simple concepts in the Windows <abbr title="Operating System">OS</abbr>, they were new ideas for the Library Browser.</p>
+		<h4>Little details matter</h4>
+		<p>I spent a lot of time making sure every button had an informative tooltip, that the Trash showed full and empty icons when appropriate, and that the thumbnail previews were sized and spaced appropriately. While people may not consciously notice such details, subconsciously they matter, adding up to create an overall feel of a polished product.</p>
+		<p>Good design is as much about what you take out as you leave in. I removed a lot of the &ldquo;information&rdquo; popups that appeared in previous versions. Messages like &ldquo;Object could not be placed in plan.&rdquo; and &ldquo;Are you sure you want to delete this item?&rdquo; went away. Instead, highlights and icon changes were used indicate unusable items, and the Trash served as a failsafe against accidental deletion.</p>
+
+		<h3>Searching</h3>
+		<p>Previous versions of the Library Browser used a separate search window. It showed search results as a list, allowed you to filter them in various ways, and took you to an item in the Library Browser when you clicked on a search result. X3&rsquo;s Library Browser did away with that by integrating search directly into the browsing experience.</p>
+		<h4>Live search</h4>
+		<p>The search bar at the top of the Library Browser was live. As soon as you started typing, it would switch over to search view and start showing you search results. The icon for the magnifying glass search button would change to a tree view to indicate you could return to a browsing view by clicking it.</p>
+		<p class="screenshot"><img alt="Live search results in the X3 Library Browser" title="Live search results in the X3 Library Browser" src="LibraryLiveSearch.png" />
+		<h4>Search filters</h4>
+		<p>Clicking the button next to the search icon (a folder with a magnifying glass) showed you filtering options for more advanced searching. Clicking the &ldquo;Filter by:&rdquo; checkbox added more advanced options. You could filter by object type, style, and manufacturer. Filters could be added and removed with the plus and minus buttons. Like the text, filters were live too, so you could see the results change as you applied them. As results changed, a tooltip popped up to indicate how many results the current search returned.</p>
+		<p class="screenshot"><img alt="Advanced filtered search results in the X3 Library Browser" title="Advanced filtered search results in the X3 Library Browser" src="LibrarySearchFilterBy.png" /></p>
+		<h4>From searching to browsing</h4>
+		<p>If you wanted to find a searched item in the browser, you simply right clicked on it and selected &ldquo;Show in Browser&rdquo; from the context menu. If you unchecked the &ldquo;Filter by:&rdquo; box, the active filters would be disabled instead of vanishing, which made it easy to toggle filtering on and off. The filtering panel also persisted if you switched back to the browser view so you could easily toggle to and from search results.</p>
+		<p class="screenshot"><img alt="Disabled filtered search results in the X3 Library Browser" title="Disabled filtered search results in the X3 Library Browser" src="LibrarySearchToggled.png" /></p>
+
+		<h3>Acquiring New Content</h3>
+		<p>Early versions of Chief Architect stored library content in .alb files, a custom packed binary format. For Chief Architect X2, I&rsquo;d created the notion of a .calibz file. It was a zipped SQLite database containing the <abbr title="Three Dimensional">3D</abbr> data for an object plus all the textures that object used. For Chief Architect X3, I extended that notion by allowing users to export a collection of library objects as a <abbr class="letterspace" title="Really Simple Syndication">RSS</abbr> feed and a set of .calibz files. This moved library content online, allowing it to be created, updated, and shared by anyone with an internet connection.</p>
+		<h4>Previewing objects</h4>
+		<p>When viewed in the Library Browser, objects that hadn&rsquo;t been downloaded would show up with the word &ldquo;Preview&rdquo; stamped across a prerendered image. Right clicking on an object or folder and selecting &ldquo;Download&rdquo; from the context menu triggered a background download of the object.</p>
+		<p class="screenshot"><img alt="Downloading objects in the X3 Library Browser" title="Downloading objects in the X3 Library Browser" src="LibraryDownload.png" /></p>
+		<h4>Controlling downloads</h4>
+		<p>During a download, a progress bar with pause/resume and stop buttons appeared at the bottom of the library browser. You could download multiple items, and each would get its own progress bar. This meant you could start one download of a big catalog, then continue to browse the library downloading objects on an as needed basis. Additionally, if you went to use an object that hand&rsquo;t been downloaded, a download of that object would start automatically.</p>
+		<h4>More little details</h4>
+		<p>Clicking the download progress bar caused the textual progress indicator to cycle through three states: percentage, x of y, and hidden. If an error occurred during download, a warning icon appeared above the progress bar. Clicking the icon would show you a report indicating what went wrong. As objects downloaded, notification messages were posted back to the main thread, so the Library Browser could update previews and icons.</p>
+
+		<h3>Post-mortem</h3>
+		<p>Looking back, and reflecting on user feedback after X3 was released, it wasn&rsquo;t the integrated live search or <abbr class="letterspace" title="Really Simple Syndication">RSS</abbr> download features the excited people the most. It was the little things: respect for system colors, tooltips on buttons, the trash can, multiple selection, drag-n-drop reorganization. That surprised me, because those weren&rsquo;t big ticket features.</p>
+		<p>But maybe that&rsquo;s what good design is, the summation of a bunch of little decisions.</p>
+	</div>
+	<p id="disclaimer">While the design above highlights my intentions while creating the Library Browser during the time I worked at Chief Architect, it may not reflect the current shipping product. Screenshots were taken from the trial version of Chief Architect Premier X3 running on Windows XP under a virtual machine. Your experience of the product may be different.</p>
+	<ol id="footnotes">
+		<li>http://chiefarchitect.com/</li>
+	</ol>
+</body>
+</html>

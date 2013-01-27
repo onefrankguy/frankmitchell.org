@@ -16,8 +16,6 @@ task :build => [
 :redcarpet,
 'public/js/related.js',
 'public/js/related.json',
-'public/css',
-'public/images',
 'public/index.html',
 'public/archive/index.html',
 'public/feed/.htaccess',
@@ -101,12 +99,11 @@ file 'public/js/related.json' => 'manifest.json' do |t|
   write_json t.name, json
 end
 
-file 'public/css' => Dir['css/*.*'] do |t|
-  copy_folder 'css', t.name
-end
-
-file 'public/images' => Dir['images/*.*'] do |t|
-  copy_folder 'images', t.name
+%w[ca css images litl].each do |name|
+  file "public/#{name}" => Dir["#{name}/*.*"] do |t|
+    copy_folder name, t.name
+  end
+  Rake::Task[:build].enhance ["public/#{name}"]
 end
 
 file 'public/feed/.htaccess' => 'templates/feed.htaccess.txt' do |t|
