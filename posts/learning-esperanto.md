@@ -1,8 +1,9 @@
 <!--
-Title: Learning Esperanto
-Created: 5 December 2004 - 11:37 am
-Modified: 8 December 2004 - 11:50 am
-Tags: esperanto
+title: Learning Esperanto
+created: 5 December 2004 - 11:37 am
+updated: 8 December 2004 - 11:50 am
+slug: esperanto
+tags: esperanto
 -->
 
 
