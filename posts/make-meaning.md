@@ -1,8 +1,8 @@
 <!--
-Title: Make meaning
-Created: 7 October 2005 - 6:46 am
-Modified: 7 October 2005 - 6:48 am
-Tags: marketing
+title: Make meaning
+created: 7 October 2005 - 6:46 am
+updated: 7 October 2005 - 6:48 am
+tags: marketing
 -->
 
 http://www.alwayson-network.com/comments.php?id=11962_0_1_0_C
