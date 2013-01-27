@@ -1,8 +1,8 @@
 <!--
-Title: Information Based Algorithmic Design
-Created: 19 April 2005 - 4:31 pm
-Modified: 19 April 2005 - 5:12 pm
-Tags: coding
+title: Information Based Algorithmic Design
+created: 19 April 2005 - 4:31 pm
+updated: 19 April 2005 - 5:12 pm
+tags: coding
 -->
 
 Notes from Dr. Hiromoto's presentation to the ACM.
