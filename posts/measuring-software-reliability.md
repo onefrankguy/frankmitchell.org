@@ -1,8 +1,8 @@
 <!--
-Title: Measuring software reliability
-Created: 2 February 2006 - 9:37 pm
-Modified: 2 February 2006 - 10:39 pm
-Tags: design
+title: Measuring software reliability
+created: 2 February 2006 - 9:37 pm
+updated: 2 February 2006 - 10:39 pm
+tags: design
 -->
 
 I attended a talk by John Munson entitled "Measuring Software Reliability". The gist of it was:
