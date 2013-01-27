@@ -1,8 +1,9 @@
 <!--
-Title: Killing referrer spam
-Created: 16 January 2005 - 11:12 am
-Modified: 16 January 2005 - 12:08 am
-Tags: spam
+title: Killing referrer spam
+created: 16 January 2005 - 11:12 am
+updated: 16 January 2005 - 12:08 am
+slug: filter-links
+tags: spam
 -->
 
 Personally, I don't find [referrer spam][rs] to be a problem. But then, I don't look at my referrer logs either. Still, there should be an easy and elegant solution to these sort of things. After all, it's your website; spammers have no right to litter it with their filth.
