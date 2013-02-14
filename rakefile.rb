@@ -166,7 +166,7 @@ def post_metadata post
     yaml << line.strip
   end
   info = YAML.load yaml.join("\n")
-  date = Time.parse(info['date'] || info['created'])
+  date = Time.parse(info['publish'] || info['date'] || info['created'])
   slug = info['slug'] || ''
   abort "No slug found for #{post}!" if slug.empty?
   tags = info['tags'].split(',').map { |tag| tag.strip }
