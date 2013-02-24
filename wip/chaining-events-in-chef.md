@@ -1,7 +1,7 @@
 <!--
 title: Chaining events in Chef
 created: 24 February 2013 - 1:30 pm
-updated: 24 February 2013 - 1:30 pm
+updated: 24 February 2013 - 2:34 pm
 publish: 26 February 2013
 slug: chef-events
 tags: coding, chef
