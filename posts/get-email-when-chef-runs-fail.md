@@ -1,7 +1,7 @@
 <!--
 title: Get email when Chef runs fail
 created: 27 February 2013 - 3:31 am
-updated: 27 February 2013 - 3:54 am
+updated: 27 February 2013 - 4:31 am
 publish: 5 March 2013
 slug: chef-handlers
 tags: coding, chef
@@ -9,29 +9,63 @@ tags: coding, chef
 
 One of my favorite parts of [Jenkins][] is email notifications. You get email
 both when a job fails, and when it goes back to being normal. Mimicing this
-functionality in [Chef][] is matter of using [exception and report handlers][]
+functionality in [Chef][] is a matter of using [exception and report handlers][]
 to send you email when a run fails or finishes.
 
 ## Writing your own handler ##
 
-    require 'time'
+Building a custom Chef hanlder is a matter of inheriting from the
+`Chef::Handler` class and overriding the `report` method.
 
     module BeFrank
       class SendEmail < Chef::Handler
         def report
-          if failed?
-            now = Time.now.utc.iso8601
-            subject = "Chef run failed on #{node.name} @ #{now}"
-            message = [run_status.formatted_exception]
-            message += Array(backtrace)
-            message = message.join("\n")
-            send_email subject, message
-          end
+        end
+      end
+    end
+
+Though really you want to get email sending working before you worry about
+getting reporting information out of Chef.
+
+    require 'net/smtp'
+
+    module BeFrank
+      class SendEmail < Chef::Handler
+        def report
         end
 
         private
 
-        def send_email subject, message
+        def send_email options = {}
+          options[:subject] ||= 'Hello from Chef'
+          options[:body] ||= '...'
+          options[:from] ||= 'chef@example.com'
+          options[:from_alias] ||= 'Chef Client'
+          options[:to] ||= 'you@example.com'
+          options[:server] ||= 'localhost'
+
+          from = options[:from]
+          to = options[:to]
+
+          message = <<-EOM
+          From: #{options[:from_alias]} <#{from}>
+          To: #{to}
+          Subject: #{options[:subject]}
+
+          #{options[:body]}
+          EOM
+
+          message = unindent message
+
+          Net::SMTP.start(options[:server]) do |smtp|
+            smtp.send_message message, from, to
+          end
+        end
+
+        def unindent string
+          first = string.scan /^\s*/
+          first = first.min_by { |l| l.length }
+          string.gsub /^#{first}/, ''
         end
       end
     end
