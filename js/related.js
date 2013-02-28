@@ -72,7 +72,7 @@ function buildRelated (url, manifest) {
     return Date.parse(b.date.time) - Date.parse(a.date.time)
   })
 
-  html += '<ul>'
+  html += ''
   for (i = 0; i < related.length; i += 1) {
     html += '<li>'
     html += '<a'
@@ -85,7 +85,7 @@ function buildRelated (url, manifest) {
     html += '>' +related[i].date.abbr+ '</time>'
     html += '</li>'
   }
-  html += '</ul>'
+  html += ''
 
   related = document.getElementById('related')
   if (related && related.hasChildNodes()) {
