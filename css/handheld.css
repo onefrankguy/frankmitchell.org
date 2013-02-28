@@ -222,7 +222,7 @@ a.header:hover {
 .archive ul {
   display: table;
   max-width: 33em;
-  margin: 0 auto;
+  margin: 0 auto 1.5em auto;
 }
 .archive li {
   list-style: none;
@@ -331,4 +331,36 @@ abbr[title="and"] {
   line-height: 0;
   position: relative;
   vertical-align: baseline;
+}
+
+/* DECORATION */
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.shuffle {
+  position: absolute;
+  right: 1.5em;
+  bottom: 1.5em;
+  border: 0.0625em solid #19223b;
+  border-radius: 2em;
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5;
+  text-align: center;
+  overflow: hidden;
+  cursor: default;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: bold;
+  color: #19223b;
+}
+.shuffle:hover {
+  text-decoration: none;
+  border-color: #751534;
 }
