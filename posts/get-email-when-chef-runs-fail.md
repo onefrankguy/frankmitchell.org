@@ -1,7 +1,7 @@
 <!--
 title: Get email when Chef runs fail
 created: 27 February 2013 - 3:31 am
-updated: 2 March 2013 - 8:44 am
+updated: 2 March 2013 - 9:09 am
 publish: 5 March 2013
 slug: chef-handlers
 tags: coding, chef
@@ -153,6 +153,10 @@ successful, send out a message saying everything's okay.
       end
     end
 
+Did you notice the abuse of explict naming for core Ruby classes? Some of the
+Chef code (like the [file resource class][]) conflicts with the naming for
+core Ruby classes during a run. Prefixing them with `::` avoids those errors.
+
 ## Installing your handler ##
 
 The [chef_handler cookbook][] makes installing your custom handler easy.
@@ -173,6 +177,16 @@ code in as a [cookbook file resource][], and you're good to go.
       action :enable
     end
 
+Just include your `email_handler` cookbook in your base role to start getting
+email messages about the status of Chef runs.
+
+## Taking things further ##
+
+Notifications are useful for telling you when new nodes successfully come
+online, and when existing nodes break. Now that you know how to do it for email,
+you can push Chef run notifications into [CloudWatch][], [Graphite][], or your
+monitoring solution of choice.
+
 
 [Jenkins]: http://jenkins-ci.org/ "Various (Jenkins CI): Jenkins is an extendable open source continuous integration server."
 [Chef]: http://opscode.com/chef "Various (Opscode): Chef is an open-source automation platform built to address the hardest infrastructure challenges on the planet."
@@ -180,5 +194,8 @@ code in as a [cookbook file resource][], and you're good to go.
 [good programmers Google]: http://blog.framebase.io/post/43973262180/the-best-programmers-are-the-quickest-to-google "Vu Tran (Framebase.io): The best programmers are the quickest to Google"
 [how to send email]: http://blog.jerodsanto.net/2009/02/a-simple-ruby-method-to-send-emai/ "Jerod Santo: A simple Ruby method to send email"
 [unindenting HEREDOCs]: http://stackoverflow.com/questions/3772864/how-do-i-remove-leading-whitespace-chars-from-ruby-heredoc "Various (Stack Overflow): How do I remove whitespace chars from Ruby HEREDOC?"
+[file resource class]: https://github.com/opscode/chef/blob/master/lib/chef/resource/file.rb "Opscode (GitHub): Raw code for the Chef::Resource::File class"
 [chef_handler cookbook]: http://community.opscode.com/cookbooks/chef_handler "Various (Opscode): A cookbook for distributing and enabling Chef Execption and Report handlers"
 [cookbook file resource]: http://docs.opscode.com/chef/resources.html#cookbook-file "Various (Opscode): The cookbook_file resource is used to transfer files from the cookbook to the host."
+[CloudWatch]: http://aws.amazon.com/cloudwatch/ "Various (Amazon): Amazon CloudWatch provides monitoring for AWS cloud resources and the applications customers run on AWS."
+[Graphite]: http://graphite.wikidot.com/ "Various (Graphite): Graphite is a highly scalable realtime graphing system."
