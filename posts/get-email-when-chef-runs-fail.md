@@ -86,7 +86,7 @@ store your checksum.
 
         private
 
-        def send_new_email options = {}
+        def send_new_email data = {}
           cache = Chef::Config[:file_cache_path]
           cache = ::File.join cache, 'last_run.digest'
 
@@ -95,17 +95,20 @@ store your checksum.
             last_digest = ::File.read cache
           end
 
-          # This works around an issue in Ruby 1.8 where Hashes
-          # don't enumerate their values in a guaranteed order.
-          options = options.keys.sort.map { |k| [k, options[k]] }
-
-          this_digest = ::Digest::SHA256.hexdigest options.to_s
-          ::File.open(cache, 'w') do |io|
-            io << this_digest
+          # This works around an issue in Ruby 1.8
+          # where Hashes don't enumerate their values
+          # in a guaranteed order.
+          data = data.keys.sort.map do |k|
+            [k, data[k]]
           end
 
-          if this_digest != last_digest
-            send_email Hash[options]
+          digest = ::Digest::SHA256.hexdigest data.to_s
+          ::File.open(cache, 'w') do |io|
+            io << digest
+          end
+
+          if digest != last_digest
+            send_email ::Hash[data]
           end
         end
 
@@ -126,18 +129,21 @@ successful, send out a message saying everything's okay.
       class SendEmail < Chef::Handler
         def report
           now = Time.now.utc.iso8601
-          server = node.name
+          name = node.name
 
-          subject = "Chef run succeeded on #{server} @ #{now}"
+          subject = "Good Chef run on #{name} @ #{now}"
           message = "It's all good."
 
           if failed?
-            subject = "Chef run failed on #{server} @ #{now}"
-            message = "#{run_status.formatted_exception}\n"
+            subject = "Bad Chef run on #{name} @ #{now}"
+            message = [run_status.formatted_exception]
             message += Array(backtrace).join("\n")
           end
 
-          send_new_email :subject => subject, :body => message
+          send_new_email(
+            :subject => subject,
+            :body => message
+          )
         end
 
         private
