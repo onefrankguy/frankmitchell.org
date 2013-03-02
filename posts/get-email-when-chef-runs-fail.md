@@ -1,7 +1,7 @@
 <!--
 title: Get email when Chef runs fail
 created: 27 February 2013 - 3:31 am
-updated: 27 February 2013 - 5:00 am
+updated: 2 March 2013 - 8:44 am
 publish: 5 March 2013
 slug: chef-handlers
 tags: coding, chef
@@ -10,7 +10,7 @@ tags: coding, chef
 One of my favorite parts of [Jenkins][] is email notifications. You get email
 both when a job fails, and when it goes back to being normal. Mimicing this
 functionality in [Chef][] is a matter of using [exception and report handlers][]
-to send you email when a run fails or finishes.
+to send email when a run fails or finishes.
 
 ## Writing your own handler ##
 
@@ -128,7 +128,7 @@ successful, send out a message saying everything's okay.
     module BeFrank
       class SendEmail < Chef::Handler
         def report
-          now = Time.now.utc.iso8601
+          now = ::Time.now.utc.iso8601
           name = node.name
 
           subject = "Good Chef run on #{name} @ #{now}"
@@ -137,7 +137,7 @@ successful, send out a message saying everything's okay.
           if failed?
             subject = "Bad Chef run on #{name} @ #{now}"
             message = [run_status.formatted_exception]
-            message += Array(backtrace).join("\n")
+            message += ::Array(backtrace).join("\n")
           end
 
           send_new_email(
@@ -155,18 +155,21 @@ successful, send out a message saying everything's okay.
 
 ## Installing your handler ##
 
-The [chef_handler cookbook][] makes installing a custom handler easy.
+The [chef_handler cookbook][] makes installing your custom handler easy.
+Write up a new default `email_handler` recipe, drop your email handling
+code in as a [cookbook file resource][], and you're good to go.
 
     include_recipe 'chef_handler'
 
     handler_path = node['chef_handler']['handler_path']
+    handler = ::File.join handler_path, 'send_email'
 
-    cookbook_file "#{handler_path}/send_email.rb" do
+    cookbook_file "#{handler}.rb" do
       source 'send_emal.rb'
     end
 
     chef_handler 'BeFrank::SendEmail' do
-      source "#{handler_path}/send_email"
+      source handler
       action :enable
     end
 
@@ -178,3 +181,4 @@ The [chef_handler cookbook][] makes installing a custom handler easy.
 [how to send email]: http://blog.jerodsanto.net/2009/02/a-simple-ruby-method-to-send-emai/ "Jerod Santo: A simple Ruby method to send email"
 [unindenting HEREDOCs]: http://stackoverflow.com/questions/3772864/how-do-i-remove-leading-whitespace-chars-from-ruby-heredoc "Various (Stack Overflow): How do I remove whitespace chars from Ruby HEREDOC?"
 [chef_handler cookbook]: http://community.opscode.com/cookbooks/chef_handler "Various (Opscode): A cookbook for distributing and enabling Chef Execption and Report handlers"
+[cookbook file resource]: http://docs.opscode.com/chef/resources.html#cookbook-file "Various (Opscode): The cookbook_file resource is used to transfer files from the cookbook to the host."
