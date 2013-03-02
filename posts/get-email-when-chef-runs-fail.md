@@ -59,7 +59,7 @@ gets credit for [unindenting HEREDOCs][].
 
           message = unindent message
 
-          Net::SMTP.start(options[:server]) do |smtp|
+          ::Net::SMTP.start(options[:server]) do |smtp|
             smtp.send_message message, from, to
           end
         end
@@ -68,6 +68,82 @@ gets credit for [unindenting HEREDOCs][].
           first = string[/\A\s*/]
           string.gsub /^#{first}/, ''
         end
+      end
+    end
+
+If Chef is queued to run every couple of minutes, broken nodes will start
+to spam you. Spam sucks. To avoid it, hash the email and only send it if
+it's different from the last email you sent. You can use Chef's cache to
+store your checksum.
+
+    require 'net/smtp'
+    require 'digest'
+
+    module BeFrank
+      class SendEmail < Chef::Handler
+        def report
+        end
+
+        private
+
+        def send_new_email options = {}
+          cache = Chef::Config[:file_cache_path]
+          cache = ::File.join cache, 'last_run.digest'
+
+          last_digest = nil
+          if ::File.exists? cache
+            last_digest = ::File.read cache
+          end
+
+          # This works around an issue in Ruby 1.8 where Hashes
+          # don't enumerate their values in a guaranteed order.
+          options = options.keys.sort.map { |k| [k, options[k]] }
+
+          this_digest = ::Digest::SHA256.hexdigest options.to_s
+          ::File.open(cache, 'w') do |io|
+            io << this_digest
+          end
+
+          if this_digest != last_digest
+            send_email Hash[options]
+          end
+        end
+
+        # You don't really want to reread all that
+        # email handling code, do you?
+      end
+    end
+
+Chef provides a `failed?` method to check the status of the run. Grab the
+exception and backtrace from a failed run and email them out. If the run's
+successful, send out a message saying everything's okay.
+
+    require 'net/smtp'
+    require 'digest'
+    require 'time'
+
+    module BeFrank
+      class SendEmail < Chef::Handler
+        def report
+          now = Time.now.utc.iso8601
+          server = node.name
+
+          subject = "Chef run succeeded on #{server} @ #{now}"
+          message = "It's all good."
+
+          if failed?
+            subject = "Chef run failed on #{server} @ #{now}"
+            message = "#{run_status.formatted_exception}\n"
+            message += Array(backtrace).join("\n")
+          end
+
+          send_new_email :subject => subject, :body => message
+        end
+
+        private
+
+        # You don't really want to reread all that
+        # email hashing and handling code, do you?
       end
     end
 
