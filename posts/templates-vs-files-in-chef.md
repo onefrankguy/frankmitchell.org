@@ -1,7 +1,7 @@
 <!--
 title: Templates vs. cookbook files in Chef
 created: 12 March 2013 - 6:12 pm
-updated: 12 March 2013 - 6:12 pm
+updated: 12 March 2013 - 7:30 pm
 publish: 12 March 2013
 slug: chef-templates
 tags: coding, chef
