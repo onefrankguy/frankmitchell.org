@@ -1,7 +1,7 @@
 <!--
 title: Templates vs. cookbook files in Chef
 created: 12 March 2013 - 6:12 pm
-updated: 12 March 2013 - 7:30 pm
+updated: 12 March 2013 - 7:37 pm
 publish: 12 March 2013
 slug: chef-templates
 tags: coding, chef
@@ -28,4 +28,4 @@ I can reference it, and simplifies making changes when that need arrises.
 
 [Chef]: http://opscode.com/chef "Various (Opscode): Chef is an open-source automation platform built to address the hardest infrastructure challenges on the planet."
 [template resource]: http://docs.opscode.com/chef/resources.html#template  "Various (Opscode): The template resource is used to manage file contents with an embedded Ruby (erb) template."
-[cookbook file]: http://docs.opscode.com/chef/resources.html#cookbook_file "Various (Opscode): The cookbook_file resource is used to transfer files from a sub-directory to a specified path on the host."
+[cookbook file]: http://docs.opscode.com/chef/resources.html#cookbook-file "Various (Opscode): The cookbook_file resource is used to transfer files from a sub-directory to a specified path on the host."
