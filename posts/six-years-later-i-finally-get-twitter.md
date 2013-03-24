@@ -15,13 +15,13 @@ Fast forward three years. I hadn't done much tweeting of my own, but Twitter
 become a knowledge supliment in my colletion of RSS feeds, a way to stay in
 touch with yoga friends, and a marketing bullet point for [my iPhone game][].
 
-At end of 2010, I moved out east, and the tweets dried up. Part of it was the
-chaos of four months of house hopping, part of it was the crunch of shipping the
-backend platform for [a console video game][], but most of it was the lack of
-shiny.
+At the end of 2010, I moved out east, and the tweets dried up. Part of it was
+the chaos of four months of house hopping, part of it was the crunch of shipping
+the backend platform for [a console video game][], but most of it was the lack
+of shiny.
 
 By 2012, social media had become an established thing. Not seeing a "Follow us
-on Twiiter" button at the end of blog post was abnormal. Having a Twitter
+on Twiiter" button at the end of a blog post was abnormal. Having a Twitter
 account became the base line for corporate marketing. And the social pressure to
 "like", "follow", "fork", "friend", and "share" was enormous.
 
