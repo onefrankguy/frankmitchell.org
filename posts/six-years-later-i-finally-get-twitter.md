@@ -45,5 +45,5 @@ like it" is all it takes.
 
 [my iPhone game]: http://prolix-app.com/ "Prolix is a word search game that lets you tweet your scores so your friends can play with you."
 [a console video game]: http://www.reckoningthegame.com/ "Kingdoms of Amalur: Reckoning"
-[a line by Joanne Wiebe]: http://copyhackers.com/2013/03/email-subject-lines/ "Joanna Wiebe (CopyHackers): Email Subject Lines - A Quck Assessment of 7 Tests"
+[a line by Joanna Wiebe]: http://copyhackers.com/2013/03/email-subject-lines/ "Joanna Wiebe (CopyHackers): Email Subject Lines - A Quck Assessment of 7 Tests"
 [this recipe that uses leftover rice]: http://www.slashfood.com/2006/09/10/rice-pudding-with-leftover-rice/ "Nicole Weston (SlashFood): Rice Pudding with Cooked Rice Leftovers"
