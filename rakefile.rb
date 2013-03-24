@@ -71,6 +71,8 @@ file 'manifest.json' => [Dir['posts/*.md'], __FILE__].flatten do |t|
     key = b['title'] <=> a['title'] if key == 0
     key
   end
+  now = Time.now
+  posts.delete_if { |post| post['timestamp'] > now }
   urls = {}
   posts.each do |info|
     url = info['url']
