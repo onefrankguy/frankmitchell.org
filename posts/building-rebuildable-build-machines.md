@@ -33,8 +33,8 @@ MSBuild tasks that use those too.
 
 Fortunately, you can get around most of this uncertainty with Chef and GitHub.
 
-Chef Solo has the ability to install a set of cookbooks from a zip file hosted
-on a remote URL. GitHub has the ability to serve up a repo as a zip file. Put
+Chef Solo has the ability to install a set of cookbooks from a tarball hosted
+on a remote URL. GitHub has the ability to serve up a repo as a tarball. Put
 those two together, and you can version and track your build environment with
 every copy of your software that ships.
 
@@ -56,7 +56,7 @@ environment.
       ]
     }
 
-Pass the "-j" flag to Chef Solo to feed it the JSON file. The "-u" flag
+Pass the "-j" flag to Chef Solo to feed it the JSON file. The "-r" flag
 will tell it where in GitHub to find your cookbooks.
 
-    chef-solo -j build.josn -u https://github.com/repo/master/zipball
+    chef-solo -j build.josn -r https://github.com/repo/master/tarball
