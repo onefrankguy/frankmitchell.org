@@ -222,7 +222,9 @@ def write_text path, text
   dir = File.dirname(path)
   mkpath dir unless File.directory? dir
   File.open(path, 'w') { |io| io << text }
-  sh "dos2unix -U #{path}"
+  if RUBY_PLATFORM =~ /mswin/
+    sh "dos2unix -U #{path}"
+  end
 end
 
 def write_json path, json
