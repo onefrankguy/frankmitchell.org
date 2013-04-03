@@ -60,3 +60,5 @@ Pass the "-j" flag to Chef Solo to feed it the JSON file. The "-r" flag
 will tell it where on GitHub to find your cookbooks.
 
     chef-solo -j build.josn -r https://github.com/repo/tarball/master
+
+[1]: http://slideshare.net/andrewbayer/7-habits-of-highly-effective-jenkins-users "Andrew Bayer (SlideShare): 7 Habits of Highly Effective Jenkins Users"
