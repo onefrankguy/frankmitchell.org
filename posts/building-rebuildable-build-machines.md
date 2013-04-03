@@ -57,6 +57,6 @@ environment.
     }
 
 Pass the "-j" flag to Chef Solo to feed it the JSON file. The "-r" flag
-will tell it where in GitHub to find your cookbooks.
+will tell it where on GitHub to find your cookbooks.
 
-    chef-solo -j build.josn -r https://github.com/repo/master/tarball
+    chef-solo -j build.josn -r https://github.com/repo/tarball/master
