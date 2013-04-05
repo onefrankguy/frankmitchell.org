@@ -1,7 +1,7 @@
 <!--
 title: Building rebuildable build machines
 created: 21 March 2013 - 5:50 pm
-updated: 21 March 2013 - 5:50 pm
+updated: 3 April 2013 - 7:38 am
 publish: 2 April 2013
 slug: reproducable-builds
 tags: coding, ruby
