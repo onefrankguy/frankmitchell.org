@@ -2,7 +2,7 @@
 title: Demos are always last minute
 created: 24 March 2013 - 11:11 pm
 updated: 24 March 2013 - 12:13 pm
-publish: 9 April 2013
+publish: 9 April 2023
 slug: late-demo
 tags: coding
 -->
