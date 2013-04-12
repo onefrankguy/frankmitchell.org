@@ -24,6 +24,11 @@ task :build => [
   manifest.each { |post| Rake::Task[post['content']['page']].invoke }
 end
 
+desc 'Publish the website.'
+task :publish do
+  sh 'rsync -avz --dry-run public/ frankmitchell.org:/home/public/'
+end
+
 desc 'Start a server for testing.'
 task :test do
   code = []
