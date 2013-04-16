@@ -1,7 +1,7 @@
 <!--
 title: Picking resolutions on a Raspberry Pi
 created: 14 April 2013 - 4:59 pm
-updated: 14 April 2013 - 5:36 am
+updated: 16 April 2013 - 7:31 pm
 publish: 16 April 2013
 slug: hdmi-pi
 tags: coding, pi
@@ -31,8 +31,8 @@ supports a particular resolution, like 1080p.
 
     cat edid.txt | grep score | grep 1080p
 
-    CEA mode (32) 1920x1080p @ 24 Hz with pixel clock rate 74 MHz...
-    CEA mode (34) 1920x1080p @ 30 Hz with pixel clock rate 74 MHz...
+    CEA mode (32) 1920x1080p @ 24 Hz...
+    CEA mode (34) 1920x1080p @ 30 Hz...
 
 Pick the CEA mode by setting the `hdmi_mode` variable to "1" in your Pi's
 `/boot/config.txt` file. Setting it to "2" will pick the DMT mode. The
