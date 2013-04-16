@@ -26,7 +26,7 @@ end
 
 desc 'Publish the website.'
 task :publish do
-  sh 'rsync -avz --dry-run public/ frankmitchell.org:/home/public/'
+  sh 'rsync -avz public/ frankmitchell.org:/home/public/'
 end
 
 desc 'Start a server for testing.'
