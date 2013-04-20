@@ -347,9 +347,9 @@ abbr[title="and"] {
   right: 1.5em;
   bottom: 1.5em;
   border: 0.0625em solid #19223b;
-  -webkit-border-radius: 0.75em;
-  -moz-border-radius: 0.75em;
-  border-radius: 0.75em;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
   display: inline-block;
   width: 1.5em;
   height: 1.5em;
