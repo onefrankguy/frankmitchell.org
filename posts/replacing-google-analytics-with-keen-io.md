@@ -1,8 +1,8 @@
 <!--
 title: Replacing Google Analytics with Keen IO
 created: 22 April 2013 - 7:43 pm
-updated: 22 April 2013 - 9:07 pm
-publish: 23 April 2023
+updated: 23 April 2013 - 10:22 pm
+publish: 23 April 2013
 slug: keen-analysis
 tags: coding, design
 -->
@@ -57,8 +57,21 @@ need.
       }
     }
 
+"What time is it?" is a simple question to answer with the [`Date`][date]
+object. You can even get the answer in ISO 8601 format, which makes it perfect
+for storing.
+
+    var info = function () {
+      {
+        time: new Date().toISOString(),
+        referrer: document.referrer,
+        agent: window.navigator.userAgent
+      }
+    }
+
 [Google Analytics]: https://google.com/analytics/ "Various (Google): Google Analytics Official Website - Web Analytics and Reporting"
 [word search game]: http://prolix-app.com/ "Frank Mitchell: Prolix is a word search game that lets you tweet your scores so your friends can play with you."
 [Keen IO]: https://keen.io/ "Various (Keen IO): Analytics Backend as a Service"
 [agent]: https://developer.mozilla.org/en-US/docs/DOM/window.navigator.userAgent "Various (Mozilla): window.navigator.userAgent - Document Object Model"
 [referrer]: https://developer.mozilla.org/en-US/docs/DOM/document.referrer "Various (Mozilla): document.referrer - Document Object Model"
+[date]: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Date "Various (Mozilla): Date - JavaScript"
