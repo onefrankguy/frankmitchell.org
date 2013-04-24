@@ -1,7 +1,7 @@
 <!--
 title: Replacing Google Analytics with Keen IO
 created: 22 April 2013 - 7:43 pm
-updated: 23 April 2013 - 10:22 pm
+updated: 24 April 2013 - 5:39 am
 publish: 23 April 2013
 slug: keen-analysis
 tags: coding, design
@@ -39,7 +39,7 @@ they're using to view your site. You'll find it in the
 [`window.navigator.userAgent`][agent] object.
 
     var info = function () {
-      {
+      return {
         agent: window.navigator.userAgent
       }
     }
@@ -51,7 +51,7 @@ linking to your content and how people are finding your stuff? This is what you
 need.
 
     var info = function () {
-      {
+      return {
         referrer: document.referrer,
         agent: window.navigator.userAgent
       }
@@ -62,12 +62,38 @@ object. You can even get the answer in ISO 8601 format, which makes it perfect
 for storing.
 
     var info = function () {
-      {
+      return {
         time: new Date().toISOString(),
         referrer: document.referrer,
         agent: window.navigator.userAgent
       }
     }
+
+Details about where in your site a user landed are kept in the
+[`window.location`][href] object. Recording the `href` attribute gives you
+the complete URL. Other attributes, like `pathname` give you more fine grained
+information.
+
+    var info = function () {
+      return {
+        page: window.location.href,
+        time: new Date().toISOString(),
+        referrer: document.referrer,
+        agent: window.navigator.userAgent
+      }
+    }
+
+<script>
+var info = function () {
+  return {
+    page: window.location.href,
+    time: new Date().toISOString(),
+    referrer: document.referrer,
+    agent: window.navigator.userAgent
+  }
+}
+console.log(info())
+</script>
 
 [Google Analytics]: https://google.com/analytics/ "Various (Google): Google Analytics Official Website - Web Analytics and Reporting"
 [word search game]: http://prolix-app.com/ "Frank Mitchell: Prolix is a word search game that lets you tweet your scores so your friends can play with you."
@@ -75,3 +101,4 @@ for storing.
 [agent]: https://developer.mozilla.org/en-US/docs/DOM/window.navigator.userAgent "Various (Mozilla): window.navigator.userAgent - Document Object Model"
 [referrer]: https://developer.mozilla.org/en-US/docs/DOM/document.referrer "Various (Mozilla): document.referrer - Document Object Model"
 [date]: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Date "Various (Mozilla): Date - JavaScript"
+[href]: https://developer.mozilla.org/en-US/docs/DOM/window.location "Various (Mozilla): window.location - Document Object Model"
