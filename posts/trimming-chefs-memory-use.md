@@ -1,7 +1,7 @@
 <!--
 title: Trimming Chef's memory use
 created: 24 April 2013 - 5:43 am
-updated: 24 April 2013 - 6:08 am
+updated: 24 April 2013 - 6:28 am
 publish: 23 April 2013
 slug: small-chef
 tags: coding, chef
