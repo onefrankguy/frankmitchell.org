@@ -1,7 +1,7 @@
 <!--
 title: Replacing Google Analytics with Keen IO
 created: 22 April 2013 - 7:43 pm
-updated: 24 April 2013 - 5:39 am
+updated: 25 April 2013 - 8:33 pm
 publish: 23 April 2013
 slug: keen-analysis
 tags: coding, design
@@ -83,17 +83,11 @@ information.
       }
     }
 
-<script>
-var info = function () {
-  return {
-    page: window.location.href,
-    time: new Date().toISOString(),
-    referrer: document.referrer,
-    agent: window.navigator.userAgent
-  }
-}
-console.log(info())
-</script>
+One of the benefits of Keen IO over Google Analytics is size. Because bytes
+matter on the mobile web, picking a tiny analytics provider pays off. The
+latest version of Google Analytics weighs in at 40 kilobytes, compared to
+Keen's 28 kilobytes. Feel free to put that nice looking header back with the
+extra 13 kilobytes of space.
 
 [Google Analytics]: https://google.com/analytics/ "Various (Google): Google Analytics Official Website - Web Analytics and Reporting"
 [word search game]: http://prolix-app.com/ "Frank Mitchell: Prolix is a word search game that lets you tweet your scores so your friends can play with you."
