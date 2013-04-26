@@ -28,3 +28,9 @@ var Keen = Keen || {
 })();
 
 Keen.configure('02e4a51c8a214831b6ec45ba941ccda0');
+Keen.addEvent('pageView', {
+  page: window.location.href,
+  time: new Date().toISOString(),
+  referrer: document.referrer,
+  agent: window.navigator.userAgent
+});
