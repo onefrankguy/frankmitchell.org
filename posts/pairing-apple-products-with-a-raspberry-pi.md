@@ -1,10 +1,10 @@
 <!--
 title: Pairing an Apple keyboard with a Raspberry Pi
 created: 5 March 2013 - 7:21 am
-updated: 9 April 2013 - 8:22 am
+updated: 25 April 2013 - 9:42 pm
 publish: 2 April 2013
 slug: apple-pi
-tags: coding, hardware
+tags: coding, pi
 -->
 
 ## Set up your hardware ##
