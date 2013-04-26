@@ -27,10 +27,12 @@ var Keen = Keen || {
   b.parentNode.insertBefore(a, b);
 })();
 
-Keen.configure('02e4a51c8a214831b6ec45ba941ccda0');
-Keen.addEvent('pageView', {
-  page: window.location.href,
-  time: new Date().toISOString(),
-  referrer: document.referrer,
-  agent: window.navigator.userAgent
-});
+if (window.location.hostname !== 'localhost') {
+  Keen.configure('02e4a51c8a214831b6ec45ba941ccda0');
+  Keen.addEvent('pageView', {
+    page: window.location.href,
+    time: new Date().toISOString(),
+    referrer: document.referrer,
+    agent: window.navigator.userAgent
+  });
+}
