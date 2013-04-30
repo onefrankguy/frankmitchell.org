@@ -86,7 +86,7 @@ information.
 Now that you've got all the information you want to record about visits to
 your site, you can push that data into Keen IO.
 
-## Getting data into Keen ID ##
+## Getting page views into Keen IO ##
 
 [Sign up][] for a Keen IO account if you don't already have one. It takes
 two seconds if you've already on [GitHub][]. Once you're logged in, rename
@@ -127,7 +127,7 @@ Analytics weighs in at 40 kilobytes, compared to Keen's 28 kilobytes.
 code loads and runs faster.
 
     var protocol = 'https:';
-    if (document.location.protocol === 'https://') {
+    if (document.location.protocol !== 'https://') {
       protocol = 'http://';
     }
 
@@ -138,7 +138,8 @@ code loads and runs faster.
     keen.src += 'dc8na2hxrj29i.cloudfront.net';
     keen.src += '/code/keen-2.0.0-min.js';
 
-    var script = document.getElementsByTagName('script')[0];
+    var script = document.getElementsByTagName('script');
+    script = script[0];
     script.parentNode.insertBefore(keen, script);
 
 Finally, you can configure the `Keen` object with your project token, and push
