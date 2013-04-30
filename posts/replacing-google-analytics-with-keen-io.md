@@ -1,7 +1,7 @@
 <!--
 title: Replacing Google Analytics with Keen IO
 created: 22 April 2013 - 7:43 pm
-updated: 30April 2013 - 8:10 am
+updated: 30April 2013 - 9:12 am
 publish: 30 April 2013
 slug: keen-analysis
 tags: coding, design
@@ -83,17 +83,19 @@ information.
       };
     };
 
-Now that you've got all the information you want to record about visits to
-your site, you can push that data into Keen IO.
+Now that you've got information about visits to your site, you can push that
+data into Keen IO.
 
 ## Getting page views into Keen IO ##
 
 [Sign up][] for a Keen IO account if you don't already have one. It takes
-two seconds if you've already on [GitHub][]. Once you're logged in, rename
-your default project to your site's domain name. Keeping separate projects
-for each of the sites you have lets you track page views for each site
-separately. Then make a note of the project's token. That UUID is what lest
-Keen IO know what site a particular page view came from.
+two seconds if you've already on [GitHub][].
+
+Once you're logged in, rename your default project to your site's domain name.
+Keeping separate projects for each of the sites you have lets you track page
+views for each site separately. You'll also want to make a note of the project's
+token. That UUID is what lest Keen IO know which of your sites a particular page
+view came from.
 
 Keen IO has [great documentation][] for setting up their JavaScript client.
 The first thing you need is the `Keen` object. It provides a temporary
@@ -143,15 +145,77 @@ code loads and runs faster.
     script.parentNode.insertBefore(keen, script);
 
 Finally, you can configure the `Keen` object with your project token, and push
-your page view information to Keen IO.
+your page view information to Keen IO. In order to avoid poluting your metrics
+with page views from local tests, you can check the `window.location.hostname`
+object before you push.
 
-    Keen.configure('your_project_token');
-    Keen.addEvent('pageView', pageView());
+    if (window.location.hostname !== 'localhost') {
+      Keen.configure('your_project_token');
+      Keen.addEvent('pageView', pageView());
+    }
 
-You can roll all that JavaScript into a single file and drop it in a `<script>`
-tag just before the closing `<body>` tag on your site. Loading all your content
-before running analytics makes your more responsive, which helps ensure your
-visitors stick around.
+Roll all that JavaScript into a single file and drop it in a `<script>` tag just
+before the closing `<body>` tag on your site. Once it goes live, you'll start
+seeing metrics show up in Keen IO.
+
+## Four questions Keen IO can answer for you ##
+
+With this basic analytics set up, you can start answering important questions
+about your site's traffic.
+
+* What kinds of content do people like?
+* How are people finding stuff?
+* When are people visiting?
+* Which browsers are people using?
+
+Figuring out what kinds of content people like means looking at page popularity.
+Because you've recorded each page view, you can count them up and group them by
+page name. Looking at what's common between the popular pages will give you
+clues about what your visitors like.
+
+    var metric = Keen.Metric('pageView', {
+      analysisType: 'count',
+      targetProperty: 'time',
+      groupBy: 'page'
+    });
+
+Your referrers can tell you how people are finding your site. Counting page
+views grouped by referrer gives you a pie chart of who's driving traffic to
+your site. Couple this with the informatin you have about what people like,
+and you can figure out who's responsible for making your site popular.
+
+    var metric = Keen.Metric('pageView', {
+      analysisType: 'count',
+      targetProperty: 'time',
+      groupBy: 'referrer'
+    });
+
+Knowing when people are likely to visit your site lets you time content
+releases for when you'll get the most readers. Counting page views grouped
+by time gives you that answer. Feed your populartiy data back in to that
+analysis, and you can find out when people are finding your popular content.
+
+    var metric = Keen.Metric('pageView', {
+      analysisType: 'count',
+      targetProperty: 'page',
+      groupBy: 'time'
+    });
+
+If you're getting a lot of mobile traffic, you'll want to optimize your site
+for viewing on small screen, low bandwidth, devices. Likewise, lots of desktop
+traffic means you can slant your design towards a different audience. Counting
+page views grouped by agent will tell you which browsers your viewers are using,
+and help guide your design decisions.
+
+    var metric = Keen.Metric('pageView', {
+      analysisType: 'count',
+      targetProperty: 'time',
+      groupBy: 'agent'
+    });
+
+There are a bunch of other questions you can ask and answer with Keen IO.
+Hopefully this gets you started with metrics for your site.
+
 
 [Google Analytics]: https://google.com/analytics/ "Various (Google): Google Analytics Official Website - Web Analytics and Reporting"
 [word search game]: http://prolix-app.com/ "Frank Mitchell: Prolix is a word search game that lets you tweet your scores so your friends can play with you."
