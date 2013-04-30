@@ -1,7 +1,7 @@
 <!--
 title: Replacing Google Analytics with Keen IO
 created: 22 April 2013 - 7:43 pm
-updated: 30April 2013 - 9:12 am
+updated: 30 April 2013 - 9:24 am
 publish: 30 April 2013
 slug: keen-analysis
 tags: coding, design
@@ -158,7 +158,7 @@ Roll all that JavaScript into a single file and drop it in a `<script>` tag just
 before the closing `<body>` tag on your site. Once it goes live, you'll start
 seeing metrics show up in Keen IO.
 
-## Four questions Keen IO can answer for you ##
+## Four questions analytics can answer for you ##
 
 With basic analytics set up, you can start answering important questions
 about your site's traffic.
