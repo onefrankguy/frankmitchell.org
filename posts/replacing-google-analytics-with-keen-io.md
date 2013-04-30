@@ -1,7 +1,7 @@
 <!--
 title: Replacing Google Analytics with Keen IO
 created: 22 April 2013 - 7:43 pm
-updated: 30 April 2013 - 9:24 am
+updated: 30 April 2013 - 9:27 am
 publish: 30 April 2013
 slug: keen-analysis
 tags: coding, design
@@ -214,7 +214,7 @@ and help guide your design decisions.
     });
 
 Don't limit yourself to just those four questions. Keen IO has a gorgeous suite
-of visualization and analytics tools you can use to wrap your brain around your
+of visualization and analysis tools you can use to wrap your brain around your
 data. Now that you've got a customizable framework for gathering data and asking
 questions, you can build a custom analytics solution that fits your needs.
 
