@@ -160,7 +160,7 @@ seeing metrics show up in Keen IO.
 
 ## Four questions Keen IO can answer for you ##
 
-With this basic analytics set up, you can start answering important questions
+With basic analytics set up, you can start answering important questions
 about your site's traffic.
 
 * What kinds of content do people like?
@@ -213,8 +213,10 @@ and help guide your design decisions.
       groupBy: 'agent'
     });
 
-There are a bunch of other questions you can ask and answer with Keen IO.
-Hopefully this gets you started with metrics for your site.
+Don't limit yourself to just those four questions. Keen IO has a gorgeous suite
+of visualization and analytics tools you can use to wrap your brain around your
+data. Now that you've got a customizable framework for gathering data and asking
+questions, you can build a custom analytics solution that fits your needs.
 
 
 [Google Analytics]: https://google.com/analytics/ "Various (Google): Google Analytics Official Website - Web Analytics and Reporting"
