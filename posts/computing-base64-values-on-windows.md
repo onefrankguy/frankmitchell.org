@@ -22,7 +22,7 @@ computing Base64 values, I rolled my own in Ruby.
 
 Usage looks like:
 
-    ruby ~/base64.rb {value|path/to/file}
+    ruby ~/base64.rb {value|file}
 
 Like [my tool for computing SHA-256 checksums][chef-checksums] it's got no help,
 no options, and no error handling. And I use it all the time.
