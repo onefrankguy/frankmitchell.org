@@ -3,7 +3,7 @@ title: Computing Base64 values on Windows
 created: 30 April 2013 - 8:10 pm
 updated: 30 April 2013 - 8:35 pm
 publish: 30 April 2013
-slug: base64-ruby
+slug: win-base64
 tags: coding, ruby
 -->
 
@@ -22,7 +22,7 @@ computing Base64 values, I rolled my own in Ruby.
 
 Usage looks like:
 
-    ruby ~/base64.rb path/to/file
+    ruby ~/base64.rb {value|path/to/file}
 
 Like [my tool for computing SHA-256 checksums][chef-checksums] it's got no help,
 no options, and no error handling. And I use it all the time.
