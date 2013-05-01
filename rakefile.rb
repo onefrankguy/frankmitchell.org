@@ -183,6 +183,7 @@ def post_metadata post
   abort "No slug found for #{post}!" if slug.empty?
   tags = info['tags'].split(',').map { |tag| tag.strip }
   url = "/#{date.strftime("%Y/%m")}/#{slug}"
+  abbr = (date.strftime('%b') == 'May') ? '%-d %b' : '%-d %b.'
   data = {
     'title' => info['title'],
     'content' => {
@@ -198,8 +199,8 @@ def post_metadata post
     'url' => url,
     'date' => {
       'title' => date.strftime("%-d %B %Y"),
-      'abbr' => date.strftime("%-d %b."),
-      'full' => date.strftime("%-d %b. %Y"),
+      'abbr' => date.strftime(abbr),
+      'full' => date.strftime("#{abbr} %Y"),
       'time' => date.strftime("%Y-%m-%d")
     }
   }
