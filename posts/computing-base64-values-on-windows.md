@@ -1,7 +1,7 @@
 <!--
 title: Computing Base64 values on Windows
 created: 30 April 2013 - 8:10 pm
-updated: 30 April 2013 - 8:35 pm
+updated: 30 April 2013 - 8:47 pm
 publish: 30 April 2013
 slug: win-base64
 tags: coding, ruby
@@ -24,8 +24,8 @@ Usage looks like:
 
     ruby ~/base64.rb {value|file}
 
-Like [my tool for computing SHA-256 checksums][chef-checksums] it's got no help,
-no options, and no error handling. And I use it all the time.
+Like [my tool for computing SHA-256 checksums][chef-checksums] its got no help,
+no options, and no error handling. I use it all the time.
 
 
 [Amazon Web Service]: http://aws.amazon.com/ "Various (Amazon): Amazon Web Services"
