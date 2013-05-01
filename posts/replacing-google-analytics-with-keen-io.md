@@ -94,12 +94,12 @@ two seconds if you've already on [GitHub][].
 Once you're logged in, rename your default project to your site's domain name.
 Keeping separate projects for each of the sites you have lets you track page
 views for each site separately. You'll also want to make a note of the project's
-token. That UUID is what lest Keen IO know which of your sites a particular page
+token. That UUID is what lets Keen IO know which of your sites a particular page
 view came from.
 
 Keen IO has [great documentation][] for setting up their JavaScript client.
 The first thing you need is the `Keen` object. It provides a temporary
-storage place for your metrics until they can be sent to Keen. Calling the
+storage place for your metrics until they can be sent to Keen IO. Calling the
 `Keen.addEvent` function gives you a way to start capturing metrics as soon as
 your page loads.
 
@@ -126,7 +126,7 @@ Once you've got the `Keen` object, you can load the actual analytics script.
 One of the benefits of Keen IO is its small size. The latest version of Google
 Analytics weighs in at 40 kilobytes, compared to Keen's 28 kilobytes.
 [Bytes matter on the mobile web][], and a smaller analytics engine means your
-code loads and runs faster.
+site loads faster.
 
     var protocol = 'https:';
     if (document.location.protocol !== 'https://') {
@@ -205,7 +205,7 @@ If you're getting a lot of mobile traffic, you'll want to optimize your site
 for viewing on small screen, low bandwidth, devices. Likewise, lots of desktop
 traffic means you can slant your design towards a different audience. Counting
 page views grouped by agent will tell you which browsers your viewers are using,
-and help guide your design decisions.
+and help guide your visual design decisions.
 
     var metric = Keen.Metric('pageView', {
       analysisType: 'count',
