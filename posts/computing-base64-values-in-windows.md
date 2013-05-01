@@ -1,14 +1,14 @@
 <!--
-title: Base64 encoding in Ruby
+title: Computing Base64 values on Windows
 created: 30 April 2013 - 8:10 pm
-updated: 30 April 2013 - 8:33 pm
+updated: 30 April 2013 - 8:35 pm
 publish: 30 April 2013
 slug: base64-ruby
 tags: coding, ruby
 -->
 
-When you're signing [Amazon Web Service][] REST requests, one of the steps in
-the process is to [Base64][] encode the signature. On Linux you can do this with
+When you're signing [Amazon Web Service][] requests, one of the steps in the
+process is to [Base64][] encode the signature. On Linux you can do this with
 the `base64` command. Since I haven't found a Windows command line tool for
 computing Base64 values, I rolled my own in Ruby.
 
