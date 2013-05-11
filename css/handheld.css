@@ -60,7 +60,7 @@ h1, h2, h3 {
   font-family: sans-serif;
   margin: 0;
 }
-p, ol, ul, blockquote, pre, img {
+p, ol, ul, blockquote, pre, img, table {
   /* 16px / 24px */
   font-size: 1em;
   line-height: 1.5;
