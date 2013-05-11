@@ -1,7 +1,7 @@
 <!--
 title: Forcing HTTPS on in Amazon's EC2
 created: 7 May 2013 - 9:52 pm
-updated: 11 May 2013 - 9:55 am
+updated: 11 May 2013 - 10:08 am
 publish: 7 May 2013
 slug: https-elb
 tags: coding, aws
@@ -124,13 +124,13 @@ The `%{REQUEST_URI}` variable keeps the path and query arguments on the URL
 intact. Specifying  `R=301` flag causes Apache to return a 301 response
 code, which tells visitors this is a permanent redirect.
 
-## Final Thoughts ##
+## Final thoughts ##
 
 There are a host of other ways to configure your web servers as well.
 HAProxy and Apache can support Nginx's "listen on two ports" setup, and
 Nginx does have if conditions you can use to check headers. How you get your
-HTTP traffic redirect to HTTPS does't really matter. What counts is that you're
-providing a safer experience for your users.
+HTTP traffic redirected to HTTPS does't really matter. What counts is that
+you're providing a safer experience for your users.
 
 
 [ec2]: http://aws.amazon.com/ec2 "Various (Amazon): Amazon Elastic Compute Cloud"
