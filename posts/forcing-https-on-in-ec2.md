@@ -1,7 +1,7 @@
 <!--
 title: Forcing HTTPS on in Amazon's EC2
 created: 7 May 2013 - 9:52 pm
-updated: 11 May 2013 - 9:26 am
+updated: 11 May 2013 - 9:50 am
 publish: 7 May 2013
 slug: https-elb
 tags: coding, aws
@@ -132,4 +132,4 @@ code, which tells visitors this is a permanent redirect.
 [Nginx]: http://nginx.org/ "Various (Nginx): Nginx HTTP and Reverse Proxy Server"
 [server blocks]: http://nginx.org/en/docs/http/nginx_core_module.html#listen "Various (Nginx): listen"
 [Apache]: http://httpd.apache.org/ "Various (Apache Foundation): Apache HTTP Server Project"
-[mode_rewrite rule]: http://httpd.apache.org/docs/current/mod/mod_rewrite.html "Various (Apache Foundation): mod_rewrite - Apache HTTP Server Project"
+[mod_rewrite rule]: http://httpd.apache.org/docs/current/mod/mod_rewrite.html "Various (Apache Foundation): mod_rewrite - Apache HTTP Server Project"
