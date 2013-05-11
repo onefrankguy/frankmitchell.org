@@ -1,7 +1,7 @@
 <!--
 title: Forcing HTTPS on in Amazon's EC2
 created: 7 May 2013 - 9:52 pm
-updated: 11 May 2013 - 9:50 am
+updated: 11 May 2013 - 9:55 am
 publish: 7 May 2013
 slug: https-elb
 tags: coding, aws
@@ -112,7 +112,7 @@ traffic on to your web server as HTTP traffic on port 80.
 </table>
 
 Set up a [mod_rewrite rule][] to check the `X-Forwarded-Proto` header. If it
-comes in with a value of "http", you can redirect that HTTP traffic to HTTPS.
+comes in with a value of "http", you can redirect that traffic to HTTPS.
 
     <VirutalHost *:80>
       RewriteEngine On
@@ -123,6 +123,15 @@ comes in with a value of "http", you can redirect that HTTP traffic to HTTPS.
 The `%{REQUEST_URI}` variable keeps the path and query arguments on the URL
 intact. Specifying  `R=301` flag causes Apache to return a 301 response
 code, which tells visitors this is a permanent redirect.
+
+## Final Thoughts ##
+
+There are a host of other ways to configure your web servers as well.
+HAProxy and Apache can support Nginx's "listen on two ports" setup, and
+Nginx does have if conditions you can use to check headers. How you get your
+HTTP traffic redirect to HTTPS does't really matter. What counts is that you're
+providing a safer experience for your users.
+
 
 [ec2]: http://aws.amazon.com/ec2 "Various (Amazon): Amazon Elastic Compute Cloud"
 [Elastic Load Balancer]: http://aws.amazon.com/elasticloadbalancing "Various (Amazon): Elastic Load Balancing"
