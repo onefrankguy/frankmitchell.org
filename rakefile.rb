@@ -223,9 +223,7 @@ def adjacent_posts info
   index = posts.index do |post|
     info['content']['original'] == post['content']['original']
   end
-  count = posts.size - index
-  count = 5 if count >= 5
-  posts[(index + 1)..(index + count)]
+  posts[(index + 1)..(index + 5)]
 end
 
 def write_text path, text
