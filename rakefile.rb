@@ -218,15 +218,14 @@ def archive_posts posts
   words.keys.sort.reverse.map { |year| [year, words[year]] }
 end
 
-def related_posts info
-  posts = manifest.select do |post|
-    if info['content']['original'] != post['content']['original']
-      tags = info['tags'] & post['tags']
-      tags.size / info['tags'].size >= 0.5
-    end
+def adjacent_posts info
+  posts = manifest
+  index = posts.index do |post|
+    info['content']['original'] == post['content']['original']
   end
-  posts.shuffle!
-  posts[0..4]
+  count = posts.size - index
+  count = 5 if count >= 5
+  posts[(index + 1)..(index + count)]
 end
 
 def write_text path, text
@@ -301,7 +300,7 @@ manifest.each do |info|
     @date = info['date']
     @date['abbr'] = @date['full'] unless @date['full'].nil?
     @content = File.read info['content']['raw']
-    @posts = related_posts info
+    @posts = adjacent_posts info
     @related = parse_template 'related'
     html = parse_template 'post'
     write_text t.name, html
