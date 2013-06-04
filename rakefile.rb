@@ -232,6 +232,8 @@ def write_text path, text
   File.open(path, 'w') { |io| io << text }
   if RUBY_PLATFORM =~ /mswin/
     sh "dos2unix -U #{path}"
+  else
+    puts path
   end
 end
 
