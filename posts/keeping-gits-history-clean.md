@@ -58,16 +58,8 @@ We still don't have the tree output feature of Github's GUI though. Adding the
 `git log --graph --pretty=tformat:'%h%d %s (%cr) <%aN>'` makes entries look
 like this.
 
-    * 0646b8b (HEAD, master) Provides slightly more verbosity when building so I know where things are. (4 weeks ago) <Frank Mitchell>
-    * 7327f1c Thoughts on using trophies to motivate instead of trolls. (4 weeks ago) <Frank Mitchell>
-    * f46dbed Simplifies my algorithm for finding adjacent posts. (8 weeks ago) <Frank Mitchell>
-    * 8bd2f40 Computes adjacent posts instead of related ones. (8 weeks ago) <Frank Mitchell>
-    * 81223e6 Provides acronym definitions for HTTP and HTTPS. (8 weeks ago) <Frank Mitchell>
-    * 1a98392 Tweaks for readability. (8 weeks ago) <Frank Mitchell>
-    * aa41e44 Treats tables as block level elements that flow nicely. (8 weeks ago) <Frank Mitchell>
-    * 78c8988 Wraps things up with a conclusion. (8 weeks ago) <Frank Mitchell>
-    * 94ba595 Fixes a broken URL. (8 weeks ago) <Frank Mitchell>
-    * 5ea0dac Flushes out notes on Apache configuration. (8 weeks ago) <Frank Mitchell>
+    * 9fbf727 (HEAD, git-log) Notes on how to make... (4 minutes ago) <Frank>
+    * 0646b8b (master) Provides slightly more verbosity... (4 weeks ago) <Frank>
 
 
 [Git]: http://git-scm.org/ "Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency."
