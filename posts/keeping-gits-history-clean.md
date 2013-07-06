@@ -1,7 +1,7 @@
 <!--
 title: Keeping Git's history clean
 created: 4 July 2013 - 8:01 am
-updated: 4 July 2013 - 9:16 am
+updated: 6 July 2013 - 12:53 pm
 publish: 4 July 2013
 slug: git-log
 tags: coding
@@ -12,6 +12,53 @@ running on an EC2 server and I worked locally in tmux and vim. Code reviews,
 merges, and pushes happened in a terminal. When I finally encountered [Github][]
 and its suite of GUI tools, I relaized I'd built my terminal world as a mimicry
 of those graphical practices.
+
+
+## Faking local pull requests ##
+
+One of Github's nice features are pull requests, annotated merges between
+branches that perserve commit history. When you work with local branches in Git,
+you'll notice their absence. Here's what a local repository looks like after two
+commits.
+
+    A---B master
+
+If you create a branch from B, and commit to it twice, you'll get a forked
+history.
+
+          C---D branch
+         /
+    A---B------ master
+
+When you merge the branch back to master, an optimization takes place. Git
+notices no chnanges to master since the branch was created, so it collapses the
+history of the branch. This is called a fast forward merge.
+
+    A---B---C---D master
+
+Fast foward merges create the illusion that all the work happened in the master
+branch. If you want to perserve the record that work happend in a branch, you
+can pass the "--no-ff" flag to the merge command.
+
+          C---D
+         /     \
+    A---B-------E master
+
+This leaves an additional commit in the history when the branches come back
+together. This extra commit is called a "merge commit". When you close a pull
+request on Github, it's perserving the record that work happend in a branch by
+doing a merge without fast forwarding. To make it easier to remember to add the
+"--no-ff" flag when you merge branches, you can alias `git merge --no-ff` to
+`git mg`.
+
+    git config --global alias.mg 'merge --no-ff'
+
+The above command adds an alias to your ~/.gitconfig file for the "mg" command.
+
+    [alias]
+    mg = merge --no-ff
+
+## Viewing history as a graph ##
 
 Github's GUI allows you to see commits to a repository as a graph. You can get
 similar behavior from the command line with by running `git log`. The default
