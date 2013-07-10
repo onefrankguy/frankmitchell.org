@@ -1,14 +1,14 @@
 <!--
 title: Local pull requests in Git
 created: 4 July 2013 - 8:01 am
-updated: 6 July 2013 - 1:56 pm
+updated: 10 July 2013 - 7:55 am
 publish: 9 July 2013
 slug: git-merge
 tags: git, coding
 -->
 
 One of [GitHub's][] nicer features are pull requests, annotated merges between
-branches that perserve commit history. When you're the only one working in a
+branches that preserve commit history. When you're the only one working in a
 local [Git][] repository, you notice their absence. Here's what a local
 repository looks like after two commits.
 
@@ -23,13 +23,13 @@ get a forked history.
     A---B------ master
 
 When you merge the branch back to master, an optimization takes place. Git
-notices no chnanges to master since the branch was created, so it collapses the
+notices no changes to master since the branch was created, so it collapses the
 history of the branch. This is called a fast forward merge.
 
     A---B---C---D master
 
-Fast foward merges create the illusion that all the work happened in the master
-branch. If you want to perserve the record that work happend in a branch, you
+Fast forward merges create the illusion that all the work happened in the master
+branch. If you want to preserve the record that work happened in a branch, you
 can pass the "--no-ff" flag to the merge command.
 
           C---D
@@ -38,7 +38,7 @@ can pass the "--no-ff" flag to the merge command.
 
 This leaves an additional commit in the history when the branches come back
 together. This extra commit is called a "merge commit". When you close a pull
-request on GitHub, it's perserving the record that work happend in a branch by
+request on GitHub, it's preserving the record that work happened in a branch by
 doing a merge without fast forwarding. So you remember to add the "--no-ff" flag
 when you merge branches, you can alias `git merge --no-ff` to `git mg`.
 
@@ -49,7 +49,7 @@ The above command adds an alias to your ~/.gitconfig file for the "mg" command.
     [alias]
     mg = merge --no-ff
 
-Perserving the history of a branch when you merge gives you the opportunity to
+Preserving the history of a branch when you merge gives you the opportunity to
 describe why the merge is taking place. Time stamps associated with the commits
 let you figure out how long the work on a branch took. Keeping historical
 context is like leaving tiny clues for your future self.
