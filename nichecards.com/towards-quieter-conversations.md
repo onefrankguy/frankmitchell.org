@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (391, 2, '2010-06-28 13:55:55', '2010-06-28 
 21:55:55', 'I tend to practice <a href="/dance-of-shiva/" title="My attempt to 
 define Shiva Nata yoga.">Shiva Nata</a> fast and to music, often accompanied by 

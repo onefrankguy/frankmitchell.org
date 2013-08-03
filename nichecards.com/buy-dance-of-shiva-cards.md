@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (23, 2, '2010-02-18 11:29:29', '2010-02-18 
 19:29:29', 'My Dance of Shiva cards are out of stock at the moment. I should 
 have a new batch ready to go by March. If you <a href="/contact/" title="Get in 

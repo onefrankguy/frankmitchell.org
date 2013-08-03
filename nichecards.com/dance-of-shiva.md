@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (139, 2, '2010-02-25 12:06:21', '2010-02-25 
 20:06:21', 'Have you ever had a moment where things just clicked? Where the 
 pieces to a problem you were working on just fell into place and you said, "Ah, 

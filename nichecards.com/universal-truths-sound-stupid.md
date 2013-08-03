@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (364, 2, '2010-04-05 18:07:55', '2010-04-06 
 02:07:55', 'I''ve been doing self help stuff for 15 years, ever since my 
 parents divorced and I figured it was all my fault. I spent that time feeling 

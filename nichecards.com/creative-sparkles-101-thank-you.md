@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (191, 2, '2010-03-01 19:54:32', '2010-03-02 
 03:54:32', 'Here''s a couple of things to 
 remember:\r\n\r\n<strong>When:</strong> The class is on April 10th, 2010. 

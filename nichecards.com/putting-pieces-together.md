@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (405, 2, '2010-07-12 13:27:36', '2010-07-12 
 21:27:36', 'I tend to follow my hunches. Reading a job post by <a 
 href="http://dougboutwell.com/" title="Doug Boutwell&#8217;s blog is filled 

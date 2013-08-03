@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (299, 2, '2010-03-15 09:57:45', '2010-03-15 
 17:57:45', 'When you''re learning <a href="/dance-of-shiva/" title="What is 
 Dance of Shiva?">Dance of Shiva</a>, transquarters are one of the hardest 

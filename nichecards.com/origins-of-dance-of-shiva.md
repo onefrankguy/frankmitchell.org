@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (79, 2, '2010-02-22 15:44:25', '2010-02-22 
 23:44:25', 'About six months ago, I got really interested in learning where 
 Dance of Shiva came from. So I read <a 

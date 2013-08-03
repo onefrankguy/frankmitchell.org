@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (2, 2, '2010-02-16 20:22:10', '2010-02-16 
 20:22:10', 'That would be me, Frank Mitchell. I''m a recovering introvert. I 
 like helping people with their personal problems. I give tear inducing speeches 

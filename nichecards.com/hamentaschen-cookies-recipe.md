@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (174, 2, '2010-02-26 09:14:16', '2010-02-26 
 17:14:16', 'This weekend is <a href="http://en.wikipedia.org/wiki/Purim" 
 title="Wikipedia''s entry about the Jewish holiday of Purim.">Purim</a>, so I 

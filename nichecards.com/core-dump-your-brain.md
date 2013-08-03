@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (221, 2, '2010-03-01 10:20:07', '2010-03-01 
 18:20:07', 'For a long time, researchers thought the maximum number of objects 
 a person could visually track was 4. But <a 

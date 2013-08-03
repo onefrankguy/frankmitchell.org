@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (262, 2, '2010-03-05 08:23:05', '2010-03-05 
 16:23:05', '"Taste this."\r\n\r\n"What is it?"\r\n\r\n"A pecan."\r\n\r\n"It''s 
 delicious! What did you do to it?"\r\n\r\n"Cooked it for about three minutes in 

@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (102, 2, '2010-02-19 16:52:46', '2010-02-20 
 00:52:46', 'Tacos are friend friendly food, since they''re easy to make lots 
 of, and everyone gets to doctor theirs up however they want. So if your best 

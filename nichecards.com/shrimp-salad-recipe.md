@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (382, 2, '2010-06-25 18:00:44', '2010-06-26 
 02:00:44', 'This is a quick shrimp salad recipe that''s light on ingredients 
 and heavy on flavor.\r\n<h4>Ingredients</h4>\r\n<ul>\r\n	<li>24 shrimp, 

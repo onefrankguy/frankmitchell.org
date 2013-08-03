@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (308, 2, '2010-03-15 10:11:00', '2010-03-15 
 18:11:00', 'There are a couple of things that make the numbers that correspond 
 to the motions in <a href="/dance-of-shiva/" title="What is Dance of 

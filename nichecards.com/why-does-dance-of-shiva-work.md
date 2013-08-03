@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (1, 2, '2010-02-15 20:22:10', '2010-02-16 
 04:22:10', 'When I started doing Dance of Shiva, I was okay with the <a 
 href="http://shivanata.com/blog/ask/whats-with-the-epiphanies/" title="Havi''s 

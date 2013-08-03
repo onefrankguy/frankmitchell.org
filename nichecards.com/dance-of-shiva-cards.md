@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (321, 2, '2010-03-15 16:10:41', '2010-03-16 
 00:10:41', 'Way back in October of last year, I had an idea for a set of 
 playing cards based on <a href="/dance-of-shiva/" title="What&#8217;s Dance of 

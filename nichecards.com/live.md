@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (114, 2, '2010-02-23 11:33:43', '2010-02-23 
 19:33:43', 'I teach classes about how brains and bodies work together. There''s 
 usually <a href="/dance-of-shiva/" title="An introduction to the wacky brain 

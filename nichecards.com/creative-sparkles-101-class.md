@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (47, 2, '2010-02-22 12:45:46', '2010-02-22 
 20:45:46', 'It''s come and gone, and we had a blast. Check out the <a 
 href="/live/" title="Classes, workshops, and other live events I 

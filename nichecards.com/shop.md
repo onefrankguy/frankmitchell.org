@@ -1,3 +1,10 @@
+<!--
+title:
+created:
+updated:
+slug:
+tags:
+-->
 INSERT INTO `nc_posts` VALUES (13, 2, '2010-02-17 16:26:20', '2010-02-18 
 00:26:20', 'Decks of cards have as much personality as people, developing their 
 own patina of creases and chocolate stains as their handled and loved. Thanks 
