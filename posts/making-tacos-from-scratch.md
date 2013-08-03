@@ -20,8 +20,7 @@ parts.
 ## Tortillas ##
 
 This tortilla recipe comes from Robert Rodriguez. It's the one you can find on
-the <a href="http://amazon.com/Sin-City-Unrated-Two-Disc-Collectors/dp/B000BCKFWK" 
-title="Buy &#8220;Sin City&#8221; from Amazon.">Sin City DVD</a>.
+the [Sin City DVD][1].
 
 ### Ingredients ###
 
@@ -89,6 +88,7 @@ When it comes to cooking with cast iron there are two things to remember:
 1. Let your skillet get hot before you put anything any it. I leave mine on
    medium-low for ten minutes. It'll make it so nothing sticks, not even eggs.
 2. Wash your skillet out with hot soapy water when you're done. Then rub a
-   little vegetable oil on the inside with a paper towel.In 
-which a recipe for home made tortillas and taco seasoning is provided, and the 
-secrets of cast iron cooking masters are revealed.', 'publish', 'open', 'open', 
+   little vegetable oil on the inside with a paper towel.
+
+
+[1]: http://amazon.com/Sin-City-Unrated-Two-Disc-Collectors/dp/B000BCKFWK 'Buy "Sin City" from Amazon.'
