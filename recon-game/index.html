@@ -141,6 +141,27 @@ var $ = function (selector) {
   return null;
 };
 
+var setTop = function (element, value) {
+  if (element) {
+    element.setAttribute("data-top", value);
+    if (element.style) {
+      value = (value + 0.5) | 0;
+      element.style.top = value+"px";
+    }
+  }
+};
+
+var getTop = function (element) {
+  var value = 0;
+  if (element) {
+    value = parseFloat(element.getAttribute("data-top"), 10);
+    if (isNaN(value) && element.style) {
+      value = parseFloat(element.style.top, 10);
+    }
+  }
+  return value;
+};
+
 var addTouch = function (element, touchStart, touchEnd) {
   element.onmousedown = function () {
     if (touchStart) {
@@ -277,7 +298,7 @@ var addIcicle = function (element) {
   if (Math.floor(Math.random() * 3) > 1) {
     return;
   }
-  var offsetTop = parseInt(element.style.top);
+  var offsetTop = getTop(element);
   var index = Math.floor(Math.random() * numCols);
   var icicle = document.createElement("div");
   var types = [1, 1, 1, 1, 2, 2, 3];
@@ -292,7 +313,7 @@ var addIcicle = function (element) {
   if (klass === "dent1") {
     offsetTop -= 0;
   }
-  icicle.style.top = offsetTop+"px";
+  setTop(icicle, offsetTop);
   icicle.style.left = (index * tileWidth)+"px";
   icicle.setAttribute("data-icicle-index", icicleCount);
   addTouch(icicle, onIcicleTouch, updateIcicles);
@@ -338,7 +359,7 @@ var setup = function () {
   for (y = 0; y < numRows; y += 1) {
     row = document.createElement("div");
     row.setAttribute("class", "row");
-    row.style.top = ((y * tileHeight) - tileHeight)+"px";
+    setTop(row, (y * tileHeight) - tileHeight);
     row.style.left = "0px";
     for (x = 0; x < numCols; x += 1) {
       tile = document.createElement("span");
@@ -353,18 +374,13 @@ var movey = function (element, delta, max) {
   if (!element || !element.style) {
     return;
   }
-  if (element.style.top === "") {
-    element.style.top = "0px";
-  }
-  var offset = parseInt(element.style.top);
+  var offset = getTop(element) + delta;
   var warp = false;
-  delta = (delta + 0.5) | 0;
-  if (offset + delta >= max) {
-    offset = -tileHeight;
+  if (offset >= max) {
+    offset = -tileHeight + delta;
     warp = true;
   }
-  offset += delta;
-  element.style.top = offset+"px";
+  setTop(element, offset);
   return warp;
 };
 
