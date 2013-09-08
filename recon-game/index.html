@@ -1,0 +1,401 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<title>Hard Vacuum: Recon</title>
+<style type="text/css">
+#viewport {
+  position: relative;
+  border: 1px solid #000;
+}
+#background {
+  background-image: url(img/snow.png);
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+#copter {
+  display: block;
+  position: absolute;
+  bottom: 5px;
+  left: 90px;
+}
+.snow {
+  background-image: url(img/snow.png);
+}
+.dent1 {
+  background-image: url(img/dent.png);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 20px;
+  width: 20px;
+}
+.dent2 {
+  background-image: url(img/dent.png);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 40px;
+  width: 20px;
+}
+.dent3 {
+  background-image: url(img/dent.png);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 60px;
+  width: 40px;
+}
+.icicle1 {
+  background-image: url(img/icicle1.png);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 20px;
+  width: 20px;
+}
+.icicle2 {
+  background-image: url(img/icicle2.png);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 40px;
+  width: 20px;
+}
+.icicle3 {
+  background-image: url(img/icicle3.png);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 60px;
+  width: 40px;
+}
+.row {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.tile {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+</style>
+</head>
+<body>
+<div id="viewport">
+<div id="background">
+</div>
+<img id="copter" src="img/copter.png"/>
+</div>
+<div id="fps"></div>
+<div id="icicles"></div>
+<script type="text/javascript">
+(function () {
+  var lastTime = 0;
+  var vendor = ["ms", "mos", "webkit", "o"];
+  var i = 0;
+  while (i < vendor.length && !window.requestAnimationFrame) {
+    window.requestAnimationFrame = window[vendor[i]+"RequestAnimationFrame"];
+    window.cancelAnimationFrame = window[vendor[i]+"CancelAnimationFrame"] || window[vendor[i]+"RequestCancelAnimationFrame"];
+    i += 1;
+  }
+
+  if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame = function (callback, element) {
+      var currTime = new Date().getTime();
+      var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+      var timerId = setTimeout(function () {
+        callback(currTime + timeToCall);
+      }, timeToCall);
+      lastTime = currTime + timeToCall;
+      return timerId;
+    };
+  }
+
+  if (!window.cancelAnimationFrame) {
+    window.cancelAnimationFrame = function (id) {
+      clearTimeout(id);
+    };
+  }
+}());
+
+var $ = function (selector) {
+  if (selector.indexOf("#") === 0) {
+    return document.getElementById(selector.slice(1));
+  }
+  if (selector.indexOf(".") === 0) {
+    return document.getElementByClassName(selector.slice(1));
+  }
+  return null;
+};
+
+var addTouch = function (element, touchStart, touchEnd) {
+  element.onmousedown = function () {
+    if (touchStart) {
+      touchStart(element);
+    }
+    document.onmousemove = function (event) {
+      event.preventDefault();
+    };
+    document.onmouseup = function () {
+      if (touchEnd) {
+        touchEnd(element);
+      }
+      document.onmousemove = null;
+      document.onmouseup = null;
+    };
+  };
+  element.ontouchstart = function () {
+    element.onmousedown = null;
+    if (touchStart) {
+      touchStart(element);
+    }
+    document.ontouchmove = function (event) {
+      event.preventDefault();
+    };
+    document.ontouchend = function () {
+      if (touchEnd) {
+        touchEnd(element);
+      }
+      document.ontouchmove = null;
+      document.ontouchend = null;
+    };
+  };
+};
+
+var removeTouch = function (element) {
+  element.onmousedown = null;
+  element.ontouchstart = null;
+};
+
+var Timer = {};
+Timer.tick = function (now) {
+  Timer.delta = (now - (Timer.then || now)) / 1000;
+  Timer.then = now;
+};
+
+var canvasHeight = 320;
+var canvasWidth = 240;
+var tileHeight = 20;
+var tileWidth = 20;
+var numCols = canvasWidth / tileWidth;
+var numRows = (canvasHeight / tileHeight) + 1;
+var copterSpeed = 10;
+var icicleCount = 0;
+var maxIcicles = 12;
+
+var hasClass = function (element, klass) {
+  return element.classList.contains(klass);
+};
+
+var isIcicle = function (element) {
+  return (
+    hasClass(element, "icicle1") ||
+    hasClass(element, "icicle2") ||
+    hasClass(element, "icicle3") ||
+    hasClass(element, "dent1") ||
+    hasClass(element, "dent2") ||
+    hasClass(element, "dent3")
+  );
+};
+
+var isRow = function (element) {
+  return hasClass(element, "row");
+};
+
+
+var dentToIcicle = function (element) {
+  if (hasClass(element, "dent1")) {
+    element.className = "icicle1";
+    return true;
+  }
+  if (hasClass(element, "dent2")) {
+    element.className = "icicle2";
+    return true;
+  }
+  if (hasClass(element, "dent3")) {
+    element.className = "icicle3";
+    return true;
+  }
+  return false;
+};
+
+var icicleToDent = function (element) {
+  if (hasClass(element, "icicle1")) {
+    element.className = "dent1";
+  }
+  if (hasClass(element, "icicle2")) {
+    element.className = "dent2";
+  }
+  if (hasClass(element, "icicle3")) {
+    element.className = "dent3";
+  }
+};
+
+var touchedIcicles = [];
+var onIcicleTouch = function (element) {
+  if (dentToIcicle(element)) {
+    touchedIcicles.push(element);
+  }
+};
+
+var updateIcicles = function () {
+  if (touchedIcicles.length != 2) {
+    return;
+  }
+  var first = touchedIcicles[0];
+  var second = touchedIcicles[1];
+  touchedIcicles = [];
+  // If the icicles aren't the same size, flip them both face down.
+  if (first.className != second.className) {
+    icicleToDent(first);
+    icicleToDent(second);
+    return;
+  }
+  // The icicles are the same size, so remove them.
+  removeIcicle(first);
+  removeIcicle(second);
+};
+
+var lastIcicle = null;
+var addIcicle = function (element) {
+  if (icicleCount >= maxIcicles) {
+    return;
+  }
+  if (Math.floor(Math.random() * 3) > 1) {
+    return;
+  }
+  var offsetTop = parseInt(element.style.top);
+  var index = Math.floor(Math.random() * numCols);
+  var icicle = document.createElement("div");
+  var types = [1, 1, 1, 1, 2, 2, 3];
+  var klass = "dent" + types[Math.floor(Math.random() * types.length)];
+  icicle.setAttribute("class", klass);
+  if (klass === "dent3") {
+    offsetTop -= 40;
+  }
+  if (klass === "dent2") {
+    offsetTop -= 20;
+  }
+  if (klass === "dent1") {
+    offsetTop -= 0;
+  }
+  icicle.style.top = offsetTop+"px";
+  icicle.style.left = (index * tileWidth)+"px";
+  icicle.setAttribute("data-icicle-index", icicleCount);
+  addTouch(icicle, onIcicleTouch, updateIcicles);
+  lastIcicle = $("#background").insertBefore(icicle, lastIcicle);
+  icicleCount += 1;
+};
+
+var removeIcicle = function (element) {
+  var index = touchedIcicles.indexOf(element);
+  if (index >= 0) {
+    touchedIcicles.splice(index, 1);
+  }
+  removeTouch(element);
+  $("#background").removeChild(element);
+  icicleCount -= 1;
+  if (element === lastIcicle) {
+    lastIcicle = null;
+  }
+};
+
+var updateIcicle = function (element) {
+  if (isIcicle(element)) {
+    removeIcicle(element);
+    return;
+  }
+  if (isRow(element)) {
+    addIcicle(element);
+    return;
+  }
+};
+
+var setup = function () {
+  var x = 0;
+  var y = 0;
+  var viewport = $("#viewport");
+  viewport.style.height = canvasHeight+"px";
+  viewport.style.width = canvasWidth+"px";
+  var background = $("#background");
+  background.style.width = viewport.style.width;
+  background.style.height = viewport.style.height;
+  var row = null;
+  var tile = null;
+  for (y = 0; y < numRows; y += 1) {
+    row = document.createElement("div");
+    row.setAttribute("class", "row");
+    row.style.top = ((y * tileHeight) - tileHeight)+"px";
+    row.style.left = "0px";
+    for (x = 0; x < numCols; x += 1) {
+      tile = document.createElement("span");
+      tile.setAttribute("class", "snow tile");
+      row.appendChild(tile);
+    }
+    background.appendChild(row);
+  }
+};
+
+var movey = function (element, delta, max) {
+  if (!element || !element.style) {
+    return;
+  }
+  if (element.style.top === "") {
+    element.style.top = "0px";
+  }
+  var offset = parseInt(element.style.top);
+  var warp = false;
+  delta = (delta + 0.5) | 0;
+  if (offset + delta >= max) {
+    offset = -tileHeight;
+    warp = true;
+  }
+  offset += delta;
+  element.style.top = offset+"px";
+  return warp;
+};
+
+var lastFPS = 0;
+var updateFPS = function () {
+  var now = Date.now();
+  if (now - lastFPS > 1000) {
+    lastFPS = now;
+    $("#fps").innerHTML = "FPS: "+Math.floor(1 / Timer.delta);
+    $("#icicles").innerHTML = "Icicles: "+icicleCount;
+  }
+};
+
+var render = function (time) {
+  requestAnimationFrame(render);
+  Timer.tick(time);
+  var rows = $("#background").childNodes;
+  var y = 0;
+  var offset = copterSpeed * Timer.delta;
+  var warped = false;
+  for (y = 0; y < rows.length; y += 1) {
+    warped = movey(rows[y], offset, canvasHeight);
+    if (warped) {
+      updateIcicle(rows[y]);
+    }
+  }
+  updateFPS();
+};
+
+setup();
+requestAnimationFrame(render);
+</script>
+</body>
+</html>
