@@ -7,12 +7,34 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
 <title>Hard Vacuum: Recon</title>
 <style type="text/css">
+* {
+  cursor: default;
+  margin: 0;
+  padding: 0;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+*::selection {
+  background: transparent;
+  color: transparent;
+}
+html {
+  height: 100%;
+  -webkit-text-size-adjust: none;
+}
+body {
+  background: #333;
+  color: #fff;
+  font-weight: bold;
+}
+#wrapper {
+  width: 320px;
+  margin: 0 auto;
+}
 #viewport {
   position: relative;
-  border: 1px solid #000;
 }
 #background {
-  background-image: url(img/snow.png);
   position: relative;
   display: block;
   overflow: hidden;
@@ -20,32 +42,92 @@
 #copter {
   display: block;
   position: absolute;
-  bottom: 5px;
-  left: 90px;
+  top: 10px;
+  left: 140px;
+}
+#interface-left {
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 13px;
+  top: 0px;
+  left: 0px;
+  background: url(img/interface-left.png);
+}
+#interface-right {
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 7px;
+  top: 0px;
+  right: 0px;
+  background: url(img/interface-right.png);
+}
+#interface-top {
+  display: block;
+  position: absolute;
+  height: 9px;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  background: url(img/interface-top.png);
+}
+#interface-bottom {
+  display: block;
+  position: absolute;
+  height: 10px;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  background: url(img/interface-bottom.png);
+}
+#upper-left {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+#upper-right {
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+#lower-left {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+#lower-right {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
 }
 .snow {
   background-image: url(img/snow.png);
 }
 .dent1 {
-  background-image: url(img/dent.png);
+  background: url(img/dent.png) 10px 20px no-repeat;
   position: absolute;
   top: 0;
   left: 0;
   display: block;
-  height: 20px;
-  width: 20px;
+  height: 60px;
+  width: 40px;
 }
 .dent2 {
-  background-image: url(img/dent.png);
+  background: url(img/dent.png) 10px 20px no-repeat;
   position: absolute;
   top: 0;
   left: 0;
   display: block;
-  height: 40px;
-  width: 20px;
+  height: 60px;
+  width: 40px;
 }
 .dent3 {
-  background-image: url(img/dent.png);
+  background: url(img/dent.png) 10px 20px no-repeat;
   position: absolute;
   top: 0;
   left: 0;
@@ -54,28 +136,22 @@
   width: 40px;
 }
 .icicle1 {
-  background-image: url(img/icicle1.png);
+  background: url(img/icicle1.png) 10px 20px no-repeat;
   position: absolute;
-  top: 0;
-  left: 0;
   display: block;
-  height: 20px;
-  width: 20px;
+  height: 60px;
+  width: 40px;
 }
 .icicle2 {
-  background-image: url(img/icicle2.png);
+  background: url(img/icicle2.png) 10px 0px no-repeat;
   position: absolute;
-  top: 0;
-  left: 0;
   display: block;
-  height: 40px;
-  width: 20px;
+  height: 60px;
+  width: 40px;
 }
 .icicle3 {
-  background-image: url(img/icicle3.png);
+  background: url(img/icicle3.png) 0px 0px no-repeat;
   position: absolute;
-  top: 0;
-  left: 0;
   display: block;
   height: 60px;
   width: 40px;
@@ -83,6 +159,8 @@
 .row {
   display: block;
   position: absolute;
+  height: 25px;
+  width: 100%;
   top: 0;
   left: 0;
 }
@@ -94,13 +172,23 @@
 </style>
 </head>
 <body>
+<div id="wrapper">
 <div id="viewport">
 <div id="background">
 </div>
 <img id="copter" src="img/copter.png"/>
+<div id="interface-left"></div>
+<div id="interface-right"></div>
+<div id="interface-top"></div>
+<div id="interface-bottom"></div>
+<img id="upper-left" src="img/interface-upper-left.png"/>
+<img id="upper-right" src="img/interface-upper-right.png"/>
+<img id="lower-left" src="img/interface-lower-left.png"/>
+<img id="lower-right" src="img/interface-lower-right.png"/>
 </div>
 <div id="fps"></div>
 <div id="icicles"></div>
+</div>
 <script type="text/javascript">
 (function () {
   var lastTime = 0;
@@ -162,6 +250,17 @@ var getTop = function (element) {
   return value;
 };
 
+var getLeft = function (element) {
+  var value = 0;
+  if (element) {
+    value = parseFloat(element.getAttribute("data-left"), 10);
+    if (isNaN(value) && element.style) {
+      value = parseFloat(element.style.left, 10);
+    }
+  }
+  return value;
+};
+
 var addTouch = function (element, touchStart, touchEnd) {
   element.onmousedown = function () {
     if (touchStart) {
@@ -207,8 +306,8 @@ Timer.tick = function (now) {
   Timer.then = now;
 };
 
-var canvasHeight = 320;
-var canvasWidth = 240;
+var canvasHeight = 480;
+var canvasWidth = 320;
 var tileHeight = 20;
 var tileWidth = 20;
 var numCols = canvasWidth / tileWidth;
@@ -216,6 +315,7 @@ var numRows = (canvasHeight / tileHeight) + 1;
 var copterSpeed = 10;
 var icicleCount = 0;
 var maxIcicles = 12;
+var cachedIcicles = [];
 
 var hasClass = function (element, klass) {
   return element.classList.contains(klass);
@@ -276,48 +376,83 @@ var updateIcicles = function () {
   if (touchedIcicles.length != 2) {
     return;
   }
+  var reactTime = 600;
   var first = touchedIcicles[0];
   var second = touchedIcicles[1];
   touchedIcicles = [];
   // If the icicles aren't the same size, flip them both face down.
   if (first.className != second.className) {
-    icicleToDent(first);
-    icicleToDent(second);
+    setTimeout(function () {
+      icicleToDent(first);
+      icicleToDent(second);
+    }, reactTime);
     return;
   }
   // The icicles are the same size, so remove them.
-  removeIcicle(first);
-  removeIcicle(second);
+  setTimeout(function () {
+    removeIcicle(first);
+    removeIcicle(second);
+  }, reactTime);
 };
 
-var lastIcicle = null;
+var icicleCenter = function (element) {
+  var x = getLeft(element) + 20;
+  var y = getTop(element) + 20;
+  return { x: x, y: y };
+};
+
+var icicleDistance = function (element, x, y) {
+  var center = icicleCenter(element);
+  var dx = center.x - x;
+  var dy = center.y - y;
+  return Math.sqrt((dx * dx) + (dy * dy));
+};
+
+var hitsAnyIcicle = function (x, y) {
+  var max = Math.sqrt((40 * 40) + (40 * 40));
+  var i = 0;
+  for (i = 0; i < cachedIcicles.length; i += 1) {
+    var dist = icicleDistance(cachedIcicles[i], x, y);
+    if (dist <= max) {
+      return true;
+    }
+  }
+  return false;
+};
+
+var hitsEdge = function (index) {
+  return index < 2 || index >= numCols - 2;
+};
+
 var addIcicle = function (element) {
   if (icicleCount >= maxIcicles) {
     return;
   }
-  if (Math.floor(Math.random() * 3) > 1) {
+  var index = Math.floor(Math.random() * numCols);
+  if (hitsEdge(index)) {
     return;
   }
   var offsetTop = getTop(element);
-  var index = Math.floor(Math.random() * numCols);
+  var possible = [];
+  for (index = 0; index < numCols; index += 1) {
+    if (!hitsAnyIcicle(index * tileWidth, offsetTop) && !hitsEdge(index)) {
+      possible.push(index);
+    }
+  }
+  if (possible.length <= 0) {
+    return;
+  }
+  index = possible[Math.floor(Math.random() * possible.length)];
   var icicle = document.createElement("div");
   var types = [1, 1, 1, 1, 2, 2, 3];
   var klass = "dent" + types[Math.floor(Math.random() * types.length)];
   icicle.setAttribute("class", klass);
-  if (klass === "dent3") {
-    offsetTop -= 40;
-  }
-  if (klass === "dent2") {
-    offsetTop -= 20;
-  }
-  if (klass === "dent1") {
-    offsetTop -= 0;
-  }
   setTop(icicle, offsetTop);
   icicle.style.left = (index * tileWidth)+"px";
   icicle.setAttribute("data-icicle-index", icicleCount);
   addTouch(icicle, onIcicleTouch, updateIcicles);
-  lastIcicle = $("#background").insertBefore(icicle, lastIcicle);
+  $("#background").appendChild(icicle);
+  cachedIcicles.push(icicle);
   icicleCount += 1;
 };
 
@@ -326,12 +461,13 @@ var removeIcicle = function (element) {
   if (index >= 0) {
     touchedIcicles.splice(index, 1);
   }
+  index = cachedIcicles.indexOf(element);
+  if (index >= 0) {
+    cachedIcicles.splice(index, 1);
+  }
   removeTouch(element);
   $("#background").removeChild(element);
   icicleCount -= 1;
-  if (element === lastIcicle) {
-    lastIcicle = null;
-  }
 };
 
 var updateIcicle = function (element) {
@@ -346,7 +482,6 @@ var updateIcicle = function (element) {
 };
 
 var setup = function () {
-  var x = 0;
   var y = 0;
   var viewport = $("#viewport");
   viewport.style.height = canvasHeight+"px";
@@ -355,29 +490,23 @@ var setup = function () {
   background.style.width = viewport.style.width;
   background.style.height = viewport.style.height;
   var row = null;
-  var tile = null;
   for (y = 0; y < numRows; y += 1) {
     row = document.createElement("div");
-    row.setAttribute("class", "row");
-    setTop(row, (y * tileHeight) - tileHeight);
+    row.setAttribute("class", "row snow");
+    setTop(row, y * tileHeight);
     row.style.left = "0px";
-    for (x = 0; x < numCols; x += 1) {
-      tile = document.createElement("span");
-      tile.setAttribute("class", "snow tile");
-      row.appendChild(tile);
-    }
     background.appendChild(row);
   }
 };
 
-var movey = function (element, delta, max) {
+var moveUp = function (element, delta) {
   if (!element || !element.style) {
     return;
   }
   var offset = getTop(element) + delta;
   var warp = false;
-  if (offset >= max) {
-    offset = -tileHeight + delta;
+  if (offset < -tileHeight) {
+    offset = canvasHeight + delta;
     warp = true;
   }
   setTop(element, offset);
@@ -399,11 +528,9 @@ var render = function (time) {
   Timer.tick(time);
   var rows = $("#background").childNodes;
   var y = 0;
-  var offset = copterSpeed * Timer.delta;
-  var warped = false;
+  var offset = -copterSpeed * Timer.delta;
   for (y = 0; y < rows.length; y += 1) {
-    warped = movey(rows[y], offset, canvasHeight);
-    if (warped) {
+    if (moveUp(rows[y], offset)) {
       updateIcicle(rows[y]);
     }
   }
