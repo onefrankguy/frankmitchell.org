@@ -311,9 +311,8 @@ var tileHeight = 20;
 var tileWidth = 20;
 var numCols = canvasWidth / tileWidth;
 var numRows = (canvasHeight / tileHeight) + 1;
-var copterSpeed = 10;
-var icicleCount = 0;
-var maxIcicles = 12;
+var copterSpeed = 20;
+var maxIcicles = numRows;
 var cachedIcicles = [];
 
 var hasClass = function (element, klass) {
@@ -427,7 +426,7 @@ var hitsEdge = function (index) {
 };
 
 var addIcicle = function (element) {
-  if (icicleCount >= maxIcicles) {
+  if (cachedIcicles.length >= maxIcicles) {
     return;
   }
   var index = Math.floor(Math.random() * numCols);
@@ -451,10 +450,8 @@ var addIcicle = function (element) {
   icicle.setAttribute("class", klass);
   setTop(icicle, offsetTop);
   icicle.style.left = (index * tileWidth)+"px";
-  icicle.setAttribute("data-icicle-index", icicleCount);
   $("#background").appendChild(icicle);
   cachedIcicles.push(icicle);
-  icicleCount += 1;
 };
 
 var removeIcicle = function (element) {
@@ -467,7 +464,6 @@ var removeIcicle = function (element) {
     cachedIcicles.splice(index, 1);
   }
   $("#background").removeChild(element);
-  icicleCount -= 1;
 };
 
 var updateIcicle = function (element) {
@@ -520,7 +516,7 @@ var updateFPS = function () {
   if (now - lastFPS > 1000) {
     lastFPS = now;
     $("#fps").innerHTML = "FPS: "+Math.floor(1 / Timer.delta);
-    $("#icicles").innerHTML = "Icicles: "+icicleCount;
+    $("#icicles").innerHTML = "Icicles: "+cachedIcicles.length;
   }
 };
 
