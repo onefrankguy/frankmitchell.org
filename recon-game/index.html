@@ -109,6 +109,14 @@ body {
   right: 0px;
   pointer-events: none;
 }
+#cargo-hold {
+  display: block;
+  width: 290px;
+  position: absolute;
+  top: 8px;
+  left: 11px;
+  pointer-events: none;
+}
 .snow {
   background-image: url(img/snow.png);
 }
@@ -173,6 +181,98 @@ body {
   height: 20px;
   width: 20px;
 }
+.bar {
+  display: block;
+  height: 3px;
+  background: #424542;
+  border-top:    1px solid #525552;
+  border-bottom: 1px solid #000400;
+  box-shadow: 1px 1px 3px #101410;
+}
+.button {
+  position: absolute;
+  top: -2px;
+  display: inline-block;
+  height: 5px;
+  width: 6px;
+  border-top:    1px solid #636563;
+  border-right:  1px solid #525552;
+  border-bottom: 1px solid #000400;
+  border-left:   1px solid #848684;
+  box-shadow: 1px 1px 3px #101410;
+}
+.lght0 {
+  left: 0%;
+}
+.lght1 {
+  left: 12.5%;
+}
+.lght2 {
+  left: 25%;
+}
+.lght3 {
+  left: 37.5%;
+}
+.lght4 {
+  left: 50%;
+}
+.lght5 {
+  left: 62.5%;
+}
+.lght6 {
+  left: 75%;
+}
+.lght7 {
+  left: 87.5%;
+}
+.lght8 {
+  left: 100%;
+}
+.lvl0 {
+  background: #310000;
+  box-shadow: inset 0 0 0 1px #210000,
+              1px 1px 3px #101410;
+}
+.lvl1 {
+  background: #420000;
+  box-shadow: inset 0 0 0 1px #310000,
+              1px 1px 3px #101410;
+}
+.lvl2 {
+  background: #630000;
+  box-shadow: inset 0 0 0 1px #420000,
+              1px 1px 3px #101410;
+}
+.lvl3 {
+  background: #731000;
+  box-shadow: inset 0 0 0 1px #630000,
+              1px 1px 3px #101410;
+}
+.lvl4 {
+  background: #841000;
+  box-shadow: inset 0 0 0 1px #731000,
+              1px 1px 3px #101410;
+}
+.lvl5 {
+  background: #942000;
+  box-shadow: inset 0 0 0 1px #841000,
+              1px 1px 3px #101410;
+}
+.lvl6 {
+  background: #a52000;
+  box-shadow: inset 0 0 0 1px #942000,
+              1px 1px 3px #101410;
+}
+.lvl7 {
+  background: #d63000;
+  box-shadow: inset 0 0 0 1px #b53000,
+              1px 1px 3px #101410;
+}
+.lvl8 {
+  background: #f75100;
+  box-shadow: inset 0 0 0 1px #d63000,
+              1px 1px 3px #101410;
+}
 </style>
 </head>
 <body>
@@ -189,9 +289,24 @@ body {
 <img id="upper-right" src="img/interface-upper-right.png"/>
 <img id="lower-left" src="img/interface-lower-left.png"/>
 <img id="lower-right" src="img/interface-lower-right.png"/>
+<div id="cargo-hold" class="bar">
+  <span id="bay0" class="button lght0 lvl0"></span>
+  <span id="bay1" class="button lght1 lvl0"></span>
+  <span id="bay2" class="button lght2 lvl0"></span>
+  <span id="bay3" class="button lght3 lvl0"></span>
+  <span id="bay4" class="button lght4 lvl0"></span>
+  <span id="bay5" class="button lght5 lvl0"></span>
+  <span id="bay6" class="button lght6 lvl0"></span>
+  <span id="bay7" class="button lght7 lvl0"></span>
+  <span id="bay8" class="button lght8 lvl0"></span>
 </div>
+</div>
+<p class="credits">Design <abbr title="and">&amp;</abbr> dev by <a href="http://frankmitchell.org/">Frank Mitchell</a> for <a href="http://js13kgames.com/">js13kGames</a><br />&ldquo;<a href="http://lostgarden.com/2005/03/game-post-mortem-hard-vacuum.html">Hard Vacuum</a>&rdquo; art by Daniel Cook (<a href="http://lostgarden.com/">lostgarden.com</a>)</p>
 <div id="fps"></div>
 <div id="icicles"></div>
+<div id="cargo"></div>
+<div id="units"></div>
+<div id="power"></div>
 </div>
 <script type="text/javascript">
 (function () {
@@ -314,6 +429,8 @@ var numRows = (canvasHeight / tileHeight) + 1;
 var copterSpeed = 20;
 var maxIcicles = numRows;
 var cachedIcicles = [];
+var usedCargo = 0;
+var maxCargo = 47;
 
 var hasClass = function (element, klass) {
   return element.classList.contains(klass);
@@ -390,6 +507,15 @@ var updateIcicles = function () {
     return;
   }
   // The icicles are the same size, so remove them.
+  if (first.className === "icicle1") {
+    usedCargo += 1;
+  }
+  else if (first.className === "icicle2") {
+    usedCargo += 3;
+  }
+  else if (first.className === "icicle3") {
+    usedCargo += 7;
+  }
   setTimeout(function () {
     removeIcicle(first);
     removeIcicle(second);
@@ -477,6 +603,10 @@ var updateIcicle = function (element) {
   }
 };
 
+var isGameOver = function () {
+  return usedCargo >= maxCargo;
+};
+
 var setup = function () {
   var y = 0;
   var viewport = $("#viewport");
@@ -520,8 +650,32 @@ var updateFPS = function () {
   }
 };
 
+var lastCargo = 0;
+var updateCargo = function () {
+  var now = Date.now();
+  if (now - lastCargo < 333) {
+    return;
+  }
+  lastCargo = now;
+  var i = 0;
+  var power = Math.floor((usedCargo  / maxCargo) * 81);
+  var units = Math.floor(power / 9);
+  power = power - (units * 9);
+  $("#cargo").innerHTML = "Cargo: "+usedCargo;
+  $("#power").innerHTML = "Power: "+power;
+  $("#units").innerHTML = "Units: "+units;
+  for (i = 0; i < units; i += 1) {
+    $("#bay"+i).className = "button lght"+i+" lvl8";
+  }
+  if (i < 9) {
+    $("#bay"+i).className = "button lght"+i+" lvl"+power;
+  }
+};
+
 var render = function (time) {
-  requestAnimationFrame(render);
+  if (!isGameOver()) {
+    requestAnimationFrame(render);
+  }
   Timer.tick(time);
   var rows = $("#background").childNodes;
   var y = 0;
@@ -532,6 +686,7 @@ var render = function (time) {
     }
   }
   updateFPS();
+  updateCargo();
 };
 
 setup();
