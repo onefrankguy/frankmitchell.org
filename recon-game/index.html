@@ -25,7 +25,11 @@ html {
 body {
   background: #333;
   color: #fff;
-  font-weight: bold;
+  font: 12px/15px Helvetica, sans-serif;
+}
+a {
+  color: #fff;
+  text-decoration: none;
 }
 #wrapper {
   width: 320px;
@@ -42,7 +46,7 @@ body {
 #copter {
   display: block;
   position: absolute;
-  top: 10px;
+  top: 20px;
   left: 140px;
 }
 #interface-left {
@@ -116,6 +120,10 @@ body {
   top: 8px;
   left: 11px;
   pointer-events: none;
+}
+.credits {
+  margin-top: 15px;
+  text-align: right;
 }
 .snow {
   background-image: url(img/snow.png);
@@ -301,7 +309,10 @@ body {
   <span id="bay8" class="button lght8 lvl0"></span>
 </div>
 </div>
-<p class="credits">Design <abbr title="and">&amp;</abbr> dev by <a href="http://frankmitchell.org/">Frank Mitchell</a> for <a href="http://js13kgames.com/">js13kGames</a><br />&ldquo;<a href="http://lostgarden.com/2005/03/game-post-mortem-hard-vacuum.html">Hard Vacuum</a>&rdquo; art by Daniel Cook (<a href="http://lostgarden.com/">lostgarden.com</a>)</p>
+<div class="credits">
+  <p>Design <abbr title="and">&amp;</abbr> dev by <a href="http://frankmitchell.org/">Frank Mitchell</a> for <a href="http://js13kgames.com/">js13kGames</a></p>
+  <p>&ldquo;<a href="http://lostgarden.com/2005/03/game-post-mortem-hard-vacuum.html">Hard Vacuum</a>&rdquo; art by Daniel Cook (<a href="http://lostgarden.com/">lostgarden.com</a>)</p>
+</div>
 <div id="fps"></div>
 <div id="icicles"></div>
 <div id="cargo"></div>
@@ -658,8 +669,8 @@ var updateCargo = function () {
   }
   lastCargo = now;
   var i = 0;
-  var power = Math.floor((usedCargo  / maxCargo) * 81);
-  var units = Math.floor(power / 9);
+  var power = Math.ceil((usedCargo  / maxCargo) * 81);
+  var units = Math.ceil(power / 9);
   power = power - (units * 9);
   $("#cargo").innerHTML = "Cargo: "+usedCargo;
   $("#power").innerHTML = "Power: "+power;
