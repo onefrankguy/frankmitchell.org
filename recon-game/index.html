@@ -43,6 +43,10 @@ a {
   display: block;
   overflow: hidden;
 }
+#terrain {
+  position: absolute;
+  background: url(img/snow.png);
+}
 #copter {
   display: block;
   position: absolute;
@@ -62,7 +66,7 @@ a {
   display: block;
   position: absolute;
   height: 100%;
-  width: 7px;
+  width: 10px;
   top: 0px;
   right: 0px;
   background: url(img/interface-right.png);
@@ -113,7 +117,7 @@ a {
   right: 0px;
   pointer-events: none;
 }
-#cargo-hold {
+#power-cells {
   display: block;
   width: 290px;
   position: absolute;
@@ -175,19 +179,6 @@ a {
   display: block;
   height: 60px;
   width: 40px;
-}
-.row {
-  display: block;
-  position: absolute;
-  height: 25px;
-  width: 100%;
-  top: 0;
-  left: 0;
-}
-.tile {
-  display: inline-block;
-  height: 20px;
-  width: 20px;
 }
 .bar {
   display: block;
@@ -287,6 +278,7 @@ a {
 <div id="wrapper">
 <div id="viewport">
 <div id="background">
+  <div id="terrain" class="terrain"></div>
 </div>
 <img id="copter" src="img/copter.png"/>
 <div id="interface-left"></div>
@@ -297,16 +289,16 @@ a {
 <img id="upper-right" src="img/interface-upper-right.png"/>
 <img id="lower-left" src="img/interface-lower-left.png"/>
 <img id="lower-right" src="img/interface-lower-right.png"/>
-<div id="cargo-hold" class="bar">
-  <span id="bay0" class="button lght0 lvl0"></span>
-  <span id="bay1" class="button lght1 lvl0"></span>
-  <span id="bay2" class="button lght2 lvl0"></span>
-  <span id="bay3" class="button lght3 lvl0"></span>
-  <span id="bay4" class="button lght4 lvl0"></span>
-  <span id="bay5" class="button lght5 lvl0"></span>
-  <span id="bay6" class="button lght6 lvl0"></span>
-  <span id="bay7" class="button lght7 lvl0"></span>
-  <span id="bay8" class="button lght8 lvl0"></span>
+<div id="power-cells" class="bar">
+  <span id="battery0" class="button lght0 lvl0"></span>
+  <span id="battery1" class="button lght1 lvl0"></span>
+  <span id="battery2" class="button lght2 lvl0"></span>
+  <span id="battery3" class="button lght3 lvl0"></span>
+  <span id="battery4" class="button lght4 lvl0"></span>
+  <span id="battery5" class="button lght5 lvl0"></span>
+  <span id="battery6" class="button lght6 lvl0"></span>
+  <span id="battery7" class="button lght7 lvl0"></span>
+  <span id="battery8" class="button lght8 lvl0"></span>
 </div>
 </div>
 <div class="credits">
@@ -315,7 +307,6 @@ a {
 </div>
 <div id="fps"></div>
 <div id="icicles"></div>
-<div id="cargo"></div>
 <div id="units"></div>
 <div id="power"></div>
 </div>
@@ -371,7 +362,7 @@ var setTop = function (element, value) {
 
 var getTop = function (element) {
   var value = 0;
-  if (element) {
+  if (element && element['getAttribute']) {
     value = parseFloat(element.getAttribute("data-top"), 10);
     if (isNaN(value) && element.style) {
       value = parseFloat(element.style.top, 10);
@@ -440,8 +431,19 @@ var numRows = (canvasHeight / tileHeight) + 1;
 var copterSpeed = 20;
 var maxIcicles = numRows;
 var cachedIcicles = [];
-var usedCargo = 0;
-var maxCargo = 47;
+var maxPower = 81;
+var availablePower = maxPower;
+
+var powerUp = function (value) {
+  availablePower += value;
+  availablePower = Math.min(availablePower, maxPower);
+};
+
+
+var powerDown = function (value) {
+  availablePower -= value;
+  availablePower = Math.max(availablePower, 0);
+};
 
 var hasClass = function (element, klass) {
   return element.classList.contains(klass);
@@ -458,10 +460,9 @@ var isIcicle = function (element) {
   );
 };
 
-var isRow = function (element) {
-  return hasClass(element, "row");
+var isTerrain = function (element) {
+  return hasClass(element, "terrain");
 };
-
 
 var dentToIcicle = function (element) {
   if (hasClass(element, "dent1")) {
@@ -495,8 +496,9 @@ var touchedIcicles = [];
 var onBoardTouch = function (event) {
   var target = event.srcElement || event.target;
   if (isIcicle(target)) {
-    if (dentToIcicle(target)) {
+    if (!isGameOver() && dentToIcicle(target)) {
       touchedIcicles.push(target);
+      powerDown(1);
     }
   }
 };
@@ -518,15 +520,7 @@ var updateIcicles = function () {
     return;
   }
   // The icicles are the same size, so remove them.
-  if (first.className === "icicle1") {
-    usedCargo += 1;
-  }
-  else if (first.className === "icicle2") {
-    usedCargo += 3;
-  }
-  else if (first.className === "icicle3") {
-    usedCargo += 7;
-  }
+  powerUp(2);
   setTimeout(function () {
     removeIcicle(first);
     removeIcicle(second);
@@ -570,7 +564,7 @@ var addIcicle = function (element) {
   if (hitsEdge(index)) {
     return;
   }
-  var offsetTop = getTop(element);
+  var offsetTop = canvasHeight;
   var possible = [];
   for (index = 0; index < numCols; index += 1) {
     if (!hitsAnyIcicle(index * tileWidth, offsetTop) && !hitsEdge(index)) {
@@ -608,14 +602,14 @@ var updateIcicle = function (element) {
     removeIcicle(element);
     return;
   }
-  if (isRow(element)) {
+  if (isTerrain(element)) {
     addIcicle(element);
     return;
   }
 };
 
 var isGameOver = function () {
-  return usedCargo >= maxCargo;
+  return availablePower <= 0;
 };
 
 var setup = function () {
@@ -626,14 +620,9 @@ var setup = function () {
   var background = $("#background");
   background.style.width = viewport.style.width;
   background.style.height = viewport.style.height;
-  var row = null;
-  for (y = 0; y < numRows; y += 1) {
-    row = document.createElement("div");
-    row.setAttribute("class", "row snow");
-    setTop(row, y * tileHeight);
-    row.style.left = "0px";
-    background.appendChild(row);
-  }
+  var terrain = $("#terrain");
+  terrain.style.width = viewport.style.width;
+  terrain.style.height = (numRows * tileHeight)+"px";
   addTouch(background, onBoardTouch, updateIcicles);
 };
 
@@ -644,7 +633,12 @@ var moveUp = function (element, delta) {
   var offset = getTop(element) + delta;
   var warp = false;
   if (offset < -tileHeight) {
-    offset = canvasHeight + delta;
+    if (isIcicle(element)) {
+      offset = canvasHeight + delta;
+    }
+    if (isTerrain(element)) {
+      offset = delta;
+    }
     warp = true;
   }
   setTop(element, offset);
@@ -661,25 +655,24 @@ var updateFPS = function () {
   }
 };
 
-var lastCargo = 0;
-var updateCargo = function () {
+var lastPowerUpdate = 0;
+var updatePower = function () {
   var now = Date.now();
-  if (now - lastCargo < 333) {
+  if (now - lastPowerUpdate < 333) {
     return;
   }
-  lastCargo = now;
+  lastPowerUpdate = now;
   var i = 0;
-  var power = Math.ceil((usedCargo  / maxCargo) * 81);
-  var units = Math.ceil(power / 9);
+  var power = Math.floor((availablePower / maxPower) * 81);
+  var units = Math.floor(power / 9);
   power = power - (units * 9);
-  $("#cargo").innerHTML = "Cargo: "+usedCargo;
   $("#power").innerHTML = "Power: "+power;
   $("#units").innerHTML = "Units: "+units;
-  for (i = 0; i < units; i += 1) {
-    $("#bay"+i).className = "button lght"+i+" lvl8";
+  for (i = 0; i < units && i < 9; i += 1) {
+    $("#battery"+i).className = "button lght"+(8 - i)+" lvl8";
   }
   if (i < 9) {
-    $("#bay"+i).className = "button lght"+i+" lvl"+power;
+    $("#battery"+i).className = "button lght"+(8 - i)+" lvl"+power;
   }
 };
 
@@ -697,7 +690,7 @@ var render = function (time) {
     }
   }
   updateFPS();
-  updateCargo();
+  updatePower();
 };
 
 setup();
