@@ -132,26 +132,8 @@ a {
 .snow {
   background-image: url(img/snow.png);
 }
-.dent1 {
-  background: url(img/dent.png) 10px 20px no-repeat;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  height: 60px;
-  width: 40px;
-}
-.dent2 {
-  background: url(img/dent.png) 10px 20px no-repeat;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  height: 60px;
-  width: 40px;
-}
-.dent3 {
-  background: url(img/dent.png) 10px 20px no-repeat;
+.rock {
+  background: url(img/rock.png) 10px 20px no-repeat;
   position: absolute;
   top: 0;
   left: 0;
@@ -306,6 +288,7 @@ a {
   <p>&ldquo;<a href="http://lostgarden.com/2005/03/game-post-mortem-hard-vacuum.html">Hard Vacuum</a>&rdquo; art by Daniel Cook (<a href="http://lostgarden.com/">lostgarden.com</a>)</p>
 </div>
 <div id="fps"></div>
+<div id="time"></div>
 <div id="icicles"></div>
 <div id="units"></div>
 <div id="power"></div>
@@ -454,9 +437,7 @@ var isIcicle = function (element) {
     hasClass(element, "icicle1") ||
     hasClass(element, "icicle2") ||
     hasClass(element, "icicle3") ||
-    hasClass(element, "dent1") ||
-    hasClass(element, "dent2") ||
-    hasClass(element, "dent3")
+    hasClass(element, "rock")
   );
 };
 
@@ -464,43 +445,38 @@ var isTerrain = function (element) {
   return hasClass(element, "terrain");
 };
 
-var dentToIcicle = function (element) {
-  if (hasClass(element, "dent1")) {
-    element.className = "icicle1";
-    return true;
-  }
-  if (hasClass(element, "dent2")) {
-    element.className = "icicle2";
-    return true;
-  }
-  if (hasClass(element, "dent3")) {
-    element.className = "icicle3";
+var rockToIcicle = function (element) {
+  if (hasClass(element, "rock")) {
+    element.className = "icicle"+icicleSize(element);
     return true;
   }
   return false;
 };
 
-var icicleToDent = function (element) {
-  if (hasClass(element, "icicle1")) {
-    element.className = "dent1";
-  }
-  if (hasClass(element, "icicle2")) {
-    element.className = "dent2";
-  }
-  if (hasClass(element, "icicle3")) {
-    element.className = "dent3";
-  }
+var icicleToRock = function (element) {
+  element.className = "rock";
 };
 
 var touchedIcicles = [];
 var onBoardTouch = function (event) {
   var target = event.srcElement || event.target;
   if (isIcicle(target)) {
-    if (!isGameOver() && dentToIcicle(target)) {
+    if (!isGameOver() && rockToIcicle(target)) {
       touchedIcicles.push(target);
       powerDown(1);
     }
   }
+};
+
+var icicleSize = function (element) {
+  if (element.hasAttribute("data-icicle-size")) {
+    return parseInt(element.getAttribute("data-icicle-size"), 10);
+  }
+  return 3;
+};
+
+var icicleValue = function (element) {
+  return icicleSize(element);
 };
 
 var updateIcicles = function () {
@@ -514,13 +490,13 @@ var updateIcicles = function () {
   // If the icicles aren't the same size, flip them both face down.
   if (first.className != second.className) {
     setTimeout(function () {
-      icicleToDent(first);
-      icicleToDent(second);
+      icicleToRock(first);
+      icicleToRock(second);
     }, reactTime);
     return;
   }
   // The icicles are the same size, so remove them.
-  powerUp(2);
+  powerUp(icicleValue(first));
   setTimeout(function () {
     removeIcicle(first);
     removeIcicle(second);
@@ -577,8 +553,9 @@ var addIcicle = function (element) {
   index = possible[Math.floor(Math.random() * possible.length)];
   var icicle = document.createElement("div");
   var types = [1, 1, 1, 1, 2, 2, 3];
-  var klass = "dent" + types[Math.floor(Math.random() * types.length)];
-  icicle.setAttribute("class", klass);
+  var size = types[Math.floor(Math.random() * types.length)];
+  icicle.setAttribute("data-icicle-size", size);
+  icicle.setAttribute("class", "rock");
   setTop(icicle, offsetTop);
   icicle.style.left = (index * tileWidth)+"px";
   $("#background").appendChild(icicle);
@@ -626,6 +603,13 @@ var setup = function () {
   addTouch(background, onBoardTouch, updateIcicles);
 };
 
+var reset = function () {
+  var i = 0;
+  for (i = 0; i < cachedIcicles.length; i += 1) {
+    icicleToRock(cachedIcicles[i]);
+  }
+};
+
 var moveUp = function (element, delta) {
   if (!element || !element.style) {
     return;
@@ -645,12 +629,14 @@ var moveUp = function (element, delta) {
   return warp;
 };
 
-var lastFPS = 0;
-var updateFPS = function () {
+var startTime = Date.now();
+var lastStatsUpdate = 0;
+var updateStats = function () {
   var now = Date.now();
-  if (now - lastFPS > 1000) {
-    lastFPS = now;
+  if (now - lastStatsUpdate > 1000) {
+    lastStatsUpdate = now;
     $("#fps").innerHTML = "FPS: "+Math.floor(1 / Timer.delta);
+    $("#time").innerHTML = "Time: "+Math.ceil((now - startTime) / 1000);
     $("#icicles").innerHTML = "Icicles: "+cachedIcicles.length;
   }
 };
@@ -676,9 +662,21 @@ var updatePower = function () {
   }
 };
 
+var lastFuelUpdate = 0;
+var updateFuel = function () {
+  var now = Date.now();
+  if (now - lastFuelUpdate > 1000) {
+    powerDown(0.675);
+    lastFuelUpdate = now;
+  }
+};
+
 var render = function (time) {
   if (!isGameOver()) {
     requestAnimationFrame(render);
+  }
+  else {
+    reset();
   }
   Timer.tick(time);
   var rows = $("#background").childNodes;
@@ -689,7 +687,8 @@ var render = function (time) {
       updateIcicle(rows[y]);
     }
   }
-  updateFPS();
+  updateStats();
+  updateFuel();
   updatePower();
 };
 
