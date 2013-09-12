@@ -23,7 +23,7 @@ html {
   -webkit-text-size-adjust: none;
 }
 body {
-  background: #333;
+  background: #313431;
   color: #fff;
   font: 12px/15px Helvetica, sans-serif;
 }
@@ -37,11 +37,11 @@ a {
 }
 #viewport {
   position: relative;
+  overflow: hidden;
 }
 #background {
   position: relative;
   display: block;
-  overflow: hidden;
 }
 #terrain {
   position: absolute;
@@ -52,6 +52,47 @@ a {
   position: absolute;
   top: 20px;
   left: 140px;
+}
+.dialog {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: block;
+  height: 50%;
+  width: 280px;
+  background: #313431;
+  color: #fff;
+  padding: 10px 20px;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+.dialog:before {
+  content: "";
+  position: relative;
+  top: -10px;
+  left: -20px;
+  display: block;
+  height: 3px;
+  width: 320px;
+  background: #424542;
+  border-top:    1px solid #525552;
+  border-bottom: 1px solid #000400;
+  box-shadow: 1px 1px 3px #101410;
+}
+.dialog * {
+  pointer-events: none;
+}
+.dialog p+p {
+  margin-top: 15px;
+}
+.active {
+  top: 50%;
+}
+.dismiss {
+  -webkit-animation: dismiss 1.5s linear normal;
+     -moz-animation: dismiss 1.5s linear normal;
+       -o-animation: dismiss 1.5s linear normal;
+          animation: dismiss 1.5s linear normal;
 }
 #interface-left {
   display: block;
@@ -254,6 +295,22 @@ a {
   box-shadow: inset 0 0 0 1px #d63000,
               1px 1px 3px #101410;
 }
+@keyframes dismiss {
+  from { top: 50%; }
+  to   { top: 100%; }
+}
+@-webkit-keyframes dismiss {
+  from { top: 50%; }
+  to   { top: 100%; }
+}
+@-moz-keyframes dismiss {
+  from { top: 50%; }
+  to   { top: 100%; }
+}
+@-o-keyframes dismiss {
+  from { top: 50%; }
+  to   { top: 100%; }
+}
 </style>
 </head>
 <body>
@@ -263,6 +320,14 @@ a {
   <div id="terrain" class="terrain"></div>
 </div>
 <img id="copter" src="img/copter.png"/>
+<div id="mission" class="dialog active">
+<p>Look, I don't know what you did to piss Henley off, but she's given you
+recon duty. Scan rocks as you fly over them, and drop beacons on anything
+iteresting.</p>
+<p>Now the NAVI on that copter of yours is a little quirky.  It&hellip;
+Well you'll figure it out.</p>
+<p>Good luck!</p>
+</div>
 <div id="interface-left"></div>
 <div id="interface-right"></div>
 <div id="interface-top"></div>
@@ -272,15 +337,15 @@ a {
 <img id="lower-left" src="img/interface-lower-left.png"/>
 <img id="lower-right" src="img/interface-lower-right.png"/>
 <div id="power-cells" class="bar">
-  <span id="battery0" class="button lght0 lvl0"></span>
-  <span id="battery1" class="button lght1 lvl0"></span>
-  <span id="battery2" class="button lght2 lvl0"></span>
-  <span id="battery3" class="button lght3 lvl0"></span>
-  <span id="battery4" class="button lght4 lvl0"></span>
-  <span id="battery5" class="button lght5 lvl0"></span>
-  <span id="battery6" class="button lght6 lvl0"></span>
-  <span id="battery7" class="button lght7 lvl0"></span>
-  <span id="battery8" class="button lght8 lvl0"></span>
+  <span id="battery0" class="button lght0 lvl8"></span>
+  <span id="battery1" class="button lght1 lvl8"></span>
+  <span id="battery2" class="button lght2 lvl8"></span>
+  <span id="battery3" class="button lght3 lvl8"></span>
+  <span id="battery4" class="button lght4 lvl8"></span>
+  <span id="battery5" class="button lght5 lvl8"></span>
+  <span id="battery6" class="button lght6 lvl8"></span>
+  <span id="battery7" class="button lght7 lvl8"></span>
+  <span id="battery8" class="button lght8 lvl8"></span>
 </div>
 </div>
 <div class="credits">
@@ -288,10 +353,6 @@ a {
   <p>&ldquo;<a href="http://lostgarden.com/2005/03/game-post-mortem-hard-vacuum.html">Hard Vacuum</a>&rdquo; art by Daniel Cook (<a href="http://lostgarden.com/">lostgarden.com</a>)</p>
 </div>
 <div id="fps"></div>
-<div id="time"></div>
-<div id="icicles"></div>
-<div id="units"></div>
-<div id="power"></div>
 </div>
 <script type="text/javascript">
 (function () {
@@ -441,6 +502,10 @@ var isIcicle = function (element) {
   );
 };
 
+var isDialog = function (element) {
+  return hasClass(element, "dialog");
+};
+
 var isTerrain = function (element) {
   return hasClass(element, "terrain");
 };
@@ -461,18 +526,32 @@ var touchedIcicles = [];
 var onBoardTouch = function (event) {
   var target = event.srcElement || event.target;
   if (isIcicle(target)) {
-    if (!isGameOver() && rockToIcicle(target)) {
+    if (running() && rockToIcicle(target)) {
       touchedIcicles.push(target);
       powerDown(1);
     }
   }
+  else if (isDialog(target)) {
+    target.className = "dialog dismiss";
+    requestAnimationFrame(render);
+  }
 };
 
 var icicleSize = function (element) {
-  if (element.hasAttribute("data-icicle-size")) {
-    return parseInt(element.getAttribute("data-icicle-size"), 10);
+  if (!element.hasAttribute("data-icicle-size")) {
+    var offset = getTop(element);
+    var zone = Math.ceil(canvasHeight / 3);
+    var types = [1, 1, 1, 1, 2, 2, 3];
+    if (offset <= zone * 2) {
+        types = [1, 1, 2, 2, 2, 2, 3];
+    }
+    if (offset <= zone * 1) {
+        types = [1, 2, 2, 3, 3, 3, 3];
+    }
+    var size = types[Math.floor(Math.random() * types.length)];
+    element.setAttribute("data-icicle-size", size);
   }
-  return 3;
+  return parseInt(element.getAttribute("data-icicle-size"), 10);
 };
 
 var icicleValue = function (element) {
@@ -540,10 +619,9 @@ var addIcicle = function (element) {
   if (hitsEdge(index)) {
     return;
   }
-  var offsetTop = canvasHeight;
   var possible = [];
   for (index = 0; index < numCols; index += 1) {
-    if (!hitsAnyIcicle(index * tileWidth, offsetTop) && !hitsEdge(index)) {
+    if (!hitsAnyIcicle(index * tileWidth, canvasHeight) && !hitsEdge(index)) {
       possible.push(index);
     }
   }
@@ -552,11 +630,8 @@ var addIcicle = function (element) {
   }
   index = possible[Math.floor(Math.random() * possible.length)];
   var icicle = document.createElement("div");
-  var types = [1, 1, 1, 1, 2, 2, 3];
-  var size = types[Math.floor(Math.random() * types.length)];
-  icicle.setAttribute("data-icicle-size", size);
   icicle.setAttribute("class", "rock");
-  setTop(icicle, offsetTop);
+  setTop(icicle, canvasHeight);
   icicle.style.left = (index * tileWidth)+"px";
   $("#background").appendChild(icicle);
   cachedIcicles.push(icicle);
@@ -585,8 +660,8 @@ var updateIcicle = function (element) {
   }
 };
 
-var isGameOver = function () {
-  return availablePower <= 0;
+var running = function () {
+  return hasClass($("#mission"), "dismiss") && availablePower > 0;
 };
 
 var setup = function () {
@@ -600,7 +675,7 @@ var setup = function () {
   var terrain = $("#terrain");
   terrain.style.width = viewport.style.width;
   terrain.style.height = (numRows * tileHeight)+"px";
-  addTouch(background, onBoardTouch, updateIcicles);
+  addTouch(viewport, onBoardTouch, updateIcicles);
 };
 
 var reset = function () {
@@ -636,8 +711,6 @@ var updateStats = function () {
   if (now - lastStatsUpdate > 1000) {
     lastStatsUpdate = now;
     $("#fps").innerHTML = "FPS: "+Math.floor(1 / Timer.delta);
-    $("#time").innerHTML = "Time: "+Math.ceil((now - startTime) / 1000);
-    $("#icicles").innerHTML = "Icicles: "+cachedIcicles.length;
   }
 };
 
@@ -652,8 +725,6 @@ var updatePower = function () {
   var power = Math.floor((availablePower / maxPower) * 81);
   var units = Math.floor(power / 9);
   power = power - (units * 9);
-  $("#power").innerHTML = "Power: "+power;
-  $("#units").innerHTML = "Units: "+units;
   for (i = 0; i < units && i < 9; i += 1) {
     $("#battery"+i).className = "button lght"+(8 - i)+" lvl8";
   }
@@ -672,7 +743,7 @@ var updateFuel = function () {
 };
 
 var render = function (time) {
-  if (!isGameOver()) {
+  if (running()) {
     requestAnimationFrame(render);
   }
   else {
@@ -693,7 +764,6 @@ var render = function (time) {
 };
 
 setup();
-requestAnimationFrame(render);
 </script>
 </body>
 </html>
