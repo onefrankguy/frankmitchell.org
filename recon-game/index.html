@@ -20,16 +20,21 @@
 }
 html {
   height: 100%;
+  font-size: 62.5%;
+  font-family: Helvetica, sans-serif;
   -webkit-text-size-adjust: none;
 }
 body {
   background: #313431;
   color: #fff;
-  font: 12px/15px Helvetica, sans-serif;
 }
 a {
   color: #fff;
   text-decoration: none;
+}
+p {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
 }
 #wrapper {
   width: 320px;
@@ -55,16 +60,20 @@ a {
 }
 .dialog {
   position: absolute;
-  top: 100%;
+  top: 50%;
   left: 0;
   display: block;
-  height: 50%;
+  height: 100%;
   width: 280px;
-  background: #313431;
+  background: #424542;
   color: #fff;
   padding: 10px 20px;
   -moz-hyphens: auto;
   hyphens: auto;
+  -webkit-transition: top 1.5s ease-in-out;
+     -moz-transition: top 1.5s ease-in-out;
+       -o-transition: top 1.5s ease-in-out;
+          transition: top 1.5s ease-in-out;
 }
 .dialog:before {
   content: "";
@@ -89,10 +98,7 @@ a {
   top: 50%;
 }
 .dismiss {
-  -webkit-animation: dismiss 1.5s linear normal;
-     -moz-animation: dismiss 1.5s linear normal;
-       -o-animation: dismiss 1.5s linear normal;
-          animation: dismiss 1.5s linear normal;
+  top: 100%;
 }
 #interface-left {
   display: block;
@@ -166,8 +172,21 @@ a {
   left: 11px;
   pointer-events: none;
 }
+#odometer {
+  position: absolute;
+  right: 20px;
+  bottom: 0.5rem;
+  display: block;
+  height: 15px;
+  width: 24px;
+  overflow: hidden;
+  text-align: right;
+  color: #8492a5;
+  font-family: monospace;
+  text-shadow: 1px 1px 0px #000400;
+}
 .credits {
-  margin-top: 15px;
+  margin-top: 1.5rem;
   text-align: right;
 }
 .snow {
@@ -295,22 +314,6 @@ a {
   box-shadow: inset 0 0 0 1px #d63000,
               1px 1px 3px #101410;
 }
-@keyframes dismiss {
-  from { top: 50%; }
-  to   { top: 100%; }
-}
-@-webkit-keyframes dismiss {
-  from { top: 50%; }
-  to   { top: 100%; }
-}
-@-moz-keyframes dismiss {
-  from { top: 50%; }
-  to   { top: 100%; }
-}
-@-o-keyframes dismiss {
-  from { top: 50%; }
-  to   { top: 100%; }
-}
 </style>
 </head>
 <body>
@@ -347,12 +350,13 @@ Well you'll figure it out.</p>
   <span id="battery7" class="button lght7 lvl8"></span>
   <span id="battery8" class="button lght8 lvl8"></span>
 </div>
+<p id="odometer">0</p>
 </div>
 <div class="credits">
   <p>Design <abbr title="and">&amp;</abbr> dev by <a href="http://frankmitchell.org/">Frank Mitchell</a> for <a href="http://js13kgames.com/">js13kGames</a></p>
   <p>&ldquo;<a href="http://lostgarden.com/2005/03/game-post-mortem-hard-vacuum.html">Hard Vacuum</a>&rdquo; art by Daniel Cook (<a href="http://lostgarden.com/">lostgarden.com</a>)</p>
 </div>
-<div id="fps"></div>
+<p id="fps"></p>
 </div>
 <script type="text/javascript">
 (function () {
@@ -477,6 +481,7 @@ var maxIcicles = numRows;
 var cachedIcicles = [];
 var maxPower = 81;
 var availablePower = maxPower;
+var copterDistance = 0;
 
 var powerUp = function (value) {
   availablePower += value;
@@ -537,6 +542,10 @@ var onBoardTouch = function (event) {
   }
 };
 
+var randomValue = function (array) {
+  return array[Math.floor(Math.random() * array.length)];
+};
+
 var icicleSize = function (element) {
   if (!element.hasAttribute("data-icicle-size")) {
     var offset = getTop(element);
@@ -548,7 +557,7 @@ var icicleSize = function (element) {
     if (offset <= zone * 1) {
         types = [1, 2, 2, 3, 3, 3, 3];
     }
-    var size = types[Math.floor(Math.random() * types.length)];
+    var size = randomValue(types);
     element.setAttribute("data-icicle-size", size);
   }
   return parseInt(element.getAttribute("data-icicle-size"), 10);
@@ -628,7 +637,7 @@ var addIcicle = function (element) {
   if (possible.length <= 0) {
     return;
   }
-  index = possible[Math.floor(Math.random() * possible.length)];
+  index = randomValue(possible);
   var icicle = document.createElement("div");
   icicle.setAttribute("class", "rock");
   setTop(icicle, canvasHeight);
@@ -678,11 +687,24 @@ var setup = function () {
   addTouch(viewport, onBoardTouch, updateIcicles);
 };
 
-var reset = function () {
+var nextMission = function () {
+  var text = "<p>"+randomValue(["Nice flying.","Not bad.","Don't get cocky."])+"</p>";
+  text += "<p>You made it "+Math.floor(copterDistance)+" meters on those fuel cells. ";
+  text += "I can probably dig up some more if you want to go again.</p>";
+  text += "<p>You game?</p>";
+  return text;
+};
+
+var resetMission = function () {
   var i = 0;
+  var mission = $("#mission");
   for (i = 0; i < cachedIcicles.length; i += 1) {
     icicleToRock(cachedIcicles[i]);
   }
+  mission.innerHTML = nextMission();
+  mission.className = "dialog active";
+  availablePower = maxPower;
+  copterDistance = 0;
 };
 
 var moveUp = function (element, delta) {
@@ -742,17 +764,30 @@ var updateFuel = function () {
   }
 };
 
+var lastOdometerUpdate = 0;
+var updateOdometer = function () {
+  var now = Date.now();
+  if (now - lastOdometerUpdate > 333) {
+    $("#odometer").innerHTML = Math.floor(copterDistance);
+    lastOdometerUpdate = now;
+  };
+};
+
 var render = function (time) {
   if (running()) {
     requestAnimationFrame(render);
   }
   else {
-    reset();
+    resetMission();
   }
   Timer.tick(time);
   var rows = $("#background").childNodes;
   var y = 0;
   var offset = -copterSpeed * Timer.delta;
+  copterDistance += -offset;
+  if (copterDistance >= 10000) {
+    copterDistance = 0;
+  }
   for (y = 0; y < rows.length; y += 1) {
     if (moveUp(rows[y], offset)) {
       updateIcicle(rows[y]);
@@ -761,6 +796,7 @@ var render = function (time) {
   updateStats();
   updateFuel();
   updatePower();
+  updateOdometer();
 };
 
 setup();
