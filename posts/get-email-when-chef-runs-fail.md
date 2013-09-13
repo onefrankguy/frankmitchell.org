@@ -1,7 +1,7 @@
 <!--
 title: Get email when Chef runs fail
 created: 27 February 2013 - 3:31 am
-updated: 13 September 2013 - 7:35 am
+updated: 13 September 2013 - 7:45 am
 publish: 5 March 2013
 slug: chef-handlers
 tags: coding, chef
@@ -187,6 +187,10 @@ online, and when existing nodes break. Now that you know how to do it for email,
 you can push Chef run notifications into [CloudWatch][], [Graphite][], or your
 monitoring solution of choice.
 
+To make getting started with your own notifications easier, the
+[code's available on GitHub][repo]. Thanks to [Sean Carolan][] from [Opscode][]
+for encouraging me to publish it.
+
 
 [Jenkins]: http://jenkins-ci.org/ "Various (Jenkins CI): Jenkins is an extendable open source continuous integration server."
 [Chef]: http://opscode.com/chef "Various (Opscode): Chef is an open-source automation platform built to address the hardest infrastructure challenges on the planet."
@@ -199,3 +203,6 @@ monitoring solution of choice.
 [cookbook file resource]: http://docs.opscode.com/chef/resources.html#cookbook-file "Various (Opscode): The cookbook_file resource is used to transfer files from the cookbook to the host."
 [CloudWatch]: http://aws.amazon.com/cloudwatch/ "Various (Amazon): Amazon CloudWatch provides monitoring for AWS cloud resources and the applications customers run on AWS."
 [Graphite]: http://graphite.wikidot.com/ "Various (Graphite): Graphite is a highly scalable realtime graphing system."
+[repo]: https://github.com/onefrankguy/chef-email-handler "Frank Mitchell (GitHub): chef-email-handler - Get email when Chef runs fail"
+[Sean Carolan]: https://github.com/scarolan "Sean Carolan (GitHub): scarolan"
+[Opscode]: http://opscode.com/ "Various (Opscode): Code can..."
