@@ -1,7 +1,7 @@
 <!--
 title: Forcing HTTPS on in Amazon's EC2
 created: 7 May 2013 - 9:52 pm
-updated: 13 September 2013 - 7:01 am
+updated: 13 September 2013 - 7:04 am
 publish: 7 May 2013
 slug: https-elb
 tags: coding, aws
@@ -147,7 +147,7 @@ you're providing a safer experience for your users.
 [acl definition]: http://code.google.com/p/haproxy-docs/wiki/UsingACLs "Various (haproxy-docs): Using ACLs"
 [redirect command]: http://code.google.com/p/haproxy-docs/wiki/redirect "Various (haproxy-docs): redirect"
 [Nginx]: http://nginx.org/ "Various (Nginx): Nginx HTTP and Reverse Proxy Server"
-[http_header]: http://wiki.nginx.org/HttpCoreModule#2.4http_HEADER "Various (nginx): $http_HEADER variable"
+[http_header]: http://wiki.nginx.org/HttpCoreModule#.24http_HEADER "Various (nginx): $http_HEADER variable"
 [if is evil]: http://wiki.nginx.org/IfIsEvil "Various (nginx): If is evil"
 [server blocks]: http://nginx.org/en/docs/http/nginx_core_module.html#listen "Various (Nginx): listen"
 [Apache]: http://httpd.apache.org/ "Various (Apache Foundation): Apache HTTP Server Project"
