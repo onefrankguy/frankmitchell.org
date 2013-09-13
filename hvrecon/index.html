@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<meta name="viewport" content="width=320, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
 <title>Hard Vacuum: Recon</title>
@@ -174,7 +174,7 @@ p {
 }
 #odometer {
   position: absolute;
-  right: 20px;
+  right: 19px;
   bottom: 0.5rem;
   display: block;
   height: 15px;
@@ -192,35 +192,24 @@ p {
 .snow {
   background-image: url(img/snow.png);
 }
-.rock {
-  background: url(img/rock.png) 10px 20px no-repeat;
+.rock,
+.icicle1,
+.icicle2,
+.icicle3 {
+  background: url(img/icicles.png) 0 0 no-repeat;
   position: absolute;
-  top: 0;
-  left: 0;
   display: block;
   height: 60px;
   width: 40px;
+}
+.rock {
+  background-position: -120px 0;
 }
 .icicle1 {
-  background: url(img/icicle1.png) 10px 20px no-repeat;
-  position: absolute;
-  display: block;
-  height: 60px;
-  width: 40px;
+  background-position: -80px 0;
 }
 .icicle2 {
-  background: url(img/icicle2.png) 10px 0px no-repeat;
-  position: absolute;
-  display: block;
-  height: 60px;
-  width: 40px;
-}
-.icicle3 {
-  background: url(img/icicle3.png) 0px 0px no-repeat;
-  position: absolute;
-  display: block;
-  height: 60px;
-  width: 40px;
+  background-position: -40px 0;
 }
 .bar {
   display: block;
@@ -320,12 +309,12 @@ p {
 <div id="wrapper">
 <div id="viewport">
 <div id="background">
-  <div id="terrain" class="terrain"></div>
+<div id="terrain" class="terrain"></div>
 </div>
 <img id="copter" src="img/copter.png"/>
 <div id="mission" class="dialog active">
 <p>Look, I don't know what you did to piss Henley off, but she's given you
-recon duty. Scan rocks as you fly over them, and drop beacons on anything
+recon duty. Scan rocks as you fly over them, and pick up anything
 iteresting.</p>
 <p>Now the NAVI on that copter of yours is a little quirky.  It&hellip;
 Well you'll figure it out.</p>
@@ -356,7 +345,6 @@ Well you'll figure it out.</p>
   <p>Design <abbr title="and">&amp;</abbr> dev by <a href="http://frankmitchell.org/">Frank Mitchell</a> for <a href="http://js13kgames.com/">js13kGames</a></p>
   <p>&ldquo;<a href="http://lostgarden.com/2005/03/game-post-mortem-hard-vacuum.html">Hard Vacuum</a>&rdquo; art by Daniel Cook (<a href="http://lostgarden.com/">lostgarden.com</a>)</p>
 </div>
-<p id="fps"></p>
 </div>
 <script type="text/javascript">
 (function () {
@@ -469,6 +457,9 @@ Timer.tick = function (now) {
   Timer.delta = (now - (Timer.then || now)) / 1000;
   Timer.then = now;
 };
+Timer.reset = function () {
+  Timer.then = null;
+};
 
 var canvasHeight = 440;
 var canvasWidth = 320;
@@ -479,6 +470,7 @@ var numRows = (canvasHeight / tileHeight) + 1;
 var copterSpeed = 20;
 var maxIcicles = numRows;
 var cachedIcicles = [];
+var fuelCost = 0.675;
 var maxPower = 81;
 var availablePower = maxPower;
 var copterDistance = 0;
@@ -564,7 +556,7 @@ var icicleSize = function (element) {
 };
 
 var icicleValue = function (element) {
-  return icicleSize(element);
+  return 2 * icicleSize(element);
 };
 
 var updateIcicles = function () {
@@ -705,6 +697,8 @@ var resetMission = function () {
   mission.className = "dialog active";
   availablePower = maxPower;
   copterDistance = 0;
+  Timer.reset();
+  updateOdometer();
 };
 
 var moveUp = function (element, delta) {
@@ -724,16 +718,6 @@ var moveUp = function (element, delta) {
   }
   setTop(element, offset);
   return warp;
-};
-
-var startTime = Date.now();
-var lastStatsUpdate = 0;
-var updateStats = function () {
-  var now = Date.now();
-  if (now - lastStatsUpdate > 1000) {
-    lastStatsUpdate = now;
-    $("#fps").innerHTML = "FPS: "+Math.floor(1 / Timer.delta);
-  }
 };
 
 var lastPowerUpdate = 0;
@@ -759,7 +743,7 @@ var lastFuelUpdate = 0;
 var updateFuel = function () {
   var now = Date.now();
   if (now - lastFuelUpdate > 1000) {
-    powerDown(0.675);
+    powerDown(fuelCost);
     lastFuelUpdate = now;
   }
 };
@@ -774,12 +758,11 @@ var updateOdometer = function () {
 };
 
 var render = function (time) {
-  if (running()) {
-    requestAnimationFrame(render);
-  }
-  else {
+  if (!running()) {
     resetMission();
+    return;
   }
+  requestAnimationFrame(render);
   Timer.tick(time);
   var rows = $("#background").childNodes;
   var y = 0;
@@ -793,7 +776,6 @@ var render = function (time) {
       updateIcicle(rows[y]);
     }
   }
-  updateStats();
   updateFuel();
   updatePower();
   updateOdometer();
