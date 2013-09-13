@@ -1,7 +1,7 @@
 <!--
 title: Get email when Chef runs fail
 created: 27 February 2013 - 3:31 am
-updated: 2 March 2013 - 9:09 am
+updated: 13 September 2013 - 7:35 am
 publish: 5 March 2013
 slug: chef-handlers
 tags: coding, chef
@@ -160,7 +160,7 @@ core Ruby classes during a run. Prefixing them with `::` avoids those errors.
 ## Installing your handler ##
 
 The [chef_handler cookbook][] makes installing your custom handler easy.
-Write up a new default `email_handler` recipe, drop your email handling
+Write up a new default `email-handler` recipe, drop your email handling
 code in as a [cookbook file resource][], and you're good to go.
 
     include_recipe 'chef_handler'
@@ -177,7 +177,7 @@ code in as a [cookbook file resource][], and you're good to go.
       action :enable
     end
 
-Just include your `email_handler` cookbook in your base role to start getting
+Just include your `email-handler` cookbook in your base role to start getting
 email messages about the status of Chef runs.
 
 ## Taking things further ##
