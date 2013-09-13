@@ -1,7 +1,7 @@
 <!--
 title: Forcing HTTPS on in Amazon's EC2
 created: 7 May 2013 - 9:52 pm
-updated: 11 May 2013 - 10:08 am
+updated: 13 September 2013 - 7:01 am
 publish: 7 May 2013
 slug: https-elb
 tags: coding, aws
@@ -50,9 +50,17 @@ this is a permanent redirect.
 
 ## Nginx ##
 
-[Nginx][] doesn't have a great way to test the `X-Forwarded-Proto` header.
-Instead, configure your ELB to pass HTTP traffic to your web server on port 80
-and HTTPS traffic to your web server on port 443.
+Denis Klykvin showed me how to use the [`$http_x_forwarded_proto`][http_header]
+variable for header testing in [Nginx][].
+
+    if ($header_x_forwarded_proto) {
+      rewrite https://domain.com/$request_uri permanent;
+    }
+
+However, Nginx thinks [if is evil][]. Instead, take advantage of the default
+difference in ports for HTTP and HTTPS traffic. Configure your ELB to pass HTTP
+traffic to your web server on port 80 and HTTPS traffic to your web server on
+port 443.
 
 <table width="100%">
   <tr>
@@ -139,6 +147,8 @@ you're providing a safer experience for your users.
 [acl definition]: http://code.google.com/p/haproxy-docs/wiki/UsingACLs "Various (haproxy-docs): Using ACLs"
 [redirect command]: http://code.google.com/p/haproxy-docs/wiki/redirect "Various (haproxy-docs): redirect"
 [Nginx]: http://nginx.org/ "Various (Nginx): Nginx HTTP and Reverse Proxy Server"
+[http_header]: http://wiki.nginx.org/HttpCoreModule#2.4http_HEADER "Various (nginx): $http_HEADER variable"
+[if is evil]: http://wiki.nginx.org/IfIsEvil "Various (nginx): If is evil"
 [server blocks]: http://nginx.org/en/docs/http/nginx_core_module.html#listen "Various (Nginx): listen"
 [Apache]: http://httpd.apache.org/ "Various (Apache Foundation): Apache HTTP Server Project"
 [mod_rewrite rule]: http://httpd.apache.org/docs/current/mod/mod_rewrite.html "Various (Apache Foundation): mod_rewrite - Apache HTTP Server Project"
