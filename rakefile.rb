@@ -111,7 +111,7 @@ file 'public/js/related.json' => 'manifest.json' do |t|
   write_json t.name, json
 end
 
-%w[ca css images litl recon-game].each do |name|
+%w[ca css images litl hvrecon].each do |name|
   file "public/#{name}" => Dir["#{name}/*.*"] do |t|
     copy_folder name, t.name
   end
