@@ -50,7 +50,7 @@ this is a permanent redirect.
 
 ## Nginx ##
 
-Denis Klykvin showed me how to use the [`$http_x_forwarded_proto`][http_header]
+[Denis Klykvin][] showed me how to use the [`$http_x_forwarded_proto`][http_header]
 variable for header testing in [Nginx][].
 
     if ($header_x_forwarded_proto) {
@@ -147,6 +147,7 @@ you're providing a safer experience for your users.
 [acl definition]: http://code.google.com/p/haproxy-docs/wiki/UsingACLs "Various (haproxy-docs): Using ACLs"
 [redirect command]: http://code.google.com/p/haproxy-docs/wiki/redirect "Various (haproxy-docs): redirect"
 [Nginx]: http://nginx.org/ "Various (Nginx): Nginx HTTP and Reverse Proxy Server"
+[Denis Klykvin]: https://github.com/NikonNLG "Denis Klykvin (GitHub): NikonNLG"
 [http_header]: http://wiki.nginx.org/HttpCoreModule#.24http_HEADER "Various (nginx): $http_HEADER variable"
 [if is evil]: http://wiki.nginx.org/IfIsEvil "Various (nginx): If is evil"
 [server blocks]: http://nginx.org/en/docs/http/nginx_core_module.html#listen "Various (Nginx): listen"
