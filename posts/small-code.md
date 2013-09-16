@@ -2,7 +2,7 @@
 title:  Bytes matter on the mobile web
 date: 20 September 2010
 slug: small-code
-tags: writing
+tags: coding, mobile
 -->
 When I started writing [Prolix][], I knew it was going to be big. My original
 dictionary had 81,536 words, and the first version I wrote crashed [Jacob's][]
