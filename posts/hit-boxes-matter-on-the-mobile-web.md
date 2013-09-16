@@ -1,7 +1,7 @@
 <!--
 title:  Hit boxes matter on the mobile web
 created: 16 September 2013 - 5:35 am
-updated: 16 September 2013 - 6:49 am
+updated: 16 September 2013 - 8:20 am
 publish: 17 September 2013
 slug: big-boxes
 tags: coding, mobile
@@ -50,6 +50,11 @@ scrolls at 20 pixels per second, turning that quarter second reaction time into
 a 5 pixel error. Couple that error with the soft, round, imprecise nature of
 fingers and you have touch screen selection disaster.
 
+My solution was to make the hit boxes for rocks 40x60 pixels. Those extra 20
+pixels of vertical space account for reaction time and vertical motion. Since
+rocks are 20 pixels square, centered in the hit box, you actually get a full
+three seconds of time to touch them. Picking the space a rock was in a second
+ago, or where it will be a second from now, counts.
 
 P.S. The graphics for Hard Vacuum: Recon came from Daniel Cook's
 "[Hard Vacuum][]" art on [lostgarden.com][]. If you're looking for free game
