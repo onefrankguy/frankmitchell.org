@@ -1,7 +1,7 @@
 <!--
 title:  Hit boxes matter on the mobile web
 created: 16 September 2013 - 5:35 am
-updated: 16 September 2013 - 8:20 am
+updated: 17 September 2013 - 6:11 am
 publish: 17 September 2013
 slug: big-boxes
 tags: coding, mobile
@@ -16,7 +16,7 @@ felt.
 Turns out it felt all wrong.
 
 Hard Vacuum: Recon is a memory game. As you fly over rocks, you scan them by
-touch them, which reveals the ice underneath. Match two icicles of the same
+touching them, which reveals the ice underneath. Match two icicles of the same
 size, and your copter gets a little more fuel so you can keep flying. Icicles
 come in three sizes, big, medium, and small, but rocks are just one size, small.
 
@@ -42,10 +42,10 @@ progresses. On a comptuer with a mouse, the delay between click and hit test is
 zero. Since the mouse is already over the pixel you're clicking, the vertical
 motion isn't an impediment to precision picking.
 
-On a phone, when your finger touches the screen, it's now in the way of your
+On a phone, when your finger touches the screen, it's now in the way of you
 seeing what's happening. So we tend to keep our fingers back, darting them
-forward to tap as needed. The delay between "I want to touch hat" and the actual
-finger hitting the phone screen is about 0.25 seconds. Hard Vacuum: Recon
+forward to tap as needed. The delay between "I want to touch hat" and your
+finger actually hitting the screen is about 0.25 seconds. Hard Vacuum: Recon
 scrolls at 20 pixels per second, turning that quarter second reaction time into
 a 5 pixel error. Couple that error with the soft, round, imprecise nature of
 fingers and you have touch screen selection disaster.
@@ -55,6 +55,11 @@ pixels of vertical space account for reaction time and vertical motion. Since
 rocks are 20 pixels square, centered in the hit box, you actually get a full
 three seconds of time to touch them. Picking the space a rock was in a second
 ago, or where it will be a second from now, counts.
+
+By iteratively accounting for the imprecise nature of touch and the vertical
+motion of the game, I arrived at a solution that feels right. Try it yourself.
+Load up [Hard Vacuum: Recon][] on your iPhone and see how long you can keep your
+copter flying.
 
 P.S. The graphics for Hard Vacuum: Recon came from Daniel Cook's
 "[Hard Vacuum][]" art on [lostgarden.com][]. If you're looking for free game
