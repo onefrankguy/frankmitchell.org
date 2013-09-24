@@ -373,3 +373,49 @@ abbr[title="and"] {
   text-decoration: none;
   border-color: #751534;
 }
+/* ICONS */
+/* From the Cikonss project */
+/* https://github.com/zzap/Cikonss */
+.icon {
+  line-height: 100%;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  display: block;
+  float: left;
+}
+.icon-square,
+.icon-rounded {
+  border: 0.75em solid rgb(242, 242, 242);
+  background-color: rgb(242, 242, 242);
+  margin: 0 0.5em 0.5em 0;
+  box-shadow: 0 0 0 0.0625em rgb(226, 226, 226);
+}
+.icon-rounded {
+  border-radius: 1.5em;
+}
+.icon-small {
+  font-size: 1em;
+}
+.icon-mid {
+  font-size: 2em;
+}
+/* player controls */
+.icon-play {
+  position: absolute;
+  top: 0;
+  left: 0.1875em;
+  width: 0;
+  height: 0;
+  border-width: 0.5em 0.625em;
+  border-style: solid;
+  border-color: transparent transparent transparent rgb(102, 102, 102);
+}
+.icon-stop {
+  position: absolute;
+  top: 0.0625em;
+  left: 0.0625em;
+  width: 0.875em;
+  height: 0.875em;
+  background-color: rgb(102, 102, 102);
+}
