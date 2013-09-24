@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 24 September 2013 - 8:27 am
+updated: 24 September 2013 - 6:31 pm
 publish: 24 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -63,6 +63,41 @@ if (!window.cancelAnimationFrame) {
 }
 })()
 
+function Timer () {
+  this.delta = 0
+  this.then = null
+}
+Timer.prototype.tick = function (now) {
+  this.delta = (now - (this.then || now)) / 1000
+  this.then = now
+}
+Timer.prototype.reset = function () {
+  this.then = null
+}
+
+function Game (callback) {
+  this.timer = new Timer()
+  this.callback = callback
+  this.raf = null
+}
+Game.prototype = {
+  render: function (time) {
+    this.play()
+    this.timer.tick(time)
+    this.callback(this.timer.delta)
+  }
+  , play: function () {
+    var self = this
+    this.raf = requestAnimationFrame(function (time) {
+      self.render(time)
+    })
+  }
+  , stop: function () {
+    cancelAnimationFrame(this.raf)
+    this.timer.reset()
+  }
+}
+
 function addTouch (element, touchStart, touchEnd) {
   element.onmousedown = function (event) {
     if (touchStart) {
@@ -120,22 +155,19 @@ function moveUp (element, delta) {
   setTop(element, offset)
 }
 
-function naiveScrollRender () {
-  var id = requestAnimationFrame(naiveScrollRender)
-    , tiles = document.getElementById('naive-scroll').childNodes
+function naiveScrollRender (delta) {
+  var tiles = document.getElementById('naive-scroll').childNodes
     , i = 0
 
   for (i = 0; i < tiles.length; i += 1) {
-    moveUp(tiles[i], scrollSpeed)
+    moveUp(tiles[i], scrollSpeed * delta)
   }
-
-  return id
 }
 
 function naiveScrollSetup () {
   var canvas = document.getElementById('naive-scroll')
     , play = document.getElementById('naive-scroll-play')
-    , animation = null
+    , game = new Game(naiveScrollRender)
     , tile = null
     , x = 0
     , y = 0
@@ -159,11 +191,11 @@ function naiveScrollSetup () {
   addTouch(play, function () {
     var icon = play.childNodes[0]
     if (icon.className === 'icon-play') {
-      animation = naiveScrollRender()
+      game.play()
       icon.className = 'icon-stop'
     }
     else {
-      cancelAnimationFrame(animation)
+      game.stop()
       icon.className = 'icon-play'
     }
   }, null)
