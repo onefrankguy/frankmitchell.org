@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 24 September 2013 - 5:59 am
+updated: 24 September 2013 - 7:19 am
 publish: 24 September 2013
 slug: scroll-js
 tags: coding, mobile
