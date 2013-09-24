@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 24 September 2013 - 7:19 am
+updated: 24 September 2013 - 8:03 am
 publish: 24 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -21,11 +21,11 @@ tiles. As David Rousset points out in his [sprite benchmark][], once you go
 past about 43 moving sprites on screen, performance starts to suffer.
 
 Hit the play button below if you want to see the suffering in action. My nice
-snowy world was a mess of images tearing and black line glitches.
+snowy world was a mess of tearing images and black line glitches.
 
-<div id="naive-scroll-play" class="icon icon-small icon-square"><div class="icon-play"></div></div>
-<div style="overflow: hidden">
-<div id="naive-scroll" class="game art" style="position: relative; background: #000"></div>
+<div class="game art" style="background: #000; position: relative; display: block; height: 440px; width: 320px; overflow: hidden">
+<div id="naive-scroll" style="position: absolute; top: 0; left: 0"></div>
+<div id="naive-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
 It's messy.
