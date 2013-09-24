@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 24 September 2013 - 8:03 am
+updated: 24 September 2013 - 8:27 am
 publish: 24 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -97,25 +97,61 @@ function addTouch (element, touchStart, touchEnd) {
   }
 }
 
-function setupNaiveScroll () {
+var canvasHeight = 440
+  , canvasWidth = 320
+  , tileHeight = 20
+  , tileWidth = 20
+  , scrollSpeed = -20
+
+function getTop (element) {
+  return parseFloat(element.getAttribute('data-top'), 10)
+}
+
+function setTop (element, value) {
+  element.setAttribute('data-top', value)
+  element.style.top = ((value + 0.5) | 0) + 'px'
+}
+
+function moveUp (element, delta) {
+  var offset = getTop(element) + delta
+  if (offset <= -tileHeight) {
+    offset = canvasHeight + delta
+  }
+  setTop(element, offset)
+}
+
+function naiveScrollRender () {
+  var id = requestAnimationFrame(naiveScrollRender)
+    , tiles = document.getElementById('naive-scroll').childNodes
+    , i = 0
+
+  for (i = 0; i < tiles.length; i += 1) {
+    moveUp(tiles[i], scrollSpeed)
+  }
+
+  return id
+}
+
+function naiveScrollSetup () {
   var canvas = document.getElementById('naive-scroll')
     , play = document.getElementById('naive-scroll-play')
+    , animation = null
     , tile = null
     , x = 0
     , y = 0
 
-  canvas.style.height = '440px'
-  canvas.style.width = '320px'
+  canvas.style.height = canvasHeight + 'px'
+  canvas.style.width = canvasWidth + 'px'
 
-  for (x = 0; x < 16; x += 1) {
-    for (y = 0; y < 22; y += 1) {
+  for (x = 0; x < (canvasWidth / tileWidth); x += 1) {
+    for (y = 0; y < (canvasHeight / tileHeight) + 1; y += 1) {
       tile = document.createElement('img')
       tile.src = '/images/hvrecon-snow.png'
       tile.style.position = 'absolute'
-      tile.style.left = (x * 20) + 'px'
-      tile.style.top = (y * 20) + 'px'
-      tile.style.height = '20px'
-      tile.style.width = '20px'
+      tile.style.left = (x * tileWidth) + 'px'
+      tile.style.height = tileHeight + 'px'
+      tile.style.width = tileWidth + 'px'
+      setTop(tile, y * tileHeight)
       canvas.appendChild(tile)
     }
   }
@@ -123,15 +159,17 @@ function setupNaiveScroll () {
   addTouch(play, function () {
     var icon = play.childNodes[0]
     if (icon.className === 'icon-play') {
+      animation = naiveScrollRender()
       icon.className = 'icon-stop'
     }
     else {
+      cancelAnimationFrame(animation)
       icon.className = 'icon-play'
     }
   }, null)
 }
 
-setupNaiveScroll()
+naiveScrollSetup()
 </script>
 
 
