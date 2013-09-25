@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 24 September 2013 - 6:31 pm
+updated: 25 September 2013 - 8:25 am
 publish: 24 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -11,6 +11,65 @@ tags: coding, mobile
 the illusion of flight, I move the world as the player flys over it. Getting
 that animation running smoothly, while allowing the world to form dynamically,
 was tricky.
+
+## Timing is everything ##
+
+At the heart of a smooth animation loop lies a call to `requestAnimationFrame`.
+Invoking the `requestAnimationFrame` method tells the browser you want to
+perform an animation before the next repaint. It's not implemented in every
+browser, so you have to polyfill it. First, check for Safari, FireFox, IE, and
+Opera specific extensions.
+
+    var vendors = ['webkit', 'moz', 'ms', 'o']
+      , raf = null
+      , caf = null
+      , i = 0
+
+    while (i < vendors.length) {
+      if (window.requestAnimationFrame) {
+        break
+      }
+
+      raf = vendor[i] + 'RequestAnimationFrame'
+      window.requestAnimationFrame = window[raf]
+
+      caf = vendor[i] + 'CancelAnimationFrame'
+      caf ||= vendor[i] + 'RequestCancelAnimationFrame'
+      window.cancelAnimationFrame = caf
+    }
+
+If you don't find a vendor specific extension, you can fall back to using
+`setTimeout` and `clearTimeout`.
+
+    var last = 0
+
+    window.requestAnimationFrame = function (callback) {
+      var curr = new Date().getTime()
+        , then = Math.max(0, 16 - (curr - last))
+        , id = setTimeout(function () {
+          callback(curr + then)
+        }, then)
+        last = curr + then
+        return id
+    }
+
+    window.cancelAnimationFrame = function (id) {
+      clearTimeout(id)
+    }
+
+    function Timer () {
+      this.reset()
+    }
+    Timer.prototype = {
+      tick: function (now) {
+        this.delta = (now - (this.then || now)) / 1000
+        this.then = now
+      }
+    , reset: function () {
+        this.delta = 0
+        this.then = null
+      }
+    }
 
 ## 310 sprites too many ##
 
@@ -40,7 +99,8 @@ var lastTime = 0
 
 while (i < vendor.length && !window.requestAnimationFrame) {
   window.requestAnimationFrame = window[vendor[i]+"RequestAnimationFrame"]
-  window.cancelAnimationFrame = window[vendor[i]+"CancelAnimationFrame"] || window[vendor[i]+"RequestCancelAnimationFrame"]
+  window.cancelAnimationFrame = window[vendor[i]+"CancelAnimationFrame"] ||
+    window[vendor[i]+"RequestCancelAnimationFrame"]
   i += 1
 }
 
@@ -64,15 +124,17 @@ if (!window.cancelAnimationFrame) {
 })()
 
 function Timer () {
-  this.delta = 0
-  this.then = null
+  this.reset()
 }
-Timer.prototype.tick = function (now) {
-  this.delta = (now - (this.then || now)) / 1000
-  this.then = now
-}
-Timer.prototype.reset = function () {
-  this.then = null
+Timer.prototype = {
+  tick: function (now) {
+    this.delta = (now - (this.then || now)) / 1000
+    this.then = now
+  }
+, reset: function () {
+    this.delta = 0
+    this.then = null
+  }
 }
 
 function Game (callback) {
