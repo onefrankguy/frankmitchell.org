@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 25 September 2013 - 8:25 am
+updated: 26 September 2013 - 7:03 am
 publish: 24 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -17,45 +17,43 @@ was tricky.
 At the heart of a smooth animation loop lies a call to `requestAnimationFrame`.
 Invoking the `requestAnimationFrame` method tells the browser you want to
 perform an animation before the next repaint. It's not implemented in every
-browser, so you have to polyfill it. First, check for Safari, FireFox, IE, and
-Opera specific extensions.
+browser, so we have to [polyfill][] it. First, we'll check for Safari, FireFox, IE,
+and Opera specific extensions.
 
-    var vendors = ['webkit', 'moz', 'ms', 'o']
-      , raf = null
-      , caf = null
-      , i = 0
+    var ext = ['webkit', 'moz', 'ms', 'o']
 
-    while (i < vendors.length) {
+    for (var i = 0; i < ext.length; i += 1) {
       if (window.requestAnimationFrame) {
         break
       }
 
-      raf = vendor[i] + 'RequestAnimationFrame'
-      window.requestAnimationFrame = window[raf]
+      window.requestAnimationFrame = (
+        window[ext[i] + 'RequestAnimationFrame']
+      )
 
-      caf = vendor[i] + 'CancelAnimationFrame'
-      caf ||= vendor[i] + 'RequestCancelAnimationFrame'
-      window.cancelAnimationFrame = caf
+      window.cancelAnimationFrame = (
+        window[ext[i] + 'CancelAnimationFrame'] ||
+        window[ext[i] + 'CancelRequestAnimationFrame']
+      )
     }
 
-If you don't find a vendor specific extension, you can fall back to using
-`setTimeout` and `clearTimeout`.
+If we don't find a vendor specific extensions, we can fall back to using
+`setTimeout` and `clearTimeout`. To run our game at 60 frames per seoncd, we
+call our render function every 16 milliseconds. If you do the math, that
+actually comes out to 62.5 frames per second, but the spec for
+`requestAnimationFrame` leaves the max speed up to the browser, so we're okay.
 
     var last = 0
 
     window.requestAnimationFrame = function (callback) {
-      var curr = new Date().getTime()
-        , then = Math.max(0, 16 - (curr - last))
-        , id = setTimeout(function () {
-          callback(curr + then)
-        }, then)
-        last = curr + then
-        return id
+      var now = Date.now()
+        , later = Math.max(last + 16, now)
+      return setTimeout(function () {
+        callback(last = later)
+      }, later - now)
     }
 
-    window.cancelAnimationFrame = function (id) {
-      clearTimeout(id)
-    }
+    window.cancelAnimationFrame = clearTimeout
 
     function Timer () {
       this.reset()
@@ -93,33 +91,35 @@ It's messy.
 ;(function () {
 "use strict";
 
-var lastTime = 0
-  , vendor = ["ms", "mos", "webkit", "o"]
+var ext = ['webkit', 'moz', 'ms', 'o']
+  , last = 0
   , i = 0
 
-while (i < vendor.length && !window.requestAnimationFrame) {
-  window.requestAnimationFrame = window[vendor[i]+"RequestAnimationFrame"]
-  window.cancelAnimationFrame = window[vendor[i]+"CancelAnimationFrame"] ||
-    window[vendor[i]+"RequestCancelAnimationFrame"]
-  i += 1
+for (i = 0; i < ext.length; i += 1) {
+  if (window.requestAnimationFrame) {
+    break
+  }
+
+  window.requestAnimationFrame = (
+    window[ext[i] + 'RequestAnimationFrame']
+  )
+
+  window.cancelAnimationFrame = (
+    window[ext[i] + 'CancelAnimationFrame'] ||
+    window[ext[i] + 'CancelRequestAnimationFrame']
+  )
 }
 
-if (!window.requestAnimationFrame) {
-  window.requestAnimationFrame = function (callback, element) {
-    var currTime = new Date().getTime()
-    var timeToCall = Math.max(0, 16 - (currTime - lastTime))
-    var timerId = setTimeout(function () {
-      callback(currTime + timeToCall)
-    }, timeToCall)
-    lastTime = currTime + timeToCall
-    return timerId
+if (!window.requestAnimationFrame || !window.cancelAnimationFrame) {
+  window.requestAnimationFrame = function (callback) {
+    var now = Date.now()
+      , later = Math.max(last + 16, now)
+    return setTimeout(function () {
+      callback(last = later)
+    }, later - now)
   }
-}
 
-if (!window.cancelAnimationFrame) {
-  window.cancelAnimationFrame = function (id) {
-    clearTimeout(id)
-  }
+  window.cancelAnimationFrame = clearTimeout
 }
 })()
 
@@ -268,4 +268,5 @@ naiveScrollSetup()
 
 
 [Hard Vacuum: Recon]: /hvrecon "Frank Mitchell (js13kGames): Hard Vacuum: Recon"
+[polyfill]: https://github.com/darius/requestAnimationFrame "Darius Bacon (GitHub): requestAnimationFrame"
 [sprite benchmark]: http://sitepoint.com/html5-gaming-benchmarking-sprite-animations "David Rousset (sitepoint): HTML5 Gaming: Benchmarking Sprite Animations"
