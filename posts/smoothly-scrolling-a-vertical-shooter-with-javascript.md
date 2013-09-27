@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 27 September 2013 - 6:11 am
+updated: 27 September 2013 - 6:31 am
 publish: 24 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -69,27 +69,31 @@ Twenty-two images for a background is well under a 43 sprite budget. I kept the
 move code the same and just changed the board setup.
 
     function setup () {
-      var x = 0
-        , y = 0
+      var y = 0
         , row = null
 
-      for (x = 0; x < 16; x += 1) {
-        for (y = 0; y < 22 + 1; y += 1) {
-          row = document.createElement('img')
-          row.src = 'snow.png'
+      for (y = 0; y < 22 + 1; y += 1) {
+        row = document.createElement('img')
+        row.src = 'snow.png'
 
-          row.style.display = 'block'
-          row.style.height = 20 + 'px'
-          row.style.width = 20 + 'px'
+        row.style.height = 20 + 'px'
+        row.style.width = 320 + 'px'
 
-          row.style.position = 'absolute'
-          row.style.left = (x * 20) + 'px'
-          row.style.top = (y * 20) + 'px'
+        row.style.position = 'absolute'
+        row.style.top = (y * 20) + 'px'
 
-          $('#board').appendChild(row)
-        }
+        $('#board').appendChild(row)
       }
     }
+
+This time I got a solid 15 FPS on my Pi. Well inside the realm of playable. Hit
+the play button below if you want to row scrolling in action. My snowy world was
+looking less messy.
+
+<div class="game art" style="background: #000; position: relative; display: block; height: 440px; width: 320px; overflow: hidden">
+<div id="row-scroll" style="position: absolute; top: 0; left: 0"></div>
+<div id="row-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
+</div>
 
 <script type="text/javascript">
 ;(function () {
@@ -230,6 +234,15 @@ function naiveScrollRender (delta) {
   }
 }
 
+function rowScrollRender (delta) {
+  var rows = document.getElementById('row-scroll').childNodes
+    , i = 0
+
+  for (i = 0; i < rows.length; i += 1) {
+    moveUp(rows[i], scrollSpeed * delta)
+  }
+}
+
 function naiveScrollSetup () {
   var canvas = document.getElementById('naive-scroll')
     , play = document.getElementById('naive-scroll-play')
@@ -267,7 +280,41 @@ function naiveScrollSetup () {
   }, null)
 }
 
+function rowScrollSetup () {
+  var canvas = document.getElementById('row-scroll')
+    , play = document.getElementById('row-scroll-play')
+    , game = new Game(rowScrollRender)
+    , row = null
+    , y = 0
+
+  canvas.style.height = canvasHeight + 'px'
+  canvas.style.width = canvasWidth + 'px'
+
+  for (y = 0; y < (canvasHeight / tileHeight) + 1; y += 1) {
+    row = document.createElement('img')
+    row.src = '/images/hvrecon-snow.png'
+    row.style.position = 'absolute'
+    row.style.height = tileHeight + 'px'
+    row.style.width = (canvasWidth * tileWidth) + 'px'
+    setTop(row, y * tileHeight)
+    canvas.appendChild(row)
+  }
+
+  addTouch(play, function () {
+    var icon = play.childNodes[0]
+    if (icon.className === 'icon-play') {
+      game.play()
+      icon.className = 'icon-stop'
+    }
+    else {
+      game.stop()
+      icon.className = 'icon-play'
+    }
+  }, null)
+}
+
 naiveScrollSetup()
+rowScrollSetup()
 </script>
 
 
