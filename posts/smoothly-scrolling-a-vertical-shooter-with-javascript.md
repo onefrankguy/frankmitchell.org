@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 27 September 2013 - 6:36 am
+updated: 27 September 2013 - 6:57 am
 publish: 24 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -52,6 +52,7 @@ snowy world was a mess of tearing images and black line glitches.
 
 <div class="game art" style="background: #000; position: relative; display: block; height: 440px; width: 320px; overflow: hidden">
 <div id="naive-scroll" style="position: absolute; top: 0; left: 0"></div>
+<div id="naive-scroll-fps" style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0" class="icon-small icon-square">0 FPS</div>
 <div id="naive-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
@@ -94,6 +95,7 @@ looking less messy.
 <div class="game art" style="background: #000; position: relative; display: block; height: 440px; width: 320px; overflow: hidden">
 <div id="row-scroll" style="position: absolute; top: 0; left: 0"></div>
 <div id="row-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
+<div id="row-scroll-fps" style="position: absolute; left: 0; bottom: -0.5em" class="icon-small icon-square">0 FPS</div>
 </div>
 
 <script type="text/javascript">
