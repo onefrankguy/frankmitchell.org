@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 27 September 2013 - 6:31 am
+updated: 27 September 2013 - 6:36 am
 publish: 24 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -73,9 +73,10 @@ move code the same and just changed the board setup.
         , row = null
 
       for (y = 0; y < 22 + 1; y += 1) {
-        row = document.createElement('img')
-        row.src = 'snow.png'
+        row = document.createElement('div')
+        row.style.background = 'url(snow.png)'
 
+        row.style.display = 'block'
         row.style.height = 20 + 'px'
         row.style.width = 320 + 'px'
 
@@ -291,8 +292,9 @@ function rowScrollSetup () {
   canvas.style.width = canvasWidth + 'px'
 
   for (y = 0; y < (canvasHeight / tileHeight) + 1; y += 1) {
-    row = document.createElement('img')
-    row.src = '/images/hvrecon-snow.png'
+    row = document.createElement('div')
+    row.style.background = 'url(/images/hvrecon-snow.png)'
+    row.style.display = 'block'
     row.style.position = 'absolute'
     row.style.height = tileHeight + 'px'
     row.style.width = (canvasWidth * tileWidth) + 'px'
