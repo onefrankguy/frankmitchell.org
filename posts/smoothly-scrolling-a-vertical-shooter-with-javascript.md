@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 26 September 2013 - 7:03 am
+updated: 27 September 2013 - 6:11 am
 publish: 24 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -12,67 +12,37 @@ the illusion of flight, I move the world as the player flys over it. Getting
 that animation running smoothly, while allowing the world to form dynamically,
 was tricky.
 
-## Timing is everything ##
-
-At the heart of a smooth animation loop lies a call to `requestAnimationFrame`.
-Invoking the `requestAnimationFrame` method tells the browser you want to
-perform an animation before the next repaint. It's not implemented in every
-browser, so we have to [polyfill][] it. First, we'll check for Safari, FireFox, IE,
-and Opera specific extensions.
-
-    var ext = ['webkit', 'moz', 'ms', 'o']
-
-    for (var i = 0; i < ext.length; i += 1) {
-      if (window.requestAnimationFrame) {
-        break
-      }
-
-      window.requestAnimationFrame = (
-        window[ext[i] + 'RequestAnimationFrame']
-      )
-
-      window.cancelAnimationFrame = (
-        window[ext[i] + 'CancelAnimationFrame'] ||
-        window[ext[i] + 'CancelRequestAnimationFrame']
-      )
-    }
-
-If we don't find a vendor specific extensions, we can fall back to using
-`setTimeout` and `clearTimeout`. To run our game at 60 frames per seoncd, we
-call our render function every 16 milliseconds. If you do the math, that
-actually comes out to 62.5 frames per second, but the spec for
-`requestAnimationFrame` leaves the max speed up to the browser, so we're okay.
-
-    var last = 0
-
-    window.requestAnimationFrame = function (callback) {
-      var now = Date.now()
-        , later = Math.max(last + 16, now)
-      return setTimeout(function () {
-        callback(last = later)
-      }, later - now)
-    }
-
-    window.cancelAnimationFrame = clearTimeout
-
-    function Timer () {
-      this.reset()
-    }
-    Timer.prototype = {
-      tick: function (now) {
-        this.delta = (now - (this.then || now)) / 1000
-        this.then = now
-      }
-    , reset: function () {
-        this.delta = 0
-        this.then = null
-      }
-    }
-
 ## 310 sprites too many ##
 
 My first approach was na&iuml;ve. Put a `<div>` on the screen for every tile
 in the game. Move each `<div>` with every call to `requestAnimationFrame`.
+
+    function render (dt) {
+      var tiles = $('#board').childNodes
+        , offset = scrollSpeed * dt
+        , i = 0
+
+      for (i = 0; i < tiles; i += 1) {
+        moveUp(tiles[i], offset)
+      }
+    }
+
+For the actual move calculations, I took a cue from _Masters of DOOM_, and sized
+my board to be one row of tiles taller than the game's visible area. That way
+when a tile went out of view, I'd warp it back to the bottom of the board.
+
+    function moveUp (element, dy) {
+      var top = parseInt(element.style.top) + dy
+
+      if (top  < -tileHeight) {
+        top = dy
+      }
+
+      element.style.top = top + 'px'
+    }
+
+Warping tiles worked just fine, but the motion was anything but smooth.
+
 For a 320x440 pixel game with 20x20 pixel graphics, that's 352 moving
 tiles. As David Rousset points out in his [sprite benchmark][], once you go
 past about 43 moving sprites on screen, performance starts to suffer.
@@ -85,7 +55,41 @@ snowy world was a mess of tearing images and black line glitches.
 <div id="naive-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
-It's messy.
+I got about 2 FPS on my [Raspberry Pi][], making the game totally unplayable
+and sending me back to the drawing board.
+
+## Trimming back the DOM ##
+
+All those tiles where killing performance, so I decided to cut back on the
+number of moving things. Given the snowy background was just a repeated texture,
+I figured I could make a row of snow and just move each row.
+
+A 320x440 pixel tall game with 20x20 pixel tiles has 16 columns and 22 rows.
+Twenty-two images for a background is well under a 43 sprite budget. I kept the
+move code the same and just changed the board setup.
+
+    function setup () {
+      var x = 0
+        , y = 0
+        , row = null
+
+      for (x = 0; x < 16; x += 1) {
+        for (y = 0; y < 22 + 1; y += 1) {
+          row = document.createElement('img')
+          row.src = 'snow.png'
+
+          row.style.display = 'block'
+          row.style.height = 20 + 'px'
+          row.style.width = 20 + 'px'
+
+          row.style.position = 'absolute'
+          row.style.left = (x * 20) + 'px'
+          row.style.top = (y * 20) + 'px'
+
+          $('#board').appendChild(row)
+        }
+      }
+    }
 
 <script type="text/javascript">
 ;(function () {
@@ -270,3 +274,4 @@ naiveScrollSetup()
 [Hard Vacuum: Recon]: /hvrecon "Frank Mitchell (js13kGames): Hard Vacuum: Recon"
 [polyfill]: https://github.com/darius/requestAnimationFrame "Darius Bacon (GitHub): requestAnimationFrame"
 [sprite benchmark]: http://sitepoint.com/html5-gaming-benchmarking-sprite-animations "David Rousset (sitepoint): HTML5 Gaming: Benchmarking Sprite Animations"
+[Raspberry Pi]: http://raspberrypi.org/ "A ARM Linux computer for $35 USD"
