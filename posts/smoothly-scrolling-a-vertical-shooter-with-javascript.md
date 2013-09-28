@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 28 September 2013 - 3:03 pm
+updated: 28 September 2013 - 4:01 pm
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -23,7 +23,7 @@ in the game. Move each `<div>` with every call to `requestAnimationFrame`.
         , i = 0
 
       for (i = 0; i < tiles; i += 1) {
-        moveUp(tiles[i], offset)
+        moveUp(tiles[i], offset, canvasHeight)
       }
     }
 
@@ -31,11 +31,11 @@ For the actual move calculations, I took a cue from _Masters of DOOM_, and sized
 my board to be one row of tiles taller than the game's visible area. That way
 when a tile went out of view, I'd warp it back to the bottom of the board.
 
-    function moveUp (element, dy) {
+    function moveUp (element, dy, base) {
       var top = parseInt(element.style.top) + dy
 
       if (top  < -tileHeight) {
-        top = dy
+        top = base + dy
       }
 
       element.style.top = top + 'px'
@@ -59,7 +59,7 @@ snowy world was a mess of tearing images and black line glitches.
 I got about 2 FPS on my [Raspberry Pi][], making the game totally unplayable
 and sending me back to the drawing board.
 
-## Trimming back the DOM ##
+## Trim back the DOM ##
 
 All those tiles where killing performance, so I decided to cut back on the
 number of moving things. Given the snowy background was just a repeated texture,
@@ -88,14 +88,22 @@ move code the same and just changed the board setup.
       }
     }
 
-This time I got a solid 15 FPS on my Pi. Well inside the realm of playable. Hit
-the play button below if you want to row scrolling in action. My snowy world was
-looking less messy.
+This time I got 10 FPS on my Pi. It's inside the realm of playable, but not
+great. Hit the play button below if you want to row scrolling in action.
+My snowy world was looking less messy, but there was still room for improvement.
 
 <div class="game art" style="background: #000; position: relative; display: block; height: 440px; width: 320px; overflow: hidden">
 <div id="row-scroll" style="position: absolute; top: 0; left: 0"></div>
 <div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="row-scroll-fps">0</span> FPS</div>
 <div id="row-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
+</div>
+
+## Give me a lever long enough ##
+
+<div class="game art" style="background: #000; position: relative; display: block; height: 440px; width: 320px; overflow: hidden">
+<div id="world-scroll" style="position: absolute; top: 0; left: 0"></div>
+<div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="world-scroll-fps">0</span> FPS</div>
+<div id="world-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
 <script type="text/javascript">
@@ -227,10 +235,10 @@ function setTop (element, value) {
   element.style.top = ((value + 0.5) | 0) + 'px'
 }
 
-function moveUp (element, delta) {
+function moveUp (element, delta, base) {
   var offset = getTop(element) + delta
   if (offset <= -tileHeight) {
-    offset = canvasHeight + delta
+    offset = base + delta
   }
   setTop(element, offset)
 }
@@ -240,7 +248,7 @@ function naiveScrollRender (delta) {
     , i = 0
 
   for (i = 0; i < tiles.length; i += 1) {
-    moveUp(tiles[i], scrollSpeed * delta)
+    moveUp(tiles[i], scrollSpeed * delta, canvasHeight)
   }
 }
 
@@ -249,7 +257,16 @@ function rowScrollRender (delta) {
     , i = 0
 
   for (i = 0; i < rows.length; i += 1) {
-    moveUp(rows[i], scrollSpeed * delta)
+    moveUp(rows[i], scrollSpeed * delta, canvasHeight)
+  }
+}
+
+function worldScrollRender (delta) {
+  var rows = document.getElementById('world-scroll').childNodes
+    , i = 0
+
+  for (i = 0; i < rows.length; i += 1) {
+    moveUp(rows[i], scrollSpeed * delta, 0)
   }
 }
 
@@ -308,7 +325,7 @@ function rowScrollSetup () {
     row.style.display = 'block'
     row.style.position = 'absolute'
     row.style.height = tileHeight + 'px'
-    row.style.width = (canvasWidth * tileWidth) + 'px'
+    row.style.width = canvasWidth + 'px'
     setTop(row, y * tileHeight)
     canvas.appendChild(row)
   }
@@ -326,8 +343,41 @@ function rowScrollSetup () {
   }, null)
 }
 
+function worldScrollSetup () {
+  var canvas = document.getElementById('world-scroll')
+    , play = document.getElementById('world-scroll-play')
+    , fps = document.getElementById('world-scroll-fps')
+    , game = new Game(worldScrollRender, fps)
+    , world = null
+
+  canvas.style.height = canvasHeight + 'px'
+  canvas.style.width = canvasWidth + 'px'
+
+  world = document.createElement('div')
+  world.style.background = 'url(/images/hvrecon-snow.png)'
+  world.style.display = 'block'
+  world.style.position = 'absolute'
+  world.style.height = (canvasHeight + tileHeight) + 'px'
+  world.style.width = canvasWidth + 'px'
+  setTop(world, 0)
+  canvas.appendChild(world)
+
+  addTouch(play, function () {
+    var icon = play.childNodes[0]
+    if (icon.className === 'icon-play') {
+      game.play()
+      icon.className = 'icon-stop'
+    }
+    else {
+      game.stop()
+      icon.className = 'icon-play'
+    }
+  }, null)
+}
+
 naiveScrollSetup()
 rowScrollSetup()
+worldScrollSetup()
 </script>
 
 
