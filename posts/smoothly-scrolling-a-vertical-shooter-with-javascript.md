@@ -1,8 +1,8 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 27 September 2013 - 7:05 am
-publish: 24 September 2013
+updated: 28 September 2013 - 3:03 pm
+publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
 -->
@@ -52,7 +52,7 @@ snowy world was a mess of tearing images and black line glitches.
 
 <div class="game art" style="background: #000; position: relative; display: block; height: 440px; width: 320px; overflow: hidden">
 <div id="naive-scroll" style="position: absolute; top: 0; left: 0"></div>
-<div id="naive-scroll-fps" style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square">0 FPS</div>
+<div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="naive-scroll-fps">0</span> FPS</div>
 <div id="naive-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
@@ -94,7 +94,7 @@ looking less messy.
 
 <div class="game art" style="background: #000; position: relative; display: block; height: 440px; width: 320px; overflow: hidden">
 <div id="row-scroll" style="position: absolute; top: 0; left: 0"></div>
-<div id="row-scroll-fps" style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square">0 FPS</div>
+<div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="row-scroll-fps">0</span> FPS</div>
 <div id="row-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
@@ -148,15 +148,21 @@ Timer.prototype = {
   }
 }
 
-function Game (callback) {
+function Game (callback, fps) {
   this.timer = new Timer()
   this.callback = callback
   this.raf = null
+  this.fps = fps
+  this.last = 0
 }
 Game.prototype = {
   render: function (time) {
     this.play()
     this.timer.tick(time)
+    if (this.timer.then - this.last > 1000) {
+      this.last = this.timer.then
+      this.fps.innerHTML = Math.round(1 / this.timer.delta)
+    }
     this.callback(this.timer.delta)
   }
   , play: function () {
@@ -168,6 +174,7 @@ Game.prototype = {
   , stop: function () {
     cancelAnimationFrame(this.raf)
     this.timer.reset()
+    this.fps.innerHTML = 0
   }
 }
 
@@ -249,7 +256,8 @@ function rowScrollRender (delta) {
 function naiveScrollSetup () {
   var canvas = document.getElementById('naive-scroll')
     , play = document.getElementById('naive-scroll-play')
-    , game = new Game(naiveScrollRender)
+    , fps = document.getElementById('naive-scroll-fps')
+    , game = new Game(naiveScrollRender, fps)
     , tile = null
     , x = 0
     , y = 0
@@ -286,7 +294,8 @@ function naiveScrollSetup () {
 function rowScrollSetup () {
   var canvas = document.getElementById('row-scroll')
     , play = document.getElementById('row-scroll-play')
-    , game = new Game(rowScrollRender)
+    , fps = document.getElementById('row-scroll-fps')
+    , game = new Game(rowScrollRender, fps)
     , row = null
     , y = 0
 
