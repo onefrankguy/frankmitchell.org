@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 28 September 2013 - 4:01 pm
+updated: 28 September 2013 - 4:22 pm
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -23,7 +23,7 @@ in the game. Move each `<div>` with every call to `requestAnimationFrame`.
         , i = 0
 
       for (i = 0; i < tiles; i += 1) {
-        moveUp(tiles[i], offset, canvasHeight)
+        moveUp(tiles[i], canvasHeight, offset)
       }
     }
 
@@ -31,11 +31,11 @@ For the actual move calculations, I took a cue from _Masters of DOOM_, and sized
 my board to be one row of tiles taller than the game's visible area. That way
 when a tile went out of view, I'd warp it back to the bottom of the board.
 
-    function moveUp (element, dy, base) {
-      var top = parseInt(element.style.top) + dy
+    function moveUp (element, offset, delta) {
+      var top = parseInt(element.style.top) + delta
 
-      if (top  < -tileHeight) {
-        top = base + dy
+      if (top <= -tileHeight) {
+        top = offset + delta
       }
 
       element.style.top = top + 'px'
@@ -90,7 +90,6 @@ move code the same and just changed the board setup.
 
 This time I got 10 FPS on my Pi. It's inside the realm of playable, but not
 great. Hit the play button below if you want to row scrolling in action.
-My snowy world was looking less messy, but there was still room for improvement.
 
 <div class="game art" style="background: #000; position: relative; display: block; height: 440px; width: 320px; overflow: hidden">
 <div id="row-scroll" style="position: absolute; top: 0; left: 0"></div>
@@ -98,7 +97,33 @@ My snowy world was looking less messy, but there was still room for improvement.
 <div id="row-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
+My snowy world was looking less messy, but there was still room for improvement.
+Every once in a while single fine black lines would show up between rows as
+textures snapped imperfectly and pixels bleed through.
+
 ## Give me a lever long enough ##
+
+One way to create a seamless background is to let the texture repeat across the
+entire canvas.
+
+    #canvas {
+      background: url(snow.png);
+    }
+
+We know the texture tiles nicely, so we can let CSS handle the tiling. That
+leaves us with a single node in the DOM we have to move. Our render function
+changes slightly. since we want to warp the canvas back to zero once the top
+row's moved off screen.
+
+    function render (dt) {
+      var tiles = $('#board').childNodes
+        , offset = scrollSpeed * dt
+        , i = 0
+
+      for (i = 0; i < tiles; i += 1) {
+        moveUp(tiles[i], 0, offset)
+      }
+    }
 
 <div class="game art" style="background: #000; position: relative; display: block; height: 440px; width: 320px; overflow: hidden">
 <div id="world-scroll" style="position: absolute; top: 0; left: 0"></div>
@@ -235,12 +260,12 @@ function setTop (element, value) {
   element.style.top = ((value + 0.5) | 0) + 'px'
 }
 
-function moveUp (element, delta, base) {
-  var offset = getTop(element) + delta
-  if (offset <= -tileHeight) {
-    offset = base + delta
+function moveUp (element, offset, delta) {
+  var top = getTop(element) + delta
+  if (top <= -tileHeight) {
+    top = offset + delta
   }
-  setTop(element, offset)
+  setTop(element, top)
 }
 
 function naiveScrollRender (delta) {
@@ -248,7 +273,7 @@ function naiveScrollRender (delta) {
     , i = 0
 
   for (i = 0; i < tiles.length; i += 1) {
-    moveUp(tiles[i], scrollSpeed * delta, canvasHeight)
+    moveUp(tiles[i], canvasHeight, scrollSpeed * delta)
   }
 }
 
@@ -257,7 +282,7 @@ function rowScrollRender (delta) {
     , i = 0
 
   for (i = 0; i < rows.length; i += 1) {
-    moveUp(rows[i], scrollSpeed * delta, canvasHeight)
+    moveUp(rows[i], canvasHeight, scrollSpeed * delta)
   }
 }
 
@@ -266,7 +291,7 @@ function worldScrollRender (delta) {
     , i = 0
 
   for (i = 0; i < rows.length; i += 1) {
-    moveUp(rows[i], scrollSpeed * delta, 0)
+    moveUp(rows[i], 0, scrollSpeed * delta)
   }
 }
 
