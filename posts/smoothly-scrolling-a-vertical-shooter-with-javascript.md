@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 28 September 2013 - 4:22 pm
+updated: 29 September 2013 - 7:49 am
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -10,7 +10,59 @@ tags: coding, mobile
 [Hard Vacuum: Recon][] is a vertical shooter without the shooting. To pull off
 the illusion of flight, I move the world as the player flys over it. Getting
 that animation running smoothly, while allowing the world to form dynamically,
-was tricky.
+is tricky. Here's how it works.
+
+## A better world ##
+
+Start with a simple scene, canvas wrapped in a viewport. To keep our game
+playable on as many devices as possible, we'll be using DOM sprites instead of
+the `<canvas>` tag.
+
+    <div class="viewport">
+      <div class="canvas"></div>
+    </div>
+
+Remember to put the closing tag for the canvas element right up against its
+opening tag. White space e.g. new lines, carriage returns, tabs, and spaces,
+will cause a TEXT node to show up inside that `<div>` in the DOM. When we're
+looping over DOM sprites, having to skip TEXT nodes is annoying. Best just to
+prevent them showing up in the first place.
+
+We're targeting an old iPhone 4, so we'll use CSS to size the viewport at
+320x356 pixels. That's the visible area in Safari on iOS, when the app's not
+pinned to the home screen.
+
+    .viewport {
+      position: relative;
+      display: block;
+      width: 320px;
+      height: 356px;
+      overflow: hidden;
+    }
+
+Setting the `overflow: hidden` property means we can size our canvas larger than
+our viewport and draw hidden sprites on the non-visible areas. We'll use this to
+stage sprites before they're needed and smoothly scroll them in an out of view.
+
+    .canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: #000400;
+    }
+
+Finally, we'll position our canvas inside our viewport, and give it an almost
+black background. It's easier to spot misaligned textures on a dark background
+since the black will bleed through.
+
+<div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
+<div style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #000400"></div>
+</div>
+
+The scene is set. Time for the characters to enter.
 
 ## 310 sprites too many ##
 
