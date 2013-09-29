@@ -12,7 +12,7 @@ the illusion of flight, I move the world as the player flys over it. Getting
 that animation running smoothly, while allowing the world to form dynamically,
 is tricky. Here's how it works.
 
-## A better world ##
+## Build a better tomorrow, today ##
 
 Start with a simple scene, canvas wrapped in a viewport. To keep our game
 playable on as many devices as possible, we'll be using DOM sprites instead of
@@ -40,8 +40,8 @@ pinned to the home screen.
       overflow: hidden;
     }
 
-Setting the `overflow: hidden` property means we can size our canvas larger than
-our viewport and draw hidden sprites on the non-visible areas. We'll use this to
+Setting the overflow property to "hidden" means we can size our canvas larger
+than our viewport and draw sprites on the non-visible areas. We'll use this to
 stage sprites before they're needed and smoothly scroll them in an out of view.
 
     .canvas {
@@ -51,18 +51,18 @@ stage sprites before they're needed and smoothly scroll them in an out of view.
       display: block;
       width: 100%;
       height: 100%;
-      background: #000400;
+      background: #ef4d94;
     }
 
-Finally, we'll position our canvas inside our viewport, and give it an almost
-black background. It's easier to spot misaligned textures on a dark background
-since the black will bleed through.
+Finally, we'll position our canvas inside our viewport, and give it dark pink
+background. It's easier to spot misaligned textures if keep your background
+color set to something that's not in your sprite pallete.
 
 <div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
-<div style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #000400"></div>
+<div style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
 </div>
 
-The scene is set. Time for the characters to enter.
+The stage is set. Time for the sprites to enter.
 
 ## 310 sprites too many ##
 
@@ -102,7 +102,7 @@ past about 43 moving sprites on screen, performance starts to suffer.
 Hit the play button below if you want to see the suffering in action. My nice
 snowy world was a mess of tearing images and black line glitches.
 
-<div class="game art" style="background: #000; position: relative; display: block; height: 440px; width: 320px; overflow: hidden">
+<div class="game art" style="background: #000; position: relative; display: block; height: 356px; width: 320px; overflow: hidden">
 <div id="naive-scroll" style="position: absolute; top: 0; left: 0"></div>
 <div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="naive-scroll-fps">0</span> FPS</div>
 <div id="naive-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
@@ -143,7 +143,7 @@ move code the same and just changed the board setup.
 This time I got 10 FPS on my Pi. It's inside the realm of playable, but not
 great. Hit the play button below if you want to row scrolling in action.
 
-<div class="game art" style="background: #000; position: relative; display: block; height: 440px; width: 320px; overflow: hidden">
+<div class="game art" style="background: #000; position: relative; display: block; height: 356px; width: 320px; overflow: hidden">
 <div id="row-scroll" style="position: absolute; top: 0; left: 0"></div>
 <div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="row-scroll-fps">0</span> FPS</div>
 <div id="row-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
@@ -177,7 +177,7 @@ row's moved off screen.
       }
     }
 
-<div class="game art" style="background: #000; position: relative; display: block; height: 440px; width: 320px; overflow: hidden">
+<div class="game art" style="background: #000; position: relative; display: block; height: 356px; width: 320px; overflow: hidden">
 <div id="world-scroll" style="position: absolute; top: 0; left: 0"></div>
 <div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="world-scroll-fps">0</span> FPS</div>
 <div id="world-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
@@ -297,10 +297,10 @@ function addTouch (element, touchStart, touchEnd) {
   }
 }
 
-var canvasHeight = 440
+var canvasHeight = 356
   , canvasWidth = 320
-  , tileHeight = 20
-  , tileWidth = 20
+  , tileHeight = 32
+  , tileWidth = 32
   , scrollSpeed = -20
 
 function getTop (element) {
@@ -362,7 +362,7 @@ function naiveScrollSetup () {
   for (x = 0; x < (canvasWidth / tileWidth); x += 1) {
     for (y = 0; y < (canvasHeight / tileHeight) + 1; y += 1) {
       tile = document.createElement('img')
-      tile.src = '/images/hvrecon-snow.png'
+      tile.src = '/images/urbansquall-grass.png'
       tile.style.position = 'absolute'
       tile.style.left = (x * tileWidth) + 'px'
       tile.style.height = tileHeight + 'px'
@@ -398,7 +398,7 @@ function rowScrollSetup () {
 
   for (y = 0; y < (canvasHeight / tileHeight) + 1; y += 1) {
     row = document.createElement('div')
-    row.style.background = 'url(/images/hvrecon-snow.png)'
+    row.style.background = 'url(/images/urbansquall-grass.png)'
     row.style.display = 'block'
     row.style.position = 'absolute'
     row.style.height = tileHeight + 'px'
@@ -431,7 +431,7 @@ function worldScrollSetup () {
   canvas.style.width = canvasWidth + 'px'
 
   world = document.createElement('div')
-  world.style.background = 'url(/images/hvrecon-snow.png)'
+  world.style.background = 'url(/images/urbansquall-grass.png)'
   world.style.display = 'block'
   world.style.position = 'absolute'
   world.style.height = (canvasHeight + tileHeight) + 'px'
