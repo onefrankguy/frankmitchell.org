@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 29 September 2013 - 7:49 am
+updated: 29 September 2013 - 8:23 am
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -66,8 +66,43 @@ The stage is set. Time for the sprites to enter.
 
 ## 310 sprites too many ##
 
-My first approach was na&iuml;ve. Put a `<div>` on the screen for every tile
-in the game. Move each `<div>` with every call to `requestAnimationFrame`.
+We're going to take a na&iuml;ve approach to start, just to get something
+up on the screen. We'll use a 32x32 tile set, and  put a `<div>` in the DOM for
+every tile in the game.
+
+    var tileWidth = 32
+      , tileHeight = 32
+      , canvasWidth = 320
+      , canvasHeight = 356
+      , numCols = Math.ceil(canvasWidth / tileWidth)
+      , numRows = Math.ceil(canvasHeight / tileHeight)
+
+Feel free to abuse global variables for constants like canvas and tile size.
+The goal here is to get something working. Note that we're rounding up when
+calculating the number of rows and columns. This prevents gaps at the edges
+of the viewport.
+
+    funciton setup () {
+      var x = 0
+        , y = 0
+        , tile = null
+
+      for (x = 0; x < numCols; x += 1) {
+        for (y = 0; y < numRows ; y += 1) {
+          tile = document.createElement('div')
+          tile.style.background = 'url(snow.png)'
+        }
+
+        row.style.display = 'block'
+        row.style.height = 20 + 'px'
+        row.style.width = 320 + 'px'
+
+        row.style.position = 'absolute'
+        row.style.top = (y * 20) + 'px'
+
+        $('#board').appendChild(row)
+      }
+    }
 
     function render (dt) {
       var tiles = $('#board').childNodes
@@ -182,6 +217,13 @@ row's moved off screen.
 <div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="world-scroll-fps">0</span> FPS</div>
 <div id="world-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
+
+## Credits ##
+
+Graphics for the grass and flowers come from a sprite set by [Urbansquall][].
+They where posted to the Game Poetry blog back in 2009, and I'd kept them around
+on my hard drive since, waiting for a project. Guess this tutorial is it.
+
 
 <script type="text/javascript">
 ;(function () {
@@ -462,3 +504,4 @@ worldScrollSetup()
 [polyfill]: https://github.com/darius/requestAnimationFrame "Darius Bacon (GitHub): requestAnimationFrame"
 [sprite benchmark]: http://sitepoint.com/html5-gaming-benchmarking-sprite-animations "David Rousset (sitepoint): HTML5 Gaming: Benchmarking Sprite Animations"
 [Raspberry Pi]: http://raspberrypi.org/ "A ARM Linux computer for $35 USD"
+[Urbansquall]: http://kongregate.com/ "Urbansquall (Kongregate Games): A lovely web game company that is no more"
