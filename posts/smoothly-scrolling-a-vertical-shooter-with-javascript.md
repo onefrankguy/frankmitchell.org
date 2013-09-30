@@ -67,7 +67,7 @@ The stage is set. Time for the sprites to enter.
 ## 310 sprites too many ##
 
 We're going to take a na&iuml;ve approach to start, just to get something
-up on the screen. We'll use a 32x32 tile set, and  put a `<div>` in the DOM for
+on the screen. We'll use a 32x32 tile set, and put a `<div>` in the DOM for
 every tile in the game.
 
     var tileWidth = 32
@@ -78,7 +78,7 @@ every tile in the game.
       , numRows = Math.ceil(canvasHeight / tileHeight)
 
 Feel free to abuse global variables for constants like canvas and tile size.
-The goal here is to get something working. Note that we're rounding up when
+The goal here is to get something working. Note that we round up when
 calculating the number of rows and columns. This prevents gaps at the edges
 of the viewport.
 
@@ -91,18 +91,23 @@ of the viewport.
         for (y = 0; y < numRows ; y += 1) {
           tile = document.createElement('div')
           tile.style.background = 'url(snow.png)'
+
+          tile.style.display = 'block'
+          tile.style.width = tileWidth + 'px'
+          tile.style.height = tileHeight + 'px'
+
+          tile.style.position = 'absolute'
+          tile.style.top = (y * tileHeight) + 'px'
+          tile.style.left = (x * tileWidth) + 'px'
+
+          $('.canvas').appendChild(tile)
         }
-
-        row.style.display = 'block'
-        row.style.height = 20 + 'px'
-        row.style.width = 320 + 'px'
-
-        row.style.position = 'absolute'
-        row.style.top = (y * 20) + 'px'
-
-        $('#board').appendChild(row)
       }
     }
+
+<div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
+<div id="" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
+</div>
 
     function render (dt) {
       var tiles = $('#board').childNodes
