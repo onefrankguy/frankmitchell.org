@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 29 September 2013 - 8:23 am
+updated: 2 October 2013 - 8:22 am
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -64,11 +64,28 @@ color set to something that's not in your sprite pallete.
 
 The stage is set. Time for the sprites to enter.
 
-## 310 sprites too many ##
+## Plant fields of green ##
 
 We're going to take a na&iuml;ve approach to start, just to get something
 on the screen. We'll use a 32x32 tile set, and put a `<div>` in the DOM for
-every tile in the game.
+every tile in the game. We'll use CSS to handle styling and semantics, and
+JavaScript to handle creation and positioning.
+
+    .tile {
+      display: block;
+      width: 32px;
+      height: 32px;
+    }
+
+    .grass {
+      background: url(grass.png);
+    }
+
+Keeping the base shape of a tile separate from the image that fills it makes
+it easy to other tile types later. If we where building this out as a normal
+web page, we'd probably define "position", "left" and "top" properties for our
+tiles as well. But by limiting ourselves to just keeping the look of a tile in
+CSS, we can freely experiment with different DOM layout in JavaScript.
 
     var tileWidth = 32
       , tileHeight = 32
@@ -86,27 +103,26 @@ of the viewport.
       var x = 0
         , y = 0
         , tile = null
+        , canvas = document.querySelector('.canvas')
 
       for (x = 0; x < numCols; x += 1) {
         for (y = 0; y < numRows ; y += 1) {
           tile = document.createElement('div')
-          tile.style.background = 'url(snow.png)'
-
-          tile.style.display = 'block'
-          tile.style.width = tileWidth + 'px'
-          tile.style.height = tileHeight + 'px'
+          tile.className = 'tile grass'
 
           tile.style.position = 'absolute'
           tile.style.top = (y * tileHeight) + 'px'
           tile.style.left = (x * tileWidth) + 'px'
 
-          $('.canvas').appendChild(tile)
+          canvas.appendChild(tile)
         }
       }
     }
 
+Behold the grassy meadow.
+
 <div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
-<div id="" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
+<div id="naive-no-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
 </div>
 
     function render (dt) {
@@ -394,6 +410,30 @@ function worldScrollRender (delta) {
   }
 }
 
+function naiveNoScrollSetup () {
+  var canvas = document.getElementById('naive-no-scroll')
+    , tile = null
+    , x = 0
+    , y = 0
+
+  canvas.style.height = canvasHeight + 'px'
+  canvas.style.width = canvasWidth + 'px'
+
+  for (x = 0; x < (canvasWidth / tileWidth); x += 1) {
+    for (y = 0; y < (canvasHeight / tileHeight); y += 1) {
+      tile = document.createElement('div')
+      tile.style.background = 'url(/images/urbansquall-grass.png)'
+      tile.style.position = 'absolute'
+      tile.style.left = (x * tileWidth) + 'px'
+      tile.style.top = (y * tileHeight) + 'px'
+      tile.style.display = 'block'
+      tile.style.height = tileHeight + 'px'
+      tile.style.width = tileWidth + 'px'
+      canvas.appendChild(tile)
+    }
+  }
+}
+
 function naiveScrollSetup () {
   var canvas = document.getElementById('naive-scroll')
     , play = document.getElementById('naive-scroll-play')
@@ -499,6 +539,7 @@ function worldScrollSetup () {
   }, null)
 }
 
+naiveNoScrollSetup()
 naiveScrollSetup()
 rowScrollSetup()
 worldScrollSetup()
