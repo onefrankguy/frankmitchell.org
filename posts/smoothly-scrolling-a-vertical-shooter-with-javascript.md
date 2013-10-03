@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 2 October 2013 - 8:22 am
+updated: 3 October 2013 - 5:53 am
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -82,10 +82,10 @@ JavaScript to handle creation and positioning.
     }
 
 Keeping the base shape of a tile separate from the image that fills it makes
-it easy to other tile types later. If we where building this out as a normal
+it easy to add other tile types later. If we where building this out as a normal
 web page, we'd probably define "position", "left" and "top" properties for our
 tiles as well. But by limiting ourselves to just keeping the look of a tile in
-CSS, we can freely experiment with different DOM layout in JavaScript.
+CSS, we can freely experiment with different DOM layouts in JavaScript.
 
     var tileWidth = 32
       , tileHeight = 32
@@ -125,15 +125,83 @@ Behold the grassy meadow.
 <div id="naive-no-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
 </div>
 
-    function render (dt) {
-      var tiles = $('#board').childNodes
-        , offset = scrollSpeed * dt
+## Move it all around ##
+
+In keeping with the "get something working" theme, we'll use the
+[`window.requestAnimationFrmae()`][raf] function to add a render loop. Because
+it's not supported by every browser yet, we have to include a [polyfill][] to
+make it work. First we'll check for vendor specific prefixes.
+
+    var ext = ['webkit', 'moz', 'ms', 'o']
+      , i = 0
+
+    for (i = 0; i < ext.length; i += 1) {
+      if (window.requestAnimationFrame) {
+        break
+      }
+
+      window.requestAnimationFrame = (
+        window[ext[i] + 'RequestAnimationFrame']
+      )
+
+      window.cancelAnimationFrame = (
+        window[ext[i] + 'CancelAnimationFrame'] ||
+        window[ext[i] + 'CancelRequestAnimationFrame']
+      )
+    }
+
+If we don't find a vendor specific prefix, we can fall back to using
+`setTimeout` and `clearTimeout`.
+
+    var last = 0
+
+    window.requestAnimationFrame = function (callback) {
+      var now = Date.now()
+        , later = Math.max(last + 16, now)
+      return setTimeout(function () {
+        callback(last = later)
+      }, later - now)
+    }
+
+    window.cancelAnimationFrame = clearTimeout
+
+Once that's in, we can set up our render loop with a callback. We want the world
+to scroll up, so we'll move the top of each tile by a negative amount.
+
+    var scrollSpeed = -20
+
+    function render () {
+      requestAnimationFrame(render)
+
+      var canvas = document.querySelector('.canvas')
+        , tiles = canvas.childNodes
+        , top = 0
         , i = 0
 
-      for (i = 0; i < tiles; i += 1) {
-        moveUp(tiles[i], canvasHeight, offset)
+      for (i = 0; i < tiles.length; i += 1) {
+        top = parseInt(tiles[i].style.top, 10)
+        top += scrollSpeed
+        if (top < 0) {
+          top = canvasHeight - tileHeight
+        }
+        tiles[i].style.top = top + 'px'
       }
     }
+
+    requestAnimationFrame(render)
+
+We kick off our render loop with a call to `requestAnimationFrame`. This ensures
+our first repaint lines up with the browser's rendering. From then on, each time
+our `render` function's triggered, it calls `requestAnimationFrame` to schedule
+itself again.
+
+Push the play button on the demo below to see it in action.
+
+<div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
+<div id="pixel-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
+<div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="pixel-scroll-fps">0</span> FPS</div>
+<div id="pixel-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
+</div>
 
 For the actual move calculations, I took a cue from _Masters of DOOM_, and sized
 my board to be one row of tiles taller than the game's visible area. That way
@@ -383,6 +451,21 @@ function moveUp (element, offset, delta) {
   setTop(element, top)
 }
 
+function pixelScrollRender () {
+  var tiles = document.getElementById('pixel-scroll').childNodes
+    , top = 0
+    , i = 0
+
+  for (i = 0; i < tiles.length; i += 1) {
+    top = parseInt(tiles[i].style.top, 10)
+    top += scrollSpeed
+    if (top < 0) {
+      top = canvasHeight + tileHeight
+    }
+    tiles[i].style.top = top + 'px'
+  }
+}
+
 function naiveScrollRender (delta) {
   var tiles = document.getElementById('naive-scroll').childNodes
     , i = 0
@@ -432,6 +515,44 @@ function naiveNoScrollSetup () {
       canvas.appendChild(tile)
     }
   }
+}
+
+function pixelScrollSetup () {
+  var canvas = document.getElementById('pixel-scroll')
+    , play = document.getElementById('pixel-scroll-play')
+    , fps = document.getElementById('pixel-scroll-fps')
+    , game = new Game(pixelScrollRender, fps)
+    , tile = null
+    , x = 0
+    , y = 0
+
+  canvas.style.height = canvasHeight + 'px'
+  canvas.style.width = canvasWidth + 'px'
+
+  for (x = 0; x < (canvasWidth / tileWidth); x += 1) {
+    for (y = 0; y < (canvasHeight / tileHeight) + 1; y += 1) {
+      tile = document.createElement('div')
+      tile.style.background = 'url(/images/urbansquall-grass.png)'
+      tile.style.position = 'absolute'
+      tile.style.top = (y * tileHeight) + 'px'
+      tile.style.left = (x * tileWidth) + 'px'
+      tile.style.height = tileHeight + 'px'
+      tile.style.width = tileWidth + 'px'
+      canvas.appendChild(tile)
+    }
+  }
+
+  addTouch(play, function () {
+    var icon = play.childNodes[0]
+    if (icon.className === 'icon-play') {
+      game.play()
+      icon.className = 'icon-stop'
+    }
+    else {
+      game.stop()
+      icon.className = 'icon-play'
+    }
+  }, null)
 }
 
 function naiveScrollSetup () {
@@ -539,6 +660,7 @@ function worldScrollSetup () {
   }, null)
 }
 
+pixelScrollSetup()
 naiveNoScrollSetup()
 naiveScrollSetup()
 rowScrollSetup()
@@ -547,6 +669,7 @@ worldScrollSetup()
 
 
 [Hard Vacuum: Recon]: /hvrecon "Frank Mitchell (js13kGames): Hard Vacuum: Recon"
+[raf]: https://developer.mozilla.org/en-US/docs/Web/API/window.requestAnimationFrame "Various (Mozilla Developer Network): Window.requestAnimationFrame()"
 [polyfill]: https://github.com/darius/requestAnimationFrame "Darius Bacon (GitHub): requestAnimationFrame"
 [sprite benchmark]: http://sitepoint.com/html5-gaming-benchmarking-sprite-animations "David Rousset (sitepoint): HTML5 Gaming: Benchmarking Sprite Animations"
 [Raspberry Pi]: http://raspberrypi.org/ "A ARM Linux computer for $35 USD"
