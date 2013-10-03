@@ -493,8 +493,8 @@ function worldScrollRender (delta) {
   }
 }
 
-function naiveNoScrollSetup () {
-  var canvas = document.getElementById('naive-no-scroll')
+function tileSetup (id, rows, cols) {
+  var canvas = document.getElementById(id)
     , tile = null
     , x = 0
     , y = 0
@@ -502,45 +502,24 @@ function naiveNoScrollSetup () {
   canvas.style.height = canvasHeight + 'px'
   canvas.style.width = canvasWidth + 'px'
 
-  for (x = 0; x < (canvasWidth / tileWidth); x += 1) {
-    for (y = 0; y < (canvasHeight / tileHeight); y += 1) {
+  for (x = 0; x < cols; x += 1) {
+    for (y = 0; y < rows; y += 1) {
       tile = document.createElement('div')
       tile.style.background = 'url(/images/urbansquall-grass.png)'
       tile.style.position = 'absolute'
       tile.style.left = (x * tileWidth) + 'px'
-      tile.style.top = (y * tileHeight) + 'px'
-      tile.style.display = 'block'
       tile.style.height = tileHeight + 'px'
       tile.style.width = tileWidth + 'px'
+      setTop(tile, y * tileHeight)
       canvas.appendChild(tile)
     }
   }
 }
 
-function pixelScrollSetup () {
-  var canvas = document.getElementById('pixel-scroll')
-    , play = document.getElementById('pixel-scroll-play')
-    , fps = document.getElementById('pixel-scroll-fps')
-    , game = new Game(pixelScrollRender, fps)
-    , tile = null
-    , x = 0
-    , y = 0
-
-  canvas.style.height = canvasHeight + 'px'
-  canvas.style.width = canvasWidth + 'px'
-
-  for (x = 0; x < (canvasWidth / tileWidth); x += 1) {
-    for (y = 0; y < (canvasHeight / tileHeight) + 1; y += 1) {
-      tile = document.createElement('div')
-      tile.style.background = 'url(/images/urbansquall-grass.png)'
-      tile.style.position = 'absolute'
-      tile.style.top = (y * tileHeight) + 'px'
-      tile.style.left = (x * tileWidth) + 'px'
-      tile.style.height = tileHeight + 'px'
-      tile.style.width = tileWidth + 'px'
-      canvas.appendChild(tile)
-    }
-  }
+function demoSetup (id, render) {
+  var play = document.getElementById(id + '-play')
+    , fps = document.getElementById(id + '-fps')
+    , game = new Game(render, fps)
 
   addTouch(play, function () {
     var icon = play.childNodes[0]
@@ -553,6 +532,21 @@ function pixelScrollSetup () {
       icon.className = 'icon-play'
     }
   }, null)
+}
+
+function naiveNoScrollSetup () {
+  var rows = canvasHeight / tileHeight
+    , cols = canvasWidth / tileWidth
+
+  tileSetup('naive-no-scroll', rows, cols)
+}
+
+function pixelScrollSetup () {
+  var rows = canvasHeight / tileHeight
+    , cols = canvasWidth / tileWidth
+
+  tileSetup('pixel-scroll', rows, cols)
+  demoSetup('pixel-scroll', pixelScrollRender)
 }
 
 function naiveScrollSetup () {
