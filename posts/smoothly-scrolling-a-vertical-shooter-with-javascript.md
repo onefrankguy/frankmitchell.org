@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 3 October 2013 - 5:53 am
+updated: 3 October 2013 - 6:50 am
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -99,6 +99,9 @@ The goal here is to get something working. Note that we round up when
 calculating the number of rows and columns. This prevents gaps at the edges
 of the viewport.
 
+We'll use the [`document.createElement()`][ce] function to generate new tiles,
+and the [`node.appendChild()`][ac] function to add them to the canvas.
+
     funciton setup () {
       var x = 0
         , y = 0
@@ -119,13 +122,20 @@ of the viewport.
       }
     }
 
-Behold the grassy meadow.
+We're setting the position attribute to "absolute" on the tiles so we can scroll
+them later by adjusting their top attribute. A tile's starting top position is
+the row it's in multiplied by the tile height. Likewise, it's starting left
+position is the column it's in multipled by the tile width.
+
+Here's what it looks like.
 
 <div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
 <div id="naive-no-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
 </div>
 
-## Move it all around ##
+Now let's see if we can get our world scrolling.
+
+## Make it dance and move ##
 
 In keeping with the "get something working" theme, we'll use the
 [`window.requestAnimationFrmae()`][raf] function to add a render loop. Because
@@ -151,7 +161,7 @@ make it work. First we'll check for vendor specific prefixes.
     }
 
 If we don't find a vendor specific prefix, we can fall back to using
-`setTimeout` and `clearTimeout`.
+the [`window.setTimeout()`][st] and [`window.clearTimeout()`][ct] functions.
 
     var last = 0
 
@@ -166,7 +176,8 @@ If we don't find a vendor specific prefix, we can fall back to using
     window.cancelAnimationFrame = clearTimeout
 
 Once that's in, we can set up our render loop with a callback. We want the world
-to scroll up, so we'll move the top of each tile by a negative amount.
+to scroll up, so we'll move the top of each tile by a negative amount. Once a
+tile goes out of the viewport, we'll warp it back down to the bottom.
 
     var scrollSpeed = -20
 
@@ -195,13 +206,86 @@ our first repaint lines up with the browser's rendering. From then on, each time
 our `render` function's triggered, it calls `requestAnimationFrame` to schedule
 itself again.
 
-Push the play button on the demo below to see it in action.
+Push the play button to see it in action.
 
 <div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
 <div id="pixel-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
 <div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="pixel-scroll-fps">0</span> FPS</div>
 <div id="pixel-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
+
+Wow, the's slow. I get 6 FPS on my [Raspberry Pi][], and giant pink stripes show
+up between rows of tiles. Let's see what we can do to fix that.
+
+## Timing is everything ##
+
+Right now, our world is moving 20 pixels with every call to our render function.
+But what we want is for it to move 20 pixels every second. Fortunately,
+`requestAnimationFrame` comes to our rescue.
+
+When `requestAnimationFrame` triggers our render function, it passes in a time
+stamp indicating when the repaint will happen. If we subtract that current time
+stamp from the last time stamp, we can figure out how much time has passed
+between repaints. Let's set up a timer class to handle that.
+
+    function Timer () {
+      this.elapsed = 0
+      this.last = null
+    }
+
+    Timer.prototype = {
+      tick: function (now) {
+        this.elapsed = (now - (this.last || now)) / 1000
+        this.last = now
+      }
+    }
+
+We set the elapsed time to `now - (last || now)` so that the first time we call
+`Timer.tick()` the elapsed time is zero. And we divide by a thousand so that our
+elapsed time is measured in seconds. Feel free to skip the division if you find
+milliseconds easier to deal with.
+
+Now we can set up a new timer for our render loop. Here's our render function
+from before with changed lines marked in bold.
+
+    var scrollSpeed = -20
+    <strong>, timer = new Timer()</strong>
+
+    function render (now) {
+      requestAnimationFrame(render)
+      <strong>timer.tick(now)</strong>
+
+      var canvas = document.querySelector('.canvas')
+        , tiles = canvas.childNodes
+        , top = 0
+        , i = 0
+        <strong>, offset = Math.round(scrollSpeed * timer.elapsed)</strong>
+
+      for (i = 0; i < tiles.length; i += 1) {
+        top = parseInt(tiles[i].style.top, 10)
+        <strong>top += offset</strong>
+        if (top < 0) {
+          top = canvasHeight - tileHeight
+        }
+        tiles[i].style.top = top + 'px'
+      }
+    }
+
+Instead of subtracting 20 pixels from each tile's top position, we're
+subtracting our scroll speed multiplied by our elapsed time. That gives
+us the amount to move our tile so that it scrolls at 20 pixels per second.
+
+We're also rounding our offset so our tiles snap to the nearest pixel. CSS
+doesn't have great subpixel positioning support, so lining things up exactly
+keeps our game looking sharp.
+
+<div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
+<div id="delta-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
+<div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="delta-scroll-fps">0</span> FPS</div>
+<div id="delta-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
+</div>
+
+## Learning from the masters ##
 
 For the actual move calculations, I took a cue from _Masters of DOOM_, and sized
 my board to be one row of tiles taller than the game's visible area. That way
@@ -466,6 +550,22 @@ function pixelScrollRender () {
   }
 }
 
+function deltaScrollRender (dt) {
+  var tiles = document.getElementById('pixel-scroll').childNodes
+    , top = 0
+    , i = 0
+    , offset = Math.round(scrollSpeed * dt)
+
+  for (i = 0; i < tiles.length; i += 1) {
+    top = parseInt(tiles[i].style.top, 10)
+    top += offset
+    if (top < 0) {
+      top = canvasHeight + tileHeight
+    }
+    tiles[i].style.top = top + 'px'
+  }
+}
+
 function naiveScrollRender (delta) {
   var tiles = document.getElementById('naive-scroll').childNodes
     , i = 0
@@ -547,6 +647,14 @@ function pixelScrollSetup () {
 
   tileSetup('pixel-scroll', rows, cols)
   demoSetup('pixel-scroll', pixelScrollRender)
+}
+
+function deltaScrollSetup () {
+  var rows = canvasHeight / tileHeight
+    , cols = canvasWidth / tileWidth
+
+  tileSetup('delta-scroll', rows, cols)
+  demoSetup('delta-scroll', deltaScrollRender)
 }
 
 function naiveScrollSetup () {
@@ -654,8 +762,9 @@ function worldScrollSetup () {
   }, null)
 }
 
-pixelScrollSetup()
 naiveNoScrollSetup()
+pixelScrollSetup()
+deltaScrollSetup()
 naiveScrollSetup()
 rowScrollSetup()
 worldScrollSetup()
