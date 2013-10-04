@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 3 October 2013 - 6:50 am
+updated: 3 October 2013 - 8:38 pm
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -191,10 +191,10 @@ tile goes out of the viewport, we'll warp it back down to the bottom.
 
       for (i = 0; i < tiles.length; i += 1) {
         top = parseInt(tiles[i].style.top, 10)
-        top += scrollSpeed
         if (top < 0) {
           top = canvasHeight - tileHeight
         }
+        top += scrollSpeed
         tiles[i].style.top = top + 'px'
       }
     }
@@ -246,38 +246,41 @@ elapsed time is measured in seconds. Feel free to skip the division if you find
 milliseconds easier to deal with.
 
 Now we can set up a new timer for our render loop. Here's our render function
-from before with changed lines marked in bold.
+from before with new lines underlined.
 
-    var scrollSpeed = -20
-    <strong>, timer = new Timer()</strong>
+<pre><code>
+var scrollSpeed = -20
+  <ins>, timer = new Timer()</ins>
 
-    function render (now) {
-      requestAnimationFrame(render)
-      <strong>timer.tick(now)</strong>
+function render (now) {
+  requestAnimationFrame(render)
+  <ins>timer.tick(now)</ins>
 
-      var canvas = document.querySelector('.canvas')
-        , tiles = canvas.childNodes
-        , top = 0
-        , i = 0
-        <strong>, offset = Math.round(scrollSpeed * timer.elapsed)</strong>
+  var canvas = document.querySelector('.canvas')
+    , tiles = canvas.childNodes
+    , top = 0
+    , i = 0
+    <ins>, offset = scrollSpeed * timer.elapsed</ins>
 
-      for (i = 0; i < tiles.length; i += 1) {
-        top = parseInt(tiles[i].style.top, 10)
-        <strong>top += offset</strong>
-        if (top < 0) {
-          top = canvasHeight - tileHeight
-        }
-        tiles[i].style.top = top + 'px'
-      }
+  for (i = 0; i < tiles.length; i += 1) {
+    top = parseInt(tiles[i].style.top, 10)
+    if (top < 0) {
+      top = canvasHeight - tileHeight
     }
+    <ins>top += Math.ceil(offset)</ins>
+    tiles[i].style.top = top + 'px'
+  }
+}
+</code></pre>
 
 Instead of subtracting 20 pixels from each tile's top position, we're
 subtracting our scroll speed multiplied by our elapsed time. That gives
 us the amount to move our tile so that it scrolls at 20 pixels per second.
 
-We're also rounding our offset so our tiles snap to the nearest pixel. CSS
+We're also rounding our offset up so our tiles snap to the nearest pixel. CSS
 doesn't have great subpixel positioning support, so lining things up exactly
-keeps our game looking sharp.
+keeps our game looking sharp. Using `Math.ceil()` instead of `Math.round()`
+ensures the world moves at least one pixel each frame.
 
 <div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
 <div id="delta-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
@@ -542,26 +545,26 @@ function pixelScrollRender () {
 
   for (i = 0; i < tiles.length; i += 1) {
     top = parseInt(tiles[i].style.top, 10)
-    top += scrollSpeed
     if (top < 0) {
       top = canvasHeight + tileHeight
     }
+    top += scrollSpeed
     tiles[i].style.top = top + 'px'
   }
 }
 
 function deltaScrollRender (dt) {
-  var tiles = document.getElementById('pixel-scroll').childNodes
+  var tiles = document.getElementById('delta-scroll').childNodes
     , top = 0
     , i = 0
-    , offset = Math.round(scrollSpeed * dt)
+    , offset = Math.ceil(scrollSpeed * dt)
 
   for (i = 0; i < tiles.length; i += 1) {
     top = parseInt(tiles[i].style.top, 10)
-    top += offset
     if (top < 0) {
       top = canvasHeight + tileHeight
     }
+    top += offset
     tiles[i].style.top = top + 'px'
   }
 }
