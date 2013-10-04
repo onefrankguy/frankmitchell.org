@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 3 October 2013 - 8:38 pm
+updated: 3 October 2013 - 9:27 pm
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -103,19 +103,19 @@ We'll use the [`document.createElement()`][ce] function to generate new tiles,
 and the [`node.appendChild()`][ac] function to add them to the canvas.
 
     funciton setup () {
-      var x = 0
-        , y = 0
-        , tile = null
+      var y = 0
+        , x = 0
+        , sprite = null
         , canvas = document.querySelector('.canvas')
 
       for (x = 0; x < numCols; x += 1) {
         for (y = 0; y < numRows ; y += 1) {
-          tile = document.createElement('div')
-          tile.className = 'tile grass'
+          sprite = document.createElement('div')
+          sprite.className = 'tile grass'
 
-          tile.style.position = 'absolute'
-          tile.style.top = (y * tileHeight) + 'px'
-          tile.style.left = (x * tileWidth) + 'px'
+          sprite.style.position = 'absolute'
+          sprite.style.top = (y * tileHeight) + 'px'
+          sprite.style.left = (x * tileWidth) + 'px'
 
           canvas.appendChild(tile)
         }
@@ -288,6 +288,68 @@ ensures the world moves at least one pixel each frame.
 <div id="delta-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
+It's still slow on my Pi at 6 FPS, but the pink lines are thinner. There's an
+occasional fat one, but most seem to only be one pixel tall. Since 6 FPS is
+unplayable for a game, we'll tackle the speed issue first, and then worry about
+pixel bleed.
+
+## Trim back the DOM ##
+
+A 320x352 pixel game with 32x32 pixel tiles has 10 columns and 12 rows. That's
+120 tiles that have to move each frame. As David Rousset points out in his
+[sprite benchmark][], once you go past about 43 moving sprites on screen,
+performance starts to suffer.
+
+Because our background for each row is just repeated grass, we can create a
+single `<div>` per row and just move the rows. Twelve images for a background
+is well under a forty-three sprite budget. We'll need a little bit of CSS to
+to set the shape of a row.
+
+    .row {
+      display: block;
+      width: 320px;
+      height: 32px;
+    }
+
+But can keep the render code the same and just change the setup.
+
+<pre><code>
+funciton setup () {
+  var y = 0
+  <del>, x = 0</del>
+  , sprite = null
+  , canvas = document.querySelector('.canvas')
+
+  <del>for (x = 0; x < numCols; x += 1) {</del>
+    for (y = 0; y < numRows ; y += 1) {
+      sprite = document.createElement('div')
+      <del>sprite.className = 'tile grass'</del>
+      <ins>sprite.className = 'row grass'</ins>
+
+      sprite.style.position = 'absolute'
+      sprite.style.top = (y * tileHeight) + 'px'
+      <del>sprite.style.left = (x * tileWidth) + 'px'</del>
+      <ins>sprite.style.left = 0 + 'px'</ins>
+
+      canvas.appendChild(sprite)
+    }
+  <del>}</del>
+}
+</code></pre>
+
+I get around 12 FPS on my Pi. It's inside the realm of playable, but not great.
+Hit the play button below if you want to see row scrolling in action.
+
+<div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
+<div id="row-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
+<div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="row-scroll-fps">0</span> FPS</div>
+<div id="row-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
+</div>
+
+My snowy world was looking less messy, but there was still room for improvement.
+Every once in a while single fine black lines would show up between rows as
+textures snapped imperfectly and pixels bleed through.
+
 ## Learning from the masters ##
 
 For the actual move calculations, I took a cue from _Masters of DOOM_, and sized
@@ -322,47 +384,6 @@ snowy world was a mess of tearing images and black line glitches.
 I got about 2 FPS on my [Raspberry Pi][], making the game totally unplayable
 and sending me back to the drawing board.
 
-## Trim back the DOM ##
-
-All those tiles where killing performance, so I decided to cut back on the
-number of moving things. Given the snowy background was just a repeated texture,
-I figured I could make a row of snow and just move each row.
-
-A 320x440 pixel tall game with 20x20 pixel tiles has 16 columns and 22 rows.
-Twenty-two images for a background is well under a 43 sprite budget. I kept the
-move code the same and just changed the board setup.
-
-    function setup () {
-      var y = 0
-        , row = null
-
-      for (y = 0; y < 22 + 1; y += 1) {
-        row = document.createElement('div')
-        row.style.background = 'url(snow.png)'
-
-        row.style.display = 'block'
-        row.style.height = 20 + 'px'
-        row.style.width = 320 + 'px'
-
-        row.style.position = 'absolute'
-        row.style.top = (y * 20) + 'px'
-
-        $('#board').appendChild(row)
-      }
-    }
-
-This time I got 10 FPS on my Pi. It's inside the realm of playable, but not
-great. Hit the play button below if you want to row scrolling in action.
-
-<div class="game art" style="background: #000; position: relative; display: block; height: 356px; width: 320px; overflow: hidden">
-<div id="row-scroll" style="position: absolute; top: 0; left: 0"></div>
-<div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="row-scroll-fps">0</span> FPS</div>
-<div id="row-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
-</div>
-
-My snowy world was looking less messy, but there was still room for improvement.
-Every once in a while single fine black lines would show up between rows as
-textures snapped imperfectly and pixels bleed through.
 
 ## Give me a lever long enough ##
 
@@ -578,12 +599,19 @@ function naiveScrollRender (delta) {
   }
 }
 
-function rowScrollRender (delta) {
-  var rows = document.getElementById('row-scroll').childNodes
+function rowScrollRender (dt) {
+  var tiles = document.getElementById('row-scroll').childNodes
+    , top = 0
     , i = 0
+    , offset = Math.ceil(scrollSpeed * dt)
 
-  for (i = 0; i < rows.length; i += 1) {
-    moveUp(rows[i], canvasHeight, scrollSpeed * delta)
+  for (i = 0; i < tiles.length; i += 1) {
+    top = parseInt(tiles[i].style.top, 10)
+    if (top < 0) {
+      top = canvasHeight + tileHeight
+    }
+    top += offset
+    tiles[i].style.top = top + 'px'
   }
 }
 
@@ -699,38 +727,17 @@ function naiveScrollSetup () {
 }
 
 function rowScrollSetup () {
-  var canvas = document.getElementById('row-scroll')
-    , play = document.getElementById('row-scroll-play')
-    , fps = document.getElementById('row-scroll-fps')
-    , game = new Game(rowScrollRender, fps)
-    , row = null
-    , y = 0
+  var rows = canvasHeight / tileHeight
+    , i = 0
 
-  canvas.style.height = canvasHeight + 'px'
-  canvas.style.width = canvasWidth + 'px'
+  tileSetup('row-scroll', rows, 1)
+  demoSetup('row-scroll', rowScrollRender)
 
-  for (y = 0; y < (canvasHeight / tileHeight) + 1; y += 1) {
-    row = document.createElement('div')
-    row.style.background = 'url(/images/urbansquall-grass.png)'
-    row.style.display = 'block'
-    row.style.position = 'absolute'
-    row.style.height = tileHeight + 'px'
-    row.style.width = canvasWidth + 'px'
-    setTop(row, y * tileHeight)
-    canvas.appendChild(row)
+  rows = document.getElementById('row-scroll').childNodes
+  for (i = 0; i < rows.length; i += 1) {
+    rows[i].style.width = canvasWidth + 'px'
+    rows[i].style.left = '0px'
   }
-
-  addTouch(play, function () {
-    var icon = play.childNodes[0]
-    if (icon.className === 'icon-play') {
-      game.play()
-      icon.className = 'icon-stop'
-    }
-    else {
-      game.stop()
-      icon.className = 'icon-play'
-    }
-  }, null)
 }
 
 function worldScrollSetup () {
