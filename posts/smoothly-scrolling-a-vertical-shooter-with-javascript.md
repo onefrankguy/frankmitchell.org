@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 3 October 2013 - 10:33 pm
+updated: 3 October 2013 - 10:49 pm
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -190,7 +190,7 @@ tile goes out of the viewport, we'll warp it back down to the bottom.
         , i = 0
 
       for (i = 0; i < tiles.length; i += 1) {
-        top = parseInt(tiles[i].style.top, 10)
+        top = parseFloat(tiles[i].style.top, 10)
         if (top < 0) {
           top = canvasHeight - tileHeight
         }
@@ -262,10 +262,8 @@ function render (now) {
     , i = 0
     <ins>, offset = scrollSpeed * timer.elapsed</ins>
 
-  <ins>offset = Math.ceil(offset)</ins>
-
   for (i = 0; i < tiles.length; i += 1) {
-    top = parseInt(tiles[i].style.top, 10)
+    top = parseFloat(tiles[i].style.top, 10)
     if (top < 0) {
       top = canvasHeight - tileHeight
     }
@@ -278,11 +276,6 @@ function render (now) {
 Instead of subtracting 20 pixels from each tile's top position, we're
 subtracting our scroll speed multiplied by our elapsed time. That gives
 us the amount to move our tile so that it scrolls at 20 pixels per second.
-
-We're also rounding our offset up so our tiles snap to the nearest pixel. CSS
-doesn't have great subpixel positioning support, so lining things up exactly
-keeps our game looking sharp. Using `Math.ceil()` instead of `Math.round()`
-ensures the world moves at least one pixel each frame.
 
 <div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
 <div id="delta-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
@@ -404,10 +397,8 @@ function render (now) {
     , i = 0
     , offset = scrollSpeed * timer.elapsed
 
-  offset = Math.ceil(offset)
-
   for (i = 0; i < tiles.length; i += 1) {
-    top = parseInt(tiles[i].style.top, 10)
+    top = parseFloat(tiles[i].style.top, 10)
     <ins>top += offset</ins>
     <del>if (top < 0) {</del>
     <ins>if (top < -tileHeight) {</ins>
@@ -428,8 +419,8 @@ Press the play button below to see the new scrolling in action.
 <div id="extra-row-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
-The framerate stays the same, and the big pink line is gone. But every once in
-a while, there's a thin one pixel line that bleeds through.
+The frame rate stays the same and the big pink line is gone. But every once in
+a while, a thin one pixel line bleeds through.
 
 ## Give me a lever long enough ##
 
@@ -611,7 +602,7 @@ function pixelScrollRender () {
     , i = 0
 
   for (i = 0; i < tiles.length; i += 1) {
-    top = parseInt(tiles[i].style.top, 10)
+    top = parseFloat(tiles[i].style.top, 10)
     if (top < 0) {
       top = canvasHeight + tileHeight
     }
@@ -624,10 +615,10 @@ function deltaScrollRender (dt) {
   var tiles = document.getElementById('delta-scroll').childNodes
     , top = 0
     , i = 0
-    , offset = Math.ceil(scrollSpeed * dt)
+    , offset = scrollSpeed * dt
 
   for (i = 0; i < tiles.length; i += 1) {
-    top = parseInt(tiles[i].style.top, 10)
+    top = parseFloat(tiles[i].style.top, 10)
     if (top < 0) {
       top = canvasHeight + tileHeight
     }
@@ -640,10 +631,10 @@ function rowScrollRender (dt) {
   var tiles = document.getElementById('row-scroll').childNodes
     , top = 0
     , i = 0
-    , offset = Math.ceil(scrollSpeed * dt)
+    , offset = scrollSpeed * dt
 
   for (i = 0; i < tiles.length; i += 1) {
-    top = parseInt(tiles[i].style.top, 10)
+    top = parseFloat(tiles[i].style.top, 10)
     if (top < 0) {
       top = canvasHeight + tileHeight
     }
@@ -656,10 +647,10 @@ function extraRowScrollRender (dt) {
   var tiles = document.getElementById('extra-row-scroll').childNodes
     , top = 0
     , i = 0
-    , offset = Math.ceil(scrollSpeed * dt)
+    , offset = scrollSpeed * dt
 
   for (i = 0; i < tiles.length; i += 1) {
-    top = parseInt(tiles[i].style.top, 10) + offset
+    top = parseFloat(tiles[i].style.top, 10) + offset
     if (top <= -tileHeight) {
       top = canvasHeight + offset
     }
