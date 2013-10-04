@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 3 October 2013 - 10:49 pm
+updated: 4 October 2013 - 6:38 am
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -424,39 +424,57 @@ a while, a thin one pixel line bleeds through.
 
 ## Give me a lever long enough ##
 
-One way to create a seamless background is to let the texture repeat across the
-entire canvas.
+Look at our render function, and you'll notice we've been using `parseFloat` to
+extract the top attriubte for each row. This meas rows are being placed with
+subpixel precision. Instead of snapping to exact coordinations, like 160 pixels,
+thye'll land on floating point coordinates like 159.9999999999954 pixels. Those
+tiny differences in value are what's causiing the think pink lines to appear.
 
-    #canvas {
-      background: url(snow.png);
+Let's back up for a second and look at what we're tyring to accomplish. We want
+to scroll our game at 20 pixels per second. Our rows line up correctly when
+they're not moving, but render with subpixel errors when they are moving. So
+what if we didn't move the rows? What if we moved the world instead?
+
+Let's change our render to move the canvas instead of the tiles.
+
+<pre><code>var scrollSpeed = -20
+  , timer = new Timer()
+
+function render (now) {
+  requestAnimationFrame(render)
+  timer.tick(now)
+
+  <del>var canvas = document.querySelector('.canvas')</del>
+  <ins>var canvas = document.querySelector('.viewport')</ins>
+    , tiles = canvas.childNodes
+    , top = 0
+    , i = 0
+    , offset = scrollSpeed * timer.elapsed
+
+  for (i = 0; i < tiles.length; i += 1) {
+    top = parseFloat(tiles[i].style.top, 10)
+    top += offset
+    if (top < -tileHeight) {
+      <del>top = canvasHeight + offset</del>
+      <ins>top = offset</ins>
     }
+    tiles[i].style.top = top + 'px'
+  }
+}</code></pre>
 
-We know the texture tiles nicely, so we can let CSS handle the tiling. That
-leaves us with a single node in the DOM we have to move. Our render function
-changes slightly. since we want to warp the canvas back to zero once the top
-row's moved off screen.
+Press the play button and watch the world scroll.
 
-    function render (dt) {
-      var tiles = $('#board').childNodes
-        , offset = scrollSpeed * dt
-        , i = 0
-
-      for (i = 0; i < tiles; i += 1) {
-        moveUp(tiles[i], 0, offset)
-      }
-    }
-
-<div class="game art" style="background: #000; position: relative; display: block; height: 356px; width: 320px; overflow: hidden">
-<div id="world-scroll" style="position: absolute; top: 0; left: 0"></div>
+<div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
+<div id="world-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
 <div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="world-scroll-fps">0</span> FPS</div>
 <div id="world-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
 ## Credits ##
 
-Graphics for the grass and flowers come from a sprite set by [Urbansquall][].
-They where posted to the Game Poetry blog back in 2009, and I'd kept them around
-on my hard drive since, waiting for a project. Guess this tutorial is it.
+Graphics for the grass come from a sprite set by [Urbansquall][]. They where
+posted to the Game Poetry blog back in 2009, and I've kept them around on my
+hard drive since, waiting for a project. Guess this tutorial is it.
 
 
 <script type="text/javascript">
@@ -658,13 +676,16 @@ function extraRowScrollRender (dt) {
   }
 }
 
-function worldScrollRender (delta) {
-  var rows = document.getElementById('world-scroll').childNodes
-    , i = 0
+function worldScrollRender (dt) {
+  var world = document.getElementById('world-scroll')
+    , top = 0
+    , offset = scrollSpeed * dt
 
-  for (i = 0; i < rows.length; i += 1) {
-    moveUp(rows[i], 0, scrollSpeed * delta)
+  top = parseFloat(world.style.top, 10) + offset
+  if (top <= -tileHeight) {
+    top = offset
   }
+  world.style.top = top + 'px'
 }
 
 function tileSetup (id, rows, cols) {
@@ -760,35 +781,17 @@ function extraRowScrollSetup () {
 }
 
 function worldScrollSetup () {
-  var canvas = document.getElementById('world-scroll')
-    , play = document.getElementById('world-scroll-play')
-    , fps = document.getElementById('world-scroll-fps')
-    , game = new Game(worldScrollRender, fps)
-    , world = null
+  var rows = (canvasHeight / tileHeight) + 1
+    , i = 0
 
-  canvas.style.height = canvasHeight + 'px'
-  canvas.style.width = canvasWidth + 'px'
+  tileSetup('world-scroll', rows, 1)
+  demoSetup('world-scroll', worldScrollRender)
 
-  world = document.createElement('div')
-  world.style.background = 'url(/images/urbansquall-grass.png)'
-  world.style.display = 'block'
-  world.style.position = 'absolute'
-  world.style.height = (canvasHeight + tileHeight) + 'px'
-  world.style.width = canvasWidth + 'px'
-  setTop(world, 0)
-  canvas.appendChild(world)
-
-  addTouch(play, function () {
-    var icon = play.childNodes[0]
-    if (icon.className === 'icon-play') {
-      game.play()
-      icon.className = 'icon-stop'
-    }
-    else {
-      game.stop()
-      icon.className = 'icon-play'
-    }
-  }, null)
+  rows = document.getElementById('world-scroll').childNodes
+  for (i = 0; i < rows.length; i += 1) {
+    rows[i].style.width = canvasWidth + 'px'
+    rows[i].style.left = '0px'
+  }
 }
 
 naiveNoScrollSetup()
