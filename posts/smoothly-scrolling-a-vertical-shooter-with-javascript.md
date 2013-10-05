@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 4 October 2013 - 6:38 am
+updated: 5 October 2013 - 6:49 am
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -68,12 +68,12 @@ The stage is set. Time for the sprites to enter.
 
 We're going to take a na&iuml;ve approach to start, just to get something
 on the screen. We'll use a 32x32 tile set, and put a `<div>` in the DOM for
-every tile in the game. We'll use CSS to handle styling and semantics, and
-JavaScript to handle creation and positioning.
+every row of tiles in the game. We'll use CSS to handle styling and semantics,
+and JavaScript to handle creation and positioning.
 
-    .tile {
+    .row {
       display: block;
-      width: 32px;
+      width: 100%;
       height: 32px;
     }
 
@@ -81,7 +81,7 @@ JavaScript to handle creation and positioning.
       background: url(grass.png);
     }
 
-Keeping the base shape of a tile separate from the image that fills it makes
+Keeping the base shape of a row separate from the image that fills it makes
 it easy to add other tile types later. If we where building this out as a normal
 web page, we'd probably define "position", "left" and "top" properties for our
 tiles as well. But by limiting ourselves to just keeping the look of a tile in
@@ -99,38 +99,33 @@ The goal here is to get something working. Note that we round up when
 calculating the number of rows and columns. This prevents gaps at the edges
 of the viewport.
 
-We'll use the [`document.createElement()`][ce] function to generate new tiles,
-and the [`node.appendChild()`][ac] function to add them to the canvas.
-
     funciton setup () {
-      var y = 0
-        , x = 0
+      var canvas = document.querySelector('.canvas')
         , sprite = null
-        , canvas = document.querySelector('.canvas')
+        , y = 0
 
-      for (x = 0; x < numCols; x += 1) {
-        for (y = 0; y < numRows; y += 1) {
-          sprite = document.createElement('div')
-          sprite.className = 'tile grass'
-
-          sprite.style.position = 'absolute'
-          sprite.style.top = (y * tileHeight) + 'px'
-          sprite.style.left = (x * tileWidth) + 'px'
-
-          canvas.appendChild(tile)
-        }
+      for (y = 0; y < numRows + 1; y += 1) {
+        sprite = document.createElement('div')
+        sprite.className = 'row grass'
+        canvas.appendChild(sprite)
       }
     }
 
-We're setting the position attribute to "absolute" on the tiles so we can scroll
-them later by adjusting their top attribute. A tile's starting top position is
-the row it's in multiplied by the tile height. Likewise, it's starting left
-position is the column it's in multipled by the tile width.
+We use the [`document.createElement()`][ce] function to generate new rows,
+and the [`Node.appendChild()`][ac] function to add them to the canvas.
+
+Notice that we're creating one more row than we need to cover the canvas.
+Because the viewport's overflow attribute is set to "hidden", this extra row
+will be invisible. As the rows scroll up, it will come into view.
+
+We don't need to bother setting position attriubtes on the rows. Because they
+have "block" display attributes, they'll naturally stack up on on top of each
+other.
 
 Here's what it looks like.
 
 <div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
-<div id="naive-no-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
+<div id="no-scroll" style="position: relative; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
 </div>
 
 Now let's see if we can get our world scrolling.
@@ -688,6 +683,21 @@ function worldScrollRender (dt) {
   world.style.top = top + 'px'
 }
 
+function rowSetup (id, rows) {
+  var canvas = document.getElementById(id)
+    , sprite = null
+    , y = 0
+
+  for (y = 0; y < rows; y += 1) {
+    sprite = document.createElement('div')
+    sprite.style.background = 'url(/images/urbansquall-grass.png)'
+    sprite.style.display = 'block'
+    sprite.style.width = '100%'
+    sprite.style.height = tileHeight + 'px'
+    canvas.appendChild(sprite)
+  }
+}
+
 function tileSetup (id, rows, cols) {
   var canvas = document.getElementById(id)
     , tile = null
@@ -729,11 +739,9 @@ function demoSetup (id, render) {
   }, null)
 }
 
-function naiveNoScrollSetup () {
-  var rows = canvasHeight / tileHeight
-    , cols = canvasWidth / tileWidth
-
-  tileSetup('naive-no-scroll', rows, cols)
+function noScrollSetup () {
+  var rows = Math.ceil(canvasHeight / tileHeight) + 1
+  rowSetup('no-scroll', rows)
 }
 
 function pixelScrollSetup () {
@@ -794,7 +802,7 @@ function worldScrollSetup () {
   }
 }
 
-naiveNoScrollSetup()
+noScrollSetup()
 pixelScrollSetup()
 deltaScrollSetup()
 rowScrollSetup()
@@ -804,6 +812,8 @@ worldScrollSetup()
 
 
 [Hard Vacuum: Recon]: /hvrecon "Frank Mitchell (js13kGames): Hard Vacuum: Recon"
+[ce]: https://developer.mozilla.org/en-US/docs/Web/API/document.createElement "Various (Mozilla Developer Network): document.createElement()"
+[ac]: https://developer.mozilla.org/en-US/docs/Web/API/Node.appendChild "Various (Mozilla Developer Network): Node.appendChild()"
 [raf]: https://developer.mozilla.org/en-US/docs/Web/API/window.requestAnimationFrame "Various (Mozilla Developer Network): Window.requestAnimationFrame()"
 [polyfill]: https://github.com/darius/requestAnimationFrame "Darius Bacon (GitHub): requestAnimationFrame"
 [sprite benchmark]: http://sitepoint.com/html5-gaming-benchmarking-sprite-animations "David Rousset (sitepoint): HTML5 Gaming: Benchmarking Sprite Animations"
