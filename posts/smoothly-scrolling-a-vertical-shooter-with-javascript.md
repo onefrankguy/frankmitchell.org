@@ -1,8 +1,8 @@
 <!--
 title:  Smoothly scrolling a world with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 5 October 2013 - 4:29 pm
-publish: 28 September 2013
+updated: 5 October 2013 - 4:45 pm
+publish: 5 October 2013
 slug: scroll-js
 tags: coding, mobile
 -->
@@ -55,7 +55,7 @@ stage sprites before they're needed and smoothly scroll them in an out of view.
     }
 
 Finally, we'll position our canvas inside our viewport, and give it dark pink
-background. It's easier to spot misaligned textures if keep your background
+background. It's easier to spot misaligned textures if you keep your background
 color set to something that's not in your sprite pallete.
 
 <div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
@@ -85,7 +85,7 @@ and JavaScript to handle creation and positioning.
 Keeping the base shape of a row separate from the image that fills it makes
 it easy to add other backgrounds later. If we where building this out as a normal
 web page, we'd probably define "position", "left" and "top" properties for our
-tiles as well. But by limiting ourselves to just keeping the look of a tile in
+rows as well. But by limiting ourselves to just keeping the look of a row in
 CSS, we can freely experiment with different DOM layouts in JavaScript.
 
     var tileWidth = 32
@@ -134,9 +134,9 @@ Now let's see if we can get our world moving.
 ## Scroll, baby, scroll ##
 
 The simplest approach to scrolling would be to move every row every frame.
-That will trigger a DOM repaint with every `<div>` we move, and if we're not
-careful about subpixel positioning, it'll lead to gaps where rows don't quite
-overlap.
+However, that will trigger a DOM repaint with every `<div>` we move, and if
+we're not careful about subpixel positioning, it'll lead to gaps where rows
+don't quite line up.
 
 Instead, we can just move the entire canvas, and let the browser handle keeping
 the rows butted up next to each other.
@@ -183,16 +183,16 @@ Push the play button to see it in action.
 <div id="pixel-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
-I get 16 FPS on my [Raspberry Pi][], which is right inside the realm of playble.
-A general rule of thumb is that if you can get 15 FPS or better on a Pi, a first
-generation iPhone 4 should be able to handle your game just fine.
+I get 16 FPS on my [Raspberry Pi][], which is right inside the realm of
+playable. A general rule of thumb is that if you can get 15 FPS or better on a
+Pi, a first generation iPhone 4 should be able to handle your game just fine.
 
 ## Timing is everything ##
 
-Right now, our world is moving one pixel with every call to our render function.
-Ideally, we'd be able to set a scroll speed, like 20 pixels per second, and
-stick to it regardless of frame rate. Fortunately, `requestAnimationFrame` comes
-to our rescue.
+Right now, our world is moving one pixel every time it runs through our render
+loop. Ideally, we'd be able to set a scroll speed, like 20 pixels per second,
+and stick to it regardless of frame rate. Fortunately, `requestAnimationFrame`
+comes to our rescue.
 
 When `requestAnimationFrame` triggers our `render()` function, it passes in a time
 stamp indicating when the repaint will happen. If we subtract that current time
@@ -257,7 +257,8 @@ Push the play button to see it in action.
 <div id="delta-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
-Now that our world scrolls smoothly, let's see about bringing it to life.
+Not much has changed visually. But our scroll speed's now decoupled from our
+frame rate. Let's see about bringing our world to life.
 
 ## If a tree falls in a forest ##
 
@@ -328,7 +329,7 @@ in it.
 
 The `rowCounter` variable tracks the row we're on. Since trees are three tiles
 tall, we only want to insert trees every three rows.  Additionally, we move the
-tops of the trees two tiles so their bases line up with the bottom of the row
+tops of the trees two tiles up so their bases line up with the bottom of the row
 they're on. This has the added benefit of keeping the z-index correct, since
 they'll draw on top of the rows that came before them.
 
@@ -349,7 +350,7 @@ We get a range by subtracting the maximum value from the minimum. Multiplying by
 adjusts the random number so it lies between the maximum and minimum values.
 Finally, calling `Math.floor()` rounds the number down to an integer.
 
-Using `Math.floor()` instead of `Math.round()` to keeps our random number
+Using `Math.floor()` instead of `Math.round()` keeps our random number
 distribution uniform. If we used `Math.round()`, we'd end up with places where
 the trees clumped together.
 
@@ -366,7 +367,7 @@ Depending on the kind of game you're building, this may or may not be
 acceptable. Either way, it's a great jumping off point for your own scrolling
 world.
 
-## Credits ##
+## Let the credits roll ##
 
 The idea for scrolling a world filled with trees comes from Sarah's
 [Hello Game][], where you wonder through a forest.
