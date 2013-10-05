@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 5 October 2013 - 6:49 am
+updated: 5 October 2013 - 7:42 am
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -125,76 +125,49 @@ other.
 Here's what it looks like.
 
 <div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
-<div id="no-scroll" style="position: relative; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
+<div id="no-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
 </div>
 
-Now let's see if we can get our world scrolling.
+Now let's see if we can get our world moving.
 
-## Make it dance and move ##
+## Scroll, baby, scroll ##
 
-In keeping with the "get something working" theme, we'll use the
-[`window.requestAnimationFrmae()`][raf] function to add a render loop. Because
-it's not supported by every browser yet, we have to include a [polyfill][] to
-make it work. First we'll check for vendor specific prefixes.
+The simplest approach to scrolling would be to move every row every frame.
+That will trigger a DOM repaint with every `<div>` we move, and if we're not
+careful about subpixel positioning, it'll lead to gaps where rows don't quite
+overlap.
 
-    var ext = ['webkit', 'moz', 'ms', 'o']
-      , i = 0
+Instead, we can just move the entire canvas, and let the browser handle keeping
+the rows butted up next to each other.
 
-    for (i = 0; i < ext.length; i += 1) {
-      if (window.requestAnimationFrame) {
-        break
-      }
-
-      window.requestAnimationFrame = (
-        window[ext[i] + 'RequestAnimationFrame']
-      )
-
-      window.cancelAnimationFrame = (
-        window[ext[i] + 'CancelAnimationFrame'] ||
-        window[ext[i] + 'CancelRequestAnimationFrame']
-      )
-    }
-
-If we don't find a vendor specific prefix, we can fall back to using
-the [`window.setTimeout()`][st] and [`window.clearTimeout()`][ct] functions.
-
-    var last = 0
-
-    window.requestAnimationFrame = function (callback) {
-      var now = Date.now()
-        , later = Math.max(last + 16, now)
-      return setTimeout(function () {
-        callback(last = later)
-      }, later - now)
-    }
-
-    window.cancelAnimationFrame = clearTimeout
-
-Once that's in, we can set up our render loop with a callback. We want the world
-to scroll up, so we'll move the top of each tile by a negative amount. Once a
-tile goes out of the viewport, we'll warp it back down to the bottom.
-
-    var scrollSpeed = -20
-
-    function render () {
+    function render (now) {
       requestAnimationFrame(render)
 
       var canvas = document.querySelector('.canvas')
-        , tiles = canvas.childNodes
-        , top = 0
-        , i = 0
+        , sprite = null
+        , top = parseFloat(canvas.style.top, 10)
 
-      for (i = 0; i < tiles.length; i += 1) {
-        top = parseFloat(tiles[i].style.top, 10)
-        if (top < 0) {
-          top = canvasHeight - tileHeight
-        }
-        top += scrollSpeed
-        tiles[i].style.top = top + 'px'
+      top -= 1
+
+      if (top <= -tileHeight) {
+        sprite = canvas.removeChild(canvas.firstChild)
+        canvas.appendChild(sprite)
+        top = 0
       }
+
+      canvas.style.top = top + 'px'
     }
 
     requestAnimationFrame(render)
+
+We use the [`window.requestAnimationFrmae()`][raf] function to add a render
+loop. Because it's not supported by every browser yet, we have to include a
+[polyfill][] to make it work.
+
+Every time we run through our render loop, we move the canvas up one pixel.
+Once the top row goes out of view, we remove it from the DOM and add it back
+to the bottom of the canvas. Then we reset the top of the canvas so it lines
+up with the top of the viewport.
 
 We kick off our render loop with a call to `requestAnimationFrame`. This ensures
 our first repaint lines up with the browser's rendering. From then on, each time
@@ -209,14 +182,16 @@ Push the play button to see it in action.
 <div id="pixel-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
-Wow, the's slow. I get 6 FPS on my [Raspberry Pi][], and giant pink stripes show
-up between rows of tiles. Let's see what we can do to fix that.
+I get 16 FPS on my [Raspberry Pi][], which is right inside the realm of playble.
+A general rule of thumb is that if you can get 15 FPS or better on a Pi, a first
+generation iPhone 4 should be able to handle your game just fine.
 
 ## Timing is everything ##
 
-Right now, our world is moving 20 pixels with every call to our render function.
-But what we want is for it to move 20 pixels every second. Fortunately,
-`requestAnimationFrame` comes to our rescue.
+Right now, our world is moving one pixel with every call to our render function.
+Ideally, we'd be able to set a scroll speed, like 20 pixels per second, and
+stick to it regardless of frame rate. Fortunately, `requestAnimationFrame` comes
+to our rescue.
 
 When `requestAnimationFrame` triggers our render function, it passes in a time
 stamp indicating when the repaint will happen. If we subtract that current time
@@ -243,8 +218,7 @@ milliseconds easier to deal with.
 Now we can set up a new timer for our render loop. Here's our render function
 from before with new lines underlined.
 
-<pre><code>
-var scrollSpeed = -20
+<pre><code><ins>var scrollSpeed = -20</ins>
   <ins>, timer = new Timer()</ins>
 
 function render (now) {
@@ -252,25 +226,29 @@ function render (now) {
   <ins>timer.tick(now)</ins>
 
   var canvas = document.querySelector('.canvas')
-    , tiles = canvas.childNodes
-    , top = 0
-    , i = 0
+    , sprite = null
+    , top = parseFloat(canvas.style.top, 10)
     <ins>, offset = scrollSpeed * timer.elapsed</ins>
 
-  for (i = 0; i < tiles.length; i += 1) {
-    top = parseFloat(tiles[i].style.top, 10)
-    if (top < 0) {
-      top = canvasHeight - tileHeight
-    }
-    <ins>top += offset</ins>
-    tiles[i].style.top = top + 'px'
+  <del>top -= 1</del>
+  <ins>top += offset</ins>
+
+  if (top <= -tileHeight) {
+    sprite = canvas.removeChild(canvas.firstChild)
+    canvas.appendChild(sprite)
+    <del>top = 0</del>
+    <ins>top = offset</ins>
   }
+
+  canvas.style.top = top + 'px'
 }
 </code></pre>
 
-Instead of subtracting 20 pixels from each tile's top position, we're
+Instead of subtracting one pixel from the canvas's top position, we're
 subtracting our scroll speed multiplied by our elapsed time. That gives
-us the amount to move our tile so that it scrolls at 20 pixels per second.
+us the amount to move the canvas so it scrolls at 20 pixels per second.
+
+Push the play button to see it in action.
 
 <div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
 <div id="delta-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
@@ -610,34 +588,30 @@ function moveUp (element, offset, delta) {
 }
 
 function pixelScrollRender () {
-  var tiles = document.getElementById('pixel-scroll').childNodes
-    , top = 0
-    , i = 0
+  var canvas = document.getElementById('pixel-scroll')
+    , sprite = null
+    , top = parseFloat(canvas.style.top, 10) + -1
 
-  for (i = 0; i < tiles.length; i += 1) {
-    top = parseFloat(tiles[i].style.top, 10)
-    if (top < 0) {
-      top = canvasHeight + tileHeight
-    }
-    top += scrollSpeed
-    tiles[i].style.top = top + 'px'
+  if (top <= -tileHeight) {
+    sprite = canvas.removeChild(canvas.firstChild)
+    canvas.appendChild(sprite)
+    top = 0
   }
+  canvas.style.top = top + 'px'
 }
 
 function deltaScrollRender (dt) {
-  var tiles = document.getElementById('delta-scroll').childNodes
-    , top = 0
-    , i = 0
+  var canvas = document.getElementById('delta-scroll')
+    , sprite = null
     , offset = scrollSpeed * dt
+    , top = parseFloat(canvas.style.top, 10) + offset
 
-  for (i = 0; i < tiles.length; i += 1) {
-    top = parseFloat(tiles[i].style.top, 10)
-    if (top < 0) {
-      top = canvasHeight + tileHeight
-    }
-    top += offset
-    tiles[i].style.top = top + 'px'
+  if (top <= -tileHeight) {
+    sprite = canvas.removeChild(canvas.firstChild)
+    canvas.appendChild(sprite)
+    top = offset
   }
+  canvas.style.top = top + 'px'
 }
 
 function rowScrollRender (dt) {
@@ -745,18 +719,14 @@ function noScrollSetup () {
 }
 
 function pixelScrollSetup () {
-  var rows = canvasHeight / tileHeight
-    , cols = canvasWidth / tileWidth
-
-  tileSetup('pixel-scroll', rows, cols)
+  var rows = Math.ceil(canvasHeight / tileHeight) + 1
+  rowSetup('pixel-scroll', rows)
   demoSetup('pixel-scroll', pixelScrollRender)
 }
 
 function deltaScrollSetup () {
-  var rows = canvasHeight / tileHeight
-    , cols = canvasWidth / tileWidth
-
-  tileSetup('delta-scroll', rows, cols)
+  var rows = Math.ceil(canvasHeight / tileHeight) + 1
+  rowSetup('delta-scroll', rows)
   demoSetup('delta-scroll', deltaScrollRender)
 }
 
