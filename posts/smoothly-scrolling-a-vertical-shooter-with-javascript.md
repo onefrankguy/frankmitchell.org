@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 5 October 2013 - 11:59 am
+updated: 5 October 2013 - 12:33 pm
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -487,10 +487,10 @@ function updateRow (row) {
     sprite.style.height = '96px'
     sprite.style.position = 'absolute'
     top = -64
-    top += randInt(-48, 0)
+    top += randInt(-64, 0)
     sprite.style.top = top + 'px'
     left = x * tileWidth
-    left += randInt(-24, 24)
+    left += randInt(-32, 32)
     sprite.style.left = left + 'px'
     row.appendChild(sprite)
   }
@@ -593,7 +593,7 @@ function deltaScrollSetup () {
 }
 
 function treeScrollSetup () {
-  var rows = Math.ceil(canvasHeight / tileHeight) + 3
+  var rows = Math.ceil(canvasHeight / tileHeight) + 4
   rowSetup('tree-scroll', rows, updateRow)
   demoSetup('tree-scroll', treeScrollRender)
 }
