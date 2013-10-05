@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 5 October 2013 - 7:42 am
+updated: 5 October 2013 - 7:49 am
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -256,192 +256,7 @@ Push the play button to see it in action.
 <div id="delta-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
-It's still slow on my Pi at 6 FPS, but the pink lines are thinner. There's an
-occasional fat one, but most seem to only be one pixel tall. Since 6 FPS is
-unplayable for a game, we'll tackle the speed issue first, and then worry about
-pixel bleed.
-
-## Trimming back the DOM ##
-
-A 320x352 pixel game with 32x32 pixel tiles has 10 columns and 12 rows. That's
-120 tiles that have to move each frame. As David Rousset points out in his
-[sprite benchmark][], once you go past about 43 moving sprites on screen,
-performance starts to suffer.
-
-Because our background for each row is just repeated grass, we can create a
-single `<div>` per row and just move the rows. Twelve images for a background
-is well under a forty-three sprite budget. We'll need a little bit of CSS to
-to set the shape of a row.
-
-    .row {
-      display: block;
-      width: 320px;
-      height: 32px;
-    }
-
-But can keep the render code the same and just change the setup.
-
-<pre><code>
-funciton setup () {
-  var y = 0
-  <del>, x = 0</del>
-  , sprite = null
-  , canvas = document.querySelector('.canvas')
-
-  <del>for (x = 0; x < numCols; x += 1) {</del>
-    for (y = 0; y < numRows; y += 1) {
-      sprite = document.createElement('div')
-      <del>sprite.className = 'tile grass'</del>
-      <ins>sprite.className = 'row grass'</ins>
-
-      sprite.style.position = 'absolute'
-      sprite.style.top = (y * tileHeight) + 'px'
-      <del>sprite.style.left = (x * tileWidth) + 'px'</del>
-      <ins>sprite.style.left = 0 + 'px'</ins>
-
-      canvas.appendChild(sprite)
-    }
-  <del>}</del>
-}
-</code></pre>
-
-Hit the play button below if you want to see row scrolling in action.
-
-<div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
-<div id="row-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
-<div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="row-scroll-fps">0</span> FPS</div>
-<div id="row-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
-</div>
-
-The good news is that the framerate's gone up and the little one pixel lines
-of background bleed through lines have disappeared. I get around 13 FPS on my
-Pi, which is just insde the realm of playable.
-
-A fat pink line shows up every time a top row is moved back to the bottom.
-Let's see what we can do about that.
-
-## Learning from the masters ##
-
-In the book _Masters of DOOM_, David Kushner describes a trick Jon Carmack used
-to get side scrolling working on the PC. Draw an extra row of tiles off the
-screen at the edge of the world, then move them into view as the player moves
-in that direction.
-
-We can do something similar to get rid of background bleed through in our world.
-First, we'll change setup so it draws an extra row.
-
-<pre><code>
-funciton setup () {
-  var y = 0
-  , sprite = null
-  , canvas = document.querySelector('.canvas')
-
-  <del>for (y = 0; y < numRows; y += 1) {</del>
-  <ins>for (y = 0; y < numRows + 1; y += 1) {</ins>
-    sprite = document.createElement('div')
-    sprite.className = 'row grass'
-
-    sprite.style.position = 'absolute'
-    sprite.style.top = (y * tileHeight) + 'px'
-    sprite.style.left = 0 + 'px'
-
-    canvas.appendChild(sprite)
-  }
-}
-</code></pre>
-
-Because rows are positioned relative to the canvas, and 0 marks the top edge, w
-end up with an extra row off screen. The "hidden" value we set earlier on the
-viewport's overflow attribute ensures the extra row won't show up.
-
-Next, we'll change render to offset the row correctly.
-
-<pre><code>
-var scrollSpeed = -20
-  , timer = new Timer()
-
-function render (now) {
-  requestAnimationFrame(render)
-  timer.tick(now)
-
-  var canvas = document.querySelector('.canvas')
-    , tiles = canvas.childNodes
-    , top = 0
-    , i = 0
-    , offset = scrollSpeed * timer.elapsed
-
-  for (i = 0; i < tiles.length; i += 1) {
-    top = parseFloat(tiles[i].style.top, 10)
-    <ins>top += offset</ins>
-    <del>if (top < 0) {</del>
-    <ins>if (top < -tileHeight) {</ins>
-      <del>top = canvasHeight - tileHeight</del>
-      <ins>top = canvasHeight + offset</ins>
-    }
-    <del>top += offset</del>
-    tiles[i].style.top = top + 'px'
-  }
-}
-</code></pre>
-
-Press the play button below to see the new scrolling in action.
-
-<div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
-<div id="extra-row-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
-<div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="extra-row-scroll-fps">0</span> FPS</div>
-<div id="extra-row-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
-</div>
-
-The frame rate stays the same and the big pink line is gone. But every once in
-a while, a thin one pixel line bleeds through.
-
-## Give me a lever long enough ##
-
-Look at our render function, and you'll notice we've been using `parseFloat` to
-extract the top attriubte for each row. This meas rows are being placed with
-subpixel precision. Instead of snapping to exact coordinations, like 160 pixels,
-thye'll land on floating point coordinates like 159.9999999999954 pixels. Those
-tiny differences in value are what's causiing the think pink lines to appear.
-
-Let's back up for a second and look at what we're tyring to accomplish. We want
-to scroll our game at 20 pixels per second. Our rows line up correctly when
-they're not moving, but render with subpixel errors when they are moving. So
-what if we didn't move the rows? What if we moved the world instead?
-
-Let's change our render to move the canvas instead of the tiles.
-
-<pre><code>var scrollSpeed = -20
-  , timer = new Timer()
-
-function render (now) {
-  requestAnimationFrame(render)
-  timer.tick(now)
-
-  <del>var canvas = document.querySelector('.canvas')</del>
-  <ins>var canvas = document.querySelector('.viewport')</ins>
-    , tiles = canvas.childNodes
-    , top = 0
-    , i = 0
-    , offset = scrollSpeed * timer.elapsed
-
-  for (i = 0; i < tiles.length; i += 1) {
-    top = parseFloat(tiles[i].style.top, 10)
-    top += offset
-    if (top < -tileHeight) {
-      <del>top = canvasHeight + offset</del>
-      <ins>top = offset</ins>
-    }
-    tiles[i].style.top = top + 'px'
-  }
-}</code></pre>
-
-Press the play button and watch the world scroll.
-
-<div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
-<div id="world-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
-<div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="world-scroll-fps">0</span> FPS</div>
-<div id="world-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
-</div>
+Now that our world scrolls smoothly, let's see about bringing it to life.
 
 ## Credits ##
 
@@ -570,23 +385,6 @@ var canvasHeight = 356
   , tileWidth = 32
   , scrollSpeed = -20
 
-function getTop (element) {
-  return parseFloat(element.getAttribute('data-top'), 10)
-}
-
-function setTop (element, value) {
-  element.setAttribute('data-top', value)
-  element.style.top = ((value + 0.5) | 0) + 'px'
-}
-
-function moveUp (element, offset, delta) {
-  var top = getTop(element) + delta
-  if (top <= -tileHeight) {
-    top = offset + delta
-  }
-  setTop(element, top)
-}
-
 function pixelScrollRender () {
   var canvas = document.getElementById('pixel-scroll')
     , sprite = null
@@ -614,49 +412,6 @@ function deltaScrollRender (dt) {
   canvas.style.top = top + 'px'
 }
 
-function rowScrollRender (dt) {
-  var tiles = document.getElementById('row-scroll').childNodes
-    , top = 0
-    , i = 0
-    , offset = scrollSpeed * dt
-
-  for (i = 0; i < tiles.length; i += 1) {
-    top = parseFloat(tiles[i].style.top, 10)
-    if (top < 0) {
-      top = canvasHeight + tileHeight
-    }
-    top += offset
-    tiles[i].style.top = top + 'px'
-  }
-}
-
-function extraRowScrollRender (dt) {
-  var tiles = document.getElementById('extra-row-scroll').childNodes
-    , top = 0
-    , i = 0
-    , offset = scrollSpeed * dt
-
-  for (i = 0; i < tiles.length; i += 1) {
-    top = parseFloat(tiles[i].style.top, 10) + offset
-    if (top <= -tileHeight) {
-      top = canvasHeight + offset
-    }
-    tiles[i].style.top = top + 'px'
-  }
-}
-
-function worldScrollRender (dt) {
-  var world = document.getElementById('world-scroll')
-    , top = 0
-    , offset = scrollSpeed * dt
-
-  top = parseFloat(world.style.top, 10) + offset
-  if (top <= -tileHeight) {
-    top = offset
-  }
-  world.style.top = top + 'px'
-}
-
 function rowSetup (id, rows) {
   var canvas = document.getElementById(id)
     , sprite = null
@@ -669,29 +424,6 @@ function rowSetup (id, rows) {
     sprite.style.width = '100%'
     sprite.style.height = tileHeight + 'px'
     canvas.appendChild(sprite)
-  }
-}
-
-function tileSetup (id, rows, cols) {
-  var canvas = document.getElementById(id)
-    , tile = null
-    , x = 0
-    , y = 0
-
-  canvas.style.height = canvasHeight + 'px'
-  canvas.style.width = canvasWidth + 'px'
-
-  for (x = 0; x < cols; x += 1) {
-    for (y = 0; y < rows; y += 1) {
-      tile = document.createElement('div')
-      tile.style.background = 'url(/images/urbansquall-grass.png)'
-      tile.style.position = 'absolute'
-      tile.style.left = (x * tileWidth) + 'px'
-      tile.style.height = tileHeight + 'px'
-      tile.style.width = tileWidth + 'px'
-      setTop(tile, y * tileHeight)
-      canvas.appendChild(tile)
-    }
   }
 }
 
@@ -730,54 +462,9 @@ function deltaScrollSetup () {
   demoSetup('delta-scroll', deltaScrollRender)
 }
 
-function rowScrollSetup () {
-  var rows = canvasHeight / tileHeight
-    , i = 0
-
-  tileSetup('row-scroll', rows, 1)
-  demoSetup('row-scroll', rowScrollRender)
-
-  rows = document.getElementById('row-scroll').childNodes
-  for (i = 0; i < rows.length; i += 1) {
-    rows[i].style.width = canvasWidth + 'px'
-    rows[i].style.left = '0px'
-  }
-}
-
-function extraRowScrollSetup () {
-  var rows = (canvasHeight / tileHeight) + 1
-    , i = 0
-
-  tileSetup('extra-row-scroll', rows, 1)
-  demoSetup('extra-row-scroll', extraRowScrollRender)
-
-  rows = document.getElementById('extra-row-scroll').childNodes
-  for (i = 0; i < rows.length; i += 1) {
-    rows[i].style.width = canvasWidth + 'px'
-    rows[i].style.left = '0px'
-  }
-}
-
-function worldScrollSetup () {
-  var rows = (canvasHeight / tileHeight) + 1
-    , i = 0
-
-  tileSetup('world-scroll', rows, 1)
-  demoSetup('world-scroll', worldScrollRender)
-
-  rows = document.getElementById('world-scroll').childNodes
-  for (i = 0; i < rows.length; i += 1) {
-    rows[i].style.width = canvasWidth + 'px'
-    rows[i].style.left = '0px'
-  }
-}
-
 noScrollSetup()
 pixelScrollSetup()
 deltaScrollSetup()
-rowScrollSetup()
-extraRowScrollSetup()
-worldScrollSetup()
 </script>
 
 
