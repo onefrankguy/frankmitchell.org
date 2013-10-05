@@ -1,7 +1,7 @@
 <!--
-title:  Smoothly scrolling a vertical shooter with JavaScript
+title:  Smoothly scrolling a world with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 5 October 2013 - 12:33 pm
+updated: 5 October 2013 - 4:29 pm
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -83,7 +83,7 @@ and JavaScript to handle creation and positioning.
     }
 
 Keeping the base shape of a row separate from the image that fills it makes
-it easy to add other tile types later. If we where building this out as a normal
+it easy to add other backgrounds later. If we where building this out as a normal
 web page, we'd probably define "position", "left" and "top" properties for our
 tiles as well. But by limiting ourselves to just keeping the look of a tile in
 CSS, we can freely experiment with different DOM layouts in JavaScript.
@@ -172,7 +172,7 @@ up with the top of the viewport.
 
 We kick off our render loop with a call to `requestAnimationFrame`. This ensures
 our first repaint lines up with the browser's rendering. From then on, each time
-our `render` function's triggered, it calls `requestAnimationFrame` to schedule
+our `render()` function's triggered, it calls `requestAnimationFrame` to schedule
 itself again.
 
 Push the play button to see it in action.
@@ -194,7 +194,7 @@ Ideally, we'd be able to set a scroll speed, like 20 pixels per second, and
 stick to it regardless of frame rate. Fortunately, `requestAnimationFrame` comes
 to our rescue.
 
-When `requestAnimationFrame` triggers our render function, it passes in a time
+When `requestAnimationFrame` triggers our `render()` function, it passes in a time
 stamp indicating when the repaint will happen. If we subtract that current time
 stamp from the last time stamp, we can figure out how much time has passed
 between repaints. Let's set up a timer class to handle that.
@@ -216,7 +216,7 @@ We set the elapsed time to `now - (last || now)` so that the first time we call
 elapsed time is measured in seconds. Feel free to skip the division if you find
 milliseconds easier to deal with.
 
-Now we can set up a new timer for our render loop. Here's our render function
+Now we can set up a new timer for our render loop. Here's our `render()` function
 from before with new lines underlined.
 
 <pre><code><ins>var scrollSpeed = -20</ins>
@@ -281,8 +281,63 @@ size and one that handles look.
 
 One approach to generating a forest would be to place trees randomly. While that
 works, it tends to result in large splotches of empty space instead of uniform
-greenery. A better approach is to place trees on a grid and then adjust their
+greenery. A different approach is to place trees on a grid and then adjust their
 position by a small random amount.
+
+Just before the calls to `Node.appendChild()` in our `setup()` and `render()`
+functions, we'll pass the row sprite into an `updateRow()` function. This will
+clear the row of old trees and add nwe trees to it.
+
+    var rowCounter = 0
+
+    function updateRow (row) {
+      var sprite = null
+        , left = 0
+        , top = 0
+        , x = 0
+
+      row.innerHTML = ''
+
+      rowCounter += 1
+      rowCounter %= 3
+      if (rowCounter !== 0) {
+        return
+      }
+
+      for (x = -1; x < numCols; x += 3) {
+        sprite = document.createElement('div')
+        sprite.className = 'sprite tree'
+        sprite.style.position = 'absolute'
+
+        top = -(tileWidth * 2)
+        top += randInt(-(tileWidth * 2), 0)
+        sprite.style.top = top + 'px'
+
+        left = x * tileWidth
+        left += randInt(-tileWidth, tileWidth)
+        sprite.style.left  = left + 'px'
+
+        row.appendChild(sprite)
+      }
+    }
+
+We clear the row by setting its inner HTML to an empty string. This handles the
+case in our render loop where the top row's scrolled out of view.  Since it's
+being reinserted at the bottom, we want to remove any trees that are currently
+in it.
+
+The `rowCounter` variable tracks the row we're on. Since trees are three tiles
+tall, we only want to insert trees every three rows.  Additionally, we move the
+tops of the trees two tiles so their bases line up with the bottom of the row
+they're on. This has the added benefit of keeping the z-index correct, since
+they'll draw on top of the rows that came before them.
+
+Because our trees are three tiles wide, we want to insert one every three
+columns. Incrementing `x` by three takes care of this. Starting `x` at -1
+instead of 0 hides a bit of the first tree and makes the world feel like it
+extends past the edges of the game.
+
+Here's the `randInt()` function used to offset the trees.
 
     function randInt (min, max) {
       var range = max - min + 1
@@ -294,38 +349,11 @@ We get a range by subtracting the maximum value from the minimum. Multiplying by
 adjusts the random number so it lies between the maximum and minimum values.
 Finally, calling `Math.floor()` rounds the number down to an integer.
 
-We use `Math.floor()` instead of `Math.round()` to keep our random number
-distribution uniform.
+Using `Math.floor()` instead of `Math.round()` to keeps our random number
+distribution uniform. If we used `Math.round()`, we'd end up with places where
+the trees clumped together.
 
-    var oddRow = false
-
-    function updateRow (row) {
-      var sprite = null
-        , left = 0
-        , top = 0
-        , x = 0
-
-      row.innerHTML = ''
-
-      oddRow = oddRow ? false : true
-      if (!oddRow) {
-        return
-      }
-
-      for (x = 0; x < numCols; x += 2) {
-        sprite = document.createElement('div')
-        sprite.className = 'sprite tree'
-        sprite.style.position = 'absolute'
-
-        top = -48
-        top += randInt(-16, 16)
-        sprite.style.top = top + 'px'
-
-        left = x * tileWidth
-        left += randInt(-8, 8)
-        sprite.style.left  = left + 'px'
-      }
-    }
+Push the play button to see it in action.
 
 <div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
 <div id="tree-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
@@ -333,7 +361,15 @@ distribution uniform.
 <div id="tree-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
 </div>
 
+The addition of trees drops the frame rate a litte. I'm down to 11 FPS on my Pi.
+Depending on the kind of game you're building, this may or may not be
+acceptable. Either way, it's a great jumping off point for your own scrolling
+world.
+
 ## Credits ##
+
+The idea for scrolling a world filled with trees comes from Sarah's
+[Hello Game][], where you wonder through a forest.
 
 Graphics for this demo come from a sprite set by [Urbansquall][]. They where
 posted to the Game Poetry blog back in 2009, and I've kept them around on my
@@ -460,6 +496,7 @@ var canvasHeight = 356
   , tileWidth = 32
   , scrollSpeed = -20
   , numCols = Math.ceil(canvasWidth / tileWidth)
+  , numRows = Math.ceil(canvasHeight / tileHeight) + 1
 
 function randInt (min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
@@ -486,11 +523,11 @@ function updateRow (row) {
     sprite.style.width = '96px'
     sprite.style.height = '96px'
     sprite.style.position = 'absolute'
-    top = -64
-    top += randInt(-64, 0)
+    top = -(tileHeight * 2)
+    top += randInt(-(tileHeight * 2), 0)
     sprite.style.top = top + 'px'
     left = x * tileWidth
-    left += randInt(-32, 32)
+    left += randInt(-tileWidth, tileWidth)
     sprite.style.left = left + 'px'
     row.appendChild(sprite)
   }
@@ -575,33 +612,16 @@ function demoSetup (id, render) {
   }, null)
 }
 
-function noScrollSetup () {
-  var rows = Math.ceil(canvasHeight / tileHeight) + 1
-  rowSetup('no-scroll', rows)
-}
+rowSetup('no-scroll', numRows)
 
-function pixelScrollSetup () {
-  var rows = Math.ceil(canvasHeight / tileHeight) + 1
-  rowSetup('pixel-scroll', rows)
-  demoSetup('pixel-scroll', pixelScrollRender)
-}
+rowSetup('pixel-scroll', numRows)
+demoSetup('pixel-scroll', pixelScrollRender)
 
-function deltaScrollSetup () {
-  var rows = Math.ceil(canvasHeight / tileHeight) + 1
-  rowSetup('delta-scroll', rows)
-  demoSetup('delta-scroll', deltaScrollRender)
-}
+rowSetup('delta-scroll', numRows)
+demoSetup('delta-scroll', deltaScrollRender)
 
-function treeScrollSetup () {
-  var rows = Math.ceil(canvasHeight / tileHeight) + 4
-  rowSetup('tree-scroll', rows, updateRow)
-  demoSetup('tree-scroll', treeScrollRender)
-}
-
-noScrollSetup()
-pixelScrollSetup()
-deltaScrollSetup()
-treeScrollSetup()
+rowSetup('tree-scroll', numRows + 3, updateRow)
+demoSetup('tree-scroll', treeScrollRender)
 </script>
 
 
@@ -612,4 +632,5 @@ treeScrollSetup()
 [polyfill]: https://github.com/darius/requestAnimationFrame "Darius Bacon (GitHub): requestAnimationFrame"
 [sprite benchmark]: http://sitepoint.com/html5-gaming-benchmarking-sprite-animations "David Rousset (sitepoint): HTML5 Gaming: Benchmarking Sprite Animations"
 [Raspberry Pi]: http://raspberrypi.org/ "A ARM Linux computer for $35 USD"
+[Hello Game]: https://thesmitchell.github.com/HelloGame "Sarah Mitchell (GitHub): Hello Game"
 [Urbansquall]: http://kongregate.com/ "Urbansquall (Kongregate Games): A lovely web game company that is no more"
