@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 5 October 2013 - 8:24 am
+updated: 5 October 2013 - 11:59 am
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -261,9 +261,71 @@ Now that our world scrolls smoothly, let's see about bringing it to life.
 
 ## If a tree falls in a forest ##
 
-Nothing quite says "forest" like a tree, so let's plan some.
+Nothing quite says "forest" like a tree, so let's plant some. Here's a nice one.
 
-<img class="game art" style="background: url(/images/urbansquall-grass.png); padding: 8px" width="64px" height="128px" src="/images/urbansquall-tree.png"/>
+<img class="urbansquall grass game art" style="padding: 8px" width="96px" height="96px" src="/images/urbansquall-tree.png"/>
+
+We'll use CSS to style our trees and JavaScript to create and position them.
+Like we did for rows, we'll split our CSS into two classes, one that handles
+size and one that handles look.
+
+    .sprite {
+      display: block;
+      height: 96px;
+      width: 96px;
+    }
+
+    .tree {
+      background: url(tree.png)
+    }
+
+One approach to generating a forest would be to place trees randomly. While that
+works, it tends to result in large splotches of empty space instead of uniform
+greenery. A better approach is to place trees on a grid and then adjust their
+position by a small random amount.
+
+    function randInt (min, max) {
+      var range = max - min + 1
+      return Math.floor(Math.random() * range + min)
+    }
+
+We get a range by subtracting the maximum value from the minimum. Multiplying by
+`Math.random()` gets a random number in that range. Adding the minimum value
+adjusts the random number so it lies between the maximum and minimum values.
+Finally, calling `Math.floor()` rounds the number down to an integer.
+
+We use `Math.floor()` instead of `Math.round()` to keep our random number
+distribution uniform.
+
+    var oddRow = false
+
+    function updateRow (row) {
+      var sprite = null
+        , left = 0
+        , top = 0
+        , x = 0
+
+      row.innerHTML = ''
+
+      oddRow = oddRow ? false : true
+      if (!oddRow) {
+        return
+      }
+
+      for (x = 0; x < numCols; x += 2) {
+        sprite = document.createElement('div')
+        sprite.className = 'sprite tree'
+        sprite.style.position = 'absolute'
+
+        top = -48
+        top += randInt(-16, 16)
+        sprite.style.top = top + 'px'
+
+        left = x * tileWidth
+        left += randInt(-8, 8)
+        sprite.style.left  = left + 'px'
+      }
+    }
 
 <div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
 <div id="tree-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
@@ -397,28 +459,41 @@ var canvasHeight = 356
   , tileHeight = 32
   , tileWidth = 32
   , scrollSpeed = -20
+  , numCols = Math.ceil(canvasWidth / tileWidth)
 
-var oddOrEven = 0
+function randInt (min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+var rowCounter = 0
 function updateRow (row) {
+  var sprite = null
+    , left = 0
+    , top = 0
+    , x = 0
+
   row.innerHTML = ''
 
-  oddOrEven += 1
-  oddOrEven %= 2
-
-  if (oddOrEven === 0) {
+  rowCounter += 1
+  rowCounter %= 3
+  if (rowCounter !== 0) {
     return
   }
 
-
-  var tree = document.createElement('div')
-  tree.style.background = 'url(/images/urbansquall-tree.png)'
-  tree.style.width = '32px'
-  tree.style.height = '64px'
-  tree.style.position = 'absolute'
-  tree.style.top = '-32px'
-  tree.style.left = '0px'
-
-  row.appendChild(tree)
+  for (x = -1; x < numCols; x += 3) {
+    sprite = document.createElement('div')
+    sprite.className = 'urbansquall tree'
+    sprite.style.width = '96px'
+    sprite.style.height = '96px'
+    sprite.style.position = 'absolute'
+    top = -64
+    top += randInt(-48, 0)
+    sprite.style.top = top + 'px'
+    left = x * tileWidth
+    left += randInt(-24, 24)
+    sprite.style.left = left + 'px'
+    row.appendChild(sprite)
+  }
 }
 
 function pixelScrollRender () {
@@ -470,7 +545,7 @@ function rowSetup (id, rows, callback) {
 
   for (y = 0; y < rows; y += 1) {
     sprite = document.createElement('div')
-    sprite.style.background = 'url(/images/urbansquall-grass.png)'
+    sprite.className = 'urbansquall grass'
     sprite.style.position = 'relative'
     sprite.style.display = 'block'
     sprite.style.width = '100%'
@@ -518,7 +593,7 @@ function deltaScrollSetup () {
 }
 
 function treeScrollSetup () {
-  var rows = Math.ceil(canvasHeight / tileHeight) + 1
+  var rows = Math.ceil(canvasHeight / tileHeight) + 3
   rowSetup('tree-scroll', rows, updateRow)
   demoSetup('tree-scroll', treeScrollRender)
 }

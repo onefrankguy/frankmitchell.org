@@ -419,3 +419,10 @@ abbr[title="and"] {
   height: 0.875em;
   background-color: rgb(102, 102, 102);
 }
+/* DEMOS */
+.urbansquall.grass {
+  background-image: url(/images/urbansquall-grass.png);
+}
+.urbansquall.tree {
+  background-image: url(/images/urbansquall-tree.png);
+}
