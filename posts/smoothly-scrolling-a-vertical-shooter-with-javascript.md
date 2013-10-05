@@ -1,7 +1,7 @@
 <!--
 title:  Smoothly scrolling a vertical shooter with JavaScript
 created: 24 September 2013 - 5:59 am
-updated: 5 October 2013 - 7:49 am
+updated: 5 October 2013 - 8:24 am
 publish: 28 September 2013
 slug: scroll-js
 tags: coding, mobile
@@ -72,6 +72,7 @@ every row of tiles in the game. We'll use CSS to handle styling and semantics,
 and JavaScript to handle creation and positioning.
 
     .row {
+      position: relative;
       display: block;
       width: 100%;
       height: 32px;
@@ -258,9 +259,21 @@ Push the play button to see it in action.
 
 Now that our world scrolls smoothly, let's see about bringing it to life.
 
+## If a tree falls in a forest ##
+
+Nothing quite says "forest" like a tree, so let's plan some.
+
+<img class="game art" style="background: url(/images/urbansquall-grass.png); padding: 8px" width="64px" height="128px" src="/images/urbansquall-tree.png"/>
+
+<div class="game art" style="position: relative; display: block; width: 320px; height: 356px; overflow: hidden">
+<div id="tree-scroll" style="position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #ef4d94"></div>
+<div style="position: absolute; right: 0; top: 0; display: block; width: 100%; text-align: right; margin: 0; line-height: 1" class="icon-small icon-square"><span id="tree-scroll-fps">0</span> FPS</div>
+<div id="tree-scroll-play" style="position: absolute; top: 0; left: 0" class="icon icon-small icon-square"><div class="icon-play"></div></div>
+</div>
+
 ## Credits ##
 
-Graphics for the grass come from a sprite set by [Urbansquall][]. They where
+Graphics for this demo come from a sprite set by [Urbansquall][]. They where
 posted to the Game Poetry blog back in 2009, and I've kept them around on my
 hard drive since, waiting for a project. Guess this tutorial is it.
 
@@ -385,6 +398,29 @@ var canvasHeight = 356
   , tileWidth = 32
   , scrollSpeed = -20
 
+var oddOrEven = 0
+function updateRow (row) {
+  row.innerHTML = ''
+
+  oddOrEven += 1
+  oddOrEven %= 2
+
+  if (oddOrEven === 0) {
+    return
+  }
+
+
+  var tree = document.createElement('div')
+  tree.style.background = 'url(/images/urbansquall-tree.png)'
+  tree.style.width = '32px'
+  tree.style.height = '64px'
+  tree.style.position = 'absolute'
+  tree.style.top = '-32px'
+  tree.style.left = '0px'
+
+  row.appendChild(tree)
+}
+
 function pixelScrollRender () {
   var canvas = document.getElementById('pixel-scroll')
     , sprite = null
@@ -412,7 +448,22 @@ function deltaScrollRender (dt) {
   canvas.style.top = top + 'px'
 }
 
-function rowSetup (id, rows) {
+function treeScrollRender (dt) {
+  var canvas = document.getElementById('tree-scroll')
+    , sprite = null
+    , offset = scrollSpeed * dt
+    , top = parseFloat(canvas.style.top, 10) + offset
+
+  if (top <= -tileHeight) {
+    sprite = canvas.removeChild(canvas.firstChild)
+    updateRow(sprite)
+    canvas.appendChild(sprite)
+    top = offset
+  }
+  canvas.style.top = top + 'px'
+}
+
+function rowSetup (id, rows, callback) {
   var canvas = document.getElementById(id)
     , sprite = null
     , y = 0
@@ -420,9 +471,13 @@ function rowSetup (id, rows) {
   for (y = 0; y < rows; y += 1) {
     sprite = document.createElement('div')
     sprite.style.background = 'url(/images/urbansquall-grass.png)'
+    sprite.style.position = 'relative'
     sprite.style.display = 'block'
     sprite.style.width = '100%'
     sprite.style.height = tileHeight + 'px'
+    if (typeof callback === 'function') {
+      callback(sprite)
+    }
     canvas.appendChild(sprite)
   }
 }
@@ -462,9 +517,16 @@ function deltaScrollSetup () {
   demoSetup('delta-scroll', deltaScrollRender)
 }
 
+function treeScrollSetup () {
+  var rows = Math.ceil(canvasHeight / tileHeight) + 1
+  rowSetup('tree-scroll', rows, updateRow)
+  demoSetup('tree-scroll', treeScrollRender)
+}
+
 noScrollSetup()
 pixelScrollSetup()
 deltaScrollSetup()
+treeScrollSetup()
 </script>
 
 
