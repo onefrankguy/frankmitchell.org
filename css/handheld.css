@@ -298,11 +298,13 @@ a {
 img {
   border: 0;
 }
-.game.art {
+.art {
   display: block;
   max-width: 100%;
   height: auto;
   margin: 0 auto 1.5em auto;
+}
+.game.art {
   border: 1px solid #19223b;
 }
 
