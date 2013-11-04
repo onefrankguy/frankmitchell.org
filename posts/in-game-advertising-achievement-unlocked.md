@@ -61,4 +61,4 @@ function addTouch (element, touchStart, touchEnd) {
 </script>
 
 
-[sma]: http://www.operamediaworks.com/sma_q2_2013.html "Various (Opera Media Works): The Sztate of Mobile Advertising, Q2 2013"
+[sma]: http://www.operamediaworks.com/sma_q2_2013.html "Various (Opera Mediaworks): The Sztate of Mobile Advertising, Q2 2013"
