@@ -1,12 +1,13 @@
 <!--
-title: Get your ham radio license
+title: Tuning in to AM radio for free
 created: 5 January 2014 - 7:44 am
-updated: 5 January 2014 - 10:45 am
+updated: 5 January 2014 - 12:35 pm
 post: 5 January 2014
-slug: ham-radio
+slug: crystal-radio
 tags: radio
 -->
 
+<!--
 He snakes a long green wire up into the branches of a corkscrew willow and tucks
 himself into a fork in its roots. Flimsy cardboard supports a scatterd
 collection of scavenged electronics. Penciled names and symbols match the parts
@@ -21,6 +22,7 @@ efficient as possible. Ideally, you'd use a tuned antenna. A half wave dipole
 antenna tuned for 630 AM is about 743 feet long. Because getting a hold of that
 much wire when you're ten years old is tricky, I used the longest wire I
 had and stuck it up as high in that tree as I could climb.
+-->
 
 Pretend for a moment that you're sitting on the beach in Monterey, California
 and you've got 1,486 feet of copper wire sticking straight up into the sky. You
@@ -45,7 +47,14 @@ series with your earphone, and you should be able to hear Art Bell.
 Unfortunately, Art's not coming in too well, and you're getting a lot of choppy
 audio on the line. That DC current still has radio frequency pulses from the
 AM carrier on it, and because that earphone of yours has about 20,000 ohms of
-inductance, a lot of the signal isn't making it through.
+inductance, a lot of the signal isn't making it through. Fortunately, we can fix
+that with a bypass capacitor. Put a 0.001 microfarad capacitor in parallel with
+your earphone and it'll clean up your audio signal.
+
+Now that you've got a solid audio signal, you're probably hearing some hiss on
+the line. The hissing is caused by high frequencies your earphone can't
+reproduce. We can cut it out with a low-pass filter. Put a 47 kilo-ohm resistor
+in parallel with your bypass capacitor and the hiss should vanish.
 
 
 []: http://www.amazon.com/All-About-Radio-Harry-Helms/dp/1878707043 "Harry Helms (Amazon): All About Ham Radio"
