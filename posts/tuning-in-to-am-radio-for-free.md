@@ -1,7 +1,7 @@
 <!--
 title: Tuning in to AM radio for free
 created: 5 January 2014 - 7:44 am
-updated: 5 January 2014 - 12:35 pm
+updated: 5 January 2014 - 1:22 pm
 post: 5 January 2014
 slug: crystal-radio
 tags: radio
@@ -36,6 +36,8 @@ positive and negative aspects are canceling each other out, resulting in zero
 sound. What you need is a way to filter out half that signal, converting the
 AC current to a pulsating DC one.
 
+<img class="game art" src="images/crystal-radio-circuit.png" />
+
 In old crystal radios, a galena crystal and a thin piece of wire formed a cat's
 whisker detector. This is a Schottky diode, a semiconducting diode that opposes
 the flow of current in one direction. They where sensitive to pressure and
@@ -44,6 +46,8 @@ sitting on a beach where there's probably a lot of people wondering around,
 you'd better use a modern germanium diode instead. Go ahead a connect it in
 series with your earphone, and you should be able to hear Art Bell.
 
+<img class="game art" src="images/crystal-radio-noise.png" />
+
 Unfortunately, Art's not coming in too well, and you're getting a lot of choppy
 audio on the line. That DC current still has radio frequency pulses from the
 AM carrier on it, and because that earphone of yours has about 20,000 ohms of
@@ -51,11 +55,20 @@ inductance, a lot of the signal isn't making it through. Fortunately, we can fix
 that with a bypass capacitor. Put a 0.001 microfarad capacitor in parallel with
 your earphone and it'll clean up your audio signal.
 
+<img class="game art" src="images/crystal-radio-bypass.png" />
+
 Now that you've got a solid audio signal, you're probably hearing some hiss on
 the line. The hissing is caused by high frequencies your earphone can't
 reproduce. We can cut it out with a low-pass filter. Put a 47 kilo-ohm resistor
 in parallel with your bypass capacitor and the hiss should vanish.
 
+<img class="game art" src="images/crystal-radio-filter.png" />
 
-[]: http://www.amazon.com/All-About-Radio-Harry-Helms/dp/1878707043 "Harry Helms (Amazon): All About Ham Radio"
-[]: http://www.hamradiolicenseexam.com/ "John W1AI (Ham Test Online): Online courses for the ham radio exams"
+<img class="game art" src="images/crystal-radio-inductor.png" />
+
+Circuit diagrams where created with [Scheme-It][].
+
+
+[Scheme-It]: http://www.digikey.com/schemeit "Digi-Key: Scheme-It"
+[book]: http://www.amazon.com/All-About-Radio-Harry-Helms/dp/1878707043 "Harry Helms (Amazon): All About Ham Radio"
+[hro]: http://www.hamradiolicenseexam.com/ "John W1AI (Ham Test Online): Online courses for the ham radio exams"
