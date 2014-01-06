@@ -1,8 +1,8 @@
 <!--
 title: Tuning in to AM radio for free
 created: 5 January 2014 - 7:44 am
-updated: 5 January 2014 - 1:22 pm
-post: 5 January 2014
+updated: 6 January 2014 - 6:22 am
+post: 6 January 2014
 slug: crystal-radio
 tags: radio
 -->
@@ -36,7 +36,12 @@ positive and negative aspects are canceling each other out, resulting in zero
 sound. What you need is a way to filter out half that signal, converting the
 AC current to a pulsating DC one.
 
-<img class="game art" src="images/crystal-radio-circuit.png" />
+<img class="game art" width="848px" height="648px" src="/images/crystal-radio-circuit.png" />
+
+In case you've never seen a circuit diagram before, the symbol in the upper left
+corner is an antenna, the symbol in the lower left corner represents ground,
+and the symbol to the right is a speaker. The lines show connections between
+the pieces. Diagrams where made with [Scheme-It][].
 
 In old crystal radios, a galena crystal and a thin piece of wire formed a cat's
 whisker detector. This is a Schottky diode, a semiconducting diode that opposes
@@ -46,7 +51,7 @@ sitting on a beach where there's probably a lot of people wondering around,
 you'd better use a modern germanium diode instead. Go ahead a connect it in
 series with your earphone, and you should be able to hear Art Bell.
 
-<img class="game art" src="images/crystal-radio-noise.png" />
+<img class="game art" width="848px" height="648px" src="/images/crystal-radio-noise.png" />
 
 Unfortunately, Art's not coming in too well, and you're getting a lot of choppy
 audio on the line. That DC current still has radio frequency pulses from the
@@ -55,18 +60,28 @@ inductance, a lot of the signal isn't making it through. Fortunately, we can fix
 that with a bypass capacitor. Put a 0.001 microfarad capacitor in parallel with
 your earphone and it'll clean up your audio signal.
 
-<img class="game art" src="images/crystal-radio-bypass.png" />
+<img class="game art" width="848px" height="648px" src="/images/crystal-radio-bypass.png" />
 
 Now that you've got a solid audio signal, you're probably hearing some hiss on
 the line. The hissing is caused by high frequencies your earphone can't
-reproduce. We can cut it out with a low-pass filter. Put a 47 kilo-ohm resistor
+reproduce. We can cut it out with a low-pass filter. Put a 47 kilohm resistor
 in parallel with your bypass capacitor and the hiss should vanish.
 
-<img class="game art" src="images/crystal-radio-filter.png" />
+<img class="game art" width="848px" height="648px" src="/images/crystal-radio-filter.png" />
 
-<img class="game art" src="images/crystal-radio-inductor.png" />
+So you've got _Coast to Coast_ booming in nice and loud. But even parnormal talk
+shows get boring after a while. It sure would be nice if you could get the BBC
+on here, and that 1,486 foot antenna is pretty unweildy too. Though the
+circuit's small, this isn't exactly a portable radio. Let's do something about
+that.
 
-Circuit diagrams where created with [Scheme-It][].
+Our radio works because that giant antenna has a natural resonance of 0.063
+megahurtz which matches up with 630 AM. Impedance in the antenna is high at that
+frequency and low at others, so it's going to pick up those signals best. If we
+want to tune other stations, we need to be able to adjust the impedence to match
+up with other frequencies instead.
+
+<img class="game art" width="848px" height="648px" src="/images/crystal-radio-inductor.png" />
 
 
 [Scheme-It]: http://www.digikey.com/schemeit "Digi-Key: Scheme-It"
