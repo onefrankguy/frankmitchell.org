@@ -1,8 +1,8 @@
 <!--
 title: Tuning in to AM radio for free
 created: 5 January 2014 - 7:44 am
-updated: 6 January 2014 - 6:22 am
-post: 6 January 2014
+updated: 6 January 2014 - 6:38 am
+publish: 6 January 2014
 slug: crystal-radio
 tags: radio
 -->
