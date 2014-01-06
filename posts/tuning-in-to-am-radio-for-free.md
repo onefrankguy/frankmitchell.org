@@ -75,7 +75,7 @@ on here, and that 1,486 foot antenna is pretty unweildy too. Though the
 circuit's small, this isn't exactly a portable radio. Let's do something about
 that.
 
-Our radio works because that giant antenna has a natural resonance of 0.063
+Our radio works because that giant antenna has a natural resonance of 0.63
 megahurtz which matches up with 630 AM. Impedance in the antenna is high at that
 frequency and low at others, so it's going to pick up those signals best. If we
 want to tune other stations, we need to be able to adjust the impedence to match
