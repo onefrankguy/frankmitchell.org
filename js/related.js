@@ -66,6 +66,10 @@ function buildRelated (url, manifest) {
     }
   }
 
+  if (related.length <= 0) {
+    return
+  }
+
   shuffle(related)
   related = related.slice(0, 5)
   related.sort(function (a, b) {
