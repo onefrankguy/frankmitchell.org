@@ -1,8 +1,8 @@
 <!--
 title: Building my first HF radio
 created: 6 May 2014 - 7:15 am
-updated: 7 May 2014 - 10:55 pm
-publish: 6 May 2014
+updated: 7 May 2014 - 11:29 pm
+publish: 7 May 2014
 slug: first-radio
 tags: building, radio
 -->
@@ -44,6 +44,14 @@ board, and a top case that mirrors the bottom one, there's plenty of room for
 expansions, add-ons, and experiments.
 
 <img class="game art" src="/images/norcal-40a-board-size.jpg"/>
+
+The NorCal 40A was designed by Wayne Burdick, N6KR, for the [Northern California
+QRP Club][]. My board is revision C, from 1999. While [the manual][] lists the
+differences between the A and B revisions, it doesn't tell me what's different
+between the B and C revisions. I'm not going to worry though, since the
+component placement drawing in Appendix B shows the same "rev C" text that
+appears on my board.
+
 <img class="game art" src="/images/norcal-40a-board-name.jpg"/>
 
 Photos where taken with an [iPhone 5][], cropped with [Acorn][], and compressed
@@ -65,6 +73,8 @@ with [ImageOptim][].
 [KC1 Frequency Counter]: #
 [BuzzNot Noise Blanker]: #
 [aa7ee]: http://aa7ee.wordpress.com/ "Dave Richards, AA7EE: Home"
+[Northern California QRP Club]: http://www.norcalqrp.org/ "Various (NorCal QRP Club): Home"
+[the manual]: http://ecee.colorado.edu/~ecen2420/Files/NorCal40A_Manual.pdf "Bob Dyer, K6KK &amp; Wayne Burdick, N6KR (Wilderness Radio): NorCal 40A 40-Meter CW Transceiver: Assembly and Operating Manual"
 [iPhone 5]: #
 [Acorn]: #
 [ImageOptim]: http://imageoptim.com/ "@pornel (ImageOptim): Image compression made easy for Mac OS X"
