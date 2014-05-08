@@ -1,7 +1,7 @@
 <!--
 title: Building my first HF radio
 created: 6 May 2014 - 7:15 am
-updated: 8 May 2014 - 5:38 am
+updated: 8 May 2014 - 6:08 am
 publish: 8 May 2014
 slug: norcal-40a
 tags: building, radio
@@ -37,14 +37,18 @@ Inspired by [Dave Richards's photography][aa7ee], I'm going to document my build
 of the NorCal 40A. To kick things off, here's an overview of the bare circuit
 board sitting in the lower half of its case.
 
-<img class="game art" src="/images/norcal-40a-board-overview.jpg"/>
+<img class="game art" src="/images/norcal-40a-board-overview.jpg" width="640px" height="640px"
+       alt="Looking down on the NorCal 40A circuit board balanced on stand offs in the bottom half of its case."
+     title="Looking down on the NorCal 40A circuit board balanced on stand offs in the bottom half of its case." />
 
 The case itself is about four and a half inches by four and a half inches.
 With a quarter inch of clearance between the bottom of the case and the
 board, and a top half that mirrors the bottom one, there's plenty of room for
 expansions, add-ons, and experiments.
 
-<img class="game art" src="/images/norcal-40a-board-size.jpg"/>
+<img class="game art" src="/images/norcal-40a-board-size.jpg" width="640px" height="640px"
+       alt="Viewing the NorCal 40A from the side with a ruler next to the case."
+     title="Viewing the NorCal 40A from the side with a ruler next to the case." />
 
 The NorCal 40A was designed by Wayne Burdick, N6KR, for the [Northern California
 QRP Club][]. My board is revision C, from 1999. While [the manual][] lists the
@@ -53,7 +57,9 @@ between the B and C revisions. I'm not going to worry though, since the
 component placement drawing in Appendix B shows the same "rev C" text that
 appears on my board.
 
-<img class="game art" src="/images/norcal-40a-board-name.jpg"/>
+<img class="game art" src="/images/norcal-40a-board-name.jpg" width="640px" height="640px"
+       alt="Zoomed in on the NorCal 40A circuit board showing the text &ldquo;NorCal 40A rev C &copy;1999 N6KR&rdquo;"
+     title="Zoomed in on the NorCal 40A circuit board showing the text &ldquo;NorCal 40A rev C &copy;1999 N6KR&rdquo;" />
 
 Photos where taken with an [iPhone 5][], cropped and resized with [Acorn][], and
 compressed with [ImageOptim][].
