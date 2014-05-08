@@ -1,9 +1,9 @@
 <!--
 title: Building my first HF radio
 created: 6 May 2014 - 7:15 am
-updated: 7 May 2014 - 11:29 pm
-publish: 7 May 2014
-slug: first-radio
+updated: 8 May 2014 - 5:38 am
+publish: 8 May 2014
+slug: norcal-40a
 tags: building, radio
 -->
 
@@ -39,7 +39,7 @@ board sitting in the lower half of its case.
 <img class="game art" src="/images/norcal-40a-board-overview.jpg"/>
 
 The case itself is about four and a half inches by four and a half inches.
-With ??? inches of clearance between the bottom of the case and the
+With a quarter inch of clearance between the bottom of the case and the
 board, and a top case that mirrors the bottom one, there's plenty of room for
 expansions, add-ons, and experiments.
 
@@ -54,8 +54,8 @@ appears on my board.
 
 <img class="game art" src="/images/norcal-40a-board-name.jpg"/>
 
-Photos where taken with an [iPhone 5][], cropped with [Acorn][], and compressed
-with [ImageOptim][].
+Photos where taken with an [iPhone 5][], cropped and resized with [Acorn][], and
+compressed with [ImageOptim][].
 
 
 [Heathkit]: http://heathkit.com/ "Various (Heathkit): We won't let you fail"
