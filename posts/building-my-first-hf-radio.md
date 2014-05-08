@@ -19,7 +19,7 @@ Huh?"][builder] course and follow along with [Elmer 101][] to build a
 [SW-40+][].  But I missed out on the chance to pick one up before [Small Wonder
 Labs][] went out of business.
 
-I thought about getting a [Cyclone 40][] from the [Four State QRP Club][], but
+I thought about getting a [Cyclone 40][] from the [Four State QRP Group][], but
 asside from [the Yahoo discussion group][yahoo], there's not much documentation
 on how that particular radio works. The [K1][] from [Elecraft][] got some
 consideration, since it's got great documentation, but the $300 USD price tag
@@ -29,8 +29,9 @@ When I heard Bob Dyer was stopping production on [Wilderness Radio][] kits, I
 decided I didn't want to miss out. So I picked up a NorCal 40A, complete with
 all the bells and whistles e.g. a [KC1 Frequency Counter][] and [BuzzNot Noise
 Blanker][]. As it turns out, another perk of the NorCal 40A is that there's a
-book about it! [The Electronics of Radio][] walks you through construction
-step by step, explaining how and why each circuit works.
+book about it! [The Electronics of Radio][] is a college text book that walks
+you through a step-by-step construction and testing process, explaining how and
+why each part of the radio works.
 
 Inspired by [Dave Richards's photography][aa7ee], I'm going to document my build
 of the NorCal 40A. To kick things off, here's an overview of the bare circuit
@@ -40,7 +41,7 @@ board sitting in the lower half of its case.
 
 The case itself is about four and a half inches by four and a half inches.
 With a quarter inch of clearance between the bottom of the case and the
-board, and a top case that mirrors the bottom one, there's plenty of room for
+board, and a top half that mirrors the bottom one, there's plenty of room for
 expansions, add-ons, and experiments.
 
 <img class="game art" src="/images/norcal-40a-board-size.jpg"/>
@@ -59,22 +60,22 @@ compressed with [ImageOptim][].
 
 
 [Heathkit]: http://heathkit.com/ "Various (Heathkit): We won't let you fail"
-[Elmer 101]: http://www.qsl.net/kf4trd/lessons.htm "KF4TRD (QSL.net): Elmer 101 Lessons"
-[builder]: http://www.zerobeat.net/qrp/authors/buildpart1.html "Doug Hendricks, KI6DS (Zerobeat.net): So You Want To Be A Builder, Huh?"
-[SW-40+]: #
+[Elmer 101]: http://qsl.net/kf4trd/lessons.htm "KF4TRD (QSL.net): Elmer 101 Lessons"
+[builder]: http://zerobeat.net/qrp/authors/buildpart1.html "Doug Hendricks, KI6DS (Zerobeat.net): So You Want To Be A Builder, Huh?"
+[SW-40+]: http://smallwonderlabs.com/docs/SW40+_manual.pdf "Dave Benson, K1SWL (Small Wonder Labs): Instruction Manual: The &ldquo;Small Wonder - 40+&rdquo; 40 Meter Superhet Transceiver Kit"
 [Small Wonder Labs]: http://smallwonderlabs.com/ "Dave Benson, K1SWL (Small Wonder Labs): Quality kits for the amateur radio enthusiast"
-[Wilderness Radio]: http://www.fix.net/~jparker/wild.html "Bob Dyer, K6KK (Wilderness Radio): Kits aimed specifically at the outdoor QRP enthusiast"
-[The Electronics of Radio]: http://www.cambridge.org/us/academic/subjects/engineering/rf-and-microwave-engineering/electronics-radio "David Rutledge (Cambridge University Press): The Electronics of Radio"
-[Cyclone 40]: #
-[Four State QRP Club]: #
-[yahoo]: #
-[K1]: #
-[Elecraft]: #
-[KC1 Frequency Counter]: #
-[BuzzNot Noise Blanker]: #
+[Wilderness Radio]: http://fix.net/~jparker/wild.html "Bob Dyer, K6KK (Wilderness Radio): Kits aimed specifically at the outdoor QRP enthusiast"
+[The Electronics of Radio]: http://cambridge.org/us/academic/subjects/engineering/rf-and-microwave-engineering/electronics-radio "David Rutledge (Cambridge University Press): The Electronics of Radio"
+[Cyclone 40]: http://4sqrp.com/cyclone.php "David Cripe, NM0S (Four State QRP Group): Cyclone 40M Transceiver"
+[Four State QRP Group]: http://4sqrp.com/ "Various (Four State QRP Group): Little Radios, Big Fun!"
+[yahoo]: https://groups.yahoo.com/neo/groups/cyclone40/info "Various (Yahoo): NM0S Cyclone Transceiver"
+[K1]: http://elecraft.com/k1_page.htm "Various (Elecraft): K1 Four Band and Two Band HF Transceiver"
+[Elecraft]: http://elecraft.com/ "Various (Elecraft): Hands-On Ham Radio"
+[KC1 Frequency Counter]: http://fix.net/~jparker/wilderness/kc1.htm "Bob Dyer, K6KK (Wilderness Radio): KC1 Keyer/Frequency Counter"
+[BuzzNot Noise Blanker]: http://fix.net/~jparker/wilderness/buznt.htm "Bob Dyer, K6KK (Wilderness Radio): BuzzNot Noise Blanker"
 [aa7ee]: http://aa7ee.wordpress.com/ "Dave Richards, AA7EE: Home"
-[Northern California QRP Club]: http://www.norcalqrp.org/ "Various (NorCal QRP Club): Home"
+[Northern California QRP Club]: http://norcalqrp.org/ "Various (NorCal QRP Club): Home"
 [the manual]: http://ecee.colorado.edu/~ecen2420/Files/NorCal40A_Manual.pdf "Bob Dyer, K6KK &amp; Wayne Burdick, N6KR (Wilderness Radio): NorCal 40A 40-Meter CW Transceiver: Assembly and Operating Manual"
-[iPhone 5]: #
-[Acorn]: #
+[iPhone 5]: http://support.apple.com/kb/sp655 "Various (Apple): iPhone 5 Technical Specification"
+[Acorn]: http://flyingmeat.com/acorn/ "Gus &amp; Kirstin Mueller (Flying Meat): Acorn - The image editor for humans"
 [ImageOptim]: http://imageoptim.com/ "@pornel (ImageOptim): Image compression made easy for Mac OS X"
