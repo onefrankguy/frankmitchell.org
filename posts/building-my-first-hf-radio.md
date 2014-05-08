@@ -1,7 +1,7 @@
 <!--
 title: Building my first HF radio
 created: 6 May 2014 - 7:15 am
-updated: 8 May 2014 - 6:32 am
+updated: 8 May 2014 - 6:40 am
 publish: 8 May 2014
 slug: norcal-40a
 tags: building, radio
@@ -29,9 +29,9 @@ When I heard Bob Dyer was stopping production on [Wilderness Radio][] kits, I
 decided I didn't want to miss out. So I picked up a NorCal 40A, complete with
 all the bells and whistles e.g. a [KC1 Frequency Counter][] and [BuzzNot Noise
 Blanker][]. As it turns out, another perk of the NorCal 40A is that there's a
-book about it! [The Electronics of Radio][] is a college text book that walks
-you through a step-by-step construction and testing process, explaining how and
-why each part of the radio works.
+book about it! [_The Electronics of Radio_][book] is a college text book that
+walks you through a step-by-step construction and testing process, explaining
+how and why each part of the radio works.
 
 Inspired by [Dave Richards's photography][aa7ee], I'm going to document my build
 of the NorCal 40A. To kick things off, here's an overview of the bare circuit
@@ -76,7 +76,7 @@ with [Acorn][], and compressed with [ImageOptim][]. Dave Richards, AA7EE has
 [SW-40+]: http://smallwonderlabs.com/docs/SW40+_manual.pdf "Dave Benson, K1SWL (Small Wonder Labs): Instruction Manual: The &ldquo;Small Wonder - 40+&rdquo; 40 Meter Superhet Transceiver Kit"
 [Small Wonder Labs]: http://smallwonderlabs.com/ "Dave Benson, K1SWL (Small Wonder Labs): Quality kits for the amateur radio enthusiast"
 [Wilderness Radio]: http://fix.net/~jparker/wild.html "Bob Dyer, K6KK (Wilderness Radio): Kits aimed specifically at the outdoor QRP enthusiast"
-[The Electronics of Radio]: http://cambridge.org/us/academic/subjects/engineering/rf-and-microwave-engineering/electronics-radio "David Rutledge (Cambridge University Press): The Electronics of Radio"
+[book]: http://cambridge.org/us/academic/subjects/engineering/rf-and-microwave-engineering/electronics-radio "David Rutledge (Cambridge University Press): The Electronics of Radio"
 [Cyclone 40]: http://4sqrp.com/cyclone.php "David Cripe, NM0S (Four State QRP Group): Cyclone 40M Transceiver"
 [Four State QRP Group]: http://4sqrp.com/ "Various (Four State QRP Group): Little Radios, Big Fun!"
 [yahoo]: https://groups.yahoo.com/neo/groups/cyclone40/info "Various (Yahoo): NM0S Cyclone Transceiver"
