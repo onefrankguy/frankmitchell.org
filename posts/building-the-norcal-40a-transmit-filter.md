@@ -1,7 +1,7 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 15 May 2014 - 7:06 pm
+updated: 15 May 2014 - 11:13 pm
 publish: 15 May 2014
 slug: transmit-filter
 tags: building, radio
