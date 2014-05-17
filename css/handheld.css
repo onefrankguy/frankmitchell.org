@@ -428,3 +428,38 @@ abbr[title="and"] {
 .urbansquall.tree {
   background-image: url(/images/urbansquall-tree.png);
 }
+/* MATH */
+.math {
+  display: block;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  margin: 0 auto 1.5em auto;
+  font-family: serif;
+}
+.fraction {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+.fraction > span {
+  display: block;
+  padding: 0.2em;
+}
+.fraction span.fdn {
+  border-top: thin solid #19223b;
+}
+.fraction span.bar {
+  display: none;
+}
+.radical {
+  font-size: 1.7em;
+  vertical-align: middle;
+}
+.radicand {
+  padding: 0.75ex 0.5ex 0 0.5ex;
+  margin-left: -0.5ex;
+  border-top: thin solid #19223b;
+}
