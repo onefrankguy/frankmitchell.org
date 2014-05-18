@@ -70,8 +70,7 @@ inducatance in henries and capacitance in farads of the components in it.
 Multiply the inductance by the capacitance and take the square root. Multiply
 that result by two pi and invert it.
 
-<div class="math">
-<i>f</i> =
+<div class="math">&#402; =
 <div class="fraction">
 <span class="fup">1</span>
 <span class="bar"></span>
@@ -87,6 +86,45 @@ The resulting frequency is in hertz, and it's that tuned circuit's resonant
 frequency. Becuase capacitors block high-frequency signals and inductors block
 low-frequency signals, a tuned circuit will only let signals at its resonate
 frequency through. Filters that behave like this are known as band pass filters.
+
+## Functions in filter land ##
+
+Quality factor is a constant.
+
+<div class="math">Q =
+<div class="fraction">
+<span class="fup">R</span>
+<span class="bar"></span>
+<span class="fdn">2&pi;&#402;L</span>
+</div>
+</div>
+
+Bandwidth in hertz.
+
+<div class="math">BW =
+<div class="fraction">
+<span class="fup">&#402;</span>
+<span class="fdn">Q</span>
+</div>
+</div>
+
+Upper and lower -3dB frequencies.
+
+<div class="math">&#402;<sub>L</sub> = &#402; -
+<div class="fraction">
+<span class="fup">1</span>
+<span class="bar"></span>
+<span class="fdn">2</span>
+</div> BW
+</div>
+
+<div class="math">&#402;<sub>H</sub> = &#402; +
+<div class="fraction">
+<span class="fup">1</span>
+<span class="bar"></span>
+<span class="fdn">2</span>
+</div> BW
+</div>
 
 
 [book]: http://cambridge.org/us/academic/subjects/engineering/rf-and-microwave-engineering/electronics-radio "David Rutledge (Cambridge University Press): The Electronics of Radio"
