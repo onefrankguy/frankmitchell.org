@@ -1,7 +1,7 @@
 <!--
 title: Bridging the DevOps chasm
 created: 17 May 2014 - 8:08 am
-updated: 17 May 2014 - 8:36 am
+updated: 17 May 2014 - 11:27 am
 publish: 17 May 2014
 slug: devops-divide
 tags: coding, chef
@@ -54,9 +54,44 @@ everywhere. This is good code.
 ## From the operations side ##
 
 The question in the mind of an operations engineer is "How can I write the best
-possible code that will be easy to fix when it breaks at 3 am?"
+possible code that will be easy to fix when it breaks at 3 am?" Applying a
+little thought to the problem, and maybe digging through the Opscode docs, they
+come up with this.
+
+    def application_find_elasticsearch_servers
+      servers = search(:node, 'role:elasticsearch')
+      servers.map do |info|
+        "#{info['ipaddress']}:#{info['elasticsearch']['port']}"
+      end
+    end
+
+    def logstash_find_elasticsearch_servers
+      servers = search(:node, 'role:elasticsearch')
+      servers.map do |info|
+        "#{info['ipaddress']}:#{info['elasticsearch']['port']}"
+      end
+    end
+
+This is pretty much an idential solution to the development one, a basic Chef
+search to find nodes with an "elasticsearch" role and return their IP addresses
+and ports. Again, I'm leaving out all the fiddly bits that would make this real
+production code.
+
+What's important to note here is that the above code is both simple and
+isolated. There are separate functions for the application server and the
+LogStash indexer to find ElasticSearch servers. When a bug is found in one,
+fixing it will not change the behavior of the other.
 
 ## Finding a bridge ##
+
+Those two competing view points, code that's written to be easily maintained or
+code that's written to be easily isoloated, create a tension between development
+and operations. A developer looking at operations code says, "Why is there so
+much copy pasta? If I fix a bug here, I'm going to have to fix it in six other
+places." An operations engineer looking at developer code says, "Why can't I
+grep the code and know where this is being called? If I fix a bug here, It's
+going to ripple through the system and effect who knows how many things."
+
 
 [ElasticSearch]: http://elasticsearch.org/ "Various (ElasticSearch): "
 [LogStash]: http://logstash.org/ ""
