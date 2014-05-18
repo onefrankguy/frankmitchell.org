@@ -1,8 +1,8 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 17 May 2014 - 8:01 am
-publish: 17 May 2014
+updated: 18 May 2014 - 4:49 pm
+publish: 18 May 2014
 slug: transmit-filter
 tags: building, radio
 -->
@@ -142,6 +142,25 @@ Upper and lower -3dB frequencies.
 <span class="bar"></span>
 <span class="fdn">2</span>
 </div> BW
+</div>
+
+Transfer function
+
+<div class="math">
+<div class="fraction">
+<span class="fup">V<sub>out</sub></span>
+<span class="fdn">V<sub>in</sub></span>
+</div> = <div class="fraction">
+<span class="fup">j&omega;L</span>
+<span class="fdn">R(1 - &omega;<sup>2</sup>LC) + j&omega;L</span>
+</div>
+</div>
+
+where j is the imaginary number
+
+<div class="math">j = -
+<span class="radical">&radic;</span>
+<span class="radicand">-1</span>
 </div>
 
 
