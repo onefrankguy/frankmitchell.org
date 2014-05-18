@@ -1,8 +1,8 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 16 May 2014 - 11:08 pm
-publish: 16 May 2014
+updated: 17 May 2014 - 8:01 am
+publish: 17 May 2014
 slug: transmit-filter
 tags: building, radio
 -->
@@ -70,12 +70,11 @@ inducatance in henries and capacitance in farads of the components in it.
 Multiply the inductance by the capacitance and take the square root. Multiply
 that result by two pi and invert it.
 
-<div class="math">&#402; =
+<div class="math">&fnof; =
 <div class="fraction">
 <span class="fup">1</span>
 <span class="bar"></span>
-<span class="fdn">
-  2&pi;
+<span class="fdn">2&pi;
   <span class="radical">&radic;</span>
   <span class="radicand">LC</span>
 </span>
@@ -89,13 +88,32 @@ frequency through. Filters that behave like this are known as band pass filters.
 
 ## Functions in filter land ##
 
+The tuned circuit in the transmit filter of the NorCal 40A has a 100 pF
+capacitor, a 50 pF capacitor, and a 3.14 uH inductor. Because the two capacitors
+are in parallel, we can sum their values and pretend we're working with a 150 pF
+capacitor. By plugging these values into the formula for resonate requency, we
+can figure out where the circuit peaks.
+
+<div class="math">7.33 MHz =
+<div class="fraction">
+<span class="fup">1</span>
+<span class="bar"></span>
+<span class="fdn">2&pi;
+  <span class="radical">&radic;</span>
+  <span class="radicand">(3.14 &times; 10<sup>-6</sup>) &times; (150 &times; 10<sup>-12</sup>)</span>
+</span>
+</div>
+</div>
+
+The peak of the filter lands right at the edge of the 40 meter band.
+
 Quality factor is a constant.
 
 <div class="math">Q =
 <div class="fraction">
 <span class="fup">R</span>
 <span class="bar"></span>
-<span class="fdn">2&pi;&#402;L</span>
+<span class="fdn">2&pi;&fnof;L</span>
 </div>
 </div>
 
@@ -103,14 +121,14 @@ Bandwidth in hertz.
 
 <div class="math">BW =
 <div class="fraction">
-<span class="fup">&#402;</span>
+<span class="fup">&fnof;</span>
 <span class="fdn">Q</span>
 </div>
 </div>
 
 Upper and lower -3dB frequencies.
 
-<div class="math">&#402;<sub>L</sub> = &#402; -
+<div class="math">&fnof;<sub>L</sub> = &fnof; -
 <div class="fraction">
 <span class="fup">1</span>
 <span class="bar"></span>
@@ -118,7 +136,7 @@ Upper and lower -3dB frequencies.
 </div> BW
 </div>
 
-<div class="math">&#402;<sub>H</sub> = &#402; +
+<div class="math">&fnof;<sub>H</sub> = &fnof; +
 <div class="fraction">
 <span class="fup">1</span>
 <span class="bar"></span>

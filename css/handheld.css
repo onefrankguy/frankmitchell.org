@@ -453,10 +453,11 @@ abbr[title="and"] {
   display: none;
 }
 .radical {
-  vertical-align: middle;
+  font-size: 1.25em;
+  vertical-align: baseline;
 }
 .radicand {
-  padding: 0 0.5ex 0 0.5ex;
+  padding: 0.5ex 0.5ex 0 0.5ex;
   margin-left: -0.5ex;
   border-top: thin solid #19223b;
 }
