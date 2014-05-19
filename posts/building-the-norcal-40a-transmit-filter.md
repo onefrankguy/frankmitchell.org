@@ -1,8 +1,8 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 18 May 2014 - 4:49 pm
-publish: 18 May 2014
+updated: 19 May 2014 - 8:12 am
+publish: 19 May 2014
 slug: transmit-filter
 tags: building, radio
 -->
@@ -32,16 +32,16 @@ oscillator is a 7.114 MHz quartz crystal, you're pretty much stuck transmitting
 on 7.114 MHz. Some radios, like the [Rockmite II][rm40], are designed to be
 "rock bound" and operate on just one frequency.
 
-The crystal oscillator in the NorCal 40A operates at 2.1 MHz. This is known as
-the local oscillator or LO. Since 2.1 MHz isn't in the 40 meter amateur radio
+The crystal oscillator in the NorCal 40A operates at 4.9150 MHz. This is known
+as the local oscillator or LO. Since 4.9 MHz isn't in the 40 meter amateur radio
 band, we need to mix in a second signal to get things into the 7 MHz range. By
 making that second signal tunable, we can allow the radio to transmit over a
 range of frequencies.
 
 That second signal comes from the variable frequency oscillator or VFO. The one
-in the NorCal 40A operates at 4.9 MHz. It's got a bandwidth of about 50 kHz,
-which means you can tune it up or down by 25 kHz on either side. Mixing the LO's
-2.1 MHz signal with the VFO's 4.9 MHz signal gives us the variable 7 MHz signal
+in the NorCal 40A operates at 2.105 MHz. It's got a bandwidth of about 40 kHz,
+which means you can tune it up or down by 20 kHz on either side. Mixing the LO's
+4.9 MHz signal with the VFO's 2.1 MHz signal gives us the variable 7 MHz signal
 we want.
 
 Signal mixing is known as hetrodyning, and like most things that sound like they
@@ -91,7 +91,7 @@ frequency through. Filters that behave like this are known as band pass filters.
 The tuned circuit in the transmit filter of the NorCal 40A has a 100 pF
 capacitor, a 50 pF capacitor, and a 3.14 uH inductor. Because the two capacitors
 are in parallel, we can sum their values and pretend we're working with a 150 pF
-capacitor. By plugging these values into the formula for resonate requency, we
+capacitor. By plugging these values into the formula for resonate frequency, we
 can figure out where the circuit peaks.
 
 <div class="math">7.33 MHz =
@@ -100,7 +100,7 @@ can figure out where the circuit peaks.
 <span class="bar"></span>
 <span class="fdn">2&pi;
   <span class="radical">&radic;</span>
-  <span class="radicand">(3.14 &times; 10<sup>-6</sup>) &times; (150 &times; 10<sup>-12</sup>)</span>
+  <span class="radicand">(3.14 &times; 10<sup>-6</sup>) &sdot; (150 &times; 10<sup>-12</sup>)</span>
 </span>
 </div>
 </div>
@@ -146,8 +146,7 @@ Upper and lower -3dB frequencies.
 
 Transfer function
 
-<div class="math">
-<div class="fraction">
+<div class="math"><div class="fraction">
 <span class="fup">V<sub>out</sub></span>
 <span class="fdn">V<sub>in</sub></span>
 </div> = <div class="fraction">
@@ -161,6 +160,15 @@ where j is the imaginary number
 <div class="math">j = -
 <span class="radical">&radic;</span>
 <span class="radicand">-1</span>
+</div>
+
+<div class="math"><div class="fraction">
+<span class="fup">V<sub>out</sub><sup>2</sup></span>
+<span class="fdn">V<sub>in</sub><sup>2</sup></span>
+</div> = <div class="fraction">
+<span class="fup">&omega;<sup>2</sup>L<sup>2</sup></span>
+<span class="fdn">R<sup>2</sup>(1 - &omega;<sup>2</sup>LC)<sup>2</sup> + &omega;<sup>2</sup>L<sup>2</sup></span>
+</div>
 </div>
 
 
