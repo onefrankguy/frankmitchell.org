@@ -1,7 +1,7 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 21 May 2014 - 6:27 am
+updated: 21 May 2014 - 6:59 am
 publish: 21 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -163,12 +163,17 @@ logarithm of the voltage and multiplying by twenty.
 
 <script src="/js/d3.min.js" charset="utf-8"></script>
 <script>
-var data = [3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 7]
+var data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
   , w = 400
-  , h = 200
+  , h = 400
   , margin = 20
-  , y = d3.scale.linear().domain([0, d3.max(data)]).range([0 + margin, h - margin])
+  , y = d3.scale.linear().domain([-60, 0]).range([0 + margin, h - margin])
   , x = d3.scale.linear().domain([0, data.length]).range([0 + margin, w + margin])
+  , L = .0000314
+  , L2 = L * L
+  , C = .0000000000150
+  , R = 1500
+  , R2 = R * R
 
 var vis = d3.select('#chart')
   .append('svg:svg')
@@ -179,8 +184,21 @@ var g = vis.append('svg:g')
   .attr('transform', 'translate(0,'+h+')')
 
 var line = d3.svg.line()
-  .x(function(d, i) { return x(i); })
-  .y(function(d) { return -1 * y(d); })
+  .x(function(d, i) {
+    return x(i)
+  })
+  .y(function(d) {
+    var hz = d * 1000000
+    var w = hz * 2 * Math.PI
+    var w2 = w * w
+    var t = 1 - w2 * L * C
+    var t2 = t * t
+    var vo = w2 * L2
+    var vi = R2 * t2 + vo
+    var v = Math.sqrt(vo / vi)
+    var db = 20 * (Math.log(v) / Math.log(10))
+    return -1 * y(db)
+  })
 
 g.append('svg:path')
   .attr('d', line(data))
@@ -189,7 +207,7 @@ g.append('svg:path')
 g.append('svg:line')
   .attr('x1', x(0))
   .attr('y1', -1 * y(0))
-  .attr('x2', x(w))
+  .attr('x2', x(data.length))
   .attr('y2', -1 * y(0))
   .attr('style', 'stroke: black;')
 
