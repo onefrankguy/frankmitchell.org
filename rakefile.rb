@@ -15,6 +15,7 @@ desc 'Build the website.'
 task :build => [
 :redcarpet,
 'public/js/analytics.js',
+'public/js/d3.min.js',
 'public/js/related.js',
 'public/js/related.json',
 'public/index.html',
@@ -95,6 +96,10 @@ end
 
 file 'public/js/analytics.js' => Dir['js/analytics.js'] do |t|
   copy_folder 'js/analytics.js', t.name
+end
+
+file 'public/js/d3.min.js' => Dir['js/d3.min.js'] do |t|
+  copy_folder 'js/d3.min.js', t.name
 end
 
 file 'public/js/related.json' => 'manifest.json' do |t|

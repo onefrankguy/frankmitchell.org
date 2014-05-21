@@ -1,8 +1,8 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 20 May 2014 - 8:58 am
-publish: 20 May 2014
+updated: 21 May 2014 - 6:27 am
+publish: 21 May 2014
 slug: transmit-filter
 tags: building, radio
 -->
@@ -158,6 +158,48 @@ of half the voltage. We can convert volts to decibals by taking the base ten
 logarithm of the voltage and multiplying by twenty.
 
 <p class="math">-31 dB = 20 &sdot; log<sub>10</sub>(0.0284)</p>
+
+<p id="chart" class="game art"></p>
+
+<script src="/js/d3.min.js" charset="utf-8"></script>
+<script>
+var data = [3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 7]
+  , w = 400
+  , h = 200
+  , margin = 20
+  , y = d3.scale.linear().domain([0, d3.max(data)]).range([0 + margin, h - margin])
+  , x = d3.scale.linear().domain([0, data.length]).range([0 + margin, w + margin])
+
+var vis = d3.select('#chart')
+  .append('svg:svg')
+  .attr('width', w)
+  .attr('height', h)
+
+var g = vis.append('svg:g')
+  .attr('transform', 'translate(0,'+h+')')
+
+var line = d3.svg.line()
+  .x(function(d, i) { return x(i); })
+  .y(function(d) { return -1 * y(d); })
+
+g.append('svg:path')
+  .attr('d', line(data))
+  .attr('style', 'stroke: steelblue; stroke-width: 2; fill: none;')
+
+g.append('svg:line')
+  .attr('x1', x(0))
+  .attr('y1', -1 * y(0))
+  .attr('x2', x(w))
+  .attr('y2', -1 * y(0))
+  .attr('style', 'stroke: black;')
+
+g.append('svg:line')
+  .attr('x1', x(0))
+  .attr('y1', -1 * y(0))
+  .attr('x2', x(0))
+  .attr('y2', -1 * y(d3.max(data)))
+  .attr('style', 'stroke: black;')
+</script>
 
 Quality factor is a constant.
 
