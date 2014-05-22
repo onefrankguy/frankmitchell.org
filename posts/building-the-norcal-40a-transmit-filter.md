@@ -159,7 +159,7 @@ logarithm of the voltage and multiplying by twenty.
 
 <p class="math">-31 dB = 20 &sdot; log<sub>10</sub>(0.0284)</p>
 
-<p id="chart" class="game art"></p>
+<div id="chart"></div>
 
 <script src="/js/d3.min.js" charset="utf-8"></script>
 <script>
@@ -194,8 +194,9 @@ var gain = function(mhz) {
 
 var vis = d3.select('#chart')
   .append('svg:svg')
-  .attr('width', w)
-  .attr('height', h)
+  .attr('width', '100%')
+  .attr('height', '100%')
+  .attr('viewBox', '0 0 '+w+' '+h+'')
 
 var g = vis.append('svg:g')
 
@@ -216,14 +217,23 @@ g.append('svg:line')
   .attr('y1', y(-60))
   .attr('x2', x(data.length))
   .attr('y2', y(-60))
-  .attr('style', 'stroke: black;')
+  .attr('style', 'stroke: black; stroke-width: 1; fill: none;')
 
 g.append('svg:line')
   .attr('x1', x(0))
   .attr('y1', y(0))
   .attr('x2', x(0))
   .attr('y2', y(-60))
-  .attr('style', 'stroke: black;')
+  .attr('style', 'stroke: black; stroke-width: 1; fill: none;')
+
+g.selectAll('.xLabel')
+  .data(x.ticks(5))
+  .enter().append('svg:text')
+  .attr('class', 'xLabel')
+  .text(String)
+  .attr('x', function (d) { return x(d) })
+  .attr('y', y(-62))
+  .attr('text-anchor', 'middle')
 </script>
 
 Quality factor is a constant.
