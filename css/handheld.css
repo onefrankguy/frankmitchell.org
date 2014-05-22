@@ -475,3 +475,6 @@ abbr[title="and"] {
   fill: none;
   stroke: black;
 }
+.chart .axis text {
+  font-size: 0.75em;
+}

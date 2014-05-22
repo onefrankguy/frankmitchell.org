@@ -1,7 +1,7 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 21 May 2014 - 9:42 pm
+updated: 21 May 2014 - 10:03 pm
 publish: 21 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -165,12 +165,12 @@ logarithm of the voltage and multiplying by twenty.
 <script>
 var data = []
 for (i = 1; i <= 14; i += 0.1) {
-  data.push(i)
+  data.push(i.toFixed(1))
 }
 
 var w = 500
   , h = 500
-  , margin = 30
+  , margin = 48
   , y = d3.scale.linear().domain([-60, 0]).range([h - margin, 0 + margin])
   , x = d3.scale.linear().domain([0, data.length]).range([0 + margin, w - margin])
   , L = 0.00000314
@@ -204,13 +204,17 @@ var line = d3.svg.line()
   .x(function(d, i) { return x(i) })
   .y(function(d) { return y(gain(d)) })
 
-var xAxis = d3.svg.axis().scale(x).ticks(10).orient('bottom')
+var xAxis = d3.svg.axis().scale(x).ticks(5).orient('bottom')
+  .tickFormat(function(d, i) { return Math.round(data[d])+' MHz' })
+
+var yAxis = d3.svg.axis().scale(y).ticks(4).orient('left')
+  .tickFormat(function(d, i) { return d+' dB' })
+
 g.append('svg:g')
   .attr('class', 'x axis')
   .attr('transform', 'translate(0,'+(h - margin)+')')
   .call(xAxis)
 
-var yAxis = d3.svg.axis().scale(y).ticks(4).orient('left')
 g.append('svg:g')
   .attr('class', 'y axis')
   .attr('transform', 'translate('+margin+',0)')
