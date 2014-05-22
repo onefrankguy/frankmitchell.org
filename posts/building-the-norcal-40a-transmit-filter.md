@@ -1,7 +1,7 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 21 May 2014 - 6:59 am
+updated: 21 May 2014 - 8:20 pm
 publish: 21 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -163,15 +163,19 @@ logarithm of the voltage and multiplying by twenty.
 
 <script src="/js/d3.min.js" charset="utf-8"></script>
 <script>
-var data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-  , w = 400
+var data = []
+for (i = 1; i <= 14; i += 0.1) {
+  data.push(i)
+}
+
+var w = 400
   , h = 400
   , margin = 20
   , y = d3.scale.linear().domain([-60, 0]).range([0 + margin, h - margin])
   , x = d3.scale.linear().domain([0, data.length]).range([0 + margin, w + margin])
-  , L = .0000314
+  , L = 0.00000314
   , L2 = L * L
-  , C = .0000000000150
+  , C = 0.000000000150
   , R = 1500
   , R2 = R * R
 
