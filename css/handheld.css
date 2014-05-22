@@ -461,3 +461,17 @@ abbr[title="and"] {
   margin-left: -0.5ex;
   border-top: thin solid #19223b;
 }
+/* GRAPHS */
+.chart path {
+  stroke: steelblue;
+  stroke-width: 1;
+  fill: none;
+}
+.chart .axis {
+  shape-rendering: crispEdges;
+}
+.chart .axis line,
+.chart .axis path {
+  fill: none;
+  stroke: black;
+}

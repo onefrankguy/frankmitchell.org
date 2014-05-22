@@ -1,7 +1,7 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 21 May 2014 - 8:20 pm
+updated: 21 May 2014 - 9:42 pm
 publish: 21 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -159,7 +159,7 @@ logarithm of the voltage and multiplying by twenty.
 
 <p class="math">-31 dB = 20 &sdot; log<sub>10</sub>(0.0284)</p>
 
-<div id="chart"></div>
+<div id="chart" class="chart"></div>
 
 <script src="/js/d3.min.js" charset="utf-8"></script>
 <script>
@@ -170,9 +170,9 @@ for (i = 1; i <= 14; i += 0.1) {
 
 var w = 500
   , h = 500
-  , margin = 20
+  , margin = 30
   , y = d3.scale.linear().domain([-60, 0]).range([h - margin, 0 + margin])
-  , x = d3.scale.linear().domain([0, data.length]).range([0 + margin, w + margin])
+  , x = d3.scale.linear().domain([0, data.length]).range([0 + margin, w - margin])
   , L = 0.00000314
   , L2 = L * L
   , C = 0.000000000150
@@ -201,39 +201,24 @@ var vis = d3.select('#chart')
 var g = vis.append('svg:g')
 
 var line = d3.svg.line()
-  .x(function(d, i) {
-    return x(i)
-  })
-  .y(function(d) {
-    return y(gain(d))
-  })
+  .x(function(d, i) { return x(i) })
+  .y(function(d) { return y(gain(d)) })
+
+var xAxis = d3.svg.axis().scale(x).ticks(10).orient('bottom')
+g.append('svg:g')
+  .attr('class', 'x axis')
+  .attr('transform', 'translate(0,'+(h - margin)+')')
+  .call(xAxis)
+
+var yAxis = d3.svg.axis().scale(y).ticks(4).orient('left')
+g.append('svg:g')
+  .attr('class', 'y axis')
+  .attr('transform', 'translate('+margin+',0)')
+  .call(yAxis)
 
 g.append('svg:path')
   .attr('d', line(data))
-  .attr('style', 'stroke: steelblue; stroke-width: 2; fill: none;')
 
-g.append('svg:line')
-  .attr('x1', x(0))
-  .attr('y1', y(-60))
-  .attr('x2', x(data.length))
-  .attr('y2', y(-60))
-  .attr('style', 'stroke: black; stroke-width: 1; fill: none;')
-
-g.append('svg:line')
-  .attr('x1', x(0))
-  .attr('y1', y(0))
-  .attr('x2', x(0))
-  .attr('y2', y(-60))
-  .attr('style', 'stroke: black; stroke-width: 1; fill: none;')
-
-g.selectAll('.xLabel')
-  .data(x.ticks(5))
-  .enter().append('svg:text')
-  .attr('class', 'xLabel')
-  .text(String)
-  .attr('x', function (d) { return x(d) })
-  .attr('y', y(-62))
-  .attr('text-anchor', 'middle')
 </script>
 
 Quality factor is a constant.
