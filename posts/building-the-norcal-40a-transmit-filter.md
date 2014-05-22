@@ -168,10 +168,10 @@ for (i = 1; i <= 14; i += 0.1) {
   data.push(i)
 }
 
-var w = 400
-  , h = 400
+var w = 500
+  , h = 500
   , margin = 20
-  , y = d3.scale.linear().domain([-60, 0]).range([0 + margin, h - margin])
+  , y = d3.scale.linear().domain([-60, 0]).range([h - margin, 0 + margin])
   , x = d3.scale.linear().domain([0, data.length]).range([0 + margin, w + margin])
   , L = 0.00000314
   , L2 = L * L
@@ -179,29 +179,32 @@ var w = 400
   , R = 1500
   , R2 = R * R
 
+var gain = function(mhz) {
+  var hz = mhz * 1000000
+  var w = hz * 2 * Math.PI
+  var w2 = w * w
+  var t = 1 - w2 * L * C
+  var t2 = t * t
+  var vo = w2 * L2
+  var vi = R2 * t2 + vo
+  var v = Math.sqrt(vo / vi)
+  var db = 20 * (Math.log(v) / Math.log(10))
+  return db
+}
+
 var vis = d3.select('#chart')
   .append('svg:svg')
   .attr('width', w)
   .attr('height', h)
 
 var g = vis.append('svg:g')
-  .attr('transform', 'translate(0,'+h+')')
 
 var line = d3.svg.line()
   .x(function(d, i) {
     return x(i)
   })
   .y(function(d) {
-    var hz = d * 1000000
-    var w = hz * 2 * Math.PI
-    var w2 = w * w
-    var t = 1 - w2 * L * C
-    var t2 = t * t
-    var vo = w2 * L2
-    var vi = R2 * t2 + vo
-    var v = Math.sqrt(vo / vi)
-    var db = 20 * (Math.log(v) / Math.log(10))
-    return -1 * y(db)
+    return y(gain(d))
   })
 
 g.append('svg:path')
@@ -210,16 +213,16 @@ g.append('svg:path')
 
 g.append('svg:line')
   .attr('x1', x(0))
-  .attr('y1', -1 * y(0))
+  .attr('y1', y(-60))
   .attr('x2', x(data.length))
-  .attr('y2', -1 * y(0))
+  .attr('y2', y(-60))
   .attr('style', 'stroke: black;')
 
 g.append('svg:line')
   .attr('x1', x(0))
-  .attr('y1', -1 * y(0))
+  .attr('y1', y(0))
   .attr('x2', x(0))
-  .attr('y2', -1 * y(d3.max(data)))
+  .attr('y2', y(-60))
   .attr('style', 'stroke: black;')
 </script>
 
