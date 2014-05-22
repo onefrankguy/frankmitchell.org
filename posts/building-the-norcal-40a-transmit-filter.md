@@ -1,8 +1,8 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 21 May 2014 - 10:03 pm
-publish: 21 May 2014
+updated: 22 May 2014 - 7:12 am
+publish: 22 May 2014
 slug: transmit-filter
 tags: building, radio
 -->
@@ -160,10 +160,20 @@ logarithm of the voltage and multiplying by twenty.
 <p class="math">-31 dB = 20 &sdot; log<sub>10</sub>(0.0284)</p>
 
 <div id="chart" class="chart"></div>
+<div style="display: block; margin-bottom: 1.5em;">
+  <label for="capacitor">C (pF)</label>
+  <input id="capacitor-input" type="range" min="135" max="165" step="1" value="150"></input>
+</div>
+<div style="display: block; margin-bottom: 1.5em;">
+  <label for="inductor">L (uH)</label>
+  <input id="inductor-input" type="range" min="2.92" max="3.36" step="0.01" value="3.14"></input>
+</div>
 
 <script src="/js/d3.min.js" charset="utf-8"></script>
-<script>
-var data = []
+<script type="text/javascript">
+"use strict";
+
+var i, data = []
 for (i = 1; i <= 14; i += 0.1) {
   data.push(i.toFixed(1))
 }
@@ -192,13 +202,11 @@ var gain = function(mhz) {
   return db
 }
 
-var vis = d3.select('#chart')
+var g = d3.select('#chart')
   .append('svg:svg')
   .attr('width', '100%')
   .attr('height', '100%')
   .attr('viewBox', '0 0 '+w+' '+h+'')
-
-var g = vis.append('svg:g')
 
 var line = d3.svg.line()
   .x(function(d, i) { return x(i) })
@@ -221,7 +229,25 @@ g.append('svg:g')
   .call(yAxis)
 
 g.append('svg:path')
+  .attr('class', 'line')
   .attr('d', line(data))
+
+
+var capacitor = document.getElementById('capacitor-input')
+capacitor.oninput = function () {
+  C = this.value * 0.000000000001
+  g.selectAll('path.line')
+    .data([data])
+    .attr('d', line)
+}
+
+var inductor = document.getElementById('inductor-input')
+inductor.oninput = function () {
+  L = this.value * 0.000001
+  g.selectAll('path.line')
+    .data([data])
+    .attr('d', line)
+}
 
 </script>
 
