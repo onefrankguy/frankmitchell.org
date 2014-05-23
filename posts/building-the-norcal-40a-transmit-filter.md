@@ -1,7 +1,7 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 22 May 2014 - 7:12 am
+updated: 22 May 2014 - 9:47 pm
 publish: 22 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -161,12 +161,20 @@ logarithm of the voltage and multiplying by twenty.
 
 <div id="chart" class="chart"></div>
 <div style="display: block; margin-bottom: 1.5em;">
-  <label for="capacitor">C (pF)</label>
-  <input id="capacitor-input" type="range" min="135" max="165" step="1" value="150"></input>
+  <label style="display: inline-block; width: 20%;">C<sub>37</sub> = <span id="c37-value">4.7</span> pF</label>
+  <input style="display: inline-block;" id="c37-input" type="range" min="4.23" max="5.17" step="0.01" value="4.7"></input>
 </div>
 <div style="display: block; margin-bottom: 1.5em;">
-  <label for="inductor">L (uH)</label>
-  <input id="inductor-input" type="range" min="2.92" max="3.36" step="0.01" value="3.14"></input>
+  <label style="display: inline-block; width: 20%;">C<sub>38</sub> = <span id="c38-value">100</span> pF</label>
+  <input style="display: inline-block;" id="c38-input" type="range" min="95" max="105" step="1" value="100"></input>
+</div>
+<div style="display: block; margin-bottom: 1.5em;">
+  <label style="display: inline-block; width: 20%;">C<sub>39</sub> = <span id="c39-value">29</span> pF</label>
+  <input style="display: inline-block;" id="c39-input" type="range" min="8" max="50" step="1" value="29"></input>
+</div>
+<div style="display: block; margin-bottom: 1.5em;">
+  <label style="display: inline-block; width: 20%;">L<sub>6</sub> = <span id="l6-value">3.14</span> uH</label>
+  <input style="display: inline-block;" id="l6-input" type="range" min="2.92" max="3.36" step="0.01" value="3.14"></input>
 </div>
 
 <script src="/js/d3.min.js" charset="utf-8"></script>
@@ -180,8 +188,8 @@ for (i = 1; i <= 14; i += 0.1) {
 
 var w = 500
   , h = 500
-  , margin = 48
-  , y = d3.scale.linear().domain([-60, 0]).range([h - margin, 0 + margin])
+  , margin = 50
+  , y = d3.scale.linear().domain([-40, 0]).range([h - margin, 0 + margin])
   , x = d3.scale.linear().domain([0, data.length]).range([0 + margin, w - margin])
   , L = 0.00000314
   , L2 = L * L
@@ -205,7 +213,7 @@ var gain = function(mhz) {
 var g = d3.select('#chart')
   .append('svg:svg')
   .attr('width', '100%')
-  .attr('height', '100%')
+  .attr('height', '528px')
   .attr('viewBox', '0 0 '+w+' '+h+'')
 
 var line = d3.svg.line()
@@ -232,18 +240,43 @@ g.append('svg:path')
   .attr('class', 'line')
   .attr('d', line(data))
 
+function $(id) {
+  return document.getElementById(id)
+}
 
-var capacitor = document.getElementById('capacitor-input')
-capacitor.oninput = function () {
-  C = this.value * 0.000000000001
+function cap(id) {
+  return parseFloat($(''+id+'-input').value, 10)
+}
+
+
+$('c37-input').oninput = function () {
+  $('c37-value').innerHTML = this.value
+  C = (parseFloat(this.value, 10) + cap('c38') + cap('c39')) * 0.000000000001
+  console.log(C)
   g.selectAll('path.line')
     .data([data])
     .attr('d', line)
 }
 
-var inductor = document.getElementById('inductor-input')
-inductor.oninput = function () {
-  L = this.value * 0.000001
+$('c38-input').oninput = function () {
+  $('c38-value').innerHTML = this.value
+  C = (parseFloat(this.value, 10) + cap('c37') + cap('c39')) * 0.000000000001
+  g.selectAll('path.line')
+    .data([data])
+    .attr('d', line)
+}
+
+$('c39-input').oninput = function () {
+  $('c39-value').innerHTML = this.value
+  C = (parseFloat(this.value, 10) + cap('c37') + cap('c38')) * 0.000000000001
+  g.selectAll('path.line')
+    .data([data])
+    .attr('d', line)
+}
+
+$('l6-input').oninput = function () {
+  $('l6-value').innerHTML = this.value
+  L = parseFloat(this.value, 10) * 0.000001
   g.selectAll('path.line')
     .data([data])
     .attr('d', line)
