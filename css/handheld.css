@@ -473,7 +473,7 @@ abbr[title="and"] {
 .chart .axis line,
 .chart .axis path {
   fill: none;
-  stroke: black;
+  stroke: #19223b;
 }
 .chart .axis text {
   font-size: 0.75em;

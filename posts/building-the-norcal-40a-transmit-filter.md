@@ -1,7 +1,7 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 22 May 2014 - 9:47 pm
+updated: 22 May 2014 - 10:10 pm
 publish: 22 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -161,19 +161,19 @@ logarithm of the voltage and multiplying by twenty.
 
 <div id="chart" class="chart"></div>
 <div style="display: block; margin-bottom: 1.5em;">
-  <label style="display: inline-block; width: 20%;">C<sub>37</sub> = <span id="c37-value">4.7</span> pF</label>
+  <label style="display: inline-block; width: 7em;">C<sub>37</sub> = <span id="c37-value">4.7</span> pF</label>
   <input style="display: inline-block;" id="c37-input" type="range" min="4.23" max="5.17" step="0.01" value="4.7"></input>
 </div>
 <div style="display: block; margin-bottom: 1.5em;">
-  <label style="display: inline-block; width: 20%;">C<sub>38</sub> = <span id="c38-value">100</span> pF</label>
+  <label style="display: inline-block; width: 7em;">C<sub>38</sub> = <span id="c38-value">100</span> pF</label>
   <input style="display: inline-block;" id="c38-input" type="range" min="95" max="105" step="1" value="100"></input>
 </div>
 <div style="display: block; margin-bottom: 1.5em;">
-  <label style="display: inline-block; width: 20%;">C<sub>39</sub> = <span id="c39-value">29</span> pF</label>
+  <label style="display: inline-block; width: 7em;">C<sub>39</sub> = <span id="c39-value">29</span> pF</label>
   <input style="display: inline-block;" id="c39-input" type="range" min="8" max="50" step="1" value="29"></input>
 </div>
 <div style="display: block; margin-bottom: 1.5em;">
-  <label style="display: inline-block; width: 20%;">L<sub>6</sub> = <span id="l6-value">3.14</span> uH</label>
+  <label style="display: inline-block; width: 7em;">L<sub>6</sub> = <span id="l6-value">3.14</span> uH</label>
   <input style="display: inline-block;" id="l6-input" type="range" min="2.92" max="3.36" step="0.01" value="3.14"></input>
 </div>
 
@@ -193,7 +193,7 @@ var w = 500
   , x = d3.scale.linear().domain([0, data.length]).range([0 + margin, w - margin])
   , L = 0.00000314
   , L2 = L * L
-  , C = 0.000000000150
+  , C = 0.0000000001337
   , R = 1500
   , R2 = R * R
 
@@ -237,7 +237,13 @@ g.append('svg:g')
   .call(yAxis)
 
 g.append('svg:path')
+  .attr('class', 'reference')
+  .attr('style', 'stroke: darkgray;')
+  .attr('d', line(data))
+
+g.append('svg:path')
   .attr('class', 'line')
+  .attr('style', 'stroke: deeppink;')
   .attr('d', line(data))
 
 function $(id) {
