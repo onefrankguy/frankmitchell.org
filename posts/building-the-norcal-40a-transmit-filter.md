@@ -1,7 +1,7 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 24 May 2014 - 3:57 pm
+updated: 24 May 2014 - 5:03 pm
 publish: 24 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -190,10 +190,8 @@ var w = 500
   , y = d3.scale.linear().domain([minY, maxY]).range([h - margin, 0 + margin])
   , x = d3.scale.linear().domain([minX, maxX]).range([0 + margin, w - margin])
   , L = 0.00000314
-  , L2 = L * L
   , C = 150 * 0.000000000001
   , R = 1500
-  , R2 = R * R
 
 var gain = function (mhz) {
   var hz = mhz * 1000000
@@ -201,8 +199,8 @@ var gain = function (mhz) {
   var w2 = w * w
   var t = 1 - w2 * L * C
   var t2 = t * t
-  var vo = w2 * L2
-  var vi = R2 * t2 + vo
+  var vo = w2 * L * L
+  var vi = R * R * t2 + vo
   var v = Math.sqrt(vo / vi)
   var db = 20 * (Math.log(v) / Math.log(10))
   return db
@@ -419,7 +417,141 @@ it also functions as a coupling capacitor. It's going to remove any DC signals
 we might be getting from the mixer and only let AC signals pass through. That's
 good, because our band-pass filter was designed with AC signals in mind.
 
-<div id="chart" class="chart"></div>
+The chart below shows what happens to our band-pass filter after we add the
+coupling capacitor to it. It looks very similar to the original band-pass filter
+plot, just with all the values shifted down.
+
+<div id="ideal-pass-chart" class="chart"></div>
+<script type="text/javascript">
+"use strict";
+
+var minX = 1
+  , maxX = 15
+  , minY = -70
+  , maxY = 0
+  , i = 0
+  , data = []
+for (i = 1; i <= maxX; i += 0.1) {
+  data.push(i.toFixed(1))
+}
+
+var w = 500
+  , h = 500
+  , margin = 50
+  , y = d3.scale.linear().domain([minY, maxY]).range([h - margin, 0 + margin])
+  , x = d3.scale.linear().domain([minX, maxX]).range([0 + margin, w - margin])
+  , L = 3.14e-6
+  , C = 150e-12
+  , C37 = 4.7e-12
+  , R = 1500
+
+var c37gain = function (mhz) {
+  var hz = mhz * 1000000
+  var w = hz * 2 * Math.PI
+  var vo = w * w * R * R * C37 * C37
+  var vi = 1 + vo
+  var v = Math.sqrt(vo / vi)
+  var db = 20 * (Math.log(v) / Math.log(10))
+  return db
+}
+
+var gain = function (mhz) {
+  var hz = mhz * 1000000
+  var w = hz * 2 * Math.PI
+  var w2 = w * w
+  var t = 1 - w2 * L * C
+  var t2 = t * t
+  var vo = w2 * L * L
+  var vi = R * R * t2 + vo
+  var v = Math.sqrt(vo / vi)
+  var db = 20 * (Math.log(v) / Math.log(10))
+  return c37gain(mhz) + db
+}
+
+var g = d3.select('#ideal-pass-chart')
+  .append('svg:svg')
+  .attr('width', '100%')
+  .attr('height', '528px')
+  .attr('viewBox', '0 0 '+w+' '+h+'')
+
+var line = d3.svg.line()
+  .x(function(d, i) { return x(d) })
+  .y(function(d) { return y(gain(d)) })
+
+var xAxis = d3.svg.axis().scale(x).orient('bottom')
+  .tickValues([1, 3, 5, 7, 9, 11, 13, 15])
+  .tickFormat(function(d, i) { return Math.round(d)+' MHz' })
+
+var yAxis = d3.svg.axis().scale(y).orient('left')
+  .tickValues([0, -10, -20, -30, -40, -50, -60, -70])
+  .tickFormat(function(d, i) { return d+' dB' })
+
+g.append('svg:g')
+  .attr('class', 'y axis')
+  .attr('transform', 'translate('+margin+',0)')
+  .call(yAxis)
+
+g.append('svg:g')
+  .attr('class', 'x axis')
+  .attr('transform', 'translate(0,'+(h - margin)+')')
+  .call(xAxis)
+
+g.append('svg:path')
+  .attr('style', 'stroke: deeppink;')
+  .attr('d', line(data))
+
+g.append('svg:line')
+  .attr('style', 'stroke: darkgray;')
+  .attr('x1', x(2.8))
+  .attr('y1', y(minY))
+  .attr('x2', x(2.8))
+  .attr('y2', y(maxY))
+
+g.append('svg:line')
+  .attr('style', 'stroke: darkgray;')
+  .attr('x1', x(minX))
+  .attr('y1', y(-40))
+  .attr('x2', x(maxX))
+  .attr('y2', y(-40))
+</script>
+
+Looking at the intersection of the vertical line at 2.8 MHz and the horizontal
+line at -40 dB, we can see that we've pushed our unwanted signal into the stop
+band. Yay!
+
+There's just one question left to answer. If we can do all this mathematical
+analysis, solving for losses at specific frequencies, why does the NorCal 40A
+include a 50 pF variable capacitor in its band-pass filter design? Why not just
+crunch the numbers and make it a fixed value?
+
+## All the math is wrong! ##
+
+It turns out that none of this math models reality at all. It's all based on
+idealized circuits. When you buy a capacitor, even though it says 100 pF on it,
+it's not actually 100 pF. There's some tolerance level. It might be 100 pF
+plus or minus 10%. That means it's really got a range of 90 pF to 110 pF.
+
+There's a point in Dave Richard's build of the [VK3YE Micro 40 DSB Transceiver] [aa7ee]
+where he says
+
+> Pin 1 of Peter’s LM386 is connected to ground via a 47uF cap and
+> a 33 ohm resistor. I didn’t have a 47uF, but I did have a 33uF. Given the wide
+> tolerances of electrolytics, it probably doesn’t matter much but I substituted
+> a 33uF cap and a 47 ohm resistor.
+
+When I first read that I was pretty shocked. What do you mean you dropped 14 uF
+of capacitance? This is electronics. It's a pracitcal application of physics.
+It's science! You can't just go swapping values in and out and hoping you arrive
+at something similar.
+
+But as it turns out, you can. And you must. Because math is exact and the real
+world is not.
+
+The chart below is the band-pass filter for the NorCal 40A, but this time all
+the part tolerances have been taken into consideration. You can use the sliders
+below the chart to push the values around and watch the plot change.
+
+<div id="real-pass-chart" class="chart"></div>
 <div style="display: block; margin-bottom: 1.5em;">
   <label style="display: inline-block; width: 7em;">C<sub>37</sub> = <span id="c37-value">4.7</span> pF</label>
   <input style="display: inline-block;" id="c37-input" type="range" min="4.23" max="5.17" step="0.01" value="4.7"></input>
@@ -436,26 +568,28 @@ good, because our band-pass filter was designed with AC signals in mind.
   <label style="display: inline-block; width: 7em;">L<sub>6</sub> = <span id="l6-value">3.14</span> uH</label>
   <input style="display: inline-block;" id="l6-input" type="range" min="2.92" max="3.36" step="0.01" value="3.14"></input>
 </div>
-
 <script type="text/javascript">
 "use strict";
 
-var i, data = []
-for (i = 1; i <= 14; i += 0.1) {
+var minX = 1
+  , maxX = 15
+  , minY = -70
+  , maxY = 0
+  , i = 0
+  , data = []
+for (i = 1; i <= maxX; i += 0.1) {
   data.push(i.toFixed(1))
 }
 
 var w = 500
   , h = 500
   , margin = 50
-  , y = d3.scale.linear().domain([-70, 0]).range([h - margin, 0 + margin])
-  , x = d3.scale.linear().domain([0, data.length]).range([0 + margin, w - margin])
-  , L = 0.00000314
-  , L2 = L * L
-  , C = 129 * 0.000000000001
-  , C37 = 4.7 * 0.000000000001
+  , y = d3.scale.linear().domain([minY, maxY]).range([h - margin, 0 + margin])
+  , x = d3.scale.linear().domain([minX, maxX]).range([0 + margin, w - margin])
+  , L = 3.14e-6
+  , C = 129e-12
+  , C37 = 4.7e-12
   , R = 1500
-  , R2 = R * R
 
 var c37gain = function (mhz) {
   var hz = mhz * 1000000
@@ -467,61 +601,46 @@ var c37gain = function (mhz) {
   return db
 }
 
-var cNgain = function (mhz) {
+var gain = function (mhz) {
   var hz = mhz * 1000000
   var w = hz * 2 * Math.PI
   var w2 = w * w
   var t = 1 - w2 * L * C
   var t2 = t * t
-  var vo = w2 * L2
-  var vi = R2 * t2 + vo
+  var vo = w2 * L * L
+  var vi = R * R * t2 + vo
   var v = Math.sqrt(vo / vi)
   var db = 20 * (Math.log(v) / Math.log(10))
-  return db
+  return c37gain(mhz) + db
 }
 
-var baseGain = function (mhz) {
-  return cNgain(mhz)
-}
-
-var gain = function (mhz) {
-  return cNgain(mhz) + c37gain(mhz)
-}
-
-var g = d3.select('#chart')
+var g = d3.select('#real-pass-chart')
   .append('svg:svg')
   .attr('width', '100%')
   .attr('height', '528px')
   .attr('viewBox', '0 0 '+w+' '+h+'')
 
-var baseLine = d3.svg.line()
-  .x(function(d, i) { return x(i) })
-  .y(function(d) { return y(baseGain(d)) })
-
 var line = d3.svg.line()
-  .x(function(d, i) { return x(i) })
+  .x(function(d, i) { return x(d) })
   .y(function(d) { return y(gain(d)) })
 
-var xAxis = d3.svg.axis().scale(x).ticks(5).orient('bottom')
-  .tickFormat(function(d, i) { return Math.round(data[d])+' MHz' })
+var xAxis = d3.svg.axis().scale(x).orient('bottom')
+  .tickValues([1, 3, 5, 7, 9, 11, 13, 15])
+  .tickFormat(function(d, i) { return Math.round(d)+' MHz' })
 
-var yAxis = d3.svg.axis().scale(y).ticks(6).orient('left')
+var yAxis = d3.svg.axis().scale(y).orient('left')
+  .tickValues([0, -10, -20, -30, -40, -50, -60, -70])
   .tickFormat(function(d, i) { return d+' dB' })
-
-g.append('svg:g')
-  .attr('class', 'x axis')
-  .attr('transform', 'translate(0,'+(h - margin)+')')
-  .call(xAxis)
 
 g.append('svg:g')
   .attr('class', 'y axis')
   .attr('transform', 'translate('+margin+',0)')
   .call(yAxis)
 
-g.append('svg:path')
-  .attr('class', 'base')
-  .attr('style', 'stroke: steelblue;')
-  .attr('d', baseLine(data))
+g.append('svg:g')
+  .attr('class', 'x axis')
+  .attr('transform', 'translate(0,'+(h - margin)+')')
+  .call(xAxis)
 
 g.append('svg:path')
   .attr('class', 'reference')
@@ -577,9 +696,16 @@ $('l6-input').oninput = function () {
   L = parseFloat(this.value, 10) * 0.000001
   plot()
 }
-
 </script>
 
+In this chart, C<sub>39</sub> starts centered at 29 pF. And there's a reference
+plot in gray representing the behavior of the band-pass filter with exact ideal
+values. Notice that you can push C<sub>38</sub> and L<sub>6</sub> all the way to
+the left and there's still enough swing in C<sub>39</sub> to bring the filter's
+behavior back in line with the ideal. Likewise if you push them all the way to
+the right, you've got enough variability to correct for that too.
+
+<!--
 Quality factor is a constant.
 
 <div class="math">Q =
@@ -643,7 +769,9 @@ where j is the imaginary number
 <span class="fdn">R<sup>2</sup>(1 - &omega;<sup>2</sup>LC)<sup>2</sup> + &omega;<sup>2</sup>L<sup>2</sup></span>
 </div>
 </div>
+-->
 
 
 [book]: http://cambridge.org/us/academic/subjects/engineering/rf-and-microwave-engineering/electronics-radio "David Rutledge (Cambridge University Press): The Electronics of Radio"
 [rm40]: http://www.qrpme.com/?p=product&id=RM4 "Rex Harper, W1REX (QRPme): Rockmite ][ 40m Transceiver"
+[aa7ee]: http://aa7ee.wordpress.com/2013/10/19/the-vk3ye-micro-40-dsb-transceiver/ "Dave Richards, AA7EE (Wordpress): The VK3YE Micro 40 DSB Transceiver"
