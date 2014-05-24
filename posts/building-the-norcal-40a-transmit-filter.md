@@ -1,11 +1,13 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 22 May 2014 - 10:10 pm
-publish: 22 May 2014
+updated: 24 May 2014 - 11:40 am
+publish: 24 May 2014
 slug: transmit-filter
 tags: building, radio
 -->
+
+<script src="/js/d3.min.js" charset="utf-8"></script>
 
 The first practical circuit you build in [_The Electronics of Radio_][book] is a
 transmit filter. By practical, I mean the kind of circuit you could pull out of
@@ -126,25 +128,25 @@ loss for an inductor and capacitor in parallel.
 
 There are two variables in that function we don't know. One is R, the input
 resistance of the filter in ohms. The other is &omega; (pronounced "omega"),
-the input frequency to the filter in radians. We can figure out the input
-resistance by looking at the circuit's input. The transmit filter in the NorCal
-40A is fed by a ???? mixer. Digging through the data sheet for the mixer, we
-find that its output resistance is 1500 ohms. Which means the input resistance
-to our filter will also be 1500 ohms.
+the input frequency to the filter in radians per second. We can figure out the
+input resistance by looking at the circuit's input. The transmit filter in the
+NorCal 40A is fed by a Philip's SA602AN mixer. Digging through the data sheet
+for the mixer, we find that its output resistance is 1500 ohms. Which means the
+input resistance to our filter will also be 1500 ohms.
 
 We know what the input frequency to our filter is, it's 2.8 MHz. We can convert
-hertz to radians by multiplying by two pi.
+hertz to radians per second by multiplying by two pi.
 
-<p class="math">12566371 rad = 2&pi; &sdot; 2800000</p>
+<p class="math">17592919 rad/s = 2&pi; &sdot; 2800000</p>
 
 Now we know enough to figure out how good our filter is at rejecting a 2.8 MHz
 signal. We can take the formula for transmission loss and  plug in 1500 ohms for
 R, 3.14 &times; 10<sup>-6</sup> henries for L, 150 &times; 10<sup>-12</sup>
-farads for C, and 12566371 radians for &omega;.
+farads for C, and 17592919 radians per second for &omega;.
 
 <p class="math"><span class="fraction">
-<span class="fup">12566371<sup>2</sup> &sdot; 3.14e-6<sup>2</sup></span>
-<span class="fdn">1500<sup>2</sup> &sdot; (1 - 12566371<sup>2</sup> &sdot; 3.14e-6 &sdot; 150e-12)<sup>2</sup> + 12566371<sup>2</sup> &sdot; 3.14e-6<sup>2</sup></span>
+<span class="fup">17592919<sup>2</sup> &sdot; 3.14e-6<sup>2</sup></span>
+<span class="fdn">1500<sup>2</sup> &sdot; (1 - 12566371<sup>2</sup> &sdot; 3.14e-6 &sdot; 150e-12)<sup>2</sup> + 17592919<sup>2</sup> &sdot; 3.14e-6<sup>2</sup></span>
 </p>
 
 Note that I'm being a little fast and loose with my notation here. Scientific e
@@ -152,12 +154,112 @@ notation is usually reserved for calculators and programming languages, but I
 wanted to fit everything on one line.
 
 Crunching through all those numbers, we find our filter has a transmission loss
-of 0.0284 volts at 2.8 MHz. Transmission loss is usually expressed in decibals,
+of 0.0431 volts at 2.8 MHz. Transmission loss is usually expressed in decibals,
 which are a logarithmic scale where minus three deciabals corresponds to a loss
 of half the voltage. We can convert volts to decibals by taking the base ten
 logarithm of the voltage and multiplying by twenty.
 
-<p class="math">-31 dB = 20 &sdot; log<sub>10</sub>(0.0284)</p>
+<p class="math">-27 dB = 20 &sdot; log<sub>10</sub>(0.0431)</p>
+
+So our filter has a transmission loss of 27 dB at 2.8 MHz. In general, any
+frequency with a loss of 40 dB or more falls into what's known as the stop band,
+the part where frequencies are rejected. Any frequency in the 0 dB to 3 dB range
+is in the pass band, the part where frequencies are accepted. The range in
+between the pass band and the stop band is called the skirt.
+
+Here's a chart of our filter's transmission loss for frequencies between 1 MHz
+and 15 MHz.
+
+<div id="band-pass-chart" class="chart"></div>
+<script type="text/javascript">
+"use strict";
+
+var minX = 1
+  , maxX = 15
+  , minY = -70
+  , maxY = 0
+  , i = 0
+  , data = []
+for (i = 1; i <= maxX; i += 0.1) {
+  data.push(i.toFixed(1))
+}
+
+var w = 500
+  , h = 500
+  , margin = 50
+  , y = d3.scale.linear().domain([minY, maxY]).range([h - margin, 0 + margin])
+  , x = d3.scale.linear().domain([minX, maxX]).range([0 + margin, w - margin])
+  , L = 0.00000314
+  , L2 = L * L
+  , C = 150 * 0.000000000001
+  , R = 1500
+  , R2 = R * R
+
+var gain = function (mhz) {
+  var hz = mhz * 1000000
+  var w = hz * 2 * Math.PI
+  var w2 = w * w
+  var t = 1 - w2 * L * C
+  var t2 = t * t
+  var vo = w2 * L2
+  var vi = R2 * t2 + vo
+  var v = Math.sqrt(vo / vi)
+  var db = 20 * (Math.log(v) / Math.log(10))
+  return db
+}
+
+var g = d3.select('#band-pass-chart')
+  .append('svg:svg')
+  .attr('width', '100%')
+  .attr('height', '528px')
+  .attr('viewBox', '0 0 '+w+' '+h+'')
+
+var line = d3.svg.line()
+  .x(function(d, i) { return x(d) })
+  .y(function(d) { return y(gain(d)) })
+
+var xAxis = d3.svg.axis().scale(x).orient('bottom')
+  .tickValues([1, 3, 5, 7, 9, 11, 13, 15])
+  .tickFormat(function(d, i) { return Math.round(d)+' MHz' })
+
+var yAxis = d3.svg.axis().scale(y).orient('left')
+  .tickValues([0, -10, -20, -30, -40, -50, -60, -70])
+  .tickFormat(function(d, i) { return d+' dB' })
+
+g.append('svg:g')
+  .attr('class', 'y axis')
+  .attr('transform', 'translate('+margin+',0)')
+  .call(yAxis)
+
+g.append('svg:g')
+  .attr('class', 'x axis')
+  .attr('transform', 'translate(0,'+(h - margin)+')')
+  .call(xAxis)
+
+g.append('svg:path')
+  .attr('style', 'stroke: deeppink;')
+  .attr('d', line(data))
+
+g.append('svg:line')
+  .attr('style', 'stroke: darkgray;')
+  .attr('x1', x(2.8))
+  .attr('y1', y(minY))
+  .attr('x2', x(2.8))
+  .attr('y2', y(maxY))
+
+g.append('svg:line')
+  .attr('style', 'stroke: darkgray;')
+  .attr('x1', x(minX))
+  .attr('y1', y(-40))
+  .attr('x2', x(maxX))
+  .attr('y2', y(-40))
+</script>
+
+See the vertical line at 2.8 MHz and the horizontal line at -40 dB?  We want our
+filter's transmission loss curve to fall below that intersection point, because
+that will put the 2.8 MHz signal we don't want in our filter's stop band.
+
+## Chaining filters together ##
 
 <div id="chart" class="chart"></div>
 <div style="display: block; margin-bottom: 1.5em;">
@@ -177,7 +279,6 @@ logarithm of the voltage and multiplying by twenty.
   <input style="display: inline-block;" id="l6-input" type="range" min="2.92" max="3.36" step="0.01" value="3.14"></input>
 </div>
 
-<script src="/js/d3.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 "use strict";
 
@@ -189,15 +290,27 @@ for (i = 1; i <= 14; i += 0.1) {
 var w = 500
   , h = 500
   , margin = 50
-  , y = d3.scale.linear().domain([-40, 0]).range([h - margin, 0 + margin])
+  , y = d3.scale.linear().domain([-70, 0]).range([h - margin, 0 + margin])
   , x = d3.scale.linear().domain([0, data.length]).range([0 + margin, w - margin])
   , L = 0.00000314
   , L2 = L * L
-  , C = 0.0000000001337
+  , C = 129 * 0.000000000001
+  , C37 = 4.7 * 0.000000000001
   , R = 1500
   , R2 = R * R
 
-var gain = function(mhz) {
+var c37gain = function (mhz) {
+  var hz = mhz * 1000000
+  var w = hz * 2 * Math.PI
+  var w2 = w * w
+  var vo = w * R * C37
+  var vi = Math.sqrt(1 + (w2 * R2 * C37 * C37))
+  var v = Math.sqrt(vo / vi)
+  var db = 20 * (Math.log(v) / Math.log(10))
+  return db
+}
+
+var cNgain = function (mhz) {
   var hz = mhz * 1000000
   var w = hz * 2 * Math.PI
   var w2 = w * w
@@ -210,11 +323,23 @@ var gain = function(mhz) {
   return db
 }
 
+var baseGain = function (mhz) {
+  return cNgain(mhz)
+}
+
+var gain = function (mhz) {
+  return cNgain(mhz) + c37gain(mhz)
+}
+
 var g = d3.select('#chart')
   .append('svg:svg')
   .attr('width', '100%')
   .attr('height', '528px')
   .attr('viewBox', '0 0 '+w+' '+h+'')
+
+var baseLine = d3.svg.line()
+  .x(function(d, i) { return x(i) })
+  .y(function(d) { return y(baseGain(d)) })
 
 var line = d3.svg.line()
   .x(function(d, i) { return x(i) })
@@ -223,7 +348,7 @@ var line = d3.svg.line()
 var xAxis = d3.svg.axis().scale(x).ticks(5).orient('bottom')
   .tickFormat(function(d, i) { return Math.round(data[d])+' MHz' })
 
-var yAxis = d3.svg.axis().scale(y).ticks(4).orient('left')
+var yAxis = d3.svg.axis().scale(y).ticks(6).orient('left')
   .tickFormat(function(d, i) { return d+' dB' })
 
 g.append('svg:g')
@@ -235,6 +360,11 @@ g.append('svg:g')
   .attr('class', 'y axis')
   .attr('transform', 'translate('+margin+',0)')
   .call(yAxis)
+
+g.append('svg:path')
+  .attr('class', 'base')
+  .attr('style', 'stroke: steelblue;')
+  .attr('d', baseLine(data))
 
 g.append('svg:path')
   .attr('class', 'reference')
@@ -254,38 +384,41 @@ function cap(id) {
   return parseFloat($(''+id+'-input').value, 10)
 }
 
-
-$('c37-input').oninput = function () {
-  $('c37-value').innerHTML = this.value
-  C = (parseFloat(this.value, 10) + cap('c38') + cap('c39')) * 0.000000000001
-  console.log(C)
+function plot () {
   g.selectAll('path.line')
     .data([data])
     .attr('d', line)
+  g.selectAll('path.base')
+    .data([data])
+    .attr('d', baseLine)
+}
+
+
+$('c37-input').oninput = function () {
+  $('c37-value').innerHTML = this.value
+  C = (cap('c38') + cap('c39')) * 0.000000000001
+  C37 = cap('c37') * 0.000000000001
+  plot()
 }
 
 $('c38-input').oninput = function () {
   $('c38-value').innerHTML = this.value
-  C = (parseFloat(this.value, 10) + cap('c37') + cap('c39')) * 0.000000000001
-  g.selectAll('path.line')
-    .data([data])
-    .attr('d', line)
+  C = (cap('c38') + cap('c39')) * 0.000000000001
+  C37 = cap('c37') * 0.000000000001
+  plot()
 }
 
 $('c39-input').oninput = function () {
   $('c39-value').innerHTML = this.value
-  C = (parseFloat(this.value, 10) + cap('c37') + cap('c38')) * 0.000000000001
-  g.selectAll('path.line')
-    .data([data])
-    .attr('d', line)
+  C = (cap('c38') + cap('c39')) * 0.000000000001
+  C37 = cap('c37') * 0.000000000001
+  plot()
 }
 
 $('l6-input').oninput = function () {
   $('l6-value').innerHTML = this.value
   L = parseFloat(this.value, 10) * 0.000001
-  g.selectAll('path.line')
-    .data([data])
-    .attr('d', line)
+  plot()
 }
 
 </script>
