@@ -1,7 +1,7 @@
 <!--
 title: Building the NorCal 40A transmit filter
 created: 15 May 2014 - 7:06 pm
-updated: 24 May 2014 - 11:40 am
+updated: 24 May 2014 - 3:57 pm
 publish: 24 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -84,9 +84,9 @@ that result by two pi and invert it.
 </div>
 
 The resulting frequency is in hertz, and it's that tuned circuit's resonant
-frequency. Becuase capacitors block high-frequency signals and inductors block
-low-frequency signals, a tuned circuit will only let signals at its resonate
-frequency through. Filters that behave like this are known as band pass filters.
+frequency. Becuase capacitors block low-frequency signals and inductors block
+high-frequency signals, a tuned circuit will only let signals at its resonate
+frequency through. Filters that behave like this are known as band-pass filters.
 
 ## Functions in filter land ##
 
@@ -261,6 +261,164 @@ that will put the 2.8 MHz signal we don't want in our filter's stop band.
 
 ## Chaining filters together ##
 
+To fix our filter, we need to add about 13 dB of cut off at 2.8 MHz to push it
+into the stop band. One way to get more loss out of filter is to stick several
+of them togther in serias. We know that capacitors block low-frequency signals,
+so we can stick a capacitor in series with our band-pass circuit and use that
+as an additional level of filtering.
+
+<img class="game art" width="658px" height"253px"
+     src="/images/norcal-40a-high-pass-filter.png"
+     alt="An input signal (P1) feeds into a 4.7 pF capacitor and then into the output signal (P2). A 1500 ohm resistor sits in parallel between the capacitor and ground.",
+   title="An input signal (P1) feeds into a 4.7 pF capacitor and then into the output signal (P2). A 1500 ohm resistor sits in parallel between the capacitor and ground." />
+
+The capacitor will block low-frequency signals and let high-frequency ones
+through. This kind of circuit is know as a RC circuit, or high-pass filter.
+We can find its peak frequency in hertz by multiplying its capacitance in
+farads by its resistance in ohms, multiplying that by two pi, and taking the
+inverse.
+
+<div class="math">&fnof; =
+<div class="fraction">
+<span class="fup">1</span>
+<span class="fdn">2&pi; &sdot; RC</span>
+</div>
+</div>
+
+Since we know the input resistance to our band-pass filter is 1500 ohms, we'll
+use that as the resistance in our high-pass filter. We can calculate the peak
+of our high-pass filter by plugging in 4.7 pF for C and 1500 ohms for R.
+
+<div class="math">22.6 MHz =
+<div class="fraction">
+<span class="fup">1</span>
+<span class="fdn">2&pi; &sdot; 1500 &sdot; 0.0000000000047</span>
+</div>
+</div>
+
+22.6 MHz is far away from the 7 MHz signal we care about, which is good, since
+it means we'll get good loss at lower frequencies. But how much loss will we
+get? Here's the formula for the transmission loss of a RC circuit.
+
+<div class="math"><div class="fraction">
+<span class="fup">V<sub>out</sub><sup>2</sup></span>
+<span class="fdn">V<sub>in</sub><sup>2</sup></span>
+</div> = <div class="fraction">
+<span class="fup">&omega;<sup>2</sup>R<sup>2</sup>C<sup>2</sup></span>
+<span class="fdn">1 + &omega;<sup>2</sup>R<sup>2</sup>C<sup>2</sup></span>
+</div>
+</div>
+
+We already know that 2.8 MHz is 17592919 rad/s, so we can use that for &omega;.
+Plugging in 1500 for R and 3.14 pF for C, we can figure out how good our
+high-pass filter is at rejecting the unwanted signal.
+
+<div class="math">0.1231 &asymp;
+<div class="fraction">
+<span class="fup">17592919<sup>2</sup> &sdot; 1500<sup>2</sup> &sdot; 0.0000000000047<sup>2</sup></span>
+<span class="fdn">1 + 17592919<sup>2</sup> &sdot; 1500<sup>2</sup> &sdot; 0.0000000000047<sup>2</sup></span>
+</div>
+</div>
+
+Taking the base ten logarithm of the loss factor and multiplying by twenty gives
+us the loss in decibals.
+
+<p class="math">-18 dB &asymp; 10 &sdot; log<sub>10</sub>(0.1231)</p>
+
+Eighteen decibals of loss is plenty. If we graph the transmission loss equation,
+we can get a feel for how well it does across the rest of the band. The chart
+below goes from 1 MHz to 15 MHz.
+
+<div id="high-pass-chart" class="chart"></div>
+<script type="text/javascript">
+"use strict";
+
+var minX = 1
+  , maxX = 15
+  , minY = -70
+  , maxY = 0
+  , i = 0
+  , data = []
+for (i = 1; i <= maxX; i += 0.1) {
+  data.push(i.toFixed(1))
+}
+
+var w = 500
+  , h = 500
+  , margin = 50
+  , y = d3.scale.linear().domain([minY, maxY]).range([h - margin, 0 + margin])
+  , x = d3.scale.linear().domain([minX, maxX]).range([0 + margin, w - margin])
+  , C = 4.7e-12
+  , R = 1500
+
+var gain = function (mhz) {
+  var hz = mhz * 1000000
+  var w = hz * 2 * Math.PI
+  var vo = w * w * R * R * C * C
+  var vi = 1 + vo
+  var v = Math.sqrt(vo / vi)
+  var db = 20 * (Math.log(v) / Math.log(10))
+  return db
+}
+
+var g = d3.select('#high-pass-chart')
+  .append('svg:svg')
+  .attr('width', '100%')
+  .attr('height', '528px')
+  .attr('viewBox', '0 0 '+w+' '+h+'')
+
+var line = d3.svg.line()
+  .x(function(d, i) { return x(d) })
+  .y(function(d) { return y(gain(d)) })
+
+var xAxis = d3.svg.axis().scale(x).orient('bottom')
+  .tickValues([1, 3, 5, 7, 9, 11, 13, 15])
+  .tickFormat(function(d, i) { return Math.round(d)+' MHz' })
+
+var yAxis = d3.svg.axis().scale(y).orient('left')
+  .tickValues([0, -10, -20, -30, -40, -50, -60, -70])
+  .tickFormat(function(d, i) { return d+' dB' })
+
+g.append('svg:g')
+  .attr('class', 'y axis')
+  .attr('transform', 'translate('+margin+',0)')
+  .call(yAxis)
+
+g.append('svg:g')
+  .attr('class', 'x axis')
+  .attr('transform', 'translate(0,'+(h - margin)+')')
+  .call(xAxis)
+
+g.append('svg:path')
+  .attr('style', 'stroke: deeppink;')
+  .attr('d', line(data))
+</script>
+
+That doesn't look very promising for 7 MHz. If we crunch through the numbers,
+we find a loss of about 11 dB. Remember that three decibals of loss corresponds
+to a half loss of power. Because decibals is a logarithmic scale, you can
+convert decibals to a loss multiplier by dividing by ten and raising ten to the
+power of that result.
+
+<p class="math">P = 10<sup>(dB / 10)</sup></p>
+
+Interestingly, this formula explains why -40 dB was chosen as the cut off
+point for a filter's stop band. It corresponds to a 10,000 times reduction in
+power.  That's like taking a 60 watt light bulb and reducing it to the 6
+milliwatt ember on the end of a match stick. You wouldn't be able to see
+anything.
+
+Plugging in 11 for dB, we can figure out how much power we're going to lose
+at 7 MHz with the addition of our high-pass filter.
+
+<p class="math">13 &asymp; 10<sup>(11 / 10)</sup></p>
+
+Thirteen times! That seems like a lot. But there's a side effect to having
+this capacitor in our filter. In addition to functioning as a high-pass filter,
+it also functions as a coupling capacitor. It's going to remove any DC signals
+we might be getting from the mixer and only let AC signals pass through. That's
+good, because our band-pass filter was designed with AC signals in mind.
+
 <div id="chart" class="chart"></div>
 <div style="display: block; margin-bottom: 1.5em;">
   <label style="display: inline-block; width: 7em;">C<sub>37</sub> = <span id="c37-value">4.7</span> pF</label>
@@ -302,9 +460,8 @@ var w = 500
 var c37gain = function (mhz) {
   var hz = mhz * 1000000
   var w = hz * 2 * Math.PI
-  var w2 = w * w
-  var vo = w * R * C37
-  var vi = Math.sqrt(1 + (w2 * R2 * C37 * C37))
+  var vo = w * w * R * R * C37 * C37
+  var vi = 1 + vo
   var v = Math.sqrt(vo / vi)
   var db = 20 * (Math.log(v) / Math.log(10))
   return db
