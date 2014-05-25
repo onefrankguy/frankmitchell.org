@@ -1,0 +1,12 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx]{circuitikz}
+
+\begin{document}
+\begin{circuitikz} \draw
+(0,0) node[anchor=east] {P1}
+      to[C, o-, l=4.7<\pico\farad>] (2,0)
+      to[R, *-, l=1.5<\kilo\ohm>] (2,-2)
+(2,0) to[short, -o] (4,0) node[anchor=west] {P2}
+(2,-2) node[ground] {}
+; \end{circuitikz}
+\end{document}

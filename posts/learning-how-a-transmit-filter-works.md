@@ -268,8 +268,8 @@ of them togther in serias. We know that capacitors block low-frequency signals,
 so we can stick a capacitor in series with our band-pass circuit and use that
 as an additional level of filtering.
 
-<img class="game art" width="658px" height"253px"
-     src="/images/norcal-40a-high-pass-filter.png"
+<img class="game art" width="363px" height"253px"
+     src="/images/norcal-40a-transmit-filter-high-pass.png"
      alt="An input signal (P1) feeds into a 4.7 pF capacitor and then into the output signal (P2). A 1500 ohm resistor sits in parallel between the capacitor and ground.",
    title="An input signal (P1) feeds into a 4.7 pF capacitor and then into the output signal (P2). A 1500 ohm resistor sits in parallel between the capacitor and ground." />
 
@@ -539,7 +539,7 @@ idealized circuits. When you buy a capacitor, even though it says 100 pF on it,
 it's not actually 100 pF. There's some tolerance level. It might be 100 pF
 plus or minus 10%. That means it's really got a range of 90 pF to 110 pF.
 
-There's a point in Dave Richard's build of the [VK3YE Micro 40 DSB Transceiver] [aa7ee]
+There's a point in Dave Richards's build of the [VK3YE Micro 40 DSB Transceiver] [aa7ee]
 where he says
 
 > Pin 1 of Peter’s LM386 is connected to ground via a 47uF cap and
