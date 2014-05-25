@@ -12,7 +12,16 @@ tags: building, radio
 The first practical circuit you build in [_The Electronics of Radio_][book] is a
 transmit filter. By practical, I mean the kind of circuit you could pull out of
 one design and drop into another. Something that fits in a black box. Here's
-what the transmit filter in the NorCal 40A looks like.
+what the transmit filter in the NorCal 40A transceiver looks like.
+
+<img class="game art" width="640px" height"640px"
+     src="/images/norcal-40a-transmit-filter-overview.jpg"
+     alt="An overhead shot of the assembled transmit filter in the NorCal 40A transceiver.",
+   title="An overhead shot of the assembled transmit filter in the NorCal 40A transceiver." />
+
+From left to right those components are a 4.7 pF disc capacitor, a 100 pF disc
+capacitor, a hand wound 3.14 uH inductor, and a 50 pF variable capacitor. The
+schematic for them shows how they fit together electrically.
 
 <img class="game art" width="658px" height"253px"
      src="/images/norcal-40a-transmit-filter.png"
