@@ -67,11 +67,11 @@ appears on my board.
 
 ## Where we go from here ##
 
-This is the second part in a multi-part series about building the NorCal
+This is the first part in a multi-part series about building the NorCal
 40A transceiver. Links to the other parts are below.
 
 1. Building my first HF radio
-2. [Transmit filters one capacitor at a time][part2]
+2. [Learning how a transmit filter works][transmit-filter]
 
 For the curious, photos where taken with an [iPhone 5][], cropped and resized
 with [Acorn][], and compressed with [ImageOptim][]. Dave Richards, AA7EE has
@@ -95,8 +95,8 @@ with [Acorn][], and compressed with [ImageOptim][]. Dave Richards, AA7EE has
 [aa7ee]: http://aa7ee.wordpress.com/ "Dave Richards, AA7EE: Home"
 [Northern California QRP Club]: http://norcalqrp.org/ "Various (NorCal QRP Club): Home"
 [the manual]: http://ecee.colorado.edu/~ecen2420/Files/NorCal40A_Manual.pdf "Bob Dyer, K6KK &amp; Wayne Burdick, N6KR (Wilderness Radio): NorCal 40A 40-Meter CW Transceiver: Assembly and Operating Manual"
+[transmit-filter]: /2014/05/transmit-filter "Frank Mitchell: Learning how a transmit filter works"
 [iPhone 5]: http://support.apple.com/kb/sp655 "Various (Apple): iPhone 5 Technical Specification"
 [Acorn]: http://flyingmeat.com/acorn/ "Gus &amp; Kirstin Mueller (Flying Meat): Acorn - The image editor for humans"
 [ImageOptim]: http://imageoptim.com/ "@pornel (ImageOptim): Image compression made easy for Mac OS X"
-[part2]: /2014/04/transmit-filter "Frank Mitchell: Transmit filters one capacitor at a time"
 [a nice article]: http://aa7ee.wordpress.com/2012/06/18/photography-and-air-spaced-variable-capacitors/ "Dave Richards, AA7EE: Photography and Air Speed Variable Capacitors"
