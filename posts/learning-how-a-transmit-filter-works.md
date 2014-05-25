@@ -1,7 +1,7 @@
 <!--
 title: Learning how a transmit filter works
 created: 15 May 2014 - 7:06 pm
-updated: 25 May 2014 - 8:51 am
+updated: 25 May 2014 - 9:06 am
 publish: 25 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -15,9 +15,9 @@ one design and drop into another. Something that fits in a black box. Here's
 what the transmit filter in the NorCal 40A transceiver looks like.
 
 <img class="game art" width="640px" height"640px"
-     src="/images/norcal-40a-transmit-filter-overview.jpg"
-     alt="An overhead shot of the assembled transmit filter in the NorCal 40A transceiver.",
-   title="An overhead shot of the assembled transmit filter in the NorCal 40A transceiver." />
+     src="/images/norcal-40a-transmit-filter-left-to-right.jpg"
+     alt="A close up view of the assembled transmit filter in the NorCal 40A transceiver, looking over the edge of the case and across the circuit board.",
+   title="A close up view of the assembled transmit filter in the NorCal 40A transceiver, looking over the edge of the case and across the circuit board." />
 
 From left to right those components are a 4.7 pF disc capacitor, a 100 pF disc
 capacitor, a hand wound 3.14 uH inductor, and a 50 pF variable capacitor. The
