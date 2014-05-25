@@ -1,0 +1,15 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx]{circuitikz}
+
+\begin{document}
+\begin{circuitikz} \draw
+(0,0) node[anchor=east] {P1}
+      to[short, o-] (2,0)
+      to[C, *-, l=150<\pico\farad>] (2,-2)
+(2,0) -- (4.5,0)
+(4.5,0) to[L, *-*, l=3.14<\micro\henry>] (4.5,-2)
+(4.5,0) to[short, -o] (6.5,0) node[anchor=west] {P2}
+(2,-2) -- (4.5,-2)
+(4.5,-2) node[ground] {}
+; \end{circuitikz}
+\end{document}

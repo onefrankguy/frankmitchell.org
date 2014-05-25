@@ -58,6 +58,11 @@ You can make the worlds smallest filter by putting a capcitor and an inductor in
 parallel. This is known as an LC circuit, or a tuned circuit, and it stores
 electrical energy through oscillation.
 
+<img class="game art" width="510px" height"208px"
+     src="/images/norcal-40a-transmit-filter-band-pass.png"
+     alt="An input signal (P1) feeds into an output signal (P2). A 150 pF capacitor and 3.14 uH inductor sit in parallel between the output signal and ground.",
+   title="An input signal (P1) feeds into an output signal (P2). A 150 pF capacitor and 3.14 uH inductor sit in parallel between the output signal and ground." />
+
 A capacitor stores energy in an electric field. So if you connect a charged
 capacitor across an inductor, current will start to flow from the capacitor
 to the inductor and build up a magnetic field in the inductor. But the current
