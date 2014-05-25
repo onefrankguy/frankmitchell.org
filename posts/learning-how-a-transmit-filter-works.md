@@ -1,7 +1,7 @@
 <!--
 title: Learning how a transmit filter works
 created: 15 May 2014 - 7:06 pm
-updated: 25 May 2014 - 6:38 am
+updated: 25 May 2014 - 8:51 am
 publish: 25 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -762,6 +762,15 @@ L<sub>6</sub> all the way to the left and there's still enough swing in
 C<sub>39</sub> to bring the filter's behavior back in line with the ideal.
 Likewise if you push them all the way to the right, you've got enough
 variability to correct for that too.
+
+Finally, here's one more shot of the assembled transmit filter. I really
+like how the light caught the bottom edge of the case and highlighted the
+texture.
+
+<img class="game art" width="640px" height"1044px"
+     src="/images/norcal-40a-case-texture.jpg"
+     alt="A offset overview of the assembled transmit filter in the NorCal 40A. The light catches the bottom edge of the case and shows off the bumps in the texture.",
+   title="A offset overview of the assembled transmit filter in the NorCal 40A. The light catches the bottom edge of the case and shows off the bumps in the texture." />
 
 ## Where we go from here ##
 
