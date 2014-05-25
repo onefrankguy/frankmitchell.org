@@ -567,7 +567,43 @@ It's science! You can't just go swapping values in and out and hoping you arrive
 at something similar.
 
 But as it turns out, you can. And you must. Because math is exact and the real
-world is not.
+world is not. For example, take a look at the inductor I wound for the transmit
+filter.
+
+<img class="game art" width="640px" height"640px"
+     src="/images/norcal-40a-transmit-filter-inductor.jpg"
+     alt="A close up of the inductor on the NorCal 40A circuit board. There's a bump on the top where the wire doesn't lay flat and the turns aren't spaced evenly. The real world is a messy, imperfect, and beautiful place.",
+   title="A close up of the inductor on the NorCal 40A circuit board. There's a bump on the top where the wire doesn't lay flat and the turns aren't spaced evenly. The real world is a messy, imperfect, and beautiful place." />
+
+That's twenty-eight turns of No. 28 AWG magnet wire on a T37-2 core. Toroid
+cores have an constant that lets you compute their inductance based on the
+number of turns. Multiply the constant by the number of turns squared and divide
+the result by a thousand to get the inductance in micro henries.
+
+<p class="math">L =
+<span class="fraction">
+<span class="fup">A<sub>L</sub> &sdot; turns<sup>2</sup></span>
+<span class="bar">/</span>
+<span class="fdn">1000</span>
+</span>
+</p>
+
+The constant for a T37-2 core is 4 &plusmn; 5%. Plugging that in for
+A<sub>L</sub> and 28 for the number of turns, we can figure out the inductance.
+
+<p class="math">3.14 uH &asymp;
+<span class="fraction">
+<span class="fup">4 &sdot; 28<sup>2</sup></span>
+<span class="bar">/</span>
+<span class="fdn">1000</span>
+</span>
+</p>
+
+But it's not really 3.14 uH, because the math still assumes that the turns
+are spaced evenly and the wire lies flat against the core. Looking at the
+picture again, you can see that's not the case. I used [the chopstick trick][w6bul]
+by Jim Bullington, W6BUL, to wind that toroid, and I still ended up having to
+wind and rewind it several times before I was happy with the result.
 
 The chart below is the band-pass filter for the NorCal 40A, but this time all
 the part tolerances have been taken into consideration. You can use the sliders
@@ -743,6 +779,7 @@ with [Acorn][], and compressed with [ImageOptim][]. Schematics where drawn with
 [book]: http://cambridge.org/us/academic/subjects/engineering/rf-and-microwave-engineering/electronics-radio "David Rutledge (Cambridge University Press): The Electronics of Radio"
 [rm40]: http://www.qrpme.com/?p=product&id=RM4 "Rex Harper, W1REX (QRPme): Rockmite ][ 40m Transceiver"
 [aa7ee]: http://aa7ee.wordpress.com/2013/10/19/the-vk3ye-micro-40-dsb-transceiver/ "Dave Richards, AA7EE (Wordpress): The VK3YE Micro 40 DSB Transceiver"
+[w6bul]: http://www.youtube.com/watch?v=GT44U10WqRA "Jim Bullington, W6BUL (YouTube): A Meditation On Winding Toroids - K6JEB"
 [norcal-40a]: /2014/05/norcal-40a "Frank Mitchell: Building my first HF radio"
 [iPhone 5]: http://support.apple.com/kb/sp655 "Various (Apple): iPhone 5 Technical Specification"
 [Acorn]: http://flyingmeat.com/acorn/ "Gus &amp; Kirstin Mueller (Flying Meat): Acorn - The image editor for humans"
