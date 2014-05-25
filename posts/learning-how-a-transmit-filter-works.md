@@ -1,7 +1,7 @@
 <!--
 title: Learning how a transmit filter works
 created: 15 May 2014 - 7:06 pm
-updated: 25 May 2014 - 9:32 am
+updated: 25 May 2014 - 9:59 am
 publish: 25 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -613,8 +613,8 @@ below the chart to push the values around and watch the plot change.
 
 <div id="real-pass-chart" class="chart"></div>
 <div style="display: block; margin-bottom: 1.5em;">
-  <label style="display: inline-block; width: 7em;">C<sub>37</sub> = <span id="c37-value">4.7</span> pF</label>
-  <input style="display: inline-block;" id="c37-input" type="range" min="4.23" max="5.17" step="0.01" value="4.7"></input>
+  <label style="display: inline-block; width: 7em;">C<sub>37</sub> = <span id="c37-value">4.70</span> pF</label>
+  <input style="display: inline-block;" id="c37-input" type="range" min="4.23" max="5.17" step="0.01" value="4.70"></input>
 </div>
 <div style="display: block; margin-bottom: 1.5em;">
   <label style="display: inline-block; width: 7em;">C<sub>38</sub> = <span id="c38-value">100</span> pF</label>
@@ -731,28 +731,28 @@ function plot () {
 
 
 $('c37-input').oninput = function () {
-  $('c37-value').innerHTML = this.value
+  $('c37-value').innerHTML = parseFloat(this.value, 10).toFixed(2)
   C = (cap('c38') + cap('c39')) * 0.000000000001
   C37 = cap('c37') * 0.000000000001
   plot()
 }
 
 $('c38-input').oninput = function () {
-  $('c38-value').innerHTML = this.value
+  $('c38-value').innerHTML = parseInt(this.value)
   C = (cap('c38') + cap('c39')) * 0.000000000001
   C37 = cap('c37') * 0.000000000001
   plot()
 }
 
 $('c39-input').oninput = function () {
-  $('c39-value').innerHTML = this.value
+  $('c39-value').innerHTML = parseInt(this.value)
   C = (cap('c38') + cap('c39')) * 0.000000000001
   C37 = cap('c37') * 0.000000000001
   plot()
 }
 
 $('l6-input').oninput = function () {
-  $('l6-value').innerHTML = this.value
+  $('l6-value').innerHTML = parseFloat(this.value, 10).toFixed(2)
   L = parseFloat(this.value, 10) * 0.000001
   plot()
 }
