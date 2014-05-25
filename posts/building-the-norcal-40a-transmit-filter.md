@@ -713,7 +713,21 @@ C<sub>39</sub> to bring the filter's behavior back in line with the ideal.
 Likewise if you push them all the way to the right, you've got enough
 variability to correct for that too.
 
+## Where we go from here ##
+
+This is the second part in a multi-part series about building the NorCal
+40A transceiver.
+
+1. [Building my first HF radio][part1]
+2. Transmit filters one capacitor at a time
+
+For the curious, photos where taken with an [iPhone 5][], cropped and resized
+with [Acorn][], and compressed with [ImageOptim][]. Circuits where drawn with
+L<sub>A</sub>T<sub>E</sub>X and graphs where created with [D3][].
+
 
 [book]: http://cambridge.org/us/academic/subjects/engineering/rf-and-microwave-engineering/electronics-radio "David Rutledge (Cambridge University Press): The Electronics of Radio"
 [rm40]: http://www.qrpme.com/?p=product&id=RM4 "Rex Harper, W1REX (QRPme): Rockmite ][ 40m Transceiver"
 [aa7ee]: http://aa7ee.wordpress.com/2013/10/19/the-vk3ye-micro-40-dsb-transceiver/ "Dave Richards, AA7EE (Wordpress): The VK3YE Micro 40 DSB Transceiver"
+[part1]: /2014/04/norcal-40a "Frank Mitchell: Building my first HF radio"
+[D3.js]: http://d3js.org/ "Mike Bostock (D3): Data-Driven Documents"

@@ -1,7 +1,7 @@
 <!--
 title: Building my first HF radio
 created: 6 May 2014 - 7:15 am
-updated: 8 May 2014 - 6:40 am
+updated: 25 May 2014 - 7:07 am
 publish: 8 May 2014
 slug: norcal-40a
 tags: building, radio
@@ -65,6 +65,14 @@ between the B and C revisions. I'm not going to worry though, since the
 component placement drawing in Appendix B shows the same "rev C" text that
 appears on my board.
 
+## Where we go from here ##
+
+This is the second part in a multi-part series about building the NorCal
+40A transceiver. Links to the other parts are below.
+
+1. Building my first HF radio
+2. [Transmit filters one capacitor at a time][part2]
+
 For the curious, photos where taken with an [iPhone 5][], cropped and resized
 with [Acorn][], and compressed with [ImageOptim][]. Dave Richards, AA7EE has
 [a nice article][] about taking good pictures of projects.
@@ -90,4 +98,5 @@ with [Acorn][], and compressed with [ImageOptim][]. Dave Richards, AA7EE has
 [iPhone 5]: http://support.apple.com/kb/sp655 "Various (Apple): iPhone 5 Technical Specification"
 [Acorn]: http://flyingmeat.com/acorn/ "Gus &amp; Kirstin Mueller (Flying Meat): Acorn - The image editor for humans"
 [ImageOptim]: http://imageoptim.com/ "@pornel (ImageOptim): Image compression made easy for Mac OS X"
+[part2]: /2014/04/transmit-filter "Frank Mitchell: Transmit filters one capacitor at a time"
 [a nice article]: http://aa7ee.wordpress.com/2012/06/18/photography-and-air-spaced-variable-capacitors/ "Dave Richards, AA7EE: Photography and Air Speed Variable Capacitors"
