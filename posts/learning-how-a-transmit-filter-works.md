@@ -1,7 +1,7 @@
 <!--
 title: Learning how a transmit filter works
 created: 15 May 2014 - 7:06 pm
-updated: 25 May 2014 - 9:30 am
+updated: 25 May 2014 - 9:32 am
 publish: 25 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -12,7 +12,7 @@ tags: building, radio
 The first practical circuit you build in [_The Electronics of Radio_][book] is a
 transmit filter. By practical, I mean the kind of circuit you could pull out of
 one design and drop into another. Something that fits in a black box. Here's
-what the transmit filter in the NorCal 40A transceiver looks like.
+what the transmit filter in the [NorCal 40A][] transceiver looks like.
 
 <img class="game art" width="640px" height"640px"
      src="/images/norcal-40a-transmit-filter-left-to-right.jpg"
@@ -794,6 +794,7 @@ with [Acorn][], and compressed with [ImageOptim][]. Schematics where drawn with
 
 
 [book]: http://cambridge.org/us/academic/subjects/engineering/rf-and-microwave-engineering/electronics-radio "David Rutledge (Cambridge University Press): The Electronics of Radio"
+[NorCal 40A]: http://www.fix.net/~jparker/wilderness/nc40a.htm "Bob Dyer, K6KK (Wilderness Radio): The NorCal 40A"
 [rm40]: http://www.qrpme.com/?p=product&id=RM4 "Rex Harper, W1REX (QRPme): Rockmite ][ 40m Transceiver"
 [aa7ee]: http://aa7ee.wordpress.com/2013/10/19/the-vk3ye-micro-40-dsb-transceiver/ "Dave Richards, AA7EE (Wordpress): The VK3YE Micro 40 DSB Transceiver"
 [w6bul]: http://www.youtube.com/watch?v=GT44U10WqRA "Jim Bullington, W6BUL (YouTube): A Meditation On Winding Toroids - K6JEB"

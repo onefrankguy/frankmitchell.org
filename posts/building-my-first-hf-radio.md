@@ -1,7 +1,7 @@
 <!--
 title: Building my first HF radio
 created: 6 May 2014 - 7:15 am
-updated: 25 May 2014 - 7:07 am
+updated: 25 May 2014 - 9:31 am
 publish: 8 May 2014
 slug: norcal-40a
 tags: building, radio
@@ -26,7 +26,7 @@ consideration, since it's got great documentation, but the $300 USD price tag
 was a bit out of my budget.
 
 When I heard Bob Dyer was stopping production on [Wilderness Radio][] kits, I
-decided I didn't want to miss out. So I picked up a NorCal 40A, complete with
+decided I didn't want to miss out. So I picked up a [NorCal 40A][], complete with
 all the bells and whistles e.g. a [KC1 Frequency Counter][] and [BuzzNot Noise
 Blanker][]. As it turns out, another perk of the NorCal 40A is that there's a
 book about it! [_The Electronics of Radio_][book] is a college text book that
@@ -84,6 +84,7 @@ with [Acorn][], and compressed with [ImageOptim][]. Dave Richards, AA7EE has
 [SW-40+]: http://smallwonderlabs.com/docs/SW40+_manual.pdf "Dave Benson, K1SWL (Small Wonder Labs): Instruction Manual: The &ldquo;Small Wonder - 40+&rdquo; 40 Meter Superhet Transceiver Kit"
 [Small Wonder Labs]: http://smallwonderlabs.com/ "Dave Benson, K1SWL (Small Wonder Labs): Quality kits for the amateur radio enthusiast"
 [Wilderness Radio]: http://fix.net/~jparker/wild.html "Bob Dyer, K6KK (Wilderness Radio): Kits aimed specifically at the outdoor QRP enthusiast"
+[NorCal 40A]: http://www.fix.net/~jparker/wilderness/nc40a.htm "Bob Dyer, K6KK (Wilderness Radio): The NorCal 40A"
 [book]: http://cambridge.org/us/academic/subjects/engineering/rf-and-microwave-engineering/electronics-radio "David Rutledge (Cambridge University Press): The Electronics of Radio"
 [Cyclone 40]: http://4sqrp.com/cyclone.php "David Cripe, NM0S (Four State QRP Group): Cyclone 40M Transceiver"
 [Four State QRP Group]: http://4sqrp.com/ "Various (Four State QRP Group): Little Radios, Big Fun!"
