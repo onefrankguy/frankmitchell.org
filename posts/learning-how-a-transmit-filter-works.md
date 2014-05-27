@@ -1,7 +1,7 @@
 <!--
 title: Learning how a transmit filter works
 created: 15 May 2014 - 7:06 pm
-updated: 25 May 2014 - 9:59 am
+updated: 27 May 2014 - 6:26 am
 publish: 25 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -55,7 +55,7 @@ which means you can tune it up or down by 20 kHz on either side. Mixing the LO's
 4.9 MHz signal with the VFO's 2.1 MHz signal gives us the variable 7 MHz signal
 we want.
 
-Signal mixing is known as hetrodyning, and like most things that sound like they
+Signal mixing is known as heterodyning, and like most things that sound like they
 herald the dawn of Skynet, it has a down side. Not only does mixing signals get
 you their product, it gets you their difference as well. So we get the 7 MHz
 signal we want, but we also get a 2.8 MHz signal we don't want. And that's where
@@ -63,7 +63,7 @@ the transmit filter comes in. Filters are used to remove unwanted signals.
 
 ## Making a minimal viable filter ##
 
-You can make the worlds smallest filter by putting a capcitor and an inductor in
+You can make the worlds smallest filter by putting a capacitor and an inductor in
 parallel. This is known as an LC circuit, or a tuned circuit, and it stores
 electrical energy through oscillation.
 
@@ -77,12 +77,12 @@ capacitor across an inductor, current will start to flow from the capacitor
 to the inductor and build up a magnetic field in the inductor. But the current
 doesn't stop once the charge on the capacitor is gone. Because inductors resist
 changes in current, the capacitor will begin to charge back up, extracting
-engergy from the magnetic field in the inductor. Back and forth it goes, from
+energy from the magnetic field in the inductor. Back and forth it goes, from
 electric field to magnetic field, swapping polarity each time, and forming
 an oscillator.
 
 You can calculate the frequency an LC circuit oscillates at if you know the
-inducatance in henries and capacitance in farads of the components in it.
+inductance in henries and capacitance in farads of the components in it.
 Multiply the inductance by the capacitance and take the square root. Multiply
 that result by two pi and invert it.
 
@@ -98,7 +98,7 @@ that result by two pi and invert it.
 </p>
 
 The resulting frequency is in hertz, and it's that tuned circuit's resonant
-frequency. Becuase capacitors block low-frequency signals and inductors block
+frequency. Because capacitors block low-frequency signals and inductors block
 high-frequency signals, a tuned circuit will only let signals at its resonate
 frequency through. Filters that behave like this are known as band-pass filters.
 
@@ -171,9 +171,9 @@ notation is usually reserved for calculators and programming languages, but I
 wanted to fit everything on one line.
 
 Crunching through those numbers, we find our filter has a transmission loss
-of 0.0431 volts at 2.8 MHz. Transmission loss is usually expressed in decibals,
-which are a logarithmic scale where minus three deciabals corresponds to a loss
-of half the voltage. We can convert volts to decibals by taking the base ten
+of 0.0431 volts at 2.8 MHz. Transmission loss is usually expressed in decibels,
+which are a logarithmic scale where minus three decibels corresponds to a loss
+of half the voltage. We can convert volts to decibels by taking the base ten
 logarithm of the voltage and multiplying by twenty.
 
 <p class="math">-27 dB &asymp; 20 &sdot; log<sub>10</sub>(0.0431)</p>
@@ -278,7 +278,7 @@ that will put the 2.8 MHz signal we don't want in our filter's stop band.
 
 To fix our filter, we need to add about 13 dB of cut off at 2.8 MHz to push it
 into the stop band. One way to get more loss out of filter is to stick several
-of them togther in serias. We know that capacitors block low-frequency signals,
+of them together in series. We know that capacitors block low-frequency signals,
 so we can stick a capacitor in series with our band-pass circuit and use that
 as an additional level of filtering.
 
@@ -341,11 +341,11 @@ high-pass filter is at rejecting the unwanted signal.
 </p>
 
 Taking the base ten logarithm of the loss factor and multiplying by twenty gives
-us the loss in decibals.
+us the loss in decibels.
 
 <p class="math">-18 dB &asymp; 10 &sdot; log<sub>10</sub>(0.1231)</p>
 
-Eighteen decibals of loss is plenty. If we graph the transmission loss equation,
+Eighteen decibels of loss is plenty. If we graph the transmission loss equation,
 we can get a feel for how well it does across the rest of the band. The chart
 below goes from 1 MHz to 15 MHz.
 
@@ -415,9 +415,9 @@ g.append('svg:path')
 </script>
 
 That doesn't look very promising for 7 MHz. If we crunch through the numbers,
-we find a loss of about 11 dB. Remember that three decibals of loss corresponds
-to a half loss of power. Because decibals is a logarithmic scale, you can
-convert decibals to a loss multiplier by dividing by ten and raising ten to the
+we find a loss of about 11 dB. Remember that three decibels of loss corresponds
+to a half loss of power. Because decibels is a logarithmic scale, you can
+convert decibels to a loss multiplier by dividing by ten and raising ten to the
 power of that result.
 
 <p class="math">P = 10<sup>(dB / 10)</sup></p>
@@ -441,9 +441,9 @@ good, because our band-pass filter was designed with AC signals in mind.
 The chart below shows what happens to our band-pass filter after we add the
 coupling capacitor to it. It looks very similar to the original band-pass filter
 plot, just with all the values shifted down. That's actually another reason to
-work with transmission loss in decibals instead of volts. You can compute the
+work with transmission loss in decibels instead of volts. You can compute the
 total transmission loss of a series of chained filters by summing their
-individual losses in decibals.
+individual losses in decibels.
 
 <div id="ideal-pass-chart" class="chart"></div>
 <script type="text/javascript">
@@ -555,12 +555,12 @@ idealized circuits. When you buy a capacitor, even though it says 100 pF on it,
 it's not actually 100 pF. There's some tolerance level. It might be 100 pF
 plus or minus 10%. That means it's really got a range of 90 pF to 110 pF.
 
-There's a point in Dave Richards's build of the [VK3YE Micro 40 DSB Transceiver] [aa7ee]
+There's a point in Dave Richards's build of the [VK3YE Micro 40 DSB Transceiver][aa7ee]
 where he says
 
-> Pin 1 of Peter’s LM386 is connected to ground via a 47uF cap and
-> a 33 ohm resistor. I didn’t have a 47uF, but I did have a 33uF. Given the wide
-> tolerances of electrolytics, it probably doesn’t matter much but I substituted
+> Pin 1 of Peter's LM386 is connected to ground via a 47uF cap and
+> a 33 ohm resistor. I didn't have a 47uF, but I did have a 33uF. Given the wide
+> tolerances of electrolytics, it probably doesn't matter much but I substituted
 > a 33uF cap and a 47 ohm resistor.
 
 When I first read that I was pretty shocked. What do you mean you dropped 14 uF
@@ -767,7 +767,7 @@ variability to correct for that too.
 
 So even though we can't model reality exactly with math, we can model it well
 enough to get a feel for the behavior of a circuit. We can use it to predict
-new behavior relative to existing behaior when we add new components or
+new behavior relative to existing behavior when we add new components or
 substitute in new values. And we can use it get a deeper understanding of how
 a radio does what it does.
 
