@@ -1,7 +1,7 @@
 <!--
 title: Building my first HF radio
 created: 6 May 2014 - 7:15 am
-updated: 25 May 2014 - 9:31 am
+updated: 27 May 2014 - 6:28 am
 publish: 8 May 2014
 slug: norcal-40a
 tags: building, radio
@@ -12,15 +12,15 @@ building your own HF radio was the defacto way to get on the air. So when
 I upgraded to a General class amateur license in January, I decided I wanted to
 build my own radio.
 
-Part of my motivaion was to really understand how a radio works, instead of
-just turning knobs and pushing buttons on an applicance. Originally, I planned
+Part of my motivation was to really understand how a radio works, instead of
+just turning knobs and pushing buttons on an appliance. Originally, I planned
 to follow the suggestions in Doug Hendricks's ["So You Want To Be A Builder,
 Huh?"][builder] course and follow along with [Elmer 101][] to build a
 [SW-40+][].  But I missed out on the chance to pick one up before [Small Wonder
 Labs][] went out of business.
 
 I thought about getting a [Cyclone 40][] from the [Four State QRP Group][], but
-asside from [the Yahoo discussion group][yahoo], there's not much documentation
+aside from [the Yahoo discussion group][yahoo], there's not much documentation
 on how that particular radio works. The [K1][] from [Elecraft][] got some
 consideration, since it's got great documentation, but the $300 USD price tag
 was a bit out of my budget.
