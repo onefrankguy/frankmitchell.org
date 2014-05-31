@@ -1,13 +1,19 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 31 May 2014 - 9:13 am
+updated: 31 May 2014 - 3:49 pm
 publish: 31 May 2014
 slug: voltage-regulator
 tags: building, radio
 -->
 
 <script src="/js/d3.min.js" charset="utf-8"></script>
+
+I have a friend who spent a couple of semesters at ITT Tech. He says the
+best thing he got out of it was a junk box. You really do need a lot of
+good junk if you want to build radios. Pete Juliano, N6QW, has a nice
+article about [what makes a good junk box][n6qw]. For fun, we'll pretend
+we've got a virtual junk box stocked with all the parts Pete lists.
 
 ## Why battery packs are big ##
 
@@ -17,7 +23,7 @@ through its data sheet, we see typical operation requires 6 volts of power
 and draws 2.4 milliamperes of current. How do we get power that precise?
 
 The obvious solution would be a 6 volt battery. The AA alkaline batteries
-I keep sitting around in my cupboard for the XBox controller can supply 1.5
+I keep sitting around in my cupboard for the Xbox controller can supply 1.5
 volts and up to 250 milliamperes. Slap four of them together in series, and
 we should have enough juice to drive our mixer, right? Not quite.
 
@@ -44,8 +50,87 @@ reverse breakdown voltage is exceeded, it regulates the amount of current
 flowing through it to keep the voltage drop across it constant. That reference
 voltage drop is known as the Zener voltage.
 
-Dig through [a good junk box][n6qw] and you can probably pull out a 8.2 volt
-Zener diode like the [Philips BZX79-B8V2][bzx79].
+Dig through our junk box, and we can pull out a 8.2 volt Zener diode like the
+[Philips BZX79-B8V2][bzx79].
+
+## Simple voltage regulation ##
+
+The circuit below shows the simplest possible voltage regulator we can use
+for our mixer. We've got our 12 volt battery pack. We've got our 8.2 volt Zener
+diode for a reference voltage, and we've got a 470 ohm resistor.
+
+How did we pick that value for the resistor? We know the current through the
+resistor will be split between the diode and the mixer. The mixer will draw
+2.4 milliamperes and the rest will go through the diode. Let's double that
+and go up a bit, and we'll say we want 5 milliamperes through our resistor.
+Ohm's Law tells us that resistance is voltage divided by current.
+
+<p class="math">R =
+<span class="fraction">
+<span class="fup">V</span>
+<span class="bar">/</span>
+<span class="fdn">I</span>
+</span>
+</p>
+
+Our Zener diode will use 8.2 volts and our resistor will pick up the rest.
+If we run with the maximum power of 12 volts, we'll have 3.8 volts across
+our resistor. Plugging in 3.8 volts for V and 5 milliamperes for I gives
+us the maximum value of our resistor.
+
+<p class="math">760 ohms =
+<span class="fraction">
+<span class="fup">3.8 volts</span>
+<span class="bar">/</span>
+<span class="fdn">0.005 amps</span>
+</span>
+</p>
+
+If we run with the minimum power of 9 volts, we'll have 0.8 volts across
+our resistor. Plugging in 0.8 volts for V and 5 milliamperes for I gives
+us the minimum value of our resistor.
+
+<p class="math">160 ohms =
+<span class="fraction">
+<span class="fup">0.8 volts</span>
+<span class="bar">/</span>
+<span class="fdn">0.005 amps</span>
+</span>
+</p>
+
+The 470 ohm resistor in our junk box fits nicely between those two ranges.
+
+## Stepping down the voltage ##
+
+Digging into the data hseet for our Zener diode, we see that its total power
+dissipation is 500 milliwatts. That's the maximum amount of power we can feed
+our diode before it breaks down. Ohm's Law tells us that the maximum current
+through our diode will be its maximum power in watts divided by its Zener
+voltage in volts.
+
+<p class="math">I =
+<span class="fraction">
+<span class="fup">P</span>
+<span class="bar">/</span>
+<span class="fdn">V</span>
+</span>
+</p>
+
+We can plug in 0.5 watts for P and 8.2 volts for V to figure out how
+much current our diode will handle.
+
+<p class="math">0.061 &asymp;
+<span class="fraction">
+<span class="fup">0.5</span>
+<span class="bar">/</span>
+<span class="fdn">8.2</span>
+</span>
+</p>
+
+Our diode can handle about 61 milliamperes before it fails. In practice, it's
+a good idea never to load a Zener diode with more than half its maximum allowed
+current. That gives us a max of 30 milliamperes to power our mixer with, which
+is plenty.
 
 ## Where we go from here ##
 
