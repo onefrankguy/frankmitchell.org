@@ -1,13 +1,18 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 31 May 2014 - 3:49 pm
-publish: 31 May 2014
+updated: 3 June 2014 - 7:21 pm
+publish: 3 June 2014
 slug: voltage-regulator
 tags: building, radio
 -->
 
 <script src="/js/d3.min.js" charset="utf-8"></script>
+
+<img class="game art" width="640px" height"640px"
+     src="/images/norcal-40a-voltage-regulator-parts.jpg"
+     alt="A close up view of the assembled voltage regulator in the NorCal 40A transceiver, looking down on the on/off switch from the back.",
+   title="A close up view of the assembled voltage regulator in the NorCal 40A transceiver, looking down on the on/off switch from the back." />
 
 I have a friend who spent a couple of semesters at ITT Tech. He says the
 best thing he got out of it was a junk box. You really do need a lot of
