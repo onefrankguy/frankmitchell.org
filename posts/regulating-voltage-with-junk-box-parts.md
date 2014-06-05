@@ -14,10 +14,10 @@ mathematical details of complex conjugates are discussed, the description of
 the voltage regulator for the NorCal 40A in [_The Electronics of Radio_][book]
 is remarkably brief. A line on page 152 simply states,
 
-> We will not study regulators but detailed information about this regultor
+> We will not study regulators but detailed information about this regulator
 > is given in Appendix D.
 
-Thumbing through Appendix D, I found a remarkably thurough parts sheet, but
+Thumbing through Appendix D, I found a remarkably thorough parts sheet, but
 little insight into what and why. Given that building my own radio is all about
 learning, I decided to dig into the details and figure out how the power supply
 in the [NorCal 40A][] works. Before we get into that though, here's a picture of
@@ -31,7 +31,7 @@ the assembled power supply circuit.
 From left to right, there's a 10 micro farad capacitor, a 47 nano farad
 capacitor, a single pole double throw switch, a 78L08 voltage regulator, a
 1N5817 diode, and a 2.1 millimeter power jack. The schematic below shows how
-they fit togther eletrically.
+they fit together electrically.
 
 I have a friend who spent a couple of semesters at ITT Tech. He says the
 best thing he got out of it was a junk box. You really do need a lot of
