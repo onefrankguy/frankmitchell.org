@@ -1,7 +1,7 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 4 June 2014 - 9:17 pm
+updated: 4 June 2014 - 10:33 pm
 publish: 4 June 2014
 slug: voltage-regulator
 tags: building, radio
@@ -29,9 +29,61 @@ the assembled power supply circuit.
    title="A close up view of the assembled voltage regulator in the NorCal 40A transceiver, looking down on the on/off switch from the back." />
 
 From left to right, there's a 10 microfarad capacitor, a 47 nanofarad capacitor,
-a single pole double throw switch, a 78L08 voltage regulator, a 1N5817 diode,
-and a 2.1 millimeter power jack. The schematic below shows how they fit together
-electrically.
+a single pole double throw switch, a 78L08 voltage regulator, a 1N5817 Schottky
+diode, and a 2.1 millimeter power jack. The schematic below shows how they fit
+together electrically.
+
+## Polatiry power protection basics ##
+
+The diode prevents the radio from frying if the power supply is accidentally
+plugged in backwards. Assuming there's a fuse in the power supply line, the
+diode will block the flow of current if power is reversed and trip the fuse.
+This is known as polarity protection, and it's the most basic kind of power
+protection.
+
+If there's no fuse in the power supply line, the diode will actually probably
+survive just fine. A [1N5817 Schottky diode][1n5817] has a maximum reverse
+voltage of 20 volts, which is about 5 volts more than what you should feed a
+NorCal 40A.
+
+The fact that it's a Schottky diode means that the forward voltage drop will
+be low compared to other types of diodes. At three amps, the 1N5817 has a
+forward voltage of 750 millivolts. Ohm's Law tells us that resistance in a DC
+circuit is voltage divided by current.
+
+<p class="math">R =
+<span class="fraction">
+<span class="fup">V</span>
+<span class="bar">/</span>
+<span class="fdn">I</span>
+</span>
+</p>
+
+Plugging 0.75 volts in for V and 3 amps in for I, we find the diode has a
+resistance of about 0.25 ohms.
+
+<p class="math">0.25 ohms =
+<span class="fraction">
+<span class="fup">0.75 volts</span>
+<span class="bar">/</span>
+<span class="fdn">3 amps</span>
+</span>
+</p>
+
+Of course resistance is a function of how much current we pump through the
+diode, and it's not linear. The lower the current, the higher the resistance.
+At one amp the forward voltage is 450 millivolts for a resistance of 0.45 ohms.
+That's still very low. It's nice to know that we're not sacrificing much power
+for polarity protection. There are actually [polarity protection schemes that
+sacrifice less power][n0gsg], like using a MOSFET, but they come with other
+costs, like requiring more components to ruggedize them.
+
+## Noisy power supply protection ##
+
+Insert notes here about how AC can get into a DC power line and how you can
+filter it out (both high and low frequencies) with capacitors.
+
+## Keeping part counts (and cost) low ##
 
 I had a bit of concern about my soldering skills after I put in that switch.
 See the front leg (as seen in the picture above, where front is closest to you)
@@ -191,6 +243,8 @@ with [Acorn][], and compressed with [ImageOptim][]. Schematics where drawn with
 [sa602a]: http://www.nxp.com/documents/data_sheet/SA602A.pdf "Various (NXP Semiconductors): SA602A Double-balanced mixer and oscillator - Product data sheet"
 [n6qw]: http://www.jessystems.com/How%20To%20Stuff%20A%20Junk%20Box.pdf "Pete Juliano, N6QW: How To Stuff A Junk Box"
 [bzx79]: http://www.nxp.com/documents/data_sheet/BZX79.pdf "Various (NXP Semiconductors): BZX79 series voltage regulator diodes - Product data sheet"
+[1n5817]: http://www.fairchildsemi.com/ds/1N/1N5819.pdf "Various (Farchild Semiconductor): 1N5817 - 1N5819 Schottky Barrier Rectifier"
+[n0gsg]: http://www.arrl.org/files/file/Technology/HandsOnRadio/Thoughts%20on%20Reverse%20Power%20Protection%20using%20Power%20MOSFETs%20-%20Wheeler%20N0GSG.pdf "Tom Wheeler, N0GSG (ARRL): Thoughts on Reverse Power Protection using Power MOSFETs"
 
 [norcal-40a]: /2014/05/norcal-40a "Frank Mitchell: Building my first HF radio"
 [transmit-filter]: /2014/05/transmit-filter "Frank Mitchell: Learning how a transmit filter works"
