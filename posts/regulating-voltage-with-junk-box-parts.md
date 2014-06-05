@@ -1,18 +1,37 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 3 June 2014 - 7:21 pm
-publish: 3 June 2014
+updated: 4 June 2014 - 8:51 pm
+publish: 4 June 2014
 slug: voltage-regulator
 tags: building, radio
 -->
 
 <script src="/js/d3.min.js" charset="utf-8"></script>
 
+In sharp contrast to something like the [transmit filter][], where the
+mathematical details of complex conjugates are discussed, the description of
+the voltage regulator for the NorCal 40A in [_The Electronics of Radio_][book]
+is remarkably brief. A line on page 152 simply states,
+
+> We will not study regulators but detailed information about this regultor
+> is given in Appendix D.
+
+Thumbing through Appendix D, I found a remarkably thurough parts sheet, but
+little insight into what and why. Given that building my own radio is all about
+learning, I decided to dig into the details and figure out how the power supply
+in the [NorCal 40A][] works. Before we get into that though, here's a picture of
+the assembled power supply circuit.
+
 <img class="game art" width="640px" height"640px"
      src="/images/norcal-40a-voltage-regulator-parts.jpg"
      alt="A close up view of the assembled voltage regulator in the NorCal 40A transceiver, looking down on the on/off switch from the back.",
    title="A close up view of the assembled voltage regulator in the NorCal 40A transceiver, looking down on the on/off switch from the back." />
+
+From left to right, there's a 10 micro farad capacitor, a 47 nano farad
+capacitor, a single pole double throw switch, a 78L08 voltage regulator, a
+1N5817 diode, and a 2.1 millimeter power jack. The schematic below shows how
+they fit togther eletrically.
 
 I have a friend who spent a couple of semesters at ITT Tech. He says the
 best thing he got out of it was a junk box. You really do need a lot of
@@ -150,6 +169,9 @@ For the curious, photos where taken with an [iPhone 5][], cropped and resized
 with [Acorn][], and compressed with [ImageOptim][]. Schematics where drawn with
 [circuitikz][] and graphs where created with [D3][].
 
+
+[book]: http://cambridge.org/us/academic/subjects/engineering/rf-and-microwave-engineering/electronics-radio "David Rutledge (Cambridge University Press): The Electronics of Radio"
+[NorCal 40A]: http://www.fix.net/~jparker/wilderness/nc40a.htm "Bob Dyer, K6KK (Wilderness Radio): The NorCal 40A"
 
 [sa602a]: http://www.nxp.com/documents/data_sheet/SA602A.pdf "Various (NXP Semiconductors): SA602A Double-balanced mixer and oscillator - Product data sheet"
 [n6qw]: http://www.jessystems.com/How%20To%20Stuff%20A%20Junk%20Box.pdf "Pete Juliano, N6QW: How To Stuff A Junk Box"
