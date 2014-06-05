@@ -1,7 +1,7 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 4 June 2014 - 8:51 pm
+updated: 4 June 2014 - 9:17 pm
 publish: 4 June 2014
 slug: voltage-regulator
 tags: building, radio
@@ -9,7 +9,7 @@ tags: building, radio
 
 <script src="/js/d3.min.js" charset="utf-8"></script>
 
-In sharp contrast to something like the [transmit filter][], where the
+In sharp contrast to something like the transmit filter, where the
 mathematical details of complex conjugates are discussed, the description of
 the voltage regulator for the NorCal 40A in [_The Electronics of Radio_][book]
 is remarkably brief. A line on page 152 simply states,
@@ -28,16 +28,31 @@ the assembled power supply circuit.
      alt="A close up view of the assembled voltage regulator in the NorCal 40A transceiver, looking down on the on/off switch from the back.",
    title="A close up view of the assembled voltage regulator in the NorCal 40A transceiver, looking down on the on/off switch from the back." />
 
-From left to right, there's a 10 micro farad capacitor, a 47 nano farad
-capacitor, a single pole double throw switch, a 78L08 voltage regulator, a
-1N5817 diode, and a 2.1 millimeter power jack. The schematic below shows how
-they fit together electrically.
+From left to right, there's a 10 microfarad capacitor, a 47 nanofarad capacitor,
+a single pole double throw switch, a 78L08 voltage regulator, a 1N5817 diode,
+and a 2.1 millimeter power jack. The schematic below shows how they fit together
+electrically.
 
-I have a friend who spent a couple of semesters at ITT Tech. He says the
-best thing he got out of it was a junk box. You really do need a lot of
-good junk if you want to build radios. Pete Juliano, N6QW, has a nice
-article about [what makes a good junk box][n6qw]. For fun, we'll pretend
-we've got a virtual junk box stocked with all the parts Pete lists.
+I had a bit of concern about my soldering skills after I put in that switch.
+See the front leg (as seen in the picture above, where front is closest to you)
+isn't connected to anything. I probed the joint with an ohm meter and it didn't
+go anywhere. It didn't go to ground. It wasn't shorted to nearby components. It
+was just an unconnected solder pad on the board. The term for that kind of
+connection is "floating".
+
+It turns out that's a single pole double throw switch. So when it's in the off
+position, the front and middle legs are connected. When it's in the on position,
+the middle and back legs are connected. Normally, you'd use a single pole single
+throw switch (with just two legs) for an on/off type connection. However,
+there's an identical switch on the front panel of the NorCal 40A that uses both
+connections. Using the same type of switch for both is one fewer kind of part
+you have to buy.
+
+Speaking of parts, I have a friend who spent a couple of semesters at ITT Tech.
+He says the best thing he got out of it was a junk box. You really do need a lot
+of good junk if you want to build radios. Pete Juliano, N6QW, has a nice article
+about [what makes a good junk box][n6qw]. For fun, we'll pretend we've got a
+virtual junk box stocked with all the parts Pete lists.
 
 ## Why battery packs are big ##
 
