@@ -1,8 +1,8 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 4 June 2014 - 10:33 pm
-publish: 4 June 2014
+updated: 5 June 2014 - 7:15 am
+publish: 5 June 2014
 slug: voltage-regulator
 tags: building, radio
 -->
@@ -18,24 +18,52 @@ is remarkably brief. A line on page 152 simply states,
 > is given in Appendix D.
 
 Thumbing through Appendix D, I found a remarkably thorough parts sheet, but
-little insight into what and why. Given that building my own radio is all about
-learning, I decided to dig into the details and figure out how the power supply
-in the [NorCal 40A][] works. Before we get into that though, here's a picture of
-the assembled power supply circuit.
+little insight into what how the voltage regulator worked, or why all the other
+bits are there. Given that building my own radio is all about learning, I
+decided to dig into the details and figure out how the power supply in the
+[NorCal 40A][] works. Before we get into that though, here's a picture of the
+assembled circuit.
 
 <img class="game art" width="640px" height"640px"
      src="/images/norcal-40a-voltage-regulator-parts.jpg"
-     alt="A close up view of the assembled voltage regulator in the NorCal 40A transceiver, looking down on the on/off switch from the back.",
-   title="A close up view of the assembled voltage regulator in the NorCal 40A transceiver, looking down on the on/off switch from the back." />
+     alt="A close up view of the assembled power supply in the NorCal 40A transceiver, looking down on the on/off switch from the back.",
+   title="A close up view of the assembled power supply in the NorCal 40A transceiver, looking down on the on/off switch from the back." />
 
 From left to right, there's a 10 microfarad capacitor, a 47 nanofarad capacitor,
 a single pole double throw switch, a 78L08 voltage regulator, a 1N5817 Schottky
-diode, and a 2.1 millimeter power jack. The schematic below shows how they fit
-together electrically.
+diode, and a 2.1 millimeter DC power jack. The schematic below shows how they
+fit together electrically.
 
-## Polatiry power protection basics ##
+A 10 to 15 volt DC power source feeds power in through the jack, past the diode,
+to the switch, where it's filtered by the capacitors, then regulated down to
+8 volts. Pretty standard for a power circuit. Here's how it works and why
+each piece is there. We'll start with the battery pack and the DC jack.
 
-The diode prevents the radio from frying if the power supply is accidentally
+## Why battery packs are big ##
+
+Suppose we want to power a [Philips SA602A double-balanced mixer and
+oscillator][sa602a], like the one found in the NorCal 40A transceiver. Looking
+through its data sheet, we see typical operation requires 6 volts of power
+and draws 2.4 milliamperes of current. How do we get power that precise?
+
+The obvious solution would be a 6 volt battery. The AA alkaline batteries
+I keep sitting around in my cupboard for the Xbox controller can supply 1.5
+volts and up to 250 milliamperes. Slap four of them together in series, and
+we should have enough juice to drive our mixer, right? Not quite.
+
+That 1.5 volt measurement only applies when the battery is fully charged.
+Since it's been sitting in my cupboard for months, it might only have 1.4
+volts of charge left. So we probably want to stick six or eight batteries
+together in series for 9 to 12 volts of power. That will ensure we've got
+the minimum 6 volts needed for the mixer, even if some of the batteries
+are shot.
+
+Below is a picture of a 12 volt battery back, the kind that holds eight AA
+batteries in place with spring connectors. I got mine from [Adafruit][12v].
+
+## Basic polarity protection ##
+
+The diode prevents the mixer from frying if the power supply is accidentally
 plugged in backwards. Assuming there's a fuse in the power supply line, the
 diode will block the flow of current if power is reversed and trip the fuse.
 This is known as polarity protection, and it's the most basic kind of power
@@ -43,8 +71,8 @@ protection.
 
 If there's no fuse in the power supply line, the diode will actually probably
 survive just fine. A [1N5817 Schottky diode][1n5817] has a maximum reverse
-voltage of 20 volts, which is about 5 volts more than what you should feed a
-NorCal 40A.
+voltage of 20 volts, which is about 8 volts more than what we'll get out of
+our battery pack.
 
 The fact that it's a Schottky diode means that the forward voltage drop will
 be low compared to other types of diodes. At three amps, the 1N5817 has a
@@ -78,19 +106,14 @@ for polarity protection. There are actually [polarity protection schemes that
 sacrifice less power][n0gsg], like using a MOSFET, but they come with other
 costs, like requiring more components to ruggedize them.
 
-## Noisy power supply protection ##
-
-Insert notes here about how AC can get into a DC power line and how you can
-filter it out (both high and low frequencies) with capacitors.
-
 ## Keeping part counts (and cost) low ##
 
-I had a bit of concern about my soldering skills after I put in that switch.
-See the front leg (as seen in the picture above, where front is closest to you)
-isn't connected to anything. I probed the joint with an ohm meter and it didn't
-go anywhere. It didn't go to ground. It wasn't shorted to nearby components. It
-was just an unconnected solder pad on the board. The term for that kind of
-connection is "floating".
+The switch is next, and I had a bit of concern about my soldering skills after
+getting it in. The front leg (as seen in the picture above, where front is
+closest to you) isn't connected to anything. I probed the joint with the
+continuity check function on my multimeter and it didn't go anywhere. It didn't
+go to ground. It wasn't shorted to nearby components. It was just an unconnected
+solder pad on the board. The term for that kind of connection is "floating".
 
 It turns out that's a single pole double throw switch. So when it's in the off
 position, the front and middle legs are connected. When it's in the on position,
@@ -100,30 +123,16 @@ there's an identical switch on the front panel of the NorCal 40A that uses both
 connections. Using the same type of switch for both is one fewer kind of part
 you have to buy.
 
+## Noisy power supply protection ##
+
+Insert notes here about how AC can get into a DC power line and how you can
+filter it out (both high and low frequencies) with capacitors.
+
 Speaking of parts, I have a friend who spent a couple of semesters at ITT Tech.
 He says the best thing he got out of it was a junk box. You really do need a lot
 of good junk if you want to build radios. Pete Juliano, N6QW, has a nice article
 about [what makes a good junk box][n6qw]. For fun, we'll pretend we've got a
 virtual junk box stocked with all the parts Pete lists.
-
-## Why battery packs are big ##
-
-Suppose we want to power a [Philips SA602A double-balanced mixer and
-oscillator][sa602a], like the one found in the NorCal 40A transceiver. Looking
-through its data sheet, we see typical operation requires 6 volts of power
-and draws 2.4 milliamperes of current. How do we get power that precise?
-
-The obvious solution would be a 6 volt battery. The AA alkaline batteries
-I keep sitting around in my cupboard for the Xbox controller can supply 1.5
-volts and up to 250 milliamperes. Slap four of them together in series, and
-we should have enough juice to drive our mixer, right? Not quite.
-
-That 1.5 volt measurement only applies when the battery is fully charged.
-Since it's been sitting in my cupboard for months, it might only have 1.4
-volts of charge left. So we probably want to stick six or eight batteries
-together in series for 9 to 12 volts of power. That will ensure we've got
-the minimum 6 volts needed for the mixer, even if some of the batteries
-are shot.
 
 ## Locking in a reference voltage ##
 
@@ -239,6 +248,7 @@ with [Acorn][], and compressed with [ImageOptim][]. Schematics where drawn with
 
 [book]: http://cambridge.org/us/academic/subjects/engineering/rf-and-microwave-engineering/electronics-radio "David Rutledge (Cambridge University Press): The Electronics of Radio"
 [NorCal 40A]: http://www.fix.net/~jparker/wilderness/nc40a.htm "Bob Dyer, K6KK (Wilderness Radio): The NorCal 40A"
+[12v]: https://www.adafruit.com/products/875 "Various (Adafruit): 8 x AA battery holder with 5.5mm/2.1mm Plug and On/Off Switch"
 
 [sa602a]: http://www.nxp.com/documents/data_sheet/SA602A.pdf "Various (NXP Semiconductors): SA602A Double-balanced mixer and oscillator - Product data sheet"
 [n6qw]: http://www.jessystems.com/How%20To%20Stuff%20A%20Junk%20Box.pdf "Pete Juliano, N6QW: How To Stuff A Junk Box"
