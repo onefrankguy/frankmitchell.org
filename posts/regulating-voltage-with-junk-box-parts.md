@@ -1,7 +1,7 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 7 June 2014 - 2:11 pm
+updated: 7 June 2014 - 3:42 pm
 publish: 7 June 2014
 slug: voltage-regulator
 tags: building, radio
@@ -252,11 +252,11 @@ us the minimum value of our resistor.
 </p>
 
 We don't actually have a 65 ohm resistor in our junk box. The closest we've got
-are 50 ohm resistors and 100 ohm resistors. Using the 50 ohm resistor feeds
+are 50 ohm resistors and 100 ohm resistors. Using a 50 ohm resistor feeds
 our diode with about 36 milliamperes. That's more than the 30 milliampere
-maximum we calculated. Using the 100 ohm resistor feeds our diode with about 18
+maximum we calculated. Using a 100 ohm resistor feeds our diode with about 18
 milliamperes. That's well under the 30 milliampere maximum and still leaves us
-with the 2.4 milliamperes we need to drive our mixer. Hence our choice of 100
+with the 2.4 milliamperes we need to drive our mixer. Hence our choice of a 100
 ohm resistor.
 
 ## Kicking up the current ##
@@ -265,6 +265,54 @@ While 18 milliamperes might be enough to drive our mixer, it's not enough to
 drive our mixer plus all the other parts in our radio. We've still got buffers,
 amplifiers, and oscillators we need to power as well. How do we go from 18
 milliamperes to the 225 milliamperes the NorCal 40A consumes when it transmits?
+
+The solution is a current amplifier, which we can implement with a 2N2222
+transistor. Wayne Burdick, N6KR, once referred to the 2N2222 as "the cockroach
+of the transistor world." As he said, "No matter what happens to us or the
+planet, you'll sill be able to find them in huge quantities." And it's true.
+We've got one in our virtual junk box. Here's what it looks like plugged into
+our voltage regulator.
+
+Let's suppose we've got our receiver on, and it's drawing 15 milliamperes.
+If we switch our transmitter on, the load current will increase to 225
+milliamperes and the load voltage will decrease. Kirchhoff's Voltage Law tells
+us the transistor's collector-emitter voltage will decrease and the base-emitter
+voltage will increase. This will turn the transistor on further and cause it
+deliver more current and increase the load voltage.
+
+I addition to dropping in that transistor, we also increased the value of our
+resistor from 100 ohms to 220 ohms. The formula for computing that resistance in
+ohms is to take the minimum voltage across the resistor in volts and divide it
+by the sum of the minimum current through the diode in amperes, plus the value
+of the maximum load current in amperes divided by one plus the forward gain of
+the transistor.
+
+<p class="math">R =
+<span class="fraction">
+<span class="fup">V<sub>R</sub></span>
+<span class="bar">/</span>
+<span class="fdn">I<sub>D</sub> + I<sub>L</sub> &divide; (1 + h<sub>FE</sub>)</span>
+</span>
+</p>
+
+We know the minimum voltage we'll supply is 10 volts, and our Zener diode will
+draw 8.2 volts, leaving 1.8 volts across our resistor for V<sub>R</sub>. We know
+our Zener diode provides 8.2 volts when the current through it is 5
+milliamperes, so we can use that as the minimum current I<sub>D</sub>. The data
+sheet on the 2N2222 transistor tells us its minimum forward gain is 75, so we'll
+plug that in for h<sub>FE</sub>. And our radio consumes 225 milliamperes when
+transmitting, so that's our maximum load I<sub>L</sub>. Crunching through those
+numbers tells us how big our resistor needs to be.
+
+<p class="math">226 ohms &asymp;
+<span class="fraction">
+<span class="fup">1.8 volts</span>
+<span class="bar">/</span>
+<span class="fdn">0.005 amps + 0.255 amps &divide; (75 + 1)</span>
+</span>
+</p>
+
+The 220 ohm resistor in our virtual junk box is close enough.
 
 ## Stepping down the voltage ##
 
@@ -301,6 +349,3 @@ with [Acorn][], and compressed with [ImageOptim][]. Schematics where drawn with
 [ImageOptim]: http://imageoptim.com/ "@pornel (ImageOptim): Image compression made easy for Mac OS X"
 [circuitikz]: http://www.ctan.org/pkg/circuitikz "Massimo Redaelli (CTAN): circuitikz - Draw electrical networks with TikZ"
 [D3]: http://d3js.org/ "Mike Bostock (D3): Data-Driven Documents"
-
-<!--
--->
