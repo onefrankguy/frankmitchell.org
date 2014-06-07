@@ -1,8 +1,8 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 5 June 2014 - 7:15 am
-publish: 5 June 2014
+updated: 7 June 2014 - 2:11 pm
+publish: 7 June 2014
 slug: voltage-regulator
 tags: building, radio
 -->
@@ -53,23 +53,29 @@ we should have enough juice to drive our mixer, right? Not quite.
 
 That 1.5 volt measurement only applies when the battery is fully charged.
 Since it's been sitting in my cupboard for months, it might only have 1.4
-volts of charge left. So we probably want to stick six or eight batteries
-together in series for 9 to 12 volts of power. That will ensure we've got
+volts of charge left. So we probably want to stick seven or eight batteries
+together in series for 10 to 12 volts of power. That will ensure we've got
 the minimum 6 volts needed for the mixer, even if some of the batteries
 are shot.
 
 Below is a picture of a 12 volt battery back, the kind that holds eight AA
 batteries in place with spring connectors. I got mine from [Adafruit][12v].
 
+It ended up being cheaper to get the battery pack than it was to get the 2.1
+millimeter plug and switch on their own. Dave Bixler, W0CH, points out that his
+NorCal 40A [runs just fine from a 12 volt battery pack][w0ch], so we don't
+have to worry about not having enough juice for our mixer. With the power source
+covered, we can move on to the next part in our circuit, the diode.
+
 ## Basic polarity protection ##
 
-The diode prevents the mixer from frying if the power supply is accidentally
-plugged in backwards. Assuming there's a fuse in the power supply line, the
+The diode prevents the mixer from frying if the power source is accidentally
+plugged in backwards. Assuming there's a fuse in the power source line, the
 diode will block the flow of current if power is reversed and trip the fuse.
 This is known as polarity protection, and it's the most basic kind of power
 protection.
 
-If there's no fuse in the power supply line, the diode will actually probably
+If there's no fuse in the power source line, the diode will actually probably
 survive just fine. A [1N5817 Schottky diode][1n5817] has a maximum reverse
 voltage of 20 volts, which is about 8 volts more than what we'll get out of
 our battery pack.
@@ -120,24 +126,50 @@ position, the front and middle legs are connected. When it's in the on position,
 the middle and back legs are connected. Normally, you'd use a single pole single
 throw switch (with just two legs) for an on/off type connection. However,
 there's an identical switch on the front panel of the NorCal 40A that uses both
-connections. Using the same type of switch for both is one fewer kind of part
-you have to buy.
+connections. Using the same type of switch for both makes for fewer kinds of
+parts. That keeps costs down.
 
-## Noisy power supply protection ##
+## Noisy power source protection ##
 
-Insert notes here about how AC can get into a DC power line and how you can
-filter it out (both high and low frequencies) with capacitors.
+We can't do the same cost savings on the capacitors that we did with the switch.
+We actually do need both of them, one large electrolytic at 10 microfarads and
+one small disc at 47 nanofarads. These capacitors smooth out noisy power
+sources.
 
-Speaking of parts, I have a friend who spent a couple of semesters at ITT Tech.
-He says the best thing he got out of it was a junk box. You really do need a lot
-of good junk if you want to build radios. Pete Juliano, N6QW, has a nice article
-about [what makes a good junk box][n6qw]. For fun, we'll pretend we've got a
-virtual junk box stocked with all the parts Pete lists.
+Our circuit has a little bit of inductance from the diode. This inductance means
+the power source can't respond instantly to power need changes in the mixer. The
+large electrolytic capacitor (it's the blue one in the picture) acts as a
+reservoir of charge. It can deliver a burst of power on demand until current can
+get through the diode. It also acts as a filter to remove low frequency AC noise
+that might be imposed on the line.
+
+The small disc capacitor (it's the orange one in the picture) acts as a filter
+to remove high frequency AC noise that might be imposed on the line. Sometimes
+a small ferrite bead is placed in series with the supply line to help remove
+internally generated noise too.
+
+Capacitors used in this fashion are called decoupling capacitors, since they
+break the circuit into two parts, and offer an alternative path for AC to flow
+through. Other names for them are bypass capacitors or shunt capacitors.
+
+## Sourcing a junk box of parts ##
+
+Okay, we've got a safe clean variable power source of 10 to 12 volts. How can
+we reduce that to the 6 volts we need for our mixer? The solution is to use a
+voltage regulator.
+
+The voltage regulator in the NorCal 40A is a [78L08][78l08]. On the outside it's
+a tiny three legged device in a TO-92 package. But inside it's packed with about
+thirty-two discrete parts. Rather than try to analyze that entire circuit, we'll
+build our own virtual one instead.
+
+You need a lot of good junk if you want to build stuff. I have a friend who
+spent a couple of semesters at ITT Tech. He says the best thing he got out of it
+was a junk box. For our virtual junk box, we'll borrow a parts list from Pete
+Juliano, N6QW. He has a nice article about [what makes a good junk box][n6qw],
+so let's build our voltage regulator from that.
 
 ## Locking in a reference voltage ##
-
-Given that we've got a variable 9 to 12 volts of power, how can we reduce
-that to the 6 volts we need? The solution is to use a voltage regulator.
 
 The heart of a voltage regulator is a Zener diode. A normal diode only
 allows current to flow in one direction. Applying voltage in the opposite
@@ -157,52 +189,14 @@ Dig through our junk box, and we can pull out a 8.2 volt Zener diode like the
 
 The circuit below shows the simplest possible voltage regulator we can use
 for our mixer. We've got our 12 volt battery pack. We've got our 8.2 volt Zener
-diode for a reference voltage, and we've got a 470 ohm resistor.
+diode for a reference voltage, and we've got a 100 ohm resistor.
 
-How did we pick that value for the resistor? We know the current through the
-resistor will be split between the diode and the mixer. The mixer will draw
-2.4 milliamperes and the rest will go through the diode. Let's double that
-and go up a bit, and we'll say we want 5 milliamperes through our resistor.
-Ohm's Law tells us that resistance is voltage divided by current.
+How did we pick that value for the resistor? Well we know the current through
+the resistor will be split between the diode and the mixer. The mixer will draw
+2.4 milliamperes and the rest will go through the diode. How much current
+can the diode handle?
 
-<p class="math">R =
-<span class="fraction">
-<span class="fup">V</span>
-<span class="bar">/</span>
-<span class="fdn">I</span>
-</span>
-</p>
-
-Our Zener diode will use 8.2 volts and our resistor will pick up the rest.
-If we run with the maximum power of 12 volts, we'll have 3.8 volts across
-our resistor. Plugging in 3.8 volts for V and 5 milliamperes for I gives
-us the maximum value of our resistor.
-
-<p class="math">760 ohms =
-<span class="fraction">
-<span class="fup">3.8 volts</span>
-<span class="bar">/</span>
-<span class="fdn">0.005 amps</span>
-</span>
-</p>
-
-If we run with the minimum power of 9 volts, we'll have 0.8 volts across
-our resistor. Plugging in 0.8 volts for V and 5 milliamperes for I gives
-us the minimum value of our resistor.
-
-<p class="math">160 ohms =
-<span class="fraction">
-<span class="fup">0.8 volts</span>
-<span class="bar">/</span>
-<span class="fdn">0.005 amps</span>
-</span>
-</p>
-
-The 470 ohm resistor in our junk box fits nicely between those two ranges.
-
-## Stepping down the voltage ##
-
-Digging into the data hseet for our Zener diode, we see that its total power
+Digging into the data sheet for our Zener diode, we see that its total power
 dissipation is 500 milliwatts. That's the maximum amount of power we can feed
 our diode before it breaks down. Ohm's Law tells us that the maximum current
 through our diode will be its maximum power in watts divided by its Zener
@@ -219,11 +213,11 @@ voltage in volts.
 We can plug in 0.5 watts for P and 8.2 volts for V to figure out how
 much current our diode will handle.
 
-<p class="math">0.061 &asymp;
+<p class="math">0.061 amps &asymp;
 <span class="fraction">
-<span class="fup">0.5</span>
+<span class="fup">0.5 watts</span>
 <span class="bar">/</span>
-<span class="fdn">8.2</span>
+<span class="fdn">8.2 volts</span>
 </span>
 </p>
 
@@ -231,6 +225,48 @@ Our diode can handle about 61 milliamperes before it fails. In practice, it's
 a good idea never to load a Zener diode with more than half its maximum allowed
 current. That gives us a max of 30 milliamperes to power our mixer with, which
 is plenty.
+
+Thirty milliamperes of power minus the 2.4 milliamperes the mixer will draw
+leaves us with 27.6 milliamperes through our resistor. Ohm's Law tells us that
+resistance is voltage divided by current.
+
+<p class="math">R =
+<span class="fraction">
+<span class="fup">V</span>
+<span class="bar">/</span>
+<span class="fdn">I</span>
+</span>
+</p>
+
+Our Zener diode will use 8.2 volts and our resistor will pick up the rest.
+If we run with the minimum power of 10 volts, we'll have 1.8 volts across
+our resistor. Plugging in 1.8 volts for V and 27.6 milliamperes for I gives
+us the minimum value of our resistor.
+
+<p class="math">65 ohms &asymp;
+<span class="fraction">
+<span class="fup">1.8 volts</span>
+<span class="bar">/</span>
+<span class="fdn">0.0276 amps</span>
+</span>
+</p>
+
+We don't actually have a 65 ohm resistor in our junk box. The closest we've got
+are 50 ohm resistors and 100 ohm resistors. Using the 50 ohm resistor feeds
+our diode with about 36 milliamperes. That's more than the 30 milliampere
+maximum we calculated. Using the 100 ohm resistor feeds our diode with about 18
+milliamperes. That's well under the 30 milliampere maximum and still leaves us
+with the 2.4 milliamperes we need to drive our mixer. Hence our choice of 100
+ohm resistor.
+
+## Kicking up the current ##
+
+While 18 milliamperes might be enough to drive our mixer, it's not enough to
+drive our mixer plus all the other parts in our radio. We've still got buffers,
+amplifiers, and oscillators we need to power as well. How do we go from 18
+milliamperes to the 225 milliamperes the NorCal 40A consumes when it transmits?
+
+## Stepping down the voltage ##
 
 ## Where we go from here ##
 
@@ -255,6 +291,8 @@ with [Acorn][], and compressed with [ImageOptim][]. Schematics where drawn with
 [bzx79]: http://www.nxp.com/documents/data_sheet/BZX79.pdf "Various (NXP Semiconductors): BZX79 series voltage regulator diodes - Product data sheet"
 [1n5817]: http://www.fairchildsemi.com/ds/1N/1N5819.pdf "Various (Farchild Semiconductor): 1N5817 - 1N5819 Schottky Barrier Rectifier"
 [n0gsg]: http://www.arrl.org/files/file/Technology/HandsOnRadio/Thoughts%20on%20Reverse%20Power%20Protection%20using%20Power%20MOSFETs%20-%20Wheeler%20N0GSG.pdf "Tom Wheeler, N0GSG (ARRL): Thoughts on Reverse Power Protection using Power MOSFETs"
+[w0ch]: http://www.w0ch.net/nc40a/nc40a.htm "Dave Bixler, W0CH: Wilderness / NorCal 40A"
+[78l08]: http://www.st.com/web/en/resource/technical/document/datasheet/CD00000446.pdf "Various (STMicroelectronics): L78L Positive voltage regulators - Product data sheet"
 
 [norcal-40a]: /2014/05/norcal-40a "Frank Mitchell: Building my first HF radio"
 [transmit-filter]: /2014/05/transmit-filter "Frank Mitchell: Learning how a transmit filter works"
@@ -263,3 +301,6 @@ with [Acorn][], and compressed with [ImageOptim][]. Schematics where drawn with
 [ImageOptim]: http://imageoptim.com/ "@pornel (ImageOptim): Image compression made easy for Mac OS X"
 [circuitikz]: http://www.ctan.org/pkg/circuitikz "Massimo Redaelli (CTAN): circuitikz - Draw electrical networks with TikZ"
 [D3]: http://d3js.org/ "Mike Bostock (D3): Data-Driven Documents"
+
+<!--
+-->
