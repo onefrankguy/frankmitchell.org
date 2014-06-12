@@ -1,8 +1,8 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 7 June 2014 - 3:42 pm
-publish: 7 June 2014
+updated: 12 June 2014 - 7:57 am
+publish: 12 June 2014
 slug: voltage-regulator
 tags: building, radio
 -->
@@ -270,15 +270,21 @@ The solution is a current amplifier, which we can implement with a 2N2222
 transistor. Wayne Burdick, N6KR, once referred to the 2N2222 as "the cockroach
 of the transistor world." As he said, "No matter what happens to us or the
 planet, you'll sill be able to find them in huge quantities." And it's true.
-We've got one in our virtual junk box. Here's what it looks like plugged into
-our voltage regulator.
+We've got one in our junk box. Here's what it looks like plugged into our
+voltage regulator.
+
+Current flows through our resistor into our Zener diode, which regulates the
+amount of current passing through it so the voltage at the base of the
+transistor is 8.2 volts. Since the transistor is connected in forward-emitter
+mode, it will open a path for current to flow from the collector to the emitter.
+This collector-emitter current is what powers our radio.
 
 Let's suppose we've got our receiver on, and it's drawing 15 milliamperes.
 If we switch our transmitter on, the load current will increase to 225
-milliamperes and the load voltage will decrease. Kirchhoff's Voltage Law tells
-us the transistor's collector-emitter voltage will decrease and the base-emitter
-voltage will increase. This will turn the transistor on further and cause it
-deliver more current and increase the load voltage.
+milliamperes. Previously, that current would have to pass through our Zener
+diode, which we know can't handle it. But the addition of the transistor puts
+the Zener diode on a separate branch. Load current passes through the transistor
+instead, which can handle the demand.
 
 I addition to dropping in that transistor, we also increased the value of our
 resistor from 100 ohms to 220 ohms. The formula for computing that resistance in
@@ -298,11 +304,11 @@ the transistor.
 We know the minimum voltage we'll supply is 10 volts, and our Zener diode will
 draw 8.2 volts, leaving 1.8 volts across our resistor for V<sub>R</sub>. We know
 our Zener diode provides 8.2 volts when the current through it is 5
-milliamperes, so we can use that as the minimum current I<sub>D</sub>. The data
-sheet on the 2N2222 transistor tells us its minimum forward gain is 75, so we'll
-plug that in for h<sub>FE</sub>. And our radio consumes 225 milliamperes when
-transmitting, so that's our maximum load I<sub>L</sub>. Crunching through those
-numbers tells us how big our resistor needs to be.
+milliamperes, so we can use that as the minimum current I<sub>D</sub>. The [data
+sheet on the 2N2222 transistor][2n2222] tells us its minimum forward gain is 75,
+so we'll plug that in for h<sub>FE</sub>. And our radio consumes 225
+milliamperes when transmitting, so that's our maximum load I<sub>L</sub>.
+Crunching through those numbers tells us how big our resistor needs to be.
 
 <p class="math">226 ohms &asymp;
 <span class="fraction">
@@ -312,9 +318,48 @@ numbers tells us how big our resistor needs to be.
 </span>
 </p>
 
-The 220 ohm resistor in our virtual junk box is close enough.
+The 220 ohm resistor in our junk box is close enough.
 
 ## Stepping down the voltage ##
+
+Our Zener diode is keeping our voltage regulated at 8.2 volts, and we know
+we can pull the 225 milliamperes of current we need through our resistor.
+But what do we do about the fact that our mixer doesn't actually need 8.2 volts?
+We can step the voltage down from 8.2 volts to 6 volts with a voltage divider.
+
+The simplest voltage divider is two resistors in series. Here's what that looks
+like when we wire it into our circuit.
+
+Given two resistors of the same value, the voltage at the point they join will
+be half the input voltage. The formula for output voltage given two arbitrary
+resistors is to take the value of the second resistor in ohms and divide it by
+the sum of the first resistor's value in ohms plus the second resistor's value
+in ohms. Then multiply the result by the input voltage.
+
+<p class="math">V<sub>out</sub> =
+<span class="fraction">
+<span class="fup">R<sub>2</sub></span>
+<span class="bar">/</span>
+<span class="fdn">R<sub>1</sub> + R<sub>2</sub></span>
+</span> &sdot; V<sub>in</sub>
+</p>
+
+We know that our input voltage is 8.2 volts and our output voltage is 6 volts.
+Digging through the set of resistors in our junk box, we find that a 330 ohm
+resistor and a 1000 ohm resistor will get us close.
+
+<p class="math">6.2 volts &asymp;
+<span class="fraction">
+<span class="fup">1000 ohms</span>
+<span class="bar">/</span>
+<span class="fdn">330 ohms + 1000 ohms</span>
+</span> &sdot; 8.2 volts
+</p>
+
+Our mixer needs at least 4.5 volts and can handle up to 8.5 volts, so driving it
+with 6.2 volts isn't a problem. The reason we stepped down the voltage in the
+first place, is because our Zener diode can potentially deliver up to 8.7 volts,
+which is more than our mixer can handle.
 
 ## Where we go from here ##
 
@@ -341,6 +386,7 @@ with [Acorn][], and compressed with [ImageOptim][]. Schematics where drawn with
 [n0gsg]: http://www.arrl.org/files/file/Technology/HandsOnRadio/Thoughts%20on%20Reverse%20Power%20Protection%20using%20Power%20MOSFETs%20-%20Wheeler%20N0GSG.pdf "Tom Wheeler, N0GSG (ARRL): Thoughts on Reverse Power Protection using Power MOSFETs"
 [w0ch]: http://www.w0ch.net/nc40a/nc40a.htm "Dave Bixler, W0CH: Wilderness / NorCal 40A"
 [78l08]: http://www.st.com/web/en/resource/technical/document/datasheet/CD00000446.pdf "Various (STMicroelectronics): L78L Positive voltage regulators - Product data sheet"
+[2n2222]: http://www.onsemi.com/pub_link/Collateral/P2N2222A-D.PDF "Various (ON Semiconductor): P2N2222A - Product data sheet"
 
 [norcal-40a]: /2014/05/norcal-40a "Frank Mitchell: Building my first HF radio"
 [transmit-filter]: /2014/05/transmit-filter "Frank Mitchell: Learning how a transmit filter works"
