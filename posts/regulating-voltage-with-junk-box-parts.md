@@ -1,8 +1,8 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 12 June 2014 - 10:01 pm
-publish: 12 June 2014
+updated: 13 June 2014 - 6:39 am
+publish: 13 June 2014
 slug: voltage-regulator
 tags: building, radio
 -->
@@ -210,6 +210,11 @@ Dig through our junk box, and we can pull out a 8.2 volt Zener diode like the
 The circuit below shows the simplest possible voltage regulator we can use
 for our mixer. We've got our 12 volt battery pack. We've got our 8.2 volt Zener
 diode for a reference voltage, and we've got a 100 ohm resistor.
+
+<img class="game art" width="446px" height"216px"
+     src="/images/norcal-40a-voltage-regulator-simple.png"
+     alt="An unregulated 12 volt battery is connected in series to a 100 ohm resistor. In parallel with the battery is a reverse-biased 8.2 volt Zener diode. The result is a regulated 8.2 volt source.",
+   title="An unregulated 12 volt battery is connected in series to a 100 ohm resistor. In parallel with the battery is a reverse-biased 8.2 volt Zener diode. The result is a regulated 8.2 volt source." />
 
 How did we pick that value for the resistor? Well we know the current through
 the resistor will be split between the diode and the mixer. The mixer will draw
