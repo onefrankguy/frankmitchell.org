@@ -1,7 +1,7 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 12 June 2014 - 7:57 am
+updated: 12 June 2014 - 10:01 pm
 publish: 12 June 2014
 slug: voltage-regulator
 tags: building, radio
@@ -41,10 +41,21 @@ each piece is there. We'll start with the battery pack and the DC jack.
 
 ## Why battery packs are big ##
 
-Suppose we want to power a [Philips SA602A double-balanced mixer and
-oscillator][sa602a], like the one found in the NorCal 40A transceiver. Looking
-through its data sheet, we see typical operation requires 6 volts of power
-and draws 2.4 milliamperes of current. How do we get power that precise?
+The image below shows the back panel of the NorCal 40A. The 2.1 millimeter
+power input jack is clearly labeled as accepting 10 to 15 volts DC. It's also
+labeled as being center pin positive. I dug through the wall warts in my junk
+box, and all of them where center pin negative. So much for driving my radio
+off the mains. Guess I'm going wth a portable power supply.
+
+<img class="game art" width="640px" height"640px"
+     src="/images/norcal-40a-voltage-regulator-panel.jpg"
+     alt="A view of back panel of the NorCal 40A transceiver, showing off the DC power jack and on/off switch.",
+   title="A view of back panel of the NorCal 40A transceiver, showing off the DC power jack and on/off switch." />
+
+Part of that 10 to 15 volts of power will go to the [Philips SA602A
+double-balanced mixer and oscillator][sa602a]. Looking through its data sheet,
+we see typical operation requires 6 volts of power and draws 2.4 milliamperes
+of current. How do we get power that precise?
 
 The obvious solution would be a 6 volt battery. The AA alkaline batteries
 I keep sitting around in my cupboard for the Xbox controller can supply 1.5
@@ -115,19 +126,28 @@ costs, like requiring more components to ruggedize them.
 ## Keeping part counts (and cost) low ##
 
 The switch is next, and I had a bit of concern about my soldering skills after
-getting it in. The front leg (as seen in the picture above, where front is
-closest to you) isn't connected to anything. I probed the joint with the
-continuity check function on my multimeter and it didn't go anywhere. It didn't
-go to ground. It wasn't shorted to nearby components. It was just an unconnected
-solder pad on the board. The term for that kind of connection is "floating".
+getting it in. Looking at the switch from the back, you can see there are three
+legs that come off it and attach to the circuit board.
+
+<img class="game art" width="640px" height"640px"
+     src="/images/norcal-40a-voltage-regulator-switch.jpg"
+     alt="An overhead view of the single pole double throw on/off switch in the NorCal 40A transceiver, showing the three solder pads that attach the switch to the PCB.",
+   title="An overhead view of the single pole double throw on/off switch in the NorCal 40A transceiver, showing the three solder pads that attach the switch to the PCB." />
+
+The top leg (as seen in the picture above, it's the one closest to you) isn't
+connected to anything. I probed the joint with the continuity check function on
+my multimeter and it didn't go anywhere. It didn't go to ground. It wasn't
+shorted to nearby components. It was just an unconnected solder pad on the
+board. The term for that kind of connection is "floating".
 
 It turns out that's a single pole double throw switch. So when it's in the off
-position, the front and middle legs are connected. When it's in the on position,
-the middle and back legs are connected. Normally, you'd use a single pole single
-throw switch (with just two legs) for an on/off type connection. However,
+position, the top and middle legs are connected. When it's in the on position,
+the middle and bottom legs are connected. Normally, you'd use a single pole
+single throw switch (with just two legs) for an on/off type connection. However,
 there's an identical switch on the front panel of the NorCal 40A that uses both
 connections. Using the same type of switch for both makes for fewer kinds of
-parts. That keeps costs down.
+parts. When you're building radios, that's a good thing, since it keeps costs
+down.
 
 ## Noisy power source protection ##
 
@@ -360,6 +380,17 @@ Our mixer needs at least 4.5 volts and can handle up to 8.5 volts, so driving it
 with 6.2 volts isn't a problem. The reason we stepped down the voltage in the
 first place, is because our Zener diode can potentially deliver up to 8.7 volts,
 which is more than our mixer can handle.
+
+## What we've got so far ##
+
+The image below shows the power circuit in relation to the transmit filter in
+the NorCal 40A. I put nuts on the stand offs for the circuit board, since
+without them the weight of the on/off switch caused the whole thing to tilt.
+
+<img class="game art" width="640px" height"640px"
+     src="/images/norcal-40a-voltage-regulator-overview.jpg"
+     alt="An overhead view of the NorCal 40A showing the power supply circuit and transmit filter.",
+   title="An overhead view of the NorCal 40A showing the power supply circuit and transmit filter." />
 
 ## Where we go from here ##
 
