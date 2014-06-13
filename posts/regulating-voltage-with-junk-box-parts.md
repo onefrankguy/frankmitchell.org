@@ -131,8 +131,8 @@ legs that come off it and attach to the circuit board.
 
 <img class="game art" width="640px" height"640px"
      src="/images/norcal-40a-voltage-regulator-switch.jpg"
-     alt="An overhead view of the single pole double throw on/off switch in the NorCal 40A transceiver, showing the three solder pads that attach the switch to the PCB.",
-   title="An overhead view of the single pole double throw on/off switch in the NorCal 40A transceiver, showing the three solder pads that attach the switch to the PCB." />
+     alt="An overhead view of the single pole double throw on/off switch in the NorCal 40A transceiver, showing the three solder pads that attach the switch to the circuit board.",
+   title="An overhead view of the single pole double throw on/off switch in the NorCal 40A transceiver, showing the three solder pads that attach the switch to the circuit board." />
 
 The top leg (as seen in the picture above, it's the one closest to you) isn't
 connected to anything. I probed the joint with the continuity check function on
