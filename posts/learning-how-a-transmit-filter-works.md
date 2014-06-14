@@ -1,7 +1,7 @@
 <!--
 title: Learning how a transmit filter works
 created: 15 May 2014 - 7:06 pm
-updated: 14 June 2014 - 4:10 pm
+updated: 14 June 2014 - 4:14 pm
 publish: 25 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -226,7 +226,7 @@ var gain = function (mhz) {
 var g = d3.select('#band-pass-chart')
   .append('svg:svg')
   .attr('width', '100%')
-  .attr('height', '528px')
+  .attr('height', '33em')
   .attr('viewBox', '0 0 '+w+' '+h+'')
 
 var line = d3.svg.line()
@@ -384,7 +384,7 @@ var gain = function (mhz) {
 var g = d3.select('#high-pass-chart')
   .append('svg:svg')
   .attr('width', '100%')
-  .attr('height', '528px')
+  .attr('height', '33em')
   .attr('viewBox', '0 0 '+w+' '+h+'')
 
 var line = d3.svg.line()
@@ -495,7 +495,7 @@ var gain = function (mhz) {
 var g = d3.select('#ideal-pass-chart')
   .append('svg:svg')
   .attr('width', '100%')
-  .attr('height', '528px')
+  .attr('height', '33em')
   .attr('viewBox', '0 0 '+w+' '+h+'')
 
 var line = d3.svg.line()
@@ -677,7 +677,7 @@ var gain = function (mhz) {
 var g = d3.select('#real-pass-chart')
   .append('svg:svg')
   .attr('width', '100%')
-  .attr('height', '528px')
+  .attr('height', '33em')
   .attr('viewBox', '0 0 '+w+' '+h+'')
 
 var line = d3.svg.line()
