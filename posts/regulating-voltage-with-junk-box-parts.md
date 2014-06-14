@@ -1,8 +1,8 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 13 June 2014 - 6:39 am
-publish: 13 June 2014
+updated: 14 June 2014 - 6:36 am
+publish: 14 June 2014
 slug: voltage-regulator
 tags: building, radio
 -->
@@ -297,6 +297,11 @@ of the transistor world." As he said, "No matter what happens to us or the
 planet, you'll sill be able to find them in huge quantities." And it's true.
 We've got one in our junk box. Here's what it looks like plugged into our
 voltage regulator.
+
+<img class="game art" width="505px" height"322px"
+     src="/images/norcal-40a-voltage-regulator-amped.png"
+     alt="The positive terminal of an unregulated 12 volt battery is connected to the collector of a 2N2222 transistor. A reverse-biased 8.2 volt Zener diode is connected to the negative terminal of the battery and the base of the transistor. A 220 ohm resistor is shorted across the base and collector of the transistor. The result is a regulated 8.2 volt source (at the emitter of the transistor) that can handle a load of at least 225 milliamperes.",
+   title="The positive terminal of an unregulated 12 volt battery is connected to the collector of a 2N2222 transistor. A reverse-biased 8.2 volt Zener diode is connected to the negative terminal of the battery and the base of the transistor. A 220 ohm resistor is shorted across the base and collector of the transistor. The result is a regulated 8.2 volt source (at the emitter of the transistor) that can handle a load of at least 225 milliamperes." />
 
 Current flows through our resistor into our Zener diode, which regulates the
 amount of current passing through it so the voltage at the base of the

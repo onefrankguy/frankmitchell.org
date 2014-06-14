@@ -1,0 +1,18 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx]{circuitikz}
+
+\begin{document}
+\begin{circuitikz} \draw
+(3,4) node[npn, rotate=90, scale=1.5](npn) {}
+(3,4.025) node[anchor=south] {2N2222}
+(0,0) to[battery, l^=12<\volt>] (0,4)
+      to[short] (npn.C)
+(1,4) to[short, *-] (1,2)
+      to[R, l=220<\ohm>] (3,2)
+(0,0) to[short, -*] (3,0)
+      to[zD*, l_=8.2<\volt>] (3,2)
+      to[short, *-] (npn.B)
+(npn.E) to[short, -o] (5,4) node[anchor=west] {+8.2 V}
+(3,0) to[short, -o] (5,0) node[anchor=west] {-8.2 V}
+; \end{circuitikz}
+\end{document}
