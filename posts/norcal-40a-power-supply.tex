@@ -3,9 +3,10 @@
 
 \begin{document}
 \begin{circuitikz} \draw
-(0,2) node[anchor=east] {V$_{in}$}
-(0,2) to[D*, o-, l=1N5817] (2,2)
-(2,2) to[cspst] (4,2)
+(3,2) node[spdt, rotate=180, anchor=in] (Sw) {}
+(-0.5,2) node[anchor=east] {V$_{in}$}
+(-0.5,1.685) to[sD*, o-, l=1N5817] (1.5,1.685) to[short] (Sw.out 1)
+(Sw.in) to[short] (4,2)
 (4,0) to[C, -*, l=47<\nano\farad>] (4,2)
 (6.5,0) to[pC, -*, l=20<\micro\farad>] (6.5,2)
 (5.25,0) node[ground] {}

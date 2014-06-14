@@ -1,7 +1,7 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 14 June 2014 - 3:14 pm
+updated: 14 June 2014 - 3:39 pm
 publish: 14 June 2014
 slug: voltage-regulator
 tags: building, radio
@@ -34,10 +34,10 @@ a single pole double throw switch, a 78L08 voltage regulator, a 1N5817 Schottky
 diode, and a 2.1 millimeter DC power jack. The schematic below shows how they
 fit together electrically.
 
-<img class="game art" width="712px" height"245px"
+<img class="game art" width="742px" height"236px"
      src="/images/norcal-40a-power-supply.png"
-     alt="A voltage source feeds into a 1N5817 Schottky diode, followed by a closing single pole single throw switch. A 10 microfarad and 47 nanafarad capacitor in parallel decouple AC to ground. A 78L08 voltage regulator then provides stable 8 volts.",
-   title="A voltage source feeds into a 1N5817 Schottky diode, followed by a closing single pole single throw switch. A 10 microfarad and 47 nanafarad capacitor in parallel decouple AC to ground. A 78L08 voltage regulator then provides stable 8 volts." />
+     alt="A voltage source feeds into a 1N5817 Schottky diode, followed by a single pole double throw switch. A 10 microfarad and 47 nanafarad capacitor in parallel decouple AC to ground. A 78L08 voltage regulator then provides stable 8 volts.",
+   title="A voltage source feeds into a 1N5817 Schottky diode, followed by a single pole double throw switch. A 10 microfarad and 47 nanafarad capacitor in parallel decouple AC to ground. A 78L08 voltage regulator then provides stable 8 volts." />
 
 A 10 to 15 volt DC power source feeds power in through the jack, past the diode,
 to the switch, where it's filtered by the capacitors, then regulated down to
