@@ -1,7 +1,7 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 14 June 2014 - 4:36 pm
+updated: 14 June 2014 - 4:44 pm
 publish: 14 June 2014
 slug: voltage-regulator
 tags: building, radio
@@ -398,7 +398,7 @@ which is more than our mixer can handle.
 
 While I wouldn't want to rebuild a 78L08 voltage regulator from scratch, at this
 point I've got a basic understanding of how one works. And I got to learn about
-polatiry protection and decoupling capacitors in the process.
+polarity protection and decoupling capacitors in the process.
 
 The image below shows the power circuit in relation to the transmit filter in
 the NorCal 40A. I put nuts on the stand offs for the circuit board, since
