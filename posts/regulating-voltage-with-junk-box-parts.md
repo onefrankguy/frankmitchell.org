@@ -1,7 +1,7 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 14 June 2014 - 7:02 am
+updated: 14 June 2014 - 7:12 am
 publish: 14 June 2014
 slug: voltage-regulator
 tags: building, radio
@@ -211,7 +211,7 @@ The circuit below shows the simplest possible voltage regulator we can use
 for our mixer. We've got our 12 volt battery pack. We've got our 8.2 volt Zener
 diode for a reference voltage, and we've got a 100 ohm resistor.
 
-<img class="game art" width="446px" height"216px"
+<img class="game art" width="446px" height"206px"
      src="/images/norcal-40a-voltage-regulator-simple.png"
      alt="An unregulated 12 volt battery is connected in series to a 100 ohm resistor. In parallel with the battery is a reverse-biased 8.2 volt Zener diode. The result is a regulated 8.2 volt source.",
    title="An unregulated 12 volt battery is connected in series to a 100 ohm resistor. In parallel with the battery is a reverse-biased 8.2 volt Zener diode. The result is a regulated 8.2 volt source." />
@@ -298,7 +298,7 @@ planet, you'll sill be able to find them in huge quantities." And it's true.
 We've got one in our junk box. Here's what it looks like plugged into our
 voltage regulator.
 
-<img class="game art" width="505px" height"322px"
+<img class="game art" width="505px" height"312px"
      src="/images/norcal-40a-voltage-regulator-amped.png"
      alt="The positive terminal of an unregulated 12 volt battery is connected to the collector of a 2N2222 transistor. A reverse-biased 8.2 volt Zener diode is connected to the negative terminal of the battery and the base of the transistor. A 220 ohm resistor is shorted across the base and collector of the transistor. The result is a regulated 8.2 volt source (at the emitter of the transistor) that can handle a load of at least 225 milliamperes.",
    title="The positive terminal of an unregulated 12 volt battery is connected to the collector of a 2N2222 transistor. A reverse-biased 8.2 volt Zener diode is connected to the negative terminal of the battery and the base of the transistor. A 220 ohm resistor is shorted across the base and collector of the transistor. The result is a regulated 8.2 volt source (at the emitter of the transistor) that can handle a load of at least 225 milliamperes." />
