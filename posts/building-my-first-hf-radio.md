@@ -1,7 +1,7 @@
 <!--
 title: Building my first HF radio
 created: 6 May 2014 - 7:15 am
-updated: 27 May 2014 - 6:28 am
+updated: 15 June 2014 - 4:09 pm
 publish: 8 May 2014
 slug: norcal-40a
 tags: building, radio
@@ -72,6 +72,7 @@ This is the first part in a multi-part series about building the NorCal
 
 1. Building my first HF radio
 2. [Learning how a transmit filter works][transmit-filter]
+3. [Regulating voltage with junk box parts][voltage-regulator]
 
 For the curious, photos where taken with an [iPhone 5][], cropped and resized
 with [Acorn][], and compressed with [ImageOptim][]. Dave Richards, AA7EE has
@@ -97,6 +98,7 @@ with [Acorn][], and compressed with [ImageOptim][]. Dave Richards, AA7EE has
 [Northern California QRP Club]: http://norcalqrp.org/ "Various (NorCal QRP Club): Home"
 [the manual]: http://ecee.colorado.edu/~ecen2420/Files/NorCal40A_Manual.pdf "Bob Dyer, K6KK &amp; Wayne Burdick, N6KR (Wilderness Radio): NorCal 40A 40-Meter CW Transceiver: Assembly and Operating Manual"
 [transmit-filter]: /2014/05/transmit-filter "Frank Mitchell: Learning how a transmit filter works"
+[voltage-regulator]: /2014/06/voltage-regulator "Frank Mitchell: Regulating voltage with junk box parts"
 [iPhone 5]: http://support.apple.com/kb/sp655 "Various (Apple): iPhone 5 Technical Specification"
 [Acorn]: http://flyingmeat.com/acorn/ "Gus &amp; Kirstin Mueller (Flying Meat): Acorn - The image editor for humans"
 [ImageOptim]: http://imageoptim.com/ "@pornel (ImageOptim): Image compression made easy for Mac OS X"
