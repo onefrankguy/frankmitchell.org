@@ -1,7 +1,7 @@
 <!--
 title: Learning how a transmit filter works
 created: 15 May 2014 - 7:06 pm
-updated: 27 May 2014 - 6:26 am
+updated: 14 June 2014 - 4:14 pm
 publish: 25 May 2014
 slug: transmit-filter
 tags: building, radio
@@ -226,7 +226,7 @@ var gain = function (mhz) {
 var g = d3.select('#band-pass-chart')
   .append('svg:svg')
   .attr('width', '100%')
-  .attr('height', '528px')
+  .attr('height', '33em')
   .attr('viewBox', '0 0 '+w+' '+h+'')
 
 var line = d3.svg.line()
@@ -384,7 +384,7 @@ var gain = function (mhz) {
 var g = d3.select('#high-pass-chart')
   .append('svg:svg')
   .attr('width', '100%')
-  .attr('height', '528px')
+  .attr('height', '33em')
   .attr('viewBox', '0 0 '+w+' '+h+'')
 
 var line = d3.svg.line()
@@ -495,7 +495,7 @@ var gain = function (mhz) {
 var g = d3.select('#ideal-pass-chart')
   .append('svg:svg')
   .attr('width', '100%')
-  .attr('height', '528px')
+  .attr('height', '33em')
   .attr('viewBox', '0 0 '+w+' '+h+'')
 
 var line = d3.svg.line()
@@ -677,7 +677,7 @@ var gain = function (mhz) {
 var g = d3.select('#real-pass-chart')
   .append('svg:svg')
   .attr('width', '100%')
-  .attr('height', '528px')
+  .attr('height', '33em')
   .attr('viewBox', '0 0 '+w+' '+h+'')
 
 var line = d3.svg.line()
@@ -787,6 +787,7 @@ This is the second part in a multi-part series about building the NorCal
 
 1. [Building my first HF radio][norcal-40a]
 2. Learning how a transmit filter works
+3. [Regulating voltage with junk box parts][voltage-regulator]
 
 For the curious, photos where taken with an [iPhone 5][], cropped and resized
 with [Acorn][], and compressed with [ImageOptim][]. Schematics where drawn with
@@ -799,6 +800,7 @@ with [Acorn][], and compressed with [ImageOptim][]. Schematics where drawn with
 [aa7ee]: http://aa7ee.wordpress.com/2013/10/19/the-vk3ye-micro-40-dsb-transceiver/ "Dave Richards, AA7EE (Wordpress): The VK3YE Micro 40 DSB Transceiver"
 [w6bul]: http://www.youtube.com/watch?v=GT44U10WqRA "Jim Bullington, W6BUL (YouTube): A Meditation On Winding Toroids - K6JEB"
 [norcal-40a]: /2014/05/norcal-40a "Frank Mitchell: Building my first HF radio"
+[voltage-regulator]: /2014/06/voltage-regulator "Frank Mitchell: Regulating voltage with junk box parts"
 [iPhone 5]: http://support.apple.com/kb/sp655 "Various (Apple): iPhone 5 Technical Specification"
 [Acorn]: http://flyingmeat.com/acorn/ "Gus &amp; Kirstin Mueller (Flying Meat): Acorn - The image editor for humans"
 [ImageOptim]: http://imageoptim.com/ "@pornel (ImageOptim): Image compression made easy for Mac OS X"

@@ -1,0 +1,19 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx]{circuitikz}
+
+\begin{document}
+\begin{circuitikz} \draw
+(3,2) node[spdt, rotate=180, anchor=in] (Sw) {}
+(-0.5,2) node[anchor=east] {V$_{in}$}
+(-0.5,1.685) to[sD*, o-, l=1N5817] (1.5,1.685) to[short] (Sw.out 1)
+(Sw.in) to[short] (4,2)
+(4,0) to[C, -*, l=47<\nano\farad>] (4,2)
+(6.5,0) to[pC, -*, l=20<\micro\farad>] (6.5,2)
+(5.25,0) node[ground] {}
+(4,0) to[short, -*] (5.25,0) to[short] (6.5,0)
+(8,1.8) to[short] (8,0) node[ground] {}
+(4,2) to[short] (7,2)
+      to[generic, l=78L08] (9,2)
+      to[short, -o] (9.5,2) node[anchor=west] {V$_{out}$}
+; \end{circuitikz}
+\end{document}
