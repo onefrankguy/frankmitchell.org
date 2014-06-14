@@ -1,7 +1,7 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 14 June 2014 - 6:36 am
+updated: 14 June 2014 - 7:02 am
 publish: 14 June 2014
 slug: voltage-regulator
 tags: building, radio
@@ -359,6 +359,11 @@ We can step the voltage down from 8.2 volts to 6 volts with a voltage divider.
 
 The simplest voltage divider is two resistors in series. Here's what that looks
 like when we wire it into our circuit.
+
+<img class="game art" width="623px" height"312px"
+     src="/images/norcal-40a-voltage-regulator-stepped.png"
+     alt="The positive terminal of an unregulated 12 volt battery is connected to the collector of a 2N2222 transistor. A reverse-biased 8.2 volt Zener diode is connected to the negative terminal of the battery and the base of the transistor. A 220 ohm resistor is shorted across the base and collector of the transistor. A voltage divider consisting of a 1000 ohm resistor and a 330 ohm resistor in series is place between the emitter of the transistor and the base of the Zener diode. The result is a regulated 6.2 volt source (at the junction of the voltage divider) that can handle a load of at least 225 milliamperes.",
+   title="The positive terminal of an unregulated 12 volt battery is connected to the collector of a 2N2222 transistor. A reverse-biased 8.2 volt Zener diode is connected to the negative terminal of the battery and the base of the transistor. A 220 ohm resistor is shorted across the base and collector of the transistor. A voltage divider consisting of a 1000 ohm resistor and a 330 ohm resistor in series is place between the emitter of the transistor and the base of the Zener diode. The result is a regulated 6.2 volt source (at the junction of the voltage divider) that can handle a load of at least 225 milliamperes." />
 
 Given two resistors of the same value, the voltage at the point they join will
 be half the input voltage. The formula for output voltage given two arbitrary
