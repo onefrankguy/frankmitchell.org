@@ -1,7 +1,7 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 14 June 2014 - 4:06 pm
+updated: 14 June 2014 - 4:36 pm
 publish: 14 June 2014
 slug: voltage-regulator
 tags: building, radio
@@ -74,14 +74,10 @@ together in series for 10 to 12 volts of power. That will ensure we've got
 the minimum 6 volts needed for the mixer, even if some of the batteries
 are shot.
 
-Below is a picture of a 12 volt battery back, the kind that holds eight AA
-batteries in place with spring connectors. I got mine from [Adafruit][12v].
-
-It ended up being cheaper to get the battery pack than it was to get the 2.1
-millimeter plug and switch on their own. Dave Bixler, W0CH, points out that his
-NorCal 40A [runs just fine from a 12 volt battery pack][w0ch], so we don't
-have to worry about not having enough juice for our mixer. With the power source
-covered, we can move on to the next part in our circuit, the diode.
+Dave Bixler, W0CH, points out that his NorCal 40A [runs just fine from a 12 volt
+battery pack][w0ch], so we don't have to worry about not having enough juice for
+our mixer. With the power source covered, we can move on to the next part in our
+circuit, the diode.
 
 ## Basic polarity protection ##
 
@@ -429,7 +425,6 @@ with [Acorn][], and compressed with [ImageOptim][]. Schematics where drawn with
 
 [book]: http://cambridge.org/us/academic/subjects/engineering/rf-and-microwave-engineering/electronics-radio "David Rutledge (Cambridge University Press): The Electronics of Radio"
 [NorCal 40A]: http://www.fix.net/~jparker/wilderness/nc40a.htm "Bob Dyer, K6KK (Wilderness Radio): The NorCal 40A"
-[12v]: https://www.adafruit.com/products/875 "Various (Adafruit): 8 x AA battery holder with 5.5mm/2.1mm Plug and On/Off Switch"
 
 [sa602a]: http://www.nxp.com/documents/data_sheet/SA602A.pdf "Various (NXP Semiconductors): SA602A Double-balanced mixer and oscillator - Product data sheet"
 [n6qw]: http://www.jessystems.com/How%20To%20Stuff%20A%20Junk%20Box.pdf "Pete Juliano, N6QW: How To Stuff A Junk Box"
