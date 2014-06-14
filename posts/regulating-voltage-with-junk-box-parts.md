@@ -1,7 +1,7 @@
 <!--
 title: Regulating voltage with junk box parts
 created: 31 May 2014 - 7:46 am
-updated: 14 June 2014 - 3:39 pm
+updated: 14 June 2014 - 4:02 pm
 publish: 14 June 2014
 slug: voltage-regulator
 tags: building, radio
@@ -50,7 +50,7 @@ The image below shows the back panel of the NorCal 40A. The 2.1 millimeter
 power input jack is clearly labeled as accepting 10 to 15 volts DC. It's also
 labeled as being center pin positive. I dug through the wall warts in my junk
 box, and all of them where center pin negative. So much for driving my radio
-off the mains. Guess I'm going wth a portable power supply.
+off the mains. Guess I'm going with a portable power supply.
 
 <img class="game art" width="640px" height"640px"
      src="/images/norcal-40a-voltage-regulator-panel.jpg"
@@ -91,15 +91,15 @@ diode will block the flow of current if power is reversed and trip the fuse.
 This is known as polarity protection, and it's the most basic kind of power
 protection.
 
-If there's no fuse in the power source line, the diode will actually probably
-survive just fine. A [1N5817 Schottky diode][1n5817] has a maximum reverse
-voltage of 20 volts, which is about 8 volts more than what we'll get out of
-our battery pack.
+If there's no fuse in the power source line, the diode will probably survive
+just fine. A [1N5817 Schottky diode][1n5817] has a maximum reverse voltage of
+20 volts, which is about 8 volts more than what we'll get out of our battery
+pack.
 
 The fact that it's a Schottky diode means that the forward voltage drop will
 be low compared to other types of diodes. At three amps, the 1N5817 has a
-forward voltage of 750 millivolts. Ohm's Law tells us that resistance in a DC
-circuit is voltage divided by current.
+forward voltage of 750 millivolts. Ohm's Law tells us that resistance is voltage
+divided by current.
 
 <p class="math">R =
 <span class="fraction">
@@ -150,9 +150,9 @@ position, the top and middle legs are connected. When it's in the on position,
 the middle and bottom legs are connected. Normally, you'd use a single pole
 single throw switch (with just two legs) for an on/off type connection. However,
 there's an identical switch on the front panel of the NorCal 40A that uses both
-connections. Using the same type of switch for both makes for fewer kinds of
-parts. When you're building radios, that's a good thing, since it keeps costs
-down.
+connections. Using the same type of switch in both places means you have fewer
+kinds of parts. When you're building radios, that's a good thing, since it keeps
+costs down.
 
 ## Noisy power source protection ##
 
@@ -166,16 +166,13 @@ the power source can't respond instantly to power need changes in the mixer. The
 large electrolytic capacitor (it's the blue one in the picture) acts as a
 reservoir of charge. It can deliver a burst of power on demand until current can
 get through the diode. It also acts as a filter to remove low frequency AC noise
-that might be imposed on the line.
+that might be imposed on the power supply line.
 
 The small disc capacitor (it's the orange one in the picture) acts as a filter
-to remove high frequency AC noise that might be imposed on the line. Sometimes
-a small ferrite bead is placed in series with the supply line to help remove
-internally generated noise too.
-
-Capacitors used in this fashion are called decoupling capacitors, since they
-break the circuit into two parts, and offer an alternative path for AC to flow
-through. Other names for them are bypass capacitors or shunt capacitors.
+to remove high frequency AC noise that might be imposed on the power supply
+line. Capacitors used in this fashion are called decoupling capacitors, since
+they break the circuit into two parts, and offer an alternative path for AC to
+flow through. Other names for them are bypass capacitors or shunt capacitors.
 
 ## Sourcing a junk box of parts ##
 
@@ -358,7 +355,7 @@ The 220 ohm resistor in our junk box is close enough.
 ## Stepping down the voltage ##
 
 Our Zener diode is keeping our voltage regulated at 8.2 volts, and we know
-we can pull the 225 milliamperes of current we need through our resistor.
+we can pull the 225 milliamperes of current we need through our transistor.
 But what do we do about the fact that our mixer doesn't actually need 8.2 volts?
 We can step the voltage down from 8.2 volts to 6 volts with a voltage divider.
 
@@ -423,7 +420,7 @@ This is the third part in a multi-part series about building the NorCal
 
 For the curious, photos where taken with an [iPhone 5][], cropped and resized
 with [Acorn][], and compressed with [ImageOptim][]. Schematics where drawn with
-[circuitikz][] and graphs where created with [D3][].
+[circuitikz][].
 
 
 [book]: http://cambridge.org/us/academic/subjects/engineering/rf-and-microwave-engineering/electronics-radio "David Rutledge (Cambridge University Press): The Electronics of Radio"
@@ -445,4 +442,3 @@ with [Acorn][], and compressed with [ImageOptim][]. Schematics where drawn with
 [Acorn]: http://flyingmeat.com/acorn/ "Gus &amp; Kirstin Mueller (Flying Meat): Acorn - The image editor for humans"
 [ImageOptim]: http://imageoptim.com/ "@pornel (ImageOptim): Image compression made easy for Mac OS X"
 [circuitikz]: http://www.ctan.org/pkg/circuitikz "Massimo Redaelli (CTAN): circuitikz - Draw electrical networks with TikZ"
-[D3]: http://d3js.org/ "Mike Bostock (D3): Data-Driven Documents"
