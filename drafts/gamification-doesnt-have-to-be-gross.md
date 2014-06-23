@@ -1,7 +1,7 @@
 <!--
 title: Gamification doesn't have to be gross
 created: 22 June 2014 - 7:35 pm
-updated: 22 June 2014 - 8:02 pm
+updated: 22 June 2014 - 8:37 pm
 publish: 8 July 2014
 slug: add-play
 tags: gaming, yoga
@@ -19,4 +19,10 @@ comfortable with the practice of adding play to a product.
 
 Gamification can make hard things easy. When "Take out the trash" becomes "Uh,
 hot karate test" laghter results. Suddenly I'm a ninja who has to get the
-garbage can out to the street corner without waking up the neighbors.
+garbage can out to the street corner without waking up the neighbors. Space is
+created for a costume, a silly pose, a funny accent. A chore transforms into a
+moment of fun.
+
+Pushing play into your product will definately move more units. But building
+a product with play as its core with delight your users. An delight drives
+more sales than any other force in the universe.
