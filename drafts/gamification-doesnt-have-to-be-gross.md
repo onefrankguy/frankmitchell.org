@@ -1,7 +1,7 @@
 <!--
 title: Gamification doesn't have to be gross
 created: 22 June 2014 - 7:35 pm
-updated: 22 June 2014 - 8:37 pm
+updated: 22 June 2014 - 8:40 pm
 publish: 8 July 2014
 slug: add-play
 tags: gaming, yoga
@@ -24,5 +24,5 @@ created for a costume, a silly pose, a funny accent. A chore transforms into a
 moment of fun.
 
 Pushing play into your product will definately move more units. But building
-a product with play as its core with delight your users. An delight drives
+a product with play as its core with delight your users. And delight drives
 more sales than any other force in the universe.
