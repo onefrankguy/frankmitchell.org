@@ -54,12 +54,12 @@ to shipping your product, it poses a problem.
 It also creates an opportunity.
 
 Internet pundits would argue that the web wins. HTML, CSS and JavaScript are
-powerful tools for building online software. A browser is availble on every
+powerful tools for building online software. A browser is available on every
 platform. Sharing and discovery are built in. Digital distribution is just a
 hyperlink away.
 
 Even if you write for the web, entry into an app store isn't guaranteed. Wrap
-your app in [PhoneGap][] and Apple can still reject it for not looking native
+your web app in [PhoneGap][] and Apple can still reject it for not looking native
 enough. Want global high scores in your game that show up on both Steam and
 iPhone? You'll need to integrate twice and ship on two separate app stores to
 get there. Want to do something even more complicated, like having actions in
