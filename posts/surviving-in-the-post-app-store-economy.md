@@ -1,7 +1,7 @@
 <!--
 title: Surviving in the post app store economy
 created: 28 June 2014 - 7:45 am
-updated: 1 July 2014 - 8:00 am
+updated: 2 July 2014 - 6:26 am
 publish: 1 July 2014
 slug: walled-gardens
 tags: marketing
@@ -10,7 +10,7 @@ tags: marketing
 
 As the Steam Summer Sale winds to a close, I find myself asking
 
-> "Where does the market go when everyone has a walled garden?"
+> "Where does the market go when everyone has their own app store?"
 
 Steam was the first app store I ever encountered. A friend got me hooked in
 2006, touting them as a way to get the games you own on every device you own.
@@ -36,15 +36,15 @@ Digital distribution is hot right now. Every publisher wants their own virtual
 store front. You maximize profits if you aren't giving thirty percent to Steam
 or Apple. Every device owner wants applications that feel native. You want the
 things you use to feel good. But that intersection leaves developers, the people
-that build the games and apps, at a loss.
+that build games and other software, at a loss.
 
 Traditional publishing has a developer boxing their software and shipping it to
 a distribution center. A publisher then handles the business of getting that
 software in all the relevant physical store fronts. App stores change that. Now
 getting your game on Steam or Amazon or the Windows Phone Store is just part of
-the development process. Developers have become their own publishers.
+the development process. Developers are required to be their own publishers.
 
-Knocking on the door of every walled garden isn't easy. Sure Amazon has a
+Knocking on the door of every app store isn't easy. Sure Amazon has a
 software development kit and lots of documentation, but their SDK doesn't look
 anything like the Steam one. Concepts you learn when developing on a Kindle
 don't have one-to-one mappings onto an iPhone. You can argue that's the nature
@@ -52,6 +52,26 @@ of software, every library is different, but when that nature creates a barrier
 to shipping your product, it poses a problem.
 
 It also creates an opportunity.
+
+Internet pundits would argue that the web wins. HTML, CSS and JavaScript are
+powerful tools for building online software. A browser is availble on every
+platform. Sharing and discovery are built in. Digital distribution is just a
+hyperlink away.
+
+Even if you write for the web, entry into an app store isn't guaranteed. Wrap
+your app in [PhoneGap][] and Apple can still reject it for not looking native
+enough. Want global high scores in your game that show up on both Steam and
+iPhone? You'll need to integrate twice and ship on two separate app stores to
+get there. Want to do something even more complicated, like having actions in
+your iPhone game change what happens on your friend's PC game? Now you need
+to build your own back end system.
+
+So the market fragments. Small companies focus on getting in a single app store.
+Medium companies have iOS and Android and Windows and Linux departments so
+they can get in all the app stores. Big companies build their own app store.
+Eventually everyone has their own app store.
+
+Then the publishers come back.
 
 
 [forbes]: http://www.forbes.com/forbes/2011/0228/technology-gabe-newell-videogames-valve-online-mayhem.html "Oliver Chiang (Forbes): The Master of Online Mayhem"
