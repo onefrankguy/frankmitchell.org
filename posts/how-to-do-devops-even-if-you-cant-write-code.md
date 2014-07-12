@@ -1,7 +1,7 @@
 <!--
 title: How to do DevOps even if you can't write code
 created: 12 July 2014 - 8:12 am
-updated: 12 July 2014 - 8:12 am
+updated: 12 July 2014 - 8:48 am
 publish: 14 July 2014
 slug: water-cooler
 tags: coding, chef
@@ -55,7 +55,24 @@ DevOps is about one thing. Communication. All the code and tools and process in
 the world mean squat if you don't have good communication. What's good
 communication? It has two parts.
 
-1 Being genuinely interested in the work other people are doing.
-2.Wanting to help other people solve their problems.
+1. Being genuinely interested in the work other people are doing.
+2. Wanting to help other people solve their problems.
 
 That's it.
+
+Traditionally, developers only talk to operations people when they have new code
+that needs deployed. That creates more work for the operations people.
+
+Traditionally, operations people only talk to developers when something's
+broken. That creates more work for the developers.
+
+Traditionally, the boss only talks to developers when they need new features
+built. That creates more work for the developers.
+
+Traditonally, the boss only talks to the operations people when something's
+broken. THat creates more work for the operations people.
+
+No one likes more work.
+
+Start talking early. Build friendships. Help each other solve problems before
+they're problems. That's how you do DevOps.
