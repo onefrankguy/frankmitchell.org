@@ -1,7 +1,7 @@
 <!--
 title: How to do DevOps even if you can't write code
 created: 12 July 2014 - 8:12 am
-updated: 27 July 2014 - 2:10 pm
+updated: 27 July 2014 - 6:13 pm
 publish: 29 July 2014
 slug: water-cooler
 tags: coding, chef
@@ -51,28 +51,27 @@ Boss: "Nice. That will work. Thank you."
 
 ## What about code, tools, process? ##
 
-DevOps is about one thing. Communication. All the code and tools and process in
-the world are useless if you don't have good communication. What's good
-communication? It has two parts.
+DevOps is about one thing: communication. Specifically, it's about communication
+that reduces the amount of work someone other than yourself has to do. In order
+to do that, you have to know what the other person is working on. You have to
+understand the problem they're solving so you can offer useful suggestions. And
+you have to [speak in their terms][worldviews] so you can offer help that won't
+be rejected.
 
-1. Being genuinely interested in the work other people are doing.
-2. Wanting to help other people solve their problems.
+In the beginning this is messy and complicated. Devs are going to talk about
+"services" as applications running on the JVM. Ops are going to talk about
+"services" as processes running on Linux machines. Bosses are going to talk
+about "services" as functional units being provided to a customer. Everyone
+will be right and everyone will be wrong at the same time. It's complicated.
 
-That's it.
+Eventually you'll figure it out. You'll learn how objects work in Scala, and
+when it's appropriate to cat files to /dev/null, and how sometimes the needs
+of the business come before the needs of the customer. You'll start writing
+this stuff down, in wikis, and chats, and blogs. You'll share it with new hires.
+You'll build your own code and tools and process around the patterns that work
+for your company. You'll find your company is always learning new things.
 
-Traditionally, developers only talk to operations people when they have new code
-that needs deployed. That creates more work for the operations people.
+Now you're doing DevOps.
 
-Traditionally, operations people only talk to developers when something
-is broken. That creates more work for the developers.
 
-Traditionally, the boss only talks to developers when they need new features
-built. That creates more work for the developers.
-
-Traditionally, the boss only talks to the operations people when something
-is broken. That creates more work for the operations people.
-
-No one likes more work.
-
-Start talking. Build friendships. Help each other solve problems before they're
-problems. That's how you do DevOps.
+[worldviews]: http://unicornfree.com/samples/30x500%20Freeview%20-%20Worldviews!.pdf "Amy How (30x500): Why You Should Ditch Niches &amp; Embrace Worldviews"
