@@ -1,7 +1,7 @@
 <!--
 title: The quick, easy way to version Chef roles
 created: 25 July 2014 - 5:14 am
-updated: 27 July 2014 - 12:52 pm
+updated: 27 July 2014 - 1:01 pm
 publish: 25 July 2014
 slug: chef-roles
 tags: coding, chef
@@ -31,7 +31,7 @@ The first thing to fail is roles. Here's a typical role for a web server.
     }
 
 Suppose you've decided you want to terminate SSL connections at your load
-balancer instead of your web server. You're pretty sure this is a no brainer
+balancer instead of your web server. You're pretty sure this is a no-brainer
 operation, but you decide to run it through your testing environment just to
 be safe. So you configure the load balancer in your testing environment and
 change the port number Apache listens on.
@@ -58,7 +58,7 @@ things go back to normal. What went wrong?
 ## Your mental model is broken ##
 
 The flaw is that Chef's model of reality doesn't map to yours. In the typical
-operations worldview, things have a precidence that looks like this:
+operations worldview, things have a precedence that looks like this:
 
 1. Applications
 2. Services
@@ -105,7 +105,7 @@ What about another cookbook?
 
 Cookbooks can depend on other cookbooks. They can overwrite attributes of
 those they depend on to customize their behavior. This puts them between
-cookbokos and environments in terms of attribute precedence. They can also
+cookbooks and environments in terms of attribute precedence. They can also
 include recipes from their dependents, effectively functioning as a run list.
 
 The Chef community refers to these as "role cookbooks". Here's how you turn your
@@ -157,11 +157,11 @@ At first glance you haven't gained a whole lot. A few more lines of Ruby.
 A few less lines of JSON. But look back at the [the documentation on
 managing roles][role] you'll find this warning:
 
-> "The canonical source of a role’s data is stored on the Chef server, which
+> "The canonical source of a role's data is stored on the Chef server, which
 > means that keeping role data in version source control can be challenging."
 
-Cookbooks have no such limitations. Because they can be explicitly versioned and
-frozen when promoted between environments, their source of truth is always
+Cookbooks have no such limitations. Because they can have explicit versions and
+be frozen when promoted between environments, their source of truth is always
 what's in source control.
 
 More importantly, you've now mapped your own mental model of how attribute
@@ -170,7 +170,7 @@ cookbook to run Apache on port 80 and promote that change to testing, the only
 things that will change are the things you expect to change.
 
 You're not entirely done though. There's still the problem of all the other
-cookbooks. The ones that expect that JSON role to exist.
+cookbooks. The ones that expect that JSON web server role to exist.
 
 ## Searching for role cookbooks ##
 
