@@ -2,7 +2,7 @@
 title: The quick, easy way to version Chef roles
 created: 25 July 2014 - 5:14 am
 updated: 27 July 2014 - 1:01 pm
-publish: 25 July 2014
+publish: 5 August 2014
 slug: chef-roles
 tags: coding, chef
 -->
