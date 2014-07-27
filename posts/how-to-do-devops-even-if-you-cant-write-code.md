@@ -1,8 +1,8 @@
 <!--
 title: How to do DevOps even if you can't write code
 created: 12 July 2014 - 8:12 am
-updated: 27 July 2014 - 2:01 pm
-publish: 27 July 2014
+updated: 27 July 2014 - 2:10 pm
+publish: 29 July 2014
 slug: water-cooler
 tags: coding, chef
 -->
@@ -49,7 +49,7 @@ Dev: "And have Chef write it to the cron job."
 
 Boss: "Nice. That will work. Thank you."
 
-## But where's the code, and the tools, and the process? ##
+## What about code, tools, process? ##
 
 DevOps is about one thing. Communication. All the code and tools and process in
 the world are useless if you don't have good communication. What's good
@@ -74,5 +74,5 @@ is broken. That creates more work for the operations people.
 
 No one likes more work.
 
-Start talking early. Build friendships. Help each other solve problems before
-they're problems. That's how you do DevOps.
+Start talking. Build friendships. Help each other solve problems before they're
+problems. That's how you do DevOps.
