@@ -1,8 +1,8 @@
 <!--
 title: How to do DevOps even if you can't write code
 created: 12 July 2014 - 8:12 am
-updated: 12 July 2014 - 8:48 am
-publish: 14 July 2014
+updated: 27 July 2014 - 2:01 pm
+publish: 27 July 2014
 slug: water-cooler
 tags: coding, chef
 -->
@@ -11,7 +11,7 @@ Getting started with DevOps is easy. It doesn't matter if you're on the dev
 side, the ops side, or the boss stuck in the middle. Here are three scenarios
 that walk you through what to say step by step.
 
-## If you're a dev&hellip;##
+## If you're a dev... ##
 
 Dev: "Hey, what are you working on?"
 
@@ -21,17 +21,17 @@ Dev: "Cool. Have you seen ElasticSearch's new TTL feature?"
 
 Ops: "No. Let me look into that. Might save me some work. Thanks."
 
-## If you're in ops&hellip;##
+## If you're in ops... ##
 
 Ops: "So, what have you been working on lately?"
 
 Dev: "I'm recording HTTP requests so this unit test can run locally."
 
-Ops: "Nice. Have you seen WireMock? It's a sweeet HTTP mocking framework."
+Ops: "Nice. Have you seen WireMock? It's a sweet HTTP mocking framework."
 
 Dev: "No. I'll check that out. Might save me some code. Thanks."
 
-## If you're the boss&hellip; ##
+## If you're the boss... ##
 
 Boss: "I need some help. We need to restart all our servers at 4:00 am."
 
@@ -52,7 +52,7 @@ Boss: "Nice. That will work. Thank you."
 ## But where's the code, and the tools, and the process? ##
 
 DevOps is about one thing. Communication. All the code and tools and process in
-the world mean squat if you don't have good communication. What's good
+the world are useless if you don't have good communication. What's good
 communication? It has two parts.
 
 1. Being genuinely interested in the work other people are doing.
@@ -63,14 +63,14 @@ That's it.
 Traditionally, developers only talk to operations people when they have new code
 that needs deployed. That creates more work for the operations people.
 
-Traditionally, operations people only talk to developers when something's
-broken. That creates more work for the developers.
+Traditionally, operations people only talk to developers when something
+is broken. That creates more work for the developers.
 
 Traditionally, the boss only talks to developers when they need new features
 built. That creates more work for the developers.
 
-Traditonally, the boss only talks to the operations people when something's
-broken. THat creates more work for the operations people.
+Traditionally, the boss only talks to the operations people when something
+is broken. That creates more work for the operations people.
 
 No one likes more work.
 
