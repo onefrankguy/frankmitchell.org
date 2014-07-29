@@ -1,7 +1,7 @@
 <!--
 title: The quick, easy way to version Chef roles
 created: 25 July 2014 - 5:14 am
-updated: 27 July 2014 - 1:01 pm
+updated: 28 July 2014 - 6:48 pm
 publish: 28 July 2014
 slug: chef-roles
 tags: coding, chef
@@ -154,8 +154,8 @@ You now have a versioned Chef role.
 ## Why this is better ##
 
 At first glance you haven't gained a whole lot. A few more lines of Ruby.
-A few less lines of JSON. But look back at the [the documentation on
-managing roles][role] you'll find this warning:
+A few less lines of JSON. But look back at [the documentation on
+managing roles][role] and you'll find this warning:
 
 > "The canonical source of a role's data is stored on the Chef server, which
 > means that keeping role data in version source control can be challenging."
