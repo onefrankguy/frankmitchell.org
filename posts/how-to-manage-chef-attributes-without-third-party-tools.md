@@ -1,9 +1,9 @@
 <!--
 title: How to manage Chef attributes without third-party tools
 created: 27 July 2014 - 4:32 pm
-updated: 28 July 2014 - 6:39 am
-publish: 27 July 2014
-slug: chef-attributes
+updated: 29 July 2014 - 6:39 am
+publish: 5 August 2014
+slug: chef-precedence
 tags: coding, chef
 -->
 
@@ -85,5 +85,48 @@ Cookbook and Attribute Design"][omniti], attributes are hard to track down.
 > concern the difficulty of tracing an attribute...what we want to know is...
 > which files are overwriting - or overriding - the value?"
 
+This is not an easy problem. Attributes can be set in cookbooks, reset in
+environments, forced in recipes, overwitten in roles, toggled in nodes, and
+then obliterated automatically. By the time an attribute gets written out
+to a template, it's almost impossible to trace the code path that put it
+there. Good luck figuring out what code to edit to change it.
+
+Eventually you end up looking at source control history to figure out who
+changeded what when, hoping that gives you a clue about who you need to
+go talk to to figure things out. But combing through a change log looking
+for commits about JVM memory settings isn't a fun way to spend an afternoon.
+
+Well written READMEs don't help, since they typically only document a
+single cookbook. Unless you're anal about writing down everything about your
+environment and infrastructure there's not going to be a document that says,
+"If you need to set X, edit Y." And documentation's always one of those
+things that gets pushed off onto the backlog.
+
+What you really want is a magic piece of documentation that stays up to date
+as things change. Kind of like your code does.
+
+## Stop fighting the precedence hierarchy ##
+
+The problem with Chef's attribute precedence is not that there are fifteen
+levels of it. The problem is that you're trying to use all fifteen of them.
+It's pretty much established that you can hold five, plus or minus two, bits
+of information in short term memory. Which is why U.S. phone numbers are seven
+digits long. Attribute precedence is confusing because it has more than five
+levels. So restrict yourself to just using five levels.
+
+But which five levels? Well the automatic one is a given because you can't get
+rid of it. So that leaves you four to pick from. Ignore how Chef models things
+for a minute and think about what it is you're trying to configure.
+
+You have an application (HAProxy) that provies a service (load balancing) in an
+environment (production) on a server (EC2 instance). That's a pretty simple
+four step model.
+
+1. Applications
+2. Services
+3. Environments
+4. Servers
+
 
 [omniti]: http://omniti.com/seeds/seeds-our-experiences-with-chef-cookbook-and-attribute-design "Clinton Wolfe (OmniTI): Our Experiences with Chef - Cookbook and Attribute Design"
+[roles]: /2014/07/chef-roles "Frank Mitchell: The quick, easy way to version Chef roles"
