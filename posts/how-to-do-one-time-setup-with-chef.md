@@ -14,13 +14,13 @@ like Chef, it can be tricky to get one time setup stuff correct. You want it
 to run the first time the application's installed, but never again after that.
 
 Before you start writing recipe code, it's helpful to step back and ask yourself
-"How would I solve this without Chef?" There's a whole lot of acumulated
+"How would I solve this without Chef?" There's a whole lot of accumulated
 sysadmin lore built out of bash scripts and best practices. Solve your problem
 without Chef first, and you'll end up with a better solution when you translate
 it into a Chef recipe.
 
 The canonical bash solution for "Run this command once and only once" is to test
-for the existance of a lock file, and if it doesn't exist create it and run the
+for the existence of a lock file, and if it doesn't exist create it and run the
 command. That code usually looks something like this:
 
     #!/bin/bash
@@ -43,14 +43,14 @@ Translating that bash script into a Chef recipe makes it look like this:
     end
 
 Unfortunately, there's one potential flaw with that Chef recipe. What if the
-`touch` and `test` executables don't exist? "But this is Liunx, of course they
+`touch` and `test` executables don't exist? "But this is Linux, of course they
 exist!" you cry. Well, it's Linux right now. What if it's Windows later? Chef
 works best when you do as much as possible in Chef. Don't worry about OS
 specific details. Let Chef handle those for you.
 
 The `touch` and `test` commands are really just a way to create a file if it
 doesn't already exist. Chef has a [file resource][] that can do that. You also
-want to trigger the execution of the `initdb` commmand if the file gets created.
+want to trigger the execution of the `initdb` command if the file gets created.
 Chef has notification events that can handle that. Incorporating those ideas
 into the recipe makes it look like this:
 
