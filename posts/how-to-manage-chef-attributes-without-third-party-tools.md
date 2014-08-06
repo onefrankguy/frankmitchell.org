@@ -2,7 +2,7 @@
 title: How to manage Chef attributes without third-party tools
 created: 27 July 2014 - 4:32 pm
 updated: 29 July 2014 - 6:39 am
-publish: 5 August 2014
+publish: 12 August 2014
 slug: chef-precedence
 tags: coding, chef
 -->
