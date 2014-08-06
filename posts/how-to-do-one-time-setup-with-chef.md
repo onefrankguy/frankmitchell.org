@@ -1,7 +1,7 @@
 <!--
 title: How to do one time setup with Chef
 created: 5 August 2014 - 7:44 am
-updated: 5 August 2014 - 8:46 pm
+updated: 5 August 2014 - 9:00 pm
 publish: 5 August 2014
 slug: chef-runonce
 tags: coding, chef
@@ -32,8 +32,8 @@ command. That code usually looks something like this:
     fi;
 
 Looking at the code, it's obvious the end goal is the execution of `initdb`.
-Chef provides an execute resource that's a nice abstraction on top of the idea
-of running a command. The usual way to guard against an execute resource
+Chef provides an [execute resource][] that's a nice abstraction on top of the
+idea of running a command. The usual way to guard against an execute resource
 running more than once is with the `not_if` and `only_if` attributes.
 Translating that bash script into a Chef recipe makes it look like this:
 
@@ -49,10 +49,10 @@ works best when you do as much as possible in Chef. Don't worry about OS
 specific details. Let Chef handle those for you.
 
 The `touch` and `test` commands are really just a way to create a file if it
-doesn't already exist. Chef has a file resource that can do that. You also
+doesn't already exist. Chef has a [file resource][] that can do that. You also
 want to trigger the execution of the `initdb` commmand if the file gets created.
-Chef has notification events that can handle that. Rolling those ideas into
-the recipe makes it look like this:
+Chef has notification events that can handle that. Incorporating those ideas
+into the recipe makes it look like this:
 
     file 'lockfile' do
       action :create_if_missing
@@ -69,5 +69,12 @@ runs when the notification triggers it. Setting the `action :create_if_missing`
 attribute on the file resource ensures it only runs if the file doesn't exist.
 The end result is a one time setup command in Chef.
 
+If you find yourself using this pattern a lot, especially if you're triggering
+multiple things off the same lock file, you may find that [switching away from
+notification events][chain] makes your code easier to read and reason about.
+
 
 [PostgreSQL]: http://www.postgresql.org/docs/9.3/static/app-initdb.html "PostgreSQL: initdb - create a new PostgreSQL database cluster"
+[execute resource]: http://docs.getchef.com/resource_execute.html "Chef Software: Use the execute resource to execute a command"
+[file resource]:http://docs.getchef.com/resource_file.html "Chef Software: Use the file resource to manage files that are present on a node"
+[chain]: /2013/02/chain-events "Frank Mitchell: Three ways to chain events in Chef"
