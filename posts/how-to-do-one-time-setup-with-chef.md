@@ -1,9 +1,9 @@
 <!--
 title: How to do one time setup with Chef
 created: 5 August 2014 - 7:44 am
-updated: 5 August 2014 - 6:29 pm
+updated: 5 August 2014 - 8:46 pm
 publish: 5 August 2014
-slug: chef-initdb
+slug: chef-runonce
 tags: coding, chef
 -->
 
@@ -19,9 +19,9 @@ sysadmin lore built out of bash scripts and best practices. Solve your problem
 without Chef first, and you'll end up with a better solution when you translate
 it into a Chef recipe.
 
-The canonical bash solution for "Run this command once" is to test for the
-existance of a lock file, and if it doesn't exist create it and run the command.
-That code usually looks something like this.
+The canonical bash solution for "Run this command once and only once" is to test
+for the existance of a lock file, and if it doesn't exist create it and run the
+command. That code usually looks something like this:
 
     #!/bin/bash
 
@@ -31,18 +31,28 @@ That code usually looks something like this.
       initdb -D data
     fi;
 
+Looking at the code, it's obvious the end goal is the execution of `initdb`.
+Chef provides an execute resource that's a nice abstraction on top of the idea
+of running a command. The usual way to guard against an execute resource
+running more than once is with the `not_if` and `only_if` attributes.
+Translating that bash script into a Chef recipe makes it look like this:
 
     execute 'initdb' do
       command 'touch lockfile && initdb -D data'
       not_if 'test -f lockfile'
     end
 
+Unfortunately, there's one potential flaw with that Chef recipe. What if the
+`touch` and `test` executables don't exist? "But this is Liunx, of course they
+exist!" you cry. Well, it's Linux right now. What if it's Windows later? Chef
+works best when you do as much as possible in Chef. Don't worry about OS
+specific details. Let Chef handle those for you.
 
-    execute 'initdb' do
-      command 'touch lockfile && initdb -D data'
-      not_if { ::File.exists? 'lockfile' }
-    end
-
+The `touch` and `test` commands are really just a way to create a file if it
+doesn't already exist. Chef has a file resource that can do that. You also
+want to trigger the execution of the `initdb` commmand if the file gets created.
+Chef has notification events that can handle that. Rolling those ideas into
+the recipe makes it look like this:
 
     file 'lockfile' do
       action :create_if_missing
@@ -53,6 +63,11 @@ That code usually looks something like this.
       command 'initdb -D data'
       action :nothing
     end
+
+Setting the `action :nothing` attribute on the execute resource ensure it only
+runs when the notification triggers it. Setting the `action :create_if_missing`
+attribute on the file resource ensures it only runs if the file doesn't exist.
+The end result is a one time setup command in Chef.
 
 
 [PostgreSQL]: http://www.postgresql.org/docs/9.3/static/app-initdb.html "PostgreSQL: initdb - create a new PostgreSQL database cluster"
