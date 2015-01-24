@@ -80,7 +80,7 @@ the one that crashed the iPhone.
 
 ## More functional but less classy ##
 
-After reading [Crockford's book][] I learned that pseudo classical inheritance
+After reading [Crockford's book][book] I learned that pseudo classical inheritance
 wasn't the only option JavaScript offered. Better armed with knowledge, I
 refactored my code to a more functional pattern.
 
@@ -207,7 +207,7 @@ Initially the code that loaded words into my trie was simple.
 
     prolix.load = function (words) {
       var i;
-      for (i = 0; i &amp;lt; words.length; i += 1) {
+      for (i = 0; i < words.length; i += 1) {
         dictionary.load(words[i]);
       }
     };
@@ -230,7 +230,7 @@ needed one big string with a delimiter for the words.
 
     prolix.load = function (list) {
       var i, words = list.split(',');
-      for (i = 0; i &amp;lt; words.length; i += 1) {
+      for (i = 0; i < words.length; i += 1) {
         dictionary.load(words[i]);
       }
     };
@@ -257,7 +257,7 @@ for my words before they were loaded.
 
     prolix.load = function (prefix, suffixes) {
       var i, parts = suffixes.split(',');
-      for (i = 0; i &amp;lt; parts.length; i += 1) {
+      for (i = 0; i < parts.length; i += 1) {
         dictionary.load(prefix + parts[i]);
       }
     };
