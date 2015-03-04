@@ -1,8 +1,8 @@
 <!--
 title: Pick the right resolution for your HTML5 game
 created: 25 January 2015 - 9:17 am
-updated: 6 February 2015 - 7:15 am
-publish: 6 February 2015
+updated: 8 February 2015 - 11:18 am
+publish: 8 February 2015
 slug: screen-size
 tags: marketing, game
 -->
@@ -72,6 +72,8 @@ little taller than the small screen. Ignoring resolution for a minute, if you
 design your game with a 4:3 aspect ratio, leaving a little bit of stretchable
 vertical room, you can build something that looks good across the entire Android
 market.
+
+So the next question then becomes, how fragmented is that market anyway?
 
 <table style="width:100%">
 <col style="width:auto">
