@@ -187,6 +187,7 @@ def post_metadata post
   slug = info['slug'] || ''
   abort "No slug found for #{post}!" if slug.empty?
   tags = info['tags'].split(',').map { |tag| tag.strip }
+  cta = info['cta'] || ''
   url = "/#{date.strftime("%Y/%m")}/#{slug}"
   abbr = (date.strftime('%b') == 'May') ? '%-d %b' : '%-d %b.'
   data = {
@@ -201,6 +202,7 @@ def post_metadata post
     'timestamp' => date,
     'slug' => slug,
     'tags' => tags,
+    'cta' => cta,
     'url' => url,
     'date' => {
       'title' => date.strftime("%-d %B %Y"),
@@ -307,6 +309,11 @@ manifest.each do |info|
     @content = File.read info['content']['raw']
     @posts = adjacent_posts info
     @related = parse_template 'related'
+    unless info['cta'].empty?
+      @cta = parse_template(info['cta'])
+    else
+      @cta = nil
+    end
     html = parse_template 'post'
     write_text t.name, html
   end

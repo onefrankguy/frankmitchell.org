@@ -5,6 +5,7 @@ updated: 29 April 2017 - 11:29 am
 publish: 29 April 2017
 slug: bad-passphrase
 tags: nodejs, tls
+cta: node-notes
 -->
 
 Node's [https module][https] makes it easy to spin up a server with TLS. Use
@@ -103,43 +104,6 @@ And if we enter the right passphrase, the server starts succesfully.
     $ node server.js rosebud
     HTTPS server listening on 127.0.0.1:8080
 
-<!--
-openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 1
-openssl pkcs12 -export -in cert.pem -inkey key.pem -out server.pfx
--->
 
-[https]: https://nodejs.org/dist/latest-v6.x/docs/api/https.html "Various (Node): Node v6.10.2 Documentation - HTTPS"
-[tls]: https://nodejs.org/dist/latest-v6.x/docs/api/tls.html "Various (Node): Node v6.10.2 Documentation - TLS"
-
-</article>
-
-<section>
-<p class="header">Emails</p>
-<p>Want Node.js tips delivered to your inbox? Put your name and email address in the form below.</p>
-<div id="mc_embed_signup">
-<form action="//frankmitchell.us10.list-manage.com/subscribe/post?u=829a04100874c83dcef96c4ea&amp;id=7f0054cf38" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-  <div id="mc_embed_signup_scroll">
-    <div class="mc-field-group">
-      <label for="mce-FNAME">First Name <span class="asterisk">&#42;</span></label>
-      <input type="text" value="" placeholder="Type your name here" name="FNAME" class="required" id="mce-FNAME">
-    </div>
-    <div class="mc-field-group">
-      <label for="mce-EMAIL">Email <span class="asterisk">&#42;</span></label>
-      <input type="email" value="" placeholder="Type your email here" name="EMAIL" class="required email" id="mce-EMAIL">
-    </div>
-    <div id="mce-responses" class="clear">
-      <div class="response" id="mce-error-response" style="display:none"></div>
-      <div class="response" id="mce-success-response" style="display:none"></div>
-    </div>
-    <div style="position: absolute; left: -5000px;" aria-hidden="true">
-      <input type="text" name="b_829a04100874c83dcef96c4ea_7f0054cf38" tabindex="-1" value="">
-    </div>
-    <div class="clear">
-      <input type="submit" value="Yes, sign me up!" name="subscribe" id="mc-embedded-subscribe" class="button">
-    </div>
-  </div>
-</form>
-</div>
-<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css" />
-<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-</section>
+[https]: https://nodejs.org/dist/latest-v6.x/docs/api/https.html "Various (Node): Node v6.x Documentation - HTTPS"
+[tls]: https://nodejs.org/dist/latest-v6.x/docs/api/tls.html "Various (Node): Node v6.x Documentation - TLS"
