@@ -1,10 +1,11 @@
 <!--
 title: How to read line-by-line and keep memory use low in Node.js
 created: 6 May 2017 - 11:54 am
-updated: 13 May 2017 - 2:43 pm
+updated: 13 May 2017 - 2:45 pm
 publish: 13 May 2017
 slug: stdio-buffer
 tags: nodejs, stream, stdio
+cta: node-notes
 -->
 
 It's easy to eat a lot of memory when parsing text in Node, especially when
