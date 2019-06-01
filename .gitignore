@@ -1,8 +1,10 @@
 public/
+ssl/
 posts/*.html
 posts/*.pdf
 posts/*.gz
 posts/*.aux
 posts/*.log
 posts/*.swp
+google*.html
 manifest.json
