@@ -88,7 +88,7 @@ function buildRelated (url, manifest) {
   html += ''
 
   related = document.getElementById('related')
-  if (related && related.hasChildNodes()) {
+  if (html && related && related.hasChildNodes()) {
     for (i = 0; i < related.childNodes.length; i += 1) {
       if (related.childNodes[i].nodeName === 'UL') {
         related.childNodes[i].innerHTML = html
