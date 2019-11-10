@@ -32,7 +32,7 @@ with bigger numbers meaning "more likely to be a success".
 
 New player experiences matter. I was teaching a friend [Gloomhaven][gh], and we
 talked about how lowest initiative goes first, and they said, "That doesn't make
-any sense. If I have more initiative, I should go first." They where right. I've
+any sense. If I have more initiative, I should go first." They were right. I've
 played Gloomhaven so much that I've internalized the "lower initiative goes
 first" rule, so I didn't bother to question it.
 
