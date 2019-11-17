@@ -1,7 +1,7 @@
 <!--
 title: Who else wants unified mechanics in RPGs?
 created: 10 November 2019 - 9:05 am
-updated: 10 November 2019 - 6:51 pm
+updated: 17 November 2019 - 10:00 am
 publish: 10 November 2019
 slug: roll-under
 tags: coding, gaming, rpg
@@ -56,7 +56,7 @@ value of that check divided by 20.
 
 Here's a table of ability scores, from 1 to 19, as a percentage success rate.
 
-<table>
+<table class="stats">
 <thead>
   <tr><th>Ability Score</th><th>Success Rate</th></tr>
 </thead>

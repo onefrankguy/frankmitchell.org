@@ -478,3 +478,20 @@ abbr[title="and"] {
 .chart .axis text {
   font-size: 0.75em;
 }
+/* TABLES */
+.stats {
+  border-collapse: collapse;
+}
+.stats thead tr,
+.stats tbody tr:nth-child(even) {
+  background: rgb(226, 226, 226);
+}
+.stats tbody tr:nth-child(odd) {
+  background: #ffffff;
+}
+.stats th,
+.stats td {
+  font-size: 1em;
+  line-height: 1.5;
+  padding: 0.375em;
+}
