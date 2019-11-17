@@ -1,23 +1,23 @@
 <!--
 title: Who else wants narrative mechanics in RPGs?
 created: 17 November 2019 - 9:21 am
-updated: 17 November 2019 - 2:26 pm
+updated: 17 November 2019 - 2:52 pm
 publish: 17 November 2019
 slug: roll-over
 tags: coding, gaming, rpg
 -->
 
-In [_Beyond the Wall and Other Adventures_][btw], there are three types of
-tests: ability checks, saving throws, and combat rolls. My previous post was
-about how you can [change the mechanics of ability checks][ru] so they use the
-same "roll a twenty sided dice, add bonuses, and compare with a target value"
-as the other two types of tests.
+[_Beyond the Wall and Other Adventures_][btw] has three types of tests. There
+are ability checks, saving throws, and combat rolls. My previous post was about
+[changing the mechanics of ability checks][ru]. I wanted to have all three tests
+use the same mechanic. Roll a twenty sided dice, add bonuses, and compare with
+a target value.
 
-My reason for wanting unified dice mechancis is that it makes the game less
-confusing. I got confused while reading the rules, and I figured if I was
-confused, anyone I was playing with was going to get confused as well. Reading
-through the rules again, I'm realizing that part of my confusion comes from
-the language used to ask for tests.
+My reason for wanting unified dice mechanics is that it makes the game less
+confusing. I got confused while reading the rules. I figured if it confused me,
+anyone I was playing with was going to get confused as well. Now I'm reading
+through the rules again. I'm realizing that part of my confusion comes from the
+language used to ask for tests.
 
 Ability checks, as a test of player skill, use this kind of language.
 
@@ -30,8 +30,8 @@ a test every player that wants to jump the stream must pass on their own. We
 can't use a group skill check, because my stream jumping skill won't help
 you.
 
-But ability checks can also be thought of as a test to determine something
-about the environment. Those ability checks use this kind of language.
+But ability checks can also be a test to determine something about the
+environment. Those ability checks use this kind of language.
 
 > Player: "I try to jump across the stream."<br />
 > Gamemaster: "Roll to see how slippery the bank is."<br />
@@ -39,11 +39,11 @@ about the environment. Those ability checks use this kind of language.
 This opens up interesting possibilities. Say I've got a dexterity of
 16 and I roll an 18. The stream bank is more slippery than my dexterity can
 overcome, so I land in the water. Other players can decide they're going to
-jump over a different part of the stream, make their own ability checks, and
-hopefully find a less slippery spot. Of if I roll a 7, the other players may
-decide to follow me, since the bank isn't very slippery there.
+jump over a different part of the stream. They make their own ability checks,
+and hopefully find a less slippery spot. Of if I roll a 7, the other players
+may decide to follow me, since the bank isn't very slippery there.
 
-This feels like a colaboration, where everyone's rolling to figure stuff out
+This feels like a collaboration. Everyone's rolling to figure stuff out
 about the world we're playing in. It's also not going to break the game, since
 I'm not changing how ability checks are used or how they map to bonuses.
 Rolling under for ability checks now feels like a natural thing. I know what
@@ -53,14 +53,15 @@ unknown, to see what the environment does.
 <hr />
 
 Saving throws have a similar linguistic duality to ability checks. Suppose a
-mage casts entanglement on some vines near the player. As a test of plyaer
+mage casts entanglement on some vines near the player. As a test of player
 skill, the saving throw for that spell uses this kind of language.
 
 > Player: "I try to escape the vines. "<br />
 > Gamemaster: "Roll to save versus spell." <br />
 
-As a test to determine something about the environment, that same saving throw
-uses this kind of language.
+But saving throws can also be a test to determine something about the
+environment. The entanglement saving throw could use this kind of language
+instead.
 
 > Player: "I try to escape the vines."<br />
 > Gmaemaster: "Roll to see how quickly the vines grow."<br />
@@ -74,7 +75,7 @@ I like this idea of ability checks and saving throws fleshing out details about
 the world. It'd be nice to keep the mechanics consistent with the language. If
 I'm more resistant to spells, my save versus spell value should be higher.
 Fortunately, that's an easy thing to change by rewriting the saving throw
-tables for each of class.
+tables for each class.
 
 When rolling a twenty sided dice, there are six rolls that succeed with a save
 versus spell of 15. So rolling under on a 6 is equivalent to rolling over on a
