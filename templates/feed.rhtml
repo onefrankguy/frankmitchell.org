@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 <title>Frank Mitchell</title>
-<link href="http://frankmitchell.org/feed/" rel="self" />
-<link href="http://frankmitchell.org/" />
+<link href="https://www.frankmitchell.org/feed/" rel="self" />
+<link href="https://www.frankmitchell.org/" />
 <updated><%= @updated %></updated>
-<id>http://frankmitchell.org/</id>
+<id>https://www.frankmitchell.org/</id>
 <author>
 <name>Frank Mitchell</name>
 </author>
@@ -13,7 +13,7 @@
 <title><%= entry['title'] %></title>
 <link href="<%= entry['url'] %>" />
 <updated><%= entry['timestamp'] %></updated>
-<id>http://frankmitchell.org<%= entry['url'] %></id>
+<id>https://www.frankmitchell.org<%= entry['url'] %></id>
 <content type="html">
 <%= entry['content'] %>
 </content>
