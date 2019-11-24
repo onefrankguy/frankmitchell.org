@@ -1,7 +1,7 @@
 <!--
 title: Who else wants narrative mechanics in RPGs?
 created: 17 November 2019 - 9:21 am
-updated: 17 November 2019 - 2:52 pm
+updated: 24 November 2019 - 7:12 am
 publish: 17 November 2019
 slug: roll-over
 tags: coding, gaming, rpg
@@ -125,7 +125,7 @@ corrected it in the table below.
     <th>Level</th>
     <th>Poison</th>
     <th>Breath Weapon</th>
-    <th>Polymorth</th>
+    <th>Polymorph</th>
     <th>Spell</th>
     <th>Magic Item</th>
   </tr>
@@ -152,7 +152,7 @@ corrected it in the table below.
     <th>Level</th>
     <th>Poison</th>
     <th>Breath Weapon</th>
-    <th>Polymorth</th>
+    <th>Polymorph</th>
     <th>Spell</th>
     <th>Magic Item</th>
   </tr>
@@ -179,7 +179,7 @@ corrected it in the table below.
     <th>Level</th>
     <th>Poison</th>
     <th>Breath Weapon</th>
-    <th>Polymorth</th>
+    <th>Polymorph</th>
     <th>Spell</th>
     <th>Magic Item</th>
   </tr>
